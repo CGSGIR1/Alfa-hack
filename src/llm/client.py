@@ -1,0 +1,122 @@
+from __future__ import annotations
+
+import hashlib
+import json
+import os
+import re
+import time
+import urllib.error
+import urllib.request
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[2]
+TIMEOUT = 120
+JSON_RETRIES = 1
+
+
+class LLMError(RuntimeError):
+    pass
+
+
+class LLMClient:
+    def __init__(
+        self,
+        base_url: str | None = None,
+        api_key: str | None = None,
+        cache_dir: str | Path | None = None,
+        log_file: str | Path | None = None,
+    ):
+        self.base_url = (base_url or os.environ.get("LLM_BASE_URL", "")).rstrip("/")
+        self.api_key = api_key or os.environ.get("LLM_API_KEY", "")
+        self.cache_dir = Path(cache_dir or os.environ.get("LLM_CACHE_DIR") or ROOT / ".cache" / "llm")
+        self.log_file = Path(log_file or os.environ.get("LLM_LOG_FILE") or self.cache_dir / "calls.jsonl")
+
+    @staticmethod
+    def model(role: str, fallback: str | None = None) -> str:
+        """Имя модели по роли из LLM_MODEL_<ROLE>; если не задана — модель роли fallback."""
+        name = os.environ.get(f"LLM_MODEL_{role.upper()}")
+        if name:
+            return name
+        if fallback:
+            return LLMClient.model(fallback)
+        raise LLMError(f"Не задана переменная окружения LLM_MODEL_{role.upper()}")
+
+    def chat_json(self, model: str, messages: list[dict], task: str, temperature: float = 0.2) -> dict:
+        """Запрос с ответом в JSON. При невалидном JSON — повтор с указанием ошибки."""
+        for attempt in range(JSON_RETRIES + 1):
+            text = self.chat(model, messages, task, temperature)
+            try:
+                return parse_json(text)
+            except ValueError as error:
+                if attempt == JSON_RETRIES:
+                    raise LLMError(f"Модель вернула невалидный JSON: {error}") from error
+                messages = messages + [
+                    {"role": "assistant", "content": text},
+                    {"role": "user", "content": f"Ответ не является валидным JSON ({error}). Верни только JSON."},
+                ]
+        raise AssertionError("unreachable")
+
+    def chat(self, model: str, messages: list[dict], task: str, temperature: float = 0.2) -> str:
+        payload = {"model": model, "messages": messages, "temperature": temperature}
+        key = hashlib.sha256(json.dumps(payload, ensure_ascii=False, sort_keys=True).encode()).hexdigest()
+        cached = self.cache_dir / f"{key}.json"
+        if cached.exists():
+            response = json.loads(cached.read_text())
+            self._log(task, model, response, 0.0, cache_hit=True)
+            return _content(response)
+
+        if not self.base_url or not self.api_key:
+            raise LLMError("Не заданы LLM_BASE_URL и LLM_API_KEY")
+        request = urllib.request.Request(
+            f"{self.base_url}/chat/completions",
+            data=json.dumps(payload).encode(),
+            headers={"Content-Type": "application/json", "Authorization": f"Bearer {self.api_key}"},
+        )
+        started = time.monotonic()
+        try:
+            with urllib.request.urlopen(request, timeout=TIMEOUT) as r:
+                response = json.loads(r.read())
+        except urllib.error.HTTPError as error:
+            raise LLMError(f"HTTP {error.code}: {error.read().decode(errors='replace')[:500]}") from error
+        except (urllib.error.URLError, TimeoutError) as error:
+            raise LLMError(f"Нет связи с API: {error}") from error
+
+        self.cache_dir.mkdir(parents=True, exist_ok=True)
+        cached.write_text(json.dumps(response, ensure_ascii=False))
+        self._log(task, model, response, time.monotonic() - started, cache_hit=False)
+        return _content(response)
+
+    def _log(self, task: str, model: str, response: dict, seconds: float, cache_hit: bool) -> None:
+        usage = response.get("usage") or {}
+        record = {
+            "ts": time.strftime("%Y-%m-%dT%H:%M:%S"),
+            "task": task,
+            "model": model,
+            "prompt_tokens": usage.get("prompt_tokens"),
+            "completion_tokens": usage.get("completion_tokens"),
+            "seconds": round(seconds, 2),
+            "cache_hit": cache_hit,
+        }
+        self.log_file.parent.mkdir(parents=True, exist_ok=True)
+        with self.log_file.open("a") as f:
+            f.write(json.dumps(record, ensure_ascii=False) + "\n")
+
+
+def _content(response: dict) -> str:
+    try:
+        return response["choices"][0]["message"]["content"]
+    except (KeyError, IndexError, TypeError) as error:
+        raise LLMError(f"Неожиданный формат ответа: {str(response)[:300]}") from error
+
+
+def parse_json(text: str) -> dict:
+    """Достаёт JSON-объект из ответа: модели часто оборачивают его в ```json ... ``` или пишут пояснения."""
+    match = re.search(r"```(?:json)?\s*(.*?)```", text, re.S)
+    candidate = match.group(1) if match else text
+    start, end = candidate.find("{"), candidate.rfind("}")
+    if start == -1 or end == -1:
+        raise ValueError("в ответе нет JSON-объекта")
+    try:
+        return json.loads(candidate[start:end + 1])
+    except json.JSONDecodeError as error:
+        raise ValueError(str(error)) from error
