@@ -29,6 +29,7 @@ PRODUCTS = {
 
 TOP_COUNTERPARTIES = 5
 TOP_MIX = 5
+TOP_REGIONS = 3
 
 
 @dataclass
@@ -50,6 +51,7 @@ class CounterpartySide:
     top: list[Counterparty] = field(default_factory=list)
     top_known_external: list[Counterparty] = field(default_factory=list)  # крупнейшие вне группы с известной отраслью
     industry_mix: list[dict] = field(default_factory=list)  # внешние контрагенты по разделам ОКВЭД
+    region_mix: list[dict] = field(default_factory=list)    # внешние контрагенты по регионам
 
 
 @dataclass
@@ -89,6 +91,7 @@ class CompanyProfile:
     self_transfers: float
     linked_persons: int
     linked_companies_other_groups: int
+    affiliated: list[dict]          # компании вне группы, связанные через общих физлиц
     tags: dict[str, list[str]]
     data_notes: list[str]
     features: dict
@@ -120,13 +123,16 @@ def counterparty_side(store: DataStore, rows: pd.DataFrame, other_col: str, grou
         return result
 
     external = rows[known & ~group]
-    mix = []
+    mix, regions = [], []
     if not external.empty:
-        by_division = (
-            external.assign(division=external[other_col].map(companies["okved_division"]))
-            .groupby("division")["PAY_AMT"].sum()
-            .sort_values(ascending=False)
-        )
+        def amounts_by(column: str) -> pd.Series:
+            return (
+                external.assign(key=external[other_col].map(companies[column]))
+                .groupby("key")["PAY_AMT"].sum()
+                .sort_values(ascending=False)
+            )
+
+        by_division = amounts_by("okved_division")
         ext_total = by_division.sum()
         for division, amount in by_division.head(TOP_MIX).items():
             mix.append({
@@ -135,6 +141,8 @@ def counterparty_side(store: DataStore, rows: pd.DataFrame, other_col: str, grou
                 "name": division_name(division),
                 "share": float(amount / ext_total),
             })
+        for region, amount in amounts_by("REGION").head(TOP_REGIONS).items():
+            regions.append({"role": role, "region": region, "share": float(amount / ext_total)})
 
     return CounterpartySide(
         total_amount=total,
@@ -144,18 +152,36 @@ def counterparty_side(store: DataStore, rows: pd.DataFrame, other_col: str, grou
         top=counterparties(rows),
         top_known_external=counterparties(external),
         industry_mix=mix,
+        region_mix=regions,
     )
 
 
-def _person_links(store: DataStore, company_id: str, group_id: str) -> tuple[int, int]:
+def _person_links(store: DataStore, company_id: str, group_id: str) -> tuple[int, int, list[dict]]:
+    """Физлица компании и компании вне группы, связанные с ней через тех же людей.
+
+    Такие компании — скрытые связи (общие собственники или руководители):
+    события в их отраслях тоже могут затронуть клиента.
+    """
     links = store.person_links
     persons = links.loc[links["SYNTHETIC_U"] == company_id, "SYNTHETIC_F"].unique()
     if len(persons) == 0:
-        return 0, 0
+        return 0, 0, []
     others = links.loc[links["SYNTHETIC_F"].isin(persons) & (links["SYNTHETIC_U"] != company_id), "SYNTHETIC_U"].unique()
     groups = store.companies["GROUP_ID"].reindex(others)
-    other_groups = int(((groups != group_id) | groups.isna()).sum())
-    return len(persons), other_groups
+    outside = [cid for cid, g in zip(others, groups) if g != group_id]
+    affiliated = []
+    for cid in outside:
+        if cid in store.companies.index:
+            c = store.companies.loc[cid]
+            affiliated.append({
+                "company_id": cid,
+                "industry": c["MAINOKVED_NAME"],
+                "division": c["okved_division"],
+                "region": c["REGION"],
+                "revenue": float(c["REVENUE_COMPANY"]),
+            })
+    affiliated.sort(key=lambda a: a["revenue"], reverse=True)
+    return len(persons), len(outside), affiliated[:TOP_COUNTERPARTIES]
 
 
 def _data_notes(store: DataStore, row: pd.Series, suppliers: CounterpartySide, buyers: CounterpartySide) -> list[str]:
@@ -207,7 +233,7 @@ def build_profile(store: DataStore, company_id: str) -> CompanyProfile:
                 "share": float(revenue / by_division.sum()),
             })
 
-    persons, other_groups = _person_links(store, company_id, group_id)
+    persons, other_groups, affiliated = _person_links(store, company_id, group_id)
     products = [name for col, name in PRODUCTS.items() if row[col] == 1]
     missing = [name for col, name in PRODUCTS.items() if row[col] != 1]
 
@@ -253,6 +279,7 @@ def build_profile(store: DataStore, company_id: str) -> CompanyProfile:
         self_transfers=float(store.self_transfers.get(company_id, 0.0)),
         linked_persons=persons,
         linked_companies_other_groups=other_groups,
+        affiliated=affiliated,
         tags=make_tags(row, suppliers.industry_mix + buyers.industry_mix),
         data_notes=_data_notes(store, row, suppliers, buyers),
         features=features,

@@ -140,6 +140,9 @@ def _side(side: CounterpartySide, title: str) -> str:
     mix = shares(side.industry_mix)
     if mix:
         text += f" Отрасли внешних контрагентов (по сумме платежей с известной отраслью): {mix}."
+    regions = ", ".join(f"{r['region']} ({percent(r['share'])})" for r in side.region_mix if r["share"] >= MIN_SHOWN_SHARE)
+    if regions:
+        text += f" Регионы внешних контрагентов: {regions}."
     top = side.top_known_external[:3]
     if top:
         items = "; ".join(f"{c.company_id} — {c.industry.lower()}, {percent(c.share)}" for c in top)
@@ -168,6 +171,9 @@ def _links(p: CompanyProfile) -> str | None:
                if p.linked_companies_other_groups else "")
             + "."
         )
+    if p.affiliated:
+        items = "; ".join(f"{a['company_id']} — {a['industry'].lower()}, {a['region']}" for a in p.affiliated)
+        parts.append(f"Связанные через общих физлиц компании вне группы: {items}.")
     if p.negative_mark:
         parts.append("В данных стоит признак ключевого собственника (NEGATIVEMARK=1).")
     return " ".join(parts) or None

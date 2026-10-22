@@ -4,18 +4,38 @@ import hashlib
 import json
 import os
 import re
+import threading
 import time
 import urllib.error
 import urllib.request
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-TIMEOUT = 120
+TIMEOUT = 300           # модели с рассуждениями отвечают до нескольких минут
 JSON_RETRIES = 1
+NETWORK_RETRIES = 1
+RETRY_PAUSE = 15
+RETRY_HTTP_CODES = {429, 500, 502, 503, 504}
+_log_lock = threading.Lock()
 
 
 class LLMError(RuntimeError):
     pass
+
+
+def load_dotenv(path: Path = ROOT / ".env") -> None:
+    """Подхватывает переменные из .env в корне проекта. Уже заданные в окружении не перезаписывает."""
+    if not path.exists():
+        return
+    for line in path.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        key, value = line.split("=", 1)
+        os.environ.setdefault(key.strip(), value.strip().strip('"').strip("'"))
+
+
+load_dotenv()
 
 
 class LLMClient:
@@ -30,6 +50,8 @@ class LLMClient:
         self.api_key = api_key or os.environ.get("LLM_API_KEY", "")
         self.cache_dir = Path(cache_dir or os.environ.get("LLM_CACHE_DIR") or ROOT / ".cache" / "llm")
         self.log_file = Path(log_file or os.environ.get("LLM_LOG_FILE") or self.cache_dir / "calls.jsonl")
+        # Расход токенов этим экземпляром (без попаданий в кеш) — для лимитов бюджета.
+        self.usage = {"calls": 0, "prompt_tokens": 0, "completion_tokens": 0, "cost": 0.0}
 
     @staticmethod
     def model(role: str, fallback: str | None = None) -> str:
@@ -40,6 +62,16 @@ class LLMClient:
         if fallback:
             return LLMClient.model(fallback)
         raise LLMError(f"Не задана переменная окружения LLM_MODEL_{role.upper()}")
+
+    def key_info(self) -> dict:
+        """Расход и лимит ключа (LiteLLM /key/info): spend, max_budget, budget_reset_at."""
+        root = self.base_url.rsplit("/v1", 1)[0]
+        request = urllib.request.Request(f"{root}/key/info", headers={"Authorization": f"Bearer {self.api_key}"})
+        try:
+            with urllib.request.urlopen(request, timeout=30) as r:
+                return json.loads(r.read()).get("info") or {}
+        except (urllib.error.URLError, TimeoutError, json.JSONDecodeError) as error:
+            raise LLMError(f"Не удалось получить расход ключа: {error}") from error
 
     def chat_json(self, model: str, messages: list[dict], task: str, temperature: float = 0.2) -> dict:
         """Запрос с ответом в JSON. При невалидном JSON — повтор с указанием ошибки."""
@@ -73,13 +105,22 @@ class LLMClient:
             headers={"Content-Type": "application/json", "Authorization": f"Bearer {self.api_key}"},
         )
         started = time.monotonic()
-        try:
-            with urllib.request.urlopen(request, timeout=TIMEOUT) as r:
-                response = json.loads(r.read())
-        except urllib.error.HTTPError as error:
-            raise LLMError(f"HTTP {error.code}: {error.read().decode(errors='replace')[:500]}") from error
-        except (urllib.error.URLError, TimeoutError) as error:
-            raise LLMError(f"Нет связи с API: {error}") from error
+        for attempt in range(NETWORK_RETRIES + 1):
+            try:
+                with urllib.request.urlopen(request, timeout=TIMEOUT) as r:
+                    response = json.loads(r.read())
+                break
+            except urllib.error.HTTPError as error:
+                # 5xx и 429 — временные проблемы прокси, 4xx (включая исчерпанный бюджет) — нет
+                if error.code in RETRY_HTTP_CODES and attempt < NETWORK_RETRIES:
+                    time.sleep(RETRY_PAUSE)
+                    continue
+                raise LLMError(f"HTTP {error.code}: {error.read().decode(errors='replace')[:500]}") from error
+            except (urllib.error.URLError, TimeoutError) as error:
+                if attempt < NETWORK_RETRIES:
+                    time.sleep(RETRY_PAUSE)
+                    continue
+                raise LLMError(f"Нет связи с API: {error}") from error
 
         self.cache_dir.mkdir(parents=True, exist_ok=True)
         cached.write_text(json.dumps(response, ensure_ascii=False))
@@ -94,12 +135,20 @@ class LLMClient:
             "model": model,
             "prompt_tokens": usage.get("prompt_tokens"),
             "completion_tokens": usage.get("completion_tokens"),
+            "reasoning_tokens": (usage.get("completion_tokens_details") or {}).get("reasoning_tokens"),
+            "cost": usage.get("cost"),  # стоимость, которую возвращает API организаторов
             "seconds": round(seconds, 2),
             "cache_hit": cache_hit,
         }
-        self.log_file.parent.mkdir(parents=True, exist_ok=True)
-        with self.log_file.open("a") as f:
-            f.write(json.dumps(record, ensure_ascii=False) + "\n")
+        with _log_lock:
+            if not cache_hit:
+                self.usage["calls"] += 1
+                self.usage["prompt_tokens"] += usage.get("prompt_tokens") or 0
+                self.usage["completion_tokens"] += usage.get("completion_tokens") or 0
+                self.usage["cost"] += usage.get("cost") or 0.0
+            self.log_file.parent.mkdir(parents=True, exist_ok=True)
+            with self.log_file.open("a") as f:
+                f.write(json.dumps(record, ensure_ascii=False) + "\n")
 
 
 def _content(response: dict) -> str:

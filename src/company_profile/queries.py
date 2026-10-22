@@ -19,7 +19,7 @@ from .profile import CompanyProfile
 from .tags import WEAK_TAGS
 from .text import plural
 
-MAX_QUERIES = 12
+MAX_QUERIES = 15
 
 # Насколько надёжен источник признака: продукт банка — факт о компании,
 # связь через контрагентов — косвенная.
@@ -27,7 +27,9 @@ SOURCE_WEIGHTS = {"product": 1.0, "fts": 0.9, "okved": 0.8, "counterparty": 0.5}
 WEAK_TAG_FACTOR = 0.5
 INDUSTRY_WEIGHT = 1.0
 COUNTRY_WEIGHT = 0.8
-REGION_WEIGHT = 0.3
+REGION_WEIGHT = 0.4
+AFFILIATED_WEIGHT = 0.3
+COUNTERPARTY_REGION_MIN_SHARE = 0.25
 COUNTERPARTY_MIN_SHARE = 0.15
 GROUP_MIN_SHARE = 0.05
 MAX_COUNTRIES = 3
@@ -69,6 +71,30 @@ RATE_QUERIES = {
     None: "ключевая ставка ЦБ и стоимость заёмного финансирования в сфере «{industry}»",
 }
 
+# Категории аспектов: по ним проверяем, что набор запросов покрывает бизнес с разных сторон.
+CATEGORIES = {
+    "macro": "макроэкономика: инфляция, курсы, бюджет",
+    "finance": "финансирование: ставка, кредиты, долговой рынок",
+    "industry": "отрасль: спрос, цены, конкуренция, технологии",
+    "commodities": "сырьё и ресурсы: цены на товары, которые компания покупает или продаёт",
+    "supply_chain": "поставщики и логистика",
+    "sales": "покупатели и сбыт",
+    "foreign_trade": "внешняя торговля: страны, пошлины, санкции",
+    "regulation": "регулирование: законы, налоги, госзаказ, тарифы",
+    "labor": "персонал: зарплаты, кадры",
+    "region": "регион: местная экономика, власти, инфраструктура",
+    "related": "связанные компании: группа и компании с общими собственниками",
+}
+
+CATEGORY_BY_TAG = {
+    "ставка": "finance", "ипотека": "industry", "рынок_труда": "labor", "госзаказ": "regulation",
+    "спрос": "industry", "инфляция": "macro", "валюта": "macro", "юань": "macro",
+    "санкции": "foreign_trade", "экспортные_пошлины": "foreign_trade", "импорт": "supply_chain",
+    "логистика": "supply_chain", "аренда": "supply_chain", "тарифы": "regulation", "налоги": "regulation",
+    "погода": "industry", "туризм": "industry",
+}
+CATEGORY_BY_KIND = {"industry": "industry", "country": "foreign_trade", "region": "region", "related": "related"}
+
 CURRENCIES = {
     "КИТАЙ": "юаня", "ГОНКОНГ": "юаня", "ТУРЦИЯ": "лиры", "КАЗАХСТАН": "тенге",
     "ОАЭ": "дирхама", "ИНДИЯ": "рупии", "БЕЛАРУСЬ": "белорусского рубля",
@@ -85,6 +111,7 @@ class ImpactQuery:
     sources: list[str]      # признаки профиля, из которых получен запрос
     weight: float           # важность канала для компании, 0..1
     origin: str = "rules"   # rules | llm
+    category: str = ""      # одна из CATEGORIES, заполняется в _finalize
 
     def to_dict(self) -> dict:
         return asdict(self)
@@ -149,10 +176,65 @@ def _finalize(subject_id: str, subject_type: str, queries: list[ImpactQuery], li
             kept.sources += [s for s in q.sources if s not in kept.sources]
         else:
             merged[q.text] = q
-    ranked = sorted(merged.values(), key=lambda q: q.weight, reverse=True)[:limit]
+    ranked = sorted(merged.values(), key=lambda q: q.weight, reverse=True)
+    kept = ranked[:limit]
+    # Местные новости не должны вытесняться общими темами: регион присутствия оставляем всегда.
+    region = next((q for q in ranked if q.kind == "region"), None)
+    if region is not None and region not in kept and kept:
+        kept[-1] = region
+    ranked = kept
     for q in ranked:
         q.weight = round(q.weight, 3)
+        q.category = q.category or category_of(q)
     return QuerySet(subject_id, subject_type, ranked)
+
+
+def category_of(q: ImpactQuery) -> str:
+    if q.kind == "counterparty":
+        return "supply_chain" if q.channel.startswith("supplier") else "sales"
+    if q.kind == "factor":
+        return CATEGORY_BY_TAG.get(q.channel, "commodities")
+    return CATEGORY_BY_KIND.get(q.kind, "industry")
+
+
+def _counterparty_region_queries(sides, own_region: str) -> list[ImpactQuery]:
+    """Местные новости регионов, где сосредоточены поставщики или покупатели (если это не свой регион)."""
+    result = []
+    for side in sides:
+        for r in side.region_mix:
+            if r["region"] == own_region or r["share"] < COUNTERPARTY_REGION_MIN_SHARE:
+                continue
+            who = "поставщиков" if r["role"] == "supplier" else "покупателей"
+            why = f"в регионе {r['region']} — {r['share']:.0%} платежей {who}"
+            result.append(ImpactQuery(
+                channel=f"region:{r['region']}",
+                kind="region",
+                text=f"{r['region']}: местная экономика, транспорт и логистика, решения региональных властей",
+                why=why,
+                sources=[why],
+                weight=REGION_WEIGHT * r["share"],
+            ))
+    return result
+
+
+def _affiliated_queries(affiliated: list[dict]) -> list[ImpactQuery]:
+    """Отрасли компаний, связанных через общих физлиц: скрытые связи, их проблемы могут затронуть клиента."""
+    result, seen = [], set()
+    for a in affiliated:
+        if a["division"] in seen:
+            continue
+        seen.add(a["division"])
+        name = division_name(a["division"])
+        why = f"связанная через общих физлиц компания {a['company_id']} работает в сфере «{name}»"
+        result.append(ImpactQuery(
+            channel=f"related:{a['division']}",
+            kind="related",
+            text=f"{name}: проблемы и риски компаний отрасли, банкротства, проверки",
+            why=why,
+            sources=[f"связанная компания {a['company_id']}: {a['industry']}"],
+            weight=AFFILIATED_WEIGHT,
+        ))
+    return result
 
 
 def company_queries(p: CompanyProfile, limit: int = MAX_QUERIES) -> QuerySet:
@@ -184,14 +266,17 @@ def company_queries(p: CompanyProfile, limit: int = MAX_QUERIES) -> QuerySet:
 
     queries += _counterparty_queries(p.suppliers.industry_mix + p.buyers.industry_mix)
 
+    place = p.city if p.region in p.city else f"{p.city}, {p.region}"
     queries.append(ImpactQuery(
         channel=f"region:{p.region}",
         kind="region",
-        text=f"{p.region}: экономика региона, инфраструктура, региональные меры поддержки бизнеса",
-        why=f"компания зарегистрирована в регионе {p.region}",
-        sources=[f"REGION={p.region}"],
+        text=f"{place}: местная экономика, инфраструктура, решения региональных властей, меры поддержки бизнеса",
+        why=f"компания зарегистрирована: {place}",
+        sources=[f"REGION={p.region}", f"CITY={p.city}"],
         weight=REGION_WEIGHT,
     ))
+    queries += _counterparty_region_queries([p.suppliers, p.buyers], p.region)
+    queries += _affiliated_queries(p.affiliated)
     return _finalize(p.company_id, "company", queries, limit)
 
 
