@@ -73,10 +73,11 @@ class LLMClient:
         except (urllib.error.URLError, TimeoutError, json.JSONDecodeError) as error:
             raise LLMError(f"Не удалось получить расход ключа: {error}") from error
 
-    def chat_json(self, model: str, messages: list[dict], task: str, temperature: float = 0.2) -> dict:
+    def chat_json(self, model: str, messages: list[dict], task: str, temperature: float = 0.2,
+                  params: dict | None = None) -> dict:
         """Запрос с ответом в JSON. При невалидном JSON — повтор с указанием ошибки."""
         for attempt in range(JSON_RETRIES + 1):
-            text = self.chat(model, messages, task, temperature)
+            text = self.chat(model, messages, task, temperature, params)
             try:
                 return parse_json(text)
             except ValueError as error:
@@ -88,8 +89,10 @@ class LLMClient:
                 ]
         raise AssertionError("unreachable")
 
-    def chat(self, model: str, messages: list[dict], task: str, temperature: float = 0.2) -> str:
-        payload = {"model": model, "messages": messages, "temperature": temperature}
+    def chat(self, model: str, messages: list[dict], task: str, temperature: float = 0.2,
+             params: dict | None = None) -> str:
+        """params — дополнительные поля запроса API (например, max_tokens); входят в ключ кеша."""
+        payload = {"model": model, "messages": messages, "temperature": temperature, **(params or {})}
         key = hashlib.sha256(json.dumps(payload, ensure_ascii=False, sort_keys=True).encode()).hexdigest()
         cached = self.cache_dir / f"{key}.json"
         if cached.exists():
