@@ -16,6 +16,14 @@ HEDGES = re.compile(r"(\bесли\b|\bможет\b|\bмогут\b|\bмог(ла|
                     r"вероятн|не исключ|способн|потенциальн|в случае|только если|зависит|предположительн|условн|не установлен)", re.I)
 CATEGORICAL = re.compile(r"(приведёт к|приведет к|неизбежно|гарантированно|обязательно (вырастет|снизится|увеличится|сократится)|точно (вырастет|снизится))", re.I)
 NUMBER = re.compile(r"\d+(?:[.,]\d+)?")
+# Отчёт читает руководство компании: рекомендации — ему, мягко, без названий внутренних материалов
+BANK_FACING = re.compile(r"(\bу клиента\b|\bклиенту\b|\bс клиентом\b|\bзапросить у\b|предложить (клиенту|компании|ей)|"
+                         r"кросс-?продаж|\bпродать\b|допродаж)", re.I)
+INFINITIVE_START = re.compile(r"^\W*[А-ЯЁ][а-яё]+(ть|ти|чь)(ся)?\b")
+SERVICE_WORDS = re.compile(r"(bank_analytics|market_indicators|suggested_rubric|company_basis|source_kind|news_id|mechanism_id|"
+                           r"/facts\b|кандидат\w* аналитики|\bфрагмент\w*|\bв пакете\b|\balfa_\w+)", re.I)
+LEVEL_IN_TEXT = re.compile(r"((слаб|сильн|высок|низк|средн|умерен)\w*\s+(влияни|оценк)|(влияни|оценк)\w*\s+(—\s*)?"
+                           r"(слаб|сильн|высок|низк|средн|умерен)|\b\d+\s*(из|/)\s*12\b)", re.I)
 
 REVISE = """Проверка отчёта нашла замечания. Исправь их и верни отчёт целиком в том же формате JSON.
 Не добавляй новых фактов, только исправляй указанное (можно удалить неподтверждённое утверждение).
@@ -82,6 +90,8 @@ def _ref_text(ref: str, index: PackageIndex, full_texts: dict | None = None) -> 
         return " ".join(str(x) for x in texts if x)
     if ref in index.sources:
         return index.sources[ref].get("text") or ""
+    if ref in index.indicators:
+        return json.dumps(index.indicators[ref], ensure_ascii=False)
     if ref in index.news:
         return " ".join([_ref_text(f["id"], index) for f in index.news[ref].get("fragments") or []]
                         + [full_texts.get(ref) or ""])
@@ -100,6 +110,25 @@ def check_report(report: dict, index: PackageIndex, assessment: dict, facts: dic
                    if any(a["link_id"] == l["id"] and a.get("relevant_to_company_independently")
                           and a["label"] in ("applicable", "conditional") for a in assessment["link_assessments"])}
     known = index.all_ids()
+    # названия материалов аналитики: целиком и до первой точки («Макростатистика 7М26»)
+    titles = {t for d in index.documents.values() if d.get("title")
+              for t in (d["title"].strip(), d["title"].split(".")[0].strip()) if len(t) >= 10}
+    material_ids = set(index.documents) | set(index.mechanisms) | set(index.sources)
+
+    def leaks(text: str) -> list[str]:
+        low = text.lower()
+        found = [f"название материала «{t}»" for t in titles if t.lower() in low]
+        found += [f"ID {m}" for m in material_ids if m in text]
+        found += [f"служебное слово «{m.group(0)}»" for m in [SERVICE_WORDS.search(text)] if m]
+        return found
+
+    def check_recommendation(text: str, where: str) -> None:
+        if BANK_FACING.search(text):
+            issues.append(f"{where}: [wrong_audience] рекомендация адресована банку («{BANK_FACING.search(text).group(0)}») — "
+                          "пиши руководству компании, продукт банка — только как вариант для компании")
+        if INFINITIVE_START.search(text):
+            issues.append(f"{where}: [тон] рекомендация начинается с инфинитива «{INFINITIVE_START.search(text).group(0).strip()}» — "
+                          "сформулируй мягко: «Рекомендуем…», «Имеет смысл…», «Стоит…»")
 
     def check_claim(claim, where: str, label: str | None, news_id: str | None) -> dict | None:
         if not isinstance(claim, dict) or not (claim.get("text") or "").strip():
@@ -144,6 +173,74 @@ def check_report(report: dict, index: PackageIndex, assessment: dict, facts: dic
             issues.append(f"{where}: числа не найдены в указанных источниках: {sorted(missing)}")
         return {"text": claim["text"].strip(), "type": ctype, "refs": refs, "company_basis": basis}
 
+    def part_pool(part: dict, news_id: str | None) -> set[str]:
+        """Числа, которыми раздел может пользоваться: его источники, новость, профиль и факты компании."""
+        refs = {r for k in CLAIM_LISTS for c in part.get(k) or [] if isinstance(c, dict) for r in c.get("refs") or []}
+        refs |= {r for f in part.get("key_figures") or [] if isinstance(f, dict) for r in f.get("refs") or [] if isinstance(r, str)}
+        if part.get("mechanism_id"):
+            refs.add(part["mechanism_id"])
+        pool_text = " ".join(_ref_text(r, index, full_texts) for r in refs) + f" {profile} {index.as_of}"
+        if news_id:
+            pool_text += " " + _ref_text(news_id, index, full_texts)
+        pool_text += " " + " ".join(c.get("text", "") for k in CLAIM_LISTS for c in part.get(k) or [] if isinstance(c, dict))
+        return _numbers(_with_date_variants(pool_text + " " + json.dumps(facts, ensure_ascii=False)))
+
+    def check_figures(part: dict, where: str, news_id: str | None) -> None:
+        """Ключевые числа для вкладки «Цифры»: только подтверждённые источниками; неподтверждённые убираются."""
+        pool, kept = part_pool(part, news_id), []
+        for j, f in enumerate(part.get("key_figures") or []):
+            if not isinstance(f, dict) or not str(f.get("value") or "").strip() or not str(f.get("label") or "").strip():
+                continue
+            missing = {n for n in _numbers(f"{f['value']} {f['label']}") if len(n.replace(".", "")) > 1 and not _supported(n, pool)}
+            if missing:
+                issues.append(f"{where}.key_figures[{j}]: число не найдено в источниках {sorted(missing)} — убрано")
+                continue
+            kept.append({"value": str(f["value"]).strip(), "label": str(f["label"]).strip(), "accent": bool(f.get("accent")),
+                         "refs": [r for r in f.get("refs") or [] if r in known]})
+        part["key_figures"] = kept[:3]
+
+    def check_wording(part: dict, where: str) -> None:
+        """Видимый текст: без названий и ID материалов аналитики и служебных слов; рекомендации — руководству и мягко."""
+        texts = [(k, part.get(k)) for k in ("headline", "short_title", "why_you_see_this")]
+        brief = part.get("brief") if isinstance(part.get("brief"), dict) else {}
+        texts += [(f"brief.{k}", v) for k, v in brief.items()]
+        texts += [(f"{k}[{j}]", c.get("text") if isinstance(c, dict) else c)
+                  for k in CLAIM_LISTS + TEXT_LISTS for j, c in enumerate(part.get(k) or [])]
+        texts += [(f"channels[{j}]", f"{c.get('channel')} {c.get('explanation')}") for j, c in enumerate(part.get("channels") or [])
+                  if isinstance(c, dict)]
+        texts += [(f"key_figures[{j}]", f.get("label")) for j, f in enumerate(part.get("key_figures") or []) if isinstance(f, dict)]
+        imp = part.get("impact") if isinstance(part.get("impact"), dict) else {}
+        texts.append(("impact.explanation", imp.get("explanation")))
+        for key, text in texts:
+            if isinstance(text, str) and text:
+                leak = leaks(text)
+                if leak:
+                    issues.append(f"{where}.{key}: [source_leak] в тексте {leak} — читатель может не иметь доступа к материалам; "
+                                  "пиши «по оценке аналитиков Альфа-Банка» без названий, ID и служебных слов")
+        for key, text in [("brief.recommendation", brief.get("recommendation"))] + [
+                (f"next_steps[{j}]", x) for j, x in enumerate(part.get("next_steps") or [])]:
+            if isinstance(text, str):
+                check_recommendation(text, f"{where}.{key}")
+        if isinstance(imp.get("explanation"), str) and LEVEL_IN_TEXT.search(imp["explanation"]):
+            issues.append(f"{where}.impact.explanation: не называй уровень и баллы — их подставит приложение")
+
+    def check_brief(part: dict, where: str, label: str, news_id: str | None) -> None:
+        """Краткий блок: есть, не категоричен, числа подтверждены, «коротко» условно для conditional."""
+        brief = part.get("brief") if isinstance(part.get("brief"), dict) else None
+        if not brief or not (brief.get("takeaway") or "").strip() or not (brief.get("recommendation") or "").strip():
+            issues.append(f"{where}: нет краткого блока brief (takeaway и recommendation)")
+            return
+        pool = part_pool(part, news_id)
+        for key in ("takeaway", "recommendation"):
+            text = brief[key]
+            if CATEGORICAL.search(text):
+                issues.append(f"{where}.brief.{key}: категоричная формулировка о будущем")
+            missing = {n for n in _numbers(text) if len(n.replace(".", "")) > 1 and not _supported(n, pool)}
+            if missing:
+                issues.append(f"{where}.brief.{key}: числа не подтверждены разделом: {sorted(missing)}")
+        if label == "conditional" and not HEDGES.search(brief["takeaway"]) and not NEGATIVE_FINDING.search(brief["takeaway"]):
+            issues.append(f"{where}.brief.takeaway: условное влияние сформулировано без условности")
+
     items = []
     for i, item in enumerate(report.get("items") or []):
         nid = item.get("news_id")
@@ -161,6 +258,9 @@ def check_report(report: dict, index: PackageIndex, assessment: dict, facts: dic
             item[key] = [x.strip() for x in item[key] if x.strip()]
         if not item["what_happened"]:
             issues.append(f"items[{i}]: нет описания события")
+        check_brief(item, f"items[{i}]", item["label"], nid)
+        check_figures(item, f"items[{i}]", nid)
+        check_wording(item, f"items[{i}]")
         items.append(item)
     report["items"] = items
 
@@ -171,10 +271,21 @@ def check_report(report: dict, index: PackageIndex, assessment: dict, facts: dic
             continue
         r["why_it_matters"] = [c for c in (check_claim(c, f"independent_risks[{i}].why_it_matters[{j}]", "conditional", None)
                                            for j, c in enumerate(r.get("why_it_matters") or [])) if c]
+        for key in TEXT_LISTS:
+            r[key] = [x.strip() for x in r.get(key) or [] if isinstance(x, str) and x.strip()]
+        check_brief(r, f"independent_risks[{i}]", "conditional", None)
+        check_wording(r, f"independent_risks[{i}]")
         risks.append(r)
     report["independent_risks"] = risks
     if not (report.get("summary") or "").strip():
         issues.append("нет summary")
+    elif leaks(report["summary"]):
+        issues.append(f"summary: [source_leak] в тексте {leaks(report['summary'])} — без названий материалов и служебных слов")
+    for j, k in enumerate(report.get("key_recommendations") or []):
+        if isinstance(k, dict) and isinstance(k.get("text"), str):
+            check_recommendation(k["text"], f"key_recommendations[{j}]")
+            if leaks(k["text"]):
+                issues.append(f"key_recommendations[{j}]: [source_leak] в тексте {leaks(k['text'])}")
     return issues
 
 

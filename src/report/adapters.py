@@ -26,6 +26,18 @@ GENERATION_INSTRUCTIONS = [
 ]
 
 
+def company_description(company_id: str, fallback: str | None = None) -> str | None:
+    """Наше текстовое описание компании (или группы) по данным кейса; если данных нет — текст из отчёта поиска."""
+    try:
+        from ..company_profile import DataStore, build_group_profile, build_profile, describe_full, describe_group
+        ds = DataStore()
+        if company_id.startswith("group_"):
+            return describe_group(build_group_profile(ds, company_id))
+        return describe_full(build_profile(ds, company_id))
+    except (KeyError, FileNotFoundError, ValueError):
+        return fallback
+
+
 def _mechanism(candidate: dict) -> dict:
     m = candidate["mechanism"] if isinstance(candidate["mechanism"], dict) else {}
     ctx = m.get("context") or {}
@@ -109,7 +121,7 @@ def comparison_to_package(report: dict, market_indicators: list[dict] | None = N
         "language": "ru",
         "generation_instructions": GENERATION_INSTRUCTIONS,
         "company": {"id": report["company_id"], "subject_type": report.get("subject_type"),
-                    "profile": report.get("company_profile"), "facts": report.get("company_facts") or {},
+                    "profile": company_description(report["company_id"], report.get("company_profile")), "facts": report.get("company_facts") or {},
                     "limitations": report.get("company_limitations") or []},
         "market_indicators": market_indicators or [],
         "news": news,

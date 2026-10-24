@@ -31,10 +31,11 @@ class PackageIndex:
     links: dict[str, dict] = field(default_factory=dict)           # link_id -> связь
     aspects: dict[str, dict] = field(default_factory=dict)         # aspect_id -> аспект компании
     basis_paths: list[str] = field(default_factory=list)           # допустимые /facts/... указатели
+    indicators: dict[str, dict] = field(default_factory=dict)      # код показателя -> значение из market_indicators
 
     def all_ids(self) -> set[str]:
         return (set(self.news) | set(self.fragments) | set(self.mechanisms) | set(self.sources)
-                | set(self.documents) | set(self.links) | set(self.aspects))
+                | set(self.documents) | set(self.links) | set(self.aspects) | set(self.indicators))
 
     def source_kind_of(self, ref: str) -> str | None:
         """bank | third_party для механизма, фрагмента или документа аналитики."""
@@ -91,6 +92,7 @@ def build(package: dict) -> tuple[dict, PackageIndex]:
     company = package["company"]
     index = PackageIndex(company_id=company["id"], as_of=as_of)
     index.basis_paths = _pointer_paths(company.get("facts") or {}, "/facts")
+    index.indicators = {i["code"]: i for i in package.get("market_indicators") or [] if i.get("code")}
 
     for doc in package.get("analytical_documents") or []:
         index.documents[doc["id"]] = {

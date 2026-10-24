@@ -16,8 +16,9 @@ FACTOR_RU = {"exposure": "экспозиция", "magnitude": "масштаб", 
 
 
 def _impact(imp: dict) -> str:
-    head = (f"**Сила влияния:** {impact_label(imp)} · {DIR.get(imp['direction'], imp['direction'])} · "
-            f"{HORIZON.get(imp['horizon'], imp['horizon'])} · уверенность {CONF.get(imp['confidence'], imp['confidence'])}")
+    head = (f"**Сила влияния:** {imp.get('summary') or impact_label(imp)}  \n"
+            f"<sub>{DIR.get(imp['direction'], imp['direction'])}{' (разнонаправленно)' if imp.get('mixed') else ''} · {HORIZON.get(imp['horizon'], imp['horizon'])} · "
+            f"уверенность {CONF.get(imp['confidence'], imp['confidence'])}</sub>")
     rows = [f"  - {FACTOR_RU[k]}: {v['score']} — {v.get('note') or ''}" for k, v in imp["rubric"].items()]
     return head + "\n" + "\n".join(rows)
 
@@ -33,10 +34,31 @@ def _claim(c: dict) -> str:
     return f"- **[{TYPES.get(c['type'], c['type'])}]** {c['text']}" + (f"  \n  <sub>{tail}</sub>" if tail else "")
 
 
+def _brief(part: dict) -> list[str]:
+    b = part.get("brief") if isinstance(part.get("brief"), dict) else {}
+    out = []
+    if b.get("takeaway"):
+        out.append(f"**Коротко:** {b['takeaway']}")
+    if b.get("recommendation"):
+        out.append(f"**Рекомендация:** {b['recommendation']}")
+    return [" \n".join(out), ""] if out else []
+
+
 def to_markdown(doc: dict) -> str:
     out = [f"# Отчёт для компании {doc['company_id']} на {doc['as_of']}", "", doc.get("summary") or "", ""]
+    if doc.get("key_recommendations"):
+        out += ["**Ключевые рекомендации:**", *(f"{i}. {k['text']}" for i, k in enumerate(doc["key_recommendations"], 1)), ""]
     for item in doc["items"]:
-        out += [f"## {item.get('headline')}", f"*{LABELS.get(item['label'], item['label'])}* · новость `{item['news_id']}`", ""]
+        meta = " · ".join(x for x in [item.get("topic"), item.get("publisher"), item.get("published_at")] if x)
+        out += [f"## {item.get('short_title') or item.get('headline')}",
+                f"*{LABELS.get(item['label'], item['label'])}*" + (f" · {meta}" if meta else "") + f" · `{item['news_id']}`", ""]
+        out += _brief(item)
+        if item.get("key_figures"):
+            out += [" · ".join(f"**{f['value']}** {f['label']}" for f in item["key_figures"]), ""]
+        if item.get("brief"):
+            out += ["<details><summary>Подробнее</summary>", ""]
+        if item.get("short_title") and item.get("headline"):
+            out += [f"*{item['headline']}*", ""]
         if item.get("why_you_see_this"):
             out += [f"**Почему вы это видите:** {item['why_you_see_this']}", ""]
         if item.get("impact"):
@@ -48,15 +70,18 @@ def to_markdown(doc: dict) -> str:
             if item.get(key):
                 out += [f"### {title}", *(_claim(c) for c in item[key]), ""]
         for key, title in (("not_established", "Что не установлено"), ("to_verify", "Что стоит проверить"),
-                           ("next_steps", "Возможные шаги")):
+                           ("next_steps", "Рекомендации")):
             if item.get(key):
                 out += [f"### {title}", *(f"- {x}" for x in item[key]), ""]
+        if item.get("brief"):
+            out += ["</details>", ""]
     if doc["independent_risks"]:
         out += ["## Риски, важные компании независимо от новостей", ""]
         for r in doc["independent_risks"]:
-            out += [f"### {r.get('headline')}"] + ([_impact(r["impact"]), ""] if r.get("impact") else [])
+            out += [f"### {r.get('headline')}", ""] + _brief(r) + ([_impact(r["impact"]), ""] if r.get("impact") else [])
             out += [*(_claim(c) for c in r.get("why_it_matters") or [])]
-            out += [*(f"- Не установлено: {x}" for x in r.get("not_established") or []),
+            out += [*(f"- Рекомендация: {x}" for x in r.get("next_steps") or []),
+                    *(f"- Не установлено: {x}" for x in r.get("not_established") or []),
                     *(f"- Проверить: {x}" for x in r.get("to_verify") or []), ""]
     if doc["dismissed"]:
         out += ["## Отобрано поиском, но не влияет на компанию", ""]
