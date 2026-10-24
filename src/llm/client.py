@@ -76,6 +76,8 @@ class LLMClient:
     def chat_json(self, model: str, messages: list[dict], task: str, temperature: float = 0.2,
                   params: dict | None = None) -> dict:
         """Запрос с ответом в JSON. При невалидном JSON — повтор с указанием ошибки."""
+        # JSON-режим API: модель не может вернуть синтаксически битый JSON (неэкранированные кавычки и т.п.)
+        params = {"response_format": {"type": "json_object"}, **(params or {})}
         for attempt in range(JSON_RETRIES + 1):
             text = self.chat(model, messages, task, temperature, params)
             try:

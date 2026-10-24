@@ -39,10 +39,21 @@ def decide(company_id: str, top_fragments: list[str]) -> tuple[bool, str]:
     age = datetime.now(timezone.utc) - datetime.fromisoformat(last["generated_at"])
     if age > timedelta(hours=REPORT_MAX_AGE_HOURS):
         return True, "stale"
-    new = [f for f in top_fragments if f not in set(last["top_fragments"])]
+    new = [f for f in top_fragments if f not in set(last["top_fragments"]) and not _weak_indicator(f)]
     if new:
         return True, f"new_top_fragment:{','.join(new)}"
     return False, "up_to_date"
+
+
+def _weak_indicator(fragment_id: str) -> bool:
+    """«Заметное» событие по показателю попадает в ленту и плановый отчёт, но не запускает внеплановый пересчёт."""
+    news_id = fragment_id.split("::")[0]
+    if not news_id.startswith("indicator:"):
+        return False
+    with store.connect() as con:
+        row = con.execute("select prepared from news where id = ?", (news_id,)).fetchone()
+    tier = ((store.loads(row["prepared"]) or {}).get("indicator") or {}).get("tier") if row else None
+    return tier != "strong"
 
 
 def refresh(company_id: str, force: bool = False, log=print) -> dict:

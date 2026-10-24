@@ -11,7 +11,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from .package import PackageIndex, resolve_pointer
+from .package import PackageIndex, normalize_pointer
 
 PROMPT = (Path(__file__).parent / "prompts" / "assess_system.txt").read_text(encoding="utf-8")
 LABELS = ["applicable", "conditional", "background", "rejected"]
@@ -48,10 +48,11 @@ def check(answer: dict, index: PackageIndex, facts: dict) -> tuple[dict, list[st
 
     def basis(item: dict, where: str) -> list[str]:
         paths = [p for p in item.get("company_basis") or [] if isinstance(p, str)]
-        bad = [p for p in paths if not resolve_pointer(facts, p)]
+        good = [normalize_pointer(facts, p) for p in paths]
+        bad = [p for p, g in zip(paths, good) if g is None]
         if bad:
             fixes.append(f"{where}: несуществующие пути фактов удалены: {bad}")
-        return [p for p in paths if p not in bad]
+        return list(dict.fromkeys(g for g in good if g))
 
     def normalize(item: dict, where: str, label_key_ok: bool) -> dict | None:
         label = item.get("label")

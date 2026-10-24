@@ -6,13 +6,14 @@ import json
 import re
 from pathlib import Path
 
-from .package import PackageIndex, resolve_pointer
+from .package import PackageIndex, normalize_pointer
 
 CRITIC_PROMPT = (Path(__file__).parent / "prompts" / "critic_system.txt").read_text(encoding="utf-8")
 CLAIM_TYPES = {"news_fact", "bank_view", "third_party_view", "ai_inference"}
 CLAIM_LISTS = ["what_happened", "why_it_matters", "risks", "opportunities", "bank_view"]
 TEXT_LISTS = ["not_established", "to_verify", "next_steps"]  # действия и вопросы — строки, не утверждения
-HEDGES = re.compile(r"\b(если|может|могут|возможн|при условии|вероятн|не исключ|способн|потенциальн|в случае)", re.I)
+HEDGES = re.compile(r"(\bесли\b|\bможет\b|\bмогут\b|\bмог(ла|ли|ло)?\b|возможн|при условии|\bпри\b.{0,40}\b(подтвержд|наличии|выполнени)|"
+                    r"вероятн|не исключ|способн|потенциальн|в случае|только если|зависит|предположительн|условн|не установлен)", re.I)
 CATEGORICAL = re.compile(r"(приведёт к|приведет к|неизбежно|гарантированно|обязательно (вырастет|снизится|увеличится|сократится)|точно (вырастет|снизится))", re.I)
 NUMBER = re.compile(r"\d+(?:[.,]\d+)?")
 
@@ -23,17 +24,57 @@ REVISE = """Проверка отчёта нашла замечания. Исп�
 {issues}"""
 
 
+ISO_DATE = re.compile(r"(\d{4})-(\d{2})-(\d{2})")
+
+
 def _numbers(text: str) -> set[str]:
     return {n.replace(",", ".") for n in NUMBER.findall(text or "")}
 
 
-def _ref_text(ref: str, index: PackageIndex) -> str:
+MONTHS = {"января": "01", "февраля": "02", "марта": "03", "апреля": "04", "мая": "05", "июня": "06", "июля": "07",
+          "августа": "08", "сентября": "09", "октября": "10", "ноября": "11", "декабря": "12"}
+RU_DATE = re.compile(r"\b(\d{1,2})\s+(" + "|".join(MONTHS) + r")(?:\s+(\d{4}))?", re.I)
+# Отрицательные выводы («связь не подтверждается») — констатация, условность в них не нужна.
+NEGATIVE_FINDING = re.compile(r"(не подтвержд|не относится|не установлен|не раскрыт|отсутству|не следует|нет данных)", re.I)
+
+
+def _with_date_variants(text: str) -> str:
+    """Добавляет к датам варианты «23.10» и «23.10.2026»: ISO и «30 июня 2026» в источниках, цифры в тексте модели."""
+    extra = [f"{d}.{m} {d}.{m}.{y} {int(d)}.{m}" for y, m, d in ISO_DATE.findall(text)]
+    for d, month, y in RU_DATE.findall(text):
+        dd, mm = f"{int(d):02d}", MONTHS[month.lower()]
+        extra.append(f"{dd}.{mm} {int(d)}.{mm}" + (f" {dd}.{mm}.{y}" if y else ""))
+    return text + " " + " ".join(extra)
+
+
+def _supported(number: str, pool: set[str]) -> bool:
+    """Число есть в источниках точно или с округлением до того же количества знаков."""
+    if number in pool:
+        return True
+    decimals = len(number.split(".")[1]) if "." in number else 0
+    try:
+        value = float(number)
+    except ValueError:
+        return False
+    for p in pool:
+        try:
+            if round(float(p), decimals) == value or round(abs(float(p)), decimals) == value:
+                return True
+        except ValueError:
+            continue
+    return False
+
+
+def _ref_text(ref: str, index: PackageIndex, full_texts: dict | None = None) -> str:
+    full_texts = full_texts or {}
     if ref in index.fragments:
         f = index.fragments[ref]
         mech = f.get("mechanism") or {}
+        news_id = index.fragment_news.get(ref)
         return " ".join(str(x) for x in [f.get("thesis"), f.get("context"), mech.get("description"),
                                          (mech.get("context") or {}).get("conditions"),
-                                         (mech.get("context") or {}).get("event_period")] if x)
+                                         (mech.get("context") or {}).get("event_period"),
+                                         full_texts.get(news_id)] if x)
     if ref in index.mechanisms:
         m = index.mechanisms[ref]
         texts = [m.get("cause"), m.get("channel"), m.get("effect"), m.get("conditions")]
@@ -42,12 +83,17 @@ def _ref_text(ref: str, index: PackageIndex) -> str:
     if ref in index.sources:
         return index.sources[ref].get("text") or ""
     if ref in index.news:
-        return " ".join(_ref_text(f["id"], index) for f in index.news[ref].get("fragments") or [])
+        return " ".join([_ref_text(f["id"], index) for f in index.news[ref].get("fragments") or []]
+                        + [full_texts.get(ref) or ""])
     return ""
 
 
-def check_report(report: dict, index: PackageIndex, assessment: dict, facts: dict, profile: str) -> list[str]:
-    """Нарушения в отчёте; при этом исправляет то, что можно исправить без модели."""
+def check_report(report: dict, index: PackageIndex, assessment: dict, facts: dict, profile: str,
+                 full_texts: dict | None = None) -> list[str]:
+    """Нарушения в отчёте; при этом исправляет то, что можно исправить без модели.
+
+    full_texts — полные тексты новостей (если агент их читал), тоже законный источник чисел.
+    """
     issues = []
     news_labels = {a["news_id"]: a["label"] for a in assessment["news_assessments"]}
     independent = {l["mechanism_id"] for l in index.links.values()
@@ -67,11 +113,12 @@ def check_report(report: dict, index: PackageIndex, assessment: dict, facts: dic
         if unknown:
             issues.append(f"{where}: ссылки на несуществующие ID {unknown}")
         refs = [r for r in refs if r in known]
-        basis = [p for p in claim.get("company_basis") or [] if isinstance(p, str)]
-        bad_basis = [p for p in basis if not resolve_pointer(facts, p)]
+        raw_basis = [p for p in claim.get("company_basis") or [] if isinstance(p, str)]
+        normalized = [normalize_pointer(facts, p) for p in raw_basis]
+        bad_basis = [p for p, n in zip(raw_basis, normalized) if n is None]
         if bad_basis:
             issues.append(f"{where}: несуществующие пути фактов {bad_basis}")
-        basis = [p for p in basis if p not in bad_basis]
+        basis = list(dict.fromkeys(n for n in normalized if n))
 
         if ctype == "news_fact" and not any(index.fragment_news.get(r) == news_id or r == news_id for r in refs):
             issues.append(f"{where}: news_fact без ссылки на фрагмент этой новости")
@@ -82,14 +129,17 @@ def check_report(report: dict, index: PackageIndex, assessment: dict, facts: dic
         if ctype == "ai_inference":
             if not basis:
                 issues.append(f"{where}: ai_inference без company_basis")
-            if label == "conditional" and not HEDGES.search(claim["text"]):
+            if label == "conditional" and not HEDGES.search(claim["text"]) and not NEGATIVE_FINDING.search(claim["text"]):
                 issues.append(f"{where}: условный вывод сформулирован без условности")
         if CATEGORICAL.search(claim["text"]):
             issues.append(f"{where}: категоричная формулировка о будущем")
         # даты документов и as_of тоже законный источник чисел (годы, месяцы)
         dates = " ".join(f"{d.get('title') or ''} {d.get('publication_date') or ''}" for d in index.documents.values())
-        pool = " ".join(_ref_text(r, index) for r in refs) + f" {profile} {index.as_of} {dates}"
-        missing = {n for n in _numbers(claim["text"]) if n not in _numbers(pool) and len(n.replace(".", "")) > 1}
+        pool_text = " ".join(_ref_text(r, index, full_texts) for r in refs) + f" {profile} {index.as_of} {dates}"
+        if news_id:
+            pool_text += " " + _ref_text(news_id, index, full_texts)
+        pool = _numbers(_with_date_variants(pool_text + " " + json.dumps(facts, ensure_ascii=False)))
+        missing = {n for n in _numbers(claim["text"]) if len(n.replace(".", "")) > 1 and not _supported(n, pool)}
         if missing:
             issues.append(f"{where}: числа не найдены в указанных источниках: {sorted(missing)}")
         return {"text": claim["text"].strip(), "type": ctype, "refs": refs, "company_basis": basis}

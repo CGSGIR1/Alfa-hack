@@ -111,6 +111,7 @@ def build_package(company_id: str, as_of: str | None = None) -> tuple[dict, list
         news_out.append({
             "id": news_id, "kind": n["kind"], "title": n["title"], "publication_date": n["published_utc"][:10],
             "source": {"url": n["url"], "publisher": n["publisher"]}, "importance": n["importance"],
+            **({"indicator": doc["indicator"]} if doc.get("indicator") else {}),
             "limitations": doc.get("document_limitations") or [],
             "company_match": {"score": round(max(w for w, _ in items), 6), "aspects": aspect_rows},
             "fragments": [_fragment_view(news_id, frag_by_id[fid]) for fid in best_fragments if fid in frag_by_id],

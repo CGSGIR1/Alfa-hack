@@ -64,6 +64,14 @@ def resolve_pointer(facts: dict, pointer: str) -> bool:
     return True
 
 
+def normalize_pointer(facts: dict, pointer: str) -> str | None:
+    """Существующий путь к факту; модели иногда опускают префикс /facts — достраиваем его."""
+    if not isinstance(pointer, str):
+        return None
+    candidates = [pointer] if pointer.startswith("/facts") else [pointer, "/facts" + (pointer if pointer.startswith("/") else "/" + pointer)]
+    return next((c for c in candidates if resolve_pointer(facts, c)), None)
+
+
 def _source_kind(publisher: str | None) -> str:
     return "bank" if publisher and publisher.strip().lower() in BANK_PUBLISHERS else "third_party"
 
@@ -164,6 +172,7 @@ def build(package: dict) -> tuple[dict, PackageIndex]:
             "publisher": (n.get("source") or {}).get("publisher"),
             "limitations": n.get("limitations") or [],
             "matched_aspect_ids": matched,
+            **({"indicator": n["indicator"]} if n.get("indicator") else {}),
             "fragments": fragments,
         })
 

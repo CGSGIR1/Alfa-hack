@@ -27,11 +27,23 @@ def main() -> None:
     g.add_argument("--md", type=Path, help="отчёт в Markdown")
     g.add_argument("--trace", type=Path, help="трейс шагов")
     g.add_argument("--no-critic", action="store_true")
+    d = sub.add_parser("deep", help="углублённый отчёт (логика v2)")
+    d.add_argument("package", type=Path)
+    d.add_argument("--extras", type=Path, help="полные тексты и кандидаты аналитики (из адаптера)")
+    d.add_argument("--budget", type=float, default=20.0)
+    d.add_argument("-o", "--output", type=Path)
+    d.add_argument("--md", type=Path)
+    d.add_argument("--trace", type=Path)
     args = parser.parse_args()
 
     package = json.loads(args.package.read_text(encoding="utf-8"))
     try:
-        document, trace = generate(package, critic=not args.no_critic)
+        if args.command == "deep":
+            from .deep import generate as deep_generate
+            extras = json.loads(args.extras.read_text(encoding="utf-8")) if args.extras else {"full_texts": {}, "candidates": {}}
+            document, trace = deep_generate(package, extras, budget=args.budget)
+        else:
+            document, trace = generate(package, critic=not args.no_critic)
     except (ValueError, LLMError) as error:
         sys.exit(f"Ошибка: {error}")
     text = json.dumps(document, ensure_ascii=False, indent=2)
