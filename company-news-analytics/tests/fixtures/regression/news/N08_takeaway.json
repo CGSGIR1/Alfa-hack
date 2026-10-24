@@ -1,0 +1,103 @@
+{
+  "schema_version": "news-two-views-1.0",
+  "document_type": "news",
+  "document_id": "e6da289cec0e0aae2eadd08cc835ffb2",
+  "document_title": "Количество компаний доставки еды навынос увеличивается",
+  "document_date": "2026-10-19",
+  "source": {
+    "publisher": "Ведомости",
+    "url": "https://www.vedomosti.ru/business/articles/2026/10/19/1238027-rastet-chislo-zanimayuschihsya-dostavkoi-edi-kompanii",
+    "published_at": null,
+    "publication_precision": "day",
+    "retrieved_at": "2026-10-22T14:46:56.182297+00:00",
+    "access": "public_preview"
+  },
+  "preparation": {
+    "method": "manual_source_grounded_test_annotation",
+    "text_origin": "editorial_summary",
+    "is_test_data": true,
+    "representation_version": "news-two-views-1.0",
+    "representation_origin": "new_news_unseen_by_retrieval_scoring",
+    "source_text_included": false
+  },
+  "document_limitations": [
+    "Тестируется разметка доступного текста; автоматическая фрагментация внешней LLM не проверяется."
+  ],
+  "fragments": [
+    {
+      "id": "F001",
+      "title": "Количество компаний доставки еды навынос увеличивается",
+      "thesis": "Корпорация МСП сообщила об увеличении числа компаний доставки еды навынос и кейтеринга. В публикации формат связывается с экономией на площадях и персонале.",
+      "context": "Исследование не учитывает организации с неоднозначным ОКВЭД 56.1. Количество компаний не равно объёму продаж или заказам пищевого оптовика.",
+      "statement_types": [
+        "reported_fact",
+        "assessment"
+      ],
+      "topics": [
+        "Общепит",
+        "Готовая еда",
+        "Доставка"
+      ],
+      "countries": [
+        "Россия"
+      ],
+      "regions": [],
+      "organizations": [],
+      "sectors": [
+        "Общепит",
+        "Готовая еда",
+        "Доставка"
+      ],
+      "okved_codes": [],
+      "source_quotes": [],
+      "source_block_ids": [],
+      "source_pages": [],
+      "event_date_or_period": "2026-10-19",
+      "attributions": [
+        {
+          "statement": "Сведения и атрибуции в публично доступной части публикации",
+          "author": "Корпорация МСП; эксперты Ведомостей"
+        }
+      ],
+      "limitations": [
+        "Краткая редакционная передача доступной части публикации, не полный текст статьи."
+      ],
+      "mechanism": {
+        "description": "Формат без большого зала позволяет снижать потребность в площадях и персонале; это экономическое объяснение популярности формата, но не измеренная прибыль каждого участника.",
+        "status": "attributed_in_news",
+        "boundaries": [
+          "Российский общепит; относительная структура аренды и персонала, не цены продуктов. Снабжение таких клиентов выбранным оптовиком неизвестно."
+        ],
+        "is_established_cause": false,
+        "context": {
+          "conditions": "Российский общепит; относительная структура аренды и персонала, не цены продуктов. Снабжение таких клиентов выбранным оптовиком неизвестно.",
+          "source_sectors": [
+            "Общепит",
+            "Готовая еда",
+            "Доставка"
+          ],
+          "source_countries": [
+            "Россия"
+          ],
+          "event_period": "2026-10-19",
+          "unknown_company_exposure": true
+        },
+        "source_attributions": [
+          {
+            "statement": "Сведения и атрибуции в публично доступной части публикации",
+            "author": "Корпорация МСП; эксперты Ведомостей"
+          }
+        ],
+        "source_attributions_origin": "fragment_attributions_compatibility"
+      },
+      "company_embedding_text": "Тема: Общепит, Готовая еда, Доставка.\n\nКорпорация МСП сообщила об увеличении числа компаний доставки еды навынос и кейтеринга. В публикации формат связывается с экономией на площадях и персонале.\n\nИсследование не учитывает организации с неоднозначным ОКВЭД 56.1. Количество компаний не равно объёму продаж или заказам пищевого оптовика.",
+      "analytics_embedding_text": "Почему экономия на персонале и аренде может поддерживать переход общественного питания к доставке и еде навынос?\nУсловия и границы применимости: Российский общепит; относительная структура аренды и персонала, не цены продуктов. Снабжение таких клиентов выбранным оптовиком неизвестно.",
+      "embedding_roles": {
+        "company": "encode_document",
+        "analytics": "encode_query"
+      },
+      "analytics_search_question": "Почему экономия на персонале и аренде может поддерживать переход общественного питания к доставке и еде навынос?",
+      "analytics_query_version": "news-two-views-1.0"
+    }
+  ]
+}

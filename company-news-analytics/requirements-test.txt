@@ -1,0 +1,2 @@
+# Fast unit tests need no model, torch or network access after this installation.
+numpy==2.5.4

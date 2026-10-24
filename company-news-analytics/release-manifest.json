@@ -1,0 +1,3928 @@
+{
+  "release_date": "2026-10-24",
+  "model_weights_included": false,
+  "files_count": 784,
+  "total_file_bytes": 152739259,
+  "files": [
+    {
+      "path": ".dockerignore",
+      "bytes": 243,
+      "sha256": "ee10ee19ee1af680b92ca7b695bef9a3ed2cb31343a9c7de7a8e24b83021bc7d"
+    },
+    {
+      "path": ".env.example",
+      "bytes": 226,
+      "sha256": "1d2093c15af633469646e66ba2cce38a288a80f0df529f2938ea0dc16195ff9b"
+    },
+    {
+      "path": ".gitattributes",
+      "bytes": 188,
+      "sha256": "a4df795858569c6c7d3bccc7091ab654ace9c279ad03d559c99e55e3238c906c"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "bytes": 858,
+      "sha256": "ee2c18acba4f915dc42edd2ded589830d9f2174b9d6e4ac03a04fcf9b57ac34c"
+    },
+    {
+      "path": ".gitignore",
+      "bytes": 753,
+      "sha256": "91f5d213591b266841717ae3bc16164428ebaaa5c373e101081161bbf0195486"
+    },
+    {
+      "path": "Dockerfile",
+      "bytes": 521,
+      "sha256": "4be8746277af21b31294c9dedfa3fd08e263b2454fe6a3acd602a13a78482c42"
+    },
+    {
+      "path": "README.md",
+      "bytes": 12786,
+      "sha256": "fdb760a76c1eec55bbc7303fae04ae86da11536b49a07d2f9deb680fb1784b30"
+    },
+    {
+      "path": "compose.yaml",
+      "bytes": 958,
+      "sha256": "7b1752231636bc060e4598605a2b9dcd4f8029fce4b4aa8368939eaaccd56164"
+    },
+    {
+      "path": "config.json",
+      "bytes": 813,
+      "sha256": "895b3dcb283c367dd69b9220f1c457c01d4d48a48189d1d7989f2bf374150426"
+    },
+    {
+      "path": "data/incoming/.gitkeep",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "data/input/analytics-uploaded/.gitkeep",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "data/input/analytics/ACRA_EKONIVA_20260128.json",
+      "bytes": 126751,
+      "sha256": "0875dfbc457cb1c2404bd19d643d91e17b5ec34adc507cd21df659aa3039a8ca"
+    },
+    {
+      "path": "data/input/analytics/AFC_FACTORING_2026H1.json",
+      "bytes": 296094,
+      "sha256": "5fbe2d2783adbce0672245f660ff38573c9391934224b9e564b903f41a1bbde5"
+    },
+    {
+      "path": "data/input/analytics/CBR_BANKING_202608.json",
+      "bytes": 304947,
+      "sha256": "77599e99ca83af7244b91d6605db4bae4a467db69502f8ef6b8069bc5d458f01"
+    },
+    {
+      "path": "data/input/analytics/CBR_CPD_202609.json",
+      "bytes": 1300090,
+      "sha256": "e3302cd22a8418f5a643c652e9b09438fc56a8a7fb180b56b9335e154e7734b7"
+    },
+    {
+      "path": "data/input/analytics/CBR_DKU_202609.json",
+      "bytes": 407836,
+      "sha256": "3fc91647aec0e0a3c191be3f34d34b051f50a2ca4d0b1110da99c7bb0a58e309"
+    },
+    {
+      "path": "data/input/analytics/CBR_EXPECTATIONS_202609.json",
+      "bytes": 237687,
+      "sha256": "052e8d693e3660867e4db7704b76db5e117b81efe3242285a4172b40ee801977"
+    },
+    {
+      "path": "data/input/analytics/CBR_FINANCIAL_FLOWS_202609.json",
+      "bytes": 307414,
+      "sha256": "b1565a7f52c6c689fb2f987a649d9dc4af41f0c4628b527b142d62bbdcb65ab5"
+    },
+    {
+      "path": "data/input/analytics/CBR_MARKET_RISKS_202609.json",
+      "bytes": 648938,
+      "sha256": "e1d335463fbdf376d402097b5ef63ce03937cbd658ad72bd31db199935b5faed"
+    },
+    {
+      "path": "data/input/analytics/CBR_MONITOR_202609.json",
+      "bytes": 471519,
+      "sha256": "fecb77050e4025f0223d08d8b8b40f0469b9226164b4e2cae7f6dc418a8f0075"
+    },
+    {
+      "path": "data/input/analytics/CBR_PROJECT_2026Q2.json",
+      "bytes": 193727,
+      "sha256": "d656f5a6f813b6df429e06e99ec4be504c85513cb9f99b83a3598145ac551311"
+    },
+    {
+      "path": "data/input/analytics/CBR_RESTRUCTURING_202609.json",
+      "bytes": 70402,
+      "sha256": "0d8306ae900006814b4e01a04f68f8ab135d4b12bcdb857c61963e4ca25271c3"
+    },
+    {
+      "path": "data/input/analytics/NRA_ADVERTISING_2026.json",
+      "bytes": 368431,
+      "sha256": "5706e48461374a7101bec5a9620c5c5405abf5058147820572db4c240ffbab16"
+    },
+    {
+      "path": "data/input/analytics/RA_LEASING_2026H1.json",
+      "bytes": 199941,
+      "sha256": "aef7344e367b5b85d493dd1782ee19c924a4aefdd637b02515ec283dc97f5d01"
+    },
+    {
+      "path": "data/input/analytics/TOCHKA_FREIGHT_2026.json",
+      "bytes": 463161,
+      "sha256": "1973b2f7bc2590bed8676b808d0489992066ca3fd30b6c12cd6e1bc4b5690a2d"
+    },
+    {
+      "path": "data/input/analytics/alfa_7m26_2026_09_07.json",
+      "bytes": 193617,
+      "sha256": "3e1d6b62e774f90f6adffc0ac4f74794a3aefae8e5d41b59f981450b6d7b497b"
+    },
+    {
+      "path": "data/input/analytics/alfa_consumption_2026_08_05.json",
+      "bytes": 200280,
+      "sha256": "6ed536a77024e037795e5df5903f36bfcdddaf0c43d2238e1efee5546cd15974"
+    },
+    {
+      "path": "data/input/analytics/alfa_gold_2026_08.json",
+      "bytes": 227334,
+      "sha256": "cbd929e34345c286c7383f9d43ec0be8c74d6fb548c9cc28595020d378a90397"
+    },
+    {
+      "path": "data/input/analytics/alfa_inflation_2026_09_02.json",
+      "bytes": 113691,
+      "sha256": "5794a8173870e85614e0cef88345394b44b9f37360f3278c5b77557e3fdcefb3"
+    },
+    {
+      "path": "data/input/analytics/alfa_macro1h_2026_07_31.json",
+      "bytes": 316264,
+      "sha256": "fbaf2eaa2c64c0030baca8ac0206cfa39a1eda9c422f0249018d40e547d422ac"
+    },
+    {
+      "path": "data/input/analytics/alfa_policy_2026_09_11.json",
+      "bytes": 164804,
+      "sha256": "7e7409b2f2e7a54075a6f047df32e4105be6c7c2cba3e865141c5718691ef5b1"
+    },
+    {
+      "path": "data/input/analytics/alfa_steels_2021_04_15.json",
+      "bytes": 204940,
+      "sha256": "fa250405c9e22c6151dcb44108aa2dd4f9c4c912a43379ed71bd62020dbe203a"
+    },
+    {
+      "path": "data/input/analytics/alfa_strategy_2026_07_22.json",
+      "bytes": 1090169,
+      "sha256": "53102a2aa7100d1ea6182178190b40dba608f4fc71af9e696195c46ffc40536d"
+    },
+    {
+      "path": "data/input/companies-uploaded/.gitkeep",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "data/input/companies/U_102920.json",
+      "bytes": 194324,
+      "sha256": "8c03b938eeb9d2204264121ee974cd0eb5e17dc6fdf51fca26de3c3113994e2f"
+    },
+    {
+      "path": "data/input/companies/U_10529.json",
+      "bytes": 108351,
+      "sha256": "3e354301cb96bb38c55629f63e78e255659a191705a3b19f16e1f1211693becb"
+    },
+    {
+      "path": "data/input/companies/U_105459.json",
+      "bytes": 99650,
+      "sha256": "b51b7364d850c3b0e651fca30809f492535d5e298eb9c84d784a53c643127a17"
+    },
+    {
+      "path": "data/input/companies/U_11496.json",
+      "bytes": 15035,
+      "sha256": "5836d12813db62e12c50c88a0e1abf497b92843519ce506a69234b2aae9a030c"
+    },
+    {
+      "path": "data/input/companies/U_136248.json",
+      "bytes": 23088,
+      "sha256": "22cdaac7c8d640c8f77e51d4256907826fffa4a4302ea28d3d2d65921ea955cc"
+    },
+    {
+      "path": "data/input/companies/U_22299.json",
+      "bytes": 22540,
+      "sha256": "c4e3e8444adc7789d53224b77e1afd25373c7f9523834df17390fca961fdb97d"
+    },
+    {
+      "path": "data/input/companies/U_234228.json",
+      "bytes": 22794,
+      "sha256": "a68f90bee5052527054f24647026ea2dc43a593d9057386627447504f63002eb"
+    },
+    {
+      "path": "data/input/companies/U_31100.json",
+      "bytes": 20912,
+      "sha256": "7a2b161e4a3a36afe0262518f6d85a67dc4b378da22460662a71a2f77e5406a7"
+    },
+    {
+      "path": "data/input/companies/U_49201.json",
+      "bytes": 20833,
+      "sha256": "422864bfeaa04ff70ec48fa12f419542cb31a085b498d4a736841047cd9f9ef0"
+    },
+    {
+      "path": "data/input/companies/U_83932.json",
+      "bytes": 17143,
+      "sha256": "64fe589b269a63b37b0f4f1b91c37608841a63226c2b26539b343e291982d06f"
+    },
+    {
+      "path": "data/input/companies/group_132690_sb.json",
+      "bytes": 17584,
+      "sha256": "b21b7b1a080180d407188ea2f3ca6df1e59389238024cb34a92c97806e03626b"
+    },
+    {
+      "path": "data/input/news-uploaded/.gitkeep",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "data/input/news/01097871b4338d9cf10819a074059e27.json",
+      "bytes": 17832,
+      "sha256": "686b6154d969df22c98eff3084776b29977a690f29ca6de0b14b2cffddd83a8c"
+    },
+    {
+      "path": "data/input/news/014f698dbf219bd80407c516c57520c7.json",
+      "bytes": 23865,
+      "sha256": "1c43db9b9a5051fc606ca80873ab8848f017e5c4fc55270cb01371c6b6a0fedb"
+    },
+    {
+      "path": "data/input/news/01690eb8bfa5be2148362406735f2c7a.json",
+      "bytes": 28536,
+      "sha256": "6f8ce90f1fec5f494e2c83777abc8a4ac34ca191a08e45b689d4b0e73d64190e"
+    },
+    {
+      "path": "data/input/news/031ea48c78032b62978b36ef4cc7578b.json",
+      "bytes": 13760,
+      "sha256": "99df35fc1048b57a3a36183a4af7253f6c01e80c4a5f54372e6a8682f0bc2b1c"
+    },
+    {
+      "path": "data/input/news/03b233dd2b14666b7a0768eacbcc376e.json",
+      "bytes": 70467,
+      "sha256": "f84811ecf5c14dbaf8553f877e0f0970f0ded66f7ab902ee8151ac5e4000ce13"
+    },
+    {
+      "path": "data/input/news/03cc3df93fb2a9af5d0ef518fdb58c00.json",
+      "bytes": 15763,
+      "sha256": "3e274c5be65b94b6d0543df589d120809744addb79fe0938d4186fcd4dab7718"
+    },
+    {
+      "path": "data/input/news/04caba6bbd173de1fb31dd64d5844ac7.json",
+      "bytes": 12967,
+      "sha256": "64cb2f8740a495af1e2f7c79402254f6d776c890d3c372da0d36006feff28a4d"
+    },
+    {
+      "path": "data/input/news/04f36cd0d62c97d3ddb4a12cddd84345.json",
+      "bytes": 12405,
+      "sha256": "805e1a1870935f58800eacf68d406a1f15a5c1b5498e2477cfbafaf80aec4cb8"
+    },
+    {
+      "path": "data/input/news/0532598228b7fe4e19f06375cb0b212b.json",
+      "bytes": 25397,
+      "sha256": "97e90cb1c500ac52cd069b9addd61370cfcf4f4a1e608d67385b053a3ebbe674"
+    },
+    {
+      "path": "data/input/news/05927aefd397df8abb2da69455fa14b2.json",
+      "bytes": 33522,
+      "sha256": "38ed5c17f4eacf56f76ab3b0b88f26efee18b11736f6cdd7a351084058d0e636"
+    },
+    {
+      "path": "data/input/news/05b707a1a38036fb2663f6196a6800eb.json",
+      "bytes": 19315,
+      "sha256": "5dfd4b02d26d078c29a3d06e09a3c9ecc627829a737c57027a27e7477a7c861f"
+    },
+    {
+      "path": "data/input/news/062842ef76b6fa535e4021f12e3fd4f5.json",
+      "bytes": 13915,
+      "sha256": "4d6eb4865eead1168aa5b8f13df5d9c2e1d326d2830b7f79bdc1286bc0aaa3b7"
+    },
+    {
+      "path": "data/input/news/06a261c8e2fd1eede77d7c5ddece771f.json",
+      "bytes": 19209,
+      "sha256": "6d939e9e535140c4bcf1d8a9cbfa646c55dd08b4594c26c75777017faf22db2f"
+    },
+    {
+      "path": "data/input/news/06f568677b9b0a1380f4c3ab309d9da2.json",
+      "bytes": 23056,
+      "sha256": "1b2db46a56f930941cce59a4e0153b710eb00c39728ea8beaf54da315ff8dc76"
+    },
+    {
+      "path": "data/input/news/0700b5c1c4a811949fd195fd8e1b9b31.json",
+      "bytes": 13839,
+      "sha256": "a5f6a08182e3bc3f8a6253d214309a72f1f274d5390a1cd89d2b10a1ecd96481"
+    },
+    {
+      "path": "data/input/news/0747d748eceb1f893e5b9d8acdcc219c.json",
+      "bytes": 21457,
+      "sha256": "d49a2666ca7456a38200a69f55153e54f027d5e1d472ace97e8cff20c5b0cd70"
+    },
+    {
+      "path": "data/input/news/074a62f951872c803bdc3072daf4334b.json",
+      "bytes": 39855,
+      "sha256": "6e8b0617714cbe5827398e24db0d15455eafef1c9f162ce1dede9dbc0af981c0"
+    },
+    {
+      "path": "data/input/news/084528cccff5f3725a28bf03e5520560.json",
+      "bytes": 9715,
+      "sha256": "cc168e4a64ac381789f419952d1c4cfb271baa73d055fccb1d259f24fbac037f"
+    },
+    {
+      "path": "data/input/news/085a3d5845eb52cbc6095afe79fd1b9c.json",
+      "bytes": 27222,
+      "sha256": "6fea8d2029c90c0af8726cdd7b5b3b5ff66dc239e8b9a9fabb19c1d24984ae12"
+    },
+    {
+      "path": "data/input/news/088640564882dffb8ee1a1f76193a77a.json",
+      "bytes": 21110,
+      "sha256": "515d0d400181f6e831d759d6df62d2567bb8269570cd96746565bf9377cda5b8"
+    },
+    {
+      "path": "data/input/news/092bc799d023d64b1a9d0cadc7bc9190.json",
+      "bytes": 15581,
+      "sha256": "a383ae7dfa1b336819b339a0435eb7862e6cfc82b8be02b082a89e15ee68abbd"
+    },
+    {
+      "path": "data/input/news/09535630820eda2c33a08b06a9b2c8bb.json",
+      "bytes": 27383,
+      "sha256": "54ec18d4ab395337b14bdfad795609f001ee7bea3e6ebd0bb86e0d122c12f742"
+    },
+    {
+      "path": "data/input/news/09757441223c1fc336130aaa45e46e38.json",
+      "bytes": 14039,
+      "sha256": "66920ba754291ee28ef0358b47c2e684d35f5404ffe92fee7545f2de61499d7a"
+    },
+    {
+      "path": "data/input/news/09c2f35b71bd4916217d99c37ca606d6.json",
+      "bytes": 18571,
+      "sha256": "876347464eaa3c6f252425080695e895bb6b34a91067a3c686f0035e616b78c1"
+    },
+    {
+      "path": "data/input/news/0a4bb851eff974aae5085f8be571ac76.json",
+      "bytes": 15070,
+      "sha256": "6d18f7080372967afb9dce94bb4af0646e97631e2cdae53f283cab52f52a1684"
+    },
+    {
+      "path": "data/input/news/0a63cdbfad943145a1cfec98dc8e15de.json",
+      "bytes": 17017,
+      "sha256": "d1c7ee4127e007365f28fef053ddaed03ec4548642bab3b690d32e70f9d01cfc"
+    },
+    {
+      "path": "data/input/news/0ac909358522632be2f47c8befd5b529.json",
+      "bytes": 18525,
+      "sha256": "3062f9bbddb92a6c950b49cb9fe3ac128156366e8c3a66ccb884148b0980c79c"
+    },
+    {
+      "path": "data/input/news/0b058a97ad04b3b582e0437f18604836.json",
+      "bytes": 15979,
+      "sha256": "690a83b59f252bcfd53fbbe06535cc282213f3a7d931d82f5175791598e30d43"
+    },
+    {
+      "path": "data/input/news/0b2857c1cdf683c5923d7d4d6e51f25a.json",
+      "bytes": 14008,
+      "sha256": "84d9bd8f270329cbac398ebd2267931521d6217b62e9c9ab1532fa305f536352"
+    },
+    {
+      "path": "data/input/news/0c1339a45487354bfa2cfaa5e854abd0.json",
+      "bytes": 20776,
+      "sha256": "e2a8d547c5f36e452db17158242ff1041d6bf52ec7f43ec655fb1dccc792e885"
+    },
+    {
+      "path": "data/input/news/0c38f91407eab3945d35e417baae4376.json",
+      "bytes": 13667,
+      "sha256": "98d0c29b1fb8c6265d1a5d3a813510ecb60a227510a8a67aa0e4a0d4fb6cdaa6"
+    },
+    {
+      "path": "data/input/news/0c9c66f6f46519ef72b99f48474ba310.json",
+      "bytes": 31606,
+      "sha256": "8c0d03df4e4faf5a79ef33e971c6ccb3f6f05ed3081086e3a487cd424380588f"
+    },
+    {
+      "path": "data/input/news/0ced024c648030633b23b9cdeb0ef14e.json",
+      "bytes": 13073,
+      "sha256": "7077ee2ac5bafbb84029b5a15f3f6546c8c7364f2c337636c3ee2962c7e7d1f7"
+    },
+    {
+      "path": "data/input/news/0d48db8f247682c27d00f278dd6eb89e.json",
+      "bytes": 23829,
+      "sha256": "f669780d0e7963a4421bec4b8c0885f3a4fbc0cf23d461877290809667be2c42"
+    },
+    {
+      "path": "data/input/news/0d6a9fb67c76ab3dcbffbe023ff255e4.json",
+      "bytes": 18615,
+      "sha256": "59b30409d028abbafd942078dddf986d477ae9f0e1f9eeec1d9e45fccada9904"
+    },
+    {
+      "path": "data/input/news/0e1bfd0d4d62e9d0025c932ab74369ba.json",
+      "bytes": 12076,
+      "sha256": "4a060db86112535defa2c627eb58855d4af12e0264f1d2fd289b68f9d13bb966"
+    },
+    {
+      "path": "data/input/news/0e2a41835c2f84044e696c1fd73b6815.json",
+      "bytes": 12947,
+      "sha256": "d4d73467dfe8f854c2caab3b1ae8f317d90f98fe48326c4d596e16fd827fbbdc"
+    },
+    {
+      "path": "data/input/news/0eb7c808e35bb5f2c555c6ea3b8d9367.json",
+      "bytes": 12630,
+      "sha256": "892465bc257a202edceed7a65816df4ee09d9f7d5b8c780a32bcb586c270bed3"
+    },
+    {
+      "path": "data/input/news/0ebe4b0a3ad051b566e48b5e57c91b91.json",
+      "bytes": 42628,
+      "sha256": "39dd2ac8237bdb46d3982c78c51c8704b7652afe0063f1e5c9c295a4d5b3bc6a"
+    },
+    {
+      "path": "data/input/news/0f99cb0c324e3f2d9a794ef5ac9137a4.json",
+      "bytes": 28321,
+      "sha256": "fcd1916bf3fd0c64cc6147f627f7262be7d56266d62b2083d71bc00c4d885bd3"
+    },
+    {
+      "path": "data/input/news/0fe7f7c125985251d45e90564f3a60a2.json",
+      "bytes": 38958,
+      "sha256": "4b46e17bcbb17f1d069dd8a3e196b3dddd6ddd1699e7d650c907e3a2121f349f"
+    },
+    {
+      "path": "data/input/news/105f8aa35d24276e796373dbcb1763ee.json",
+      "bytes": 44770,
+      "sha256": "487a3decef990bf59f1570a4c8e43edecfb783605695f311cf6f911bb2fffa38"
+    },
+    {
+      "path": "data/input/news/10e8736c86c65b90bfdbf772c5448a9e.json",
+      "bytes": 26510,
+      "sha256": "5e68c7206833a3f7d84f1fdca2633b199a40cd487563bb44b9d395dac68cb438"
+    },
+    {
+      "path": "data/input/news/110052d9eec06870555d658c5b758c61.json",
+      "bytes": 19540,
+      "sha256": "b1709a6ef1978e712e9f24e9fd88e9a6ca38e1a890e0e4e47cbf2f2eec99a73b"
+    },
+    {
+      "path": "data/input/news/110462fbdd322d5f2912f22593476b16.json",
+      "bytes": 44114,
+      "sha256": "ba466055c4f59f02eef7e266310b16a9928d51445efdee20b0ac9fe7b34c5b41"
+    },
+    {
+      "path": "data/input/news/114b8aa1a08bf18af5252748f760710a.json",
+      "bytes": 21766,
+      "sha256": "c03be6155137baf1082f69f03f98f6a6febd3db620a4523e20052d99b715eb0e"
+    },
+    {
+      "path": "data/input/news/11964fdea3030bd55b82293a2ebd752a.json",
+      "bytes": 20266,
+      "sha256": "86be8542c0123b27424a93fa48d6ddc0bbac839e50bdcbc98f8707c0ae4c70d4"
+    },
+    {
+      "path": "data/input/news/12270e121e0e3c2492047df5fa7091db.json",
+      "bytes": 31353,
+      "sha256": "bc96acb5010cefae9fcae54b6b3681ebbe8386a4ff05ef6c96a2d9c7481a5d0b"
+    },
+    {
+      "path": "data/input/news/126219f0bfff6f424e503b75384c32dc.json",
+      "bytes": 11279,
+      "sha256": "4e6336cfb2082651fbd04f576d06a68bd700bcc21764630b2d159d0dbb38812c"
+    },
+    {
+      "path": "data/input/news/12f1b4f8dd8bdb63f3841e9a0dbad053.json",
+      "bytes": 7700,
+      "sha256": "dcf77c29f0a9f7a922a909720e83908211d465e0843b61b0126d847f605d1fc1"
+    },
+    {
+      "path": "data/input/news/14143663fbc18231dd9fbe8b351bff71.json",
+      "bytes": 17788,
+      "sha256": "d46e48f8ca71f3c4361090eb9c4f564f5ec4eea2510f79f3f89478bef6daf7e7"
+    },
+    {
+      "path": "data/input/news/144b64f2ce3b88a75183c91d76d2c28a.json",
+      "bytes": 12739,
+      "sha256": "2a120c185febf7467e2a98de4dffba299c47d3dc64fee3cc405dd763ea029112"
+    },
+    {
+      "path": "data/input/news/1482077faf0102c0772cad26fa4631b1.json",
+      "bytes": 24287,
+      "sha256": "eeff34530441c6c8b7615c13ef84e4c58c3aaa65e391d0e431c75757da202408"
+    },
+    {
+      "path": "data/input/news/15d9deb4bb2547a62e37eede50e9c645.json",
+      "bytes": 19600,
+      "sha256": "3544db99621cb798c2910f34db9f8aad241d63b30f9f9c8df1d2ec840bcd8c6a"
+    },
+    {
+      "path": "data/input/news/161e4bc932ac274c6eaa76906543b1be.json",
+      "bytes": 18581,
+      "sha256": "bfd4eaceb69a06251e0fce8ed9dd59455d565fbe2569e8c621297170e5cb8e4c"
+    },
+    {
+      "path": "data/input/news/168e2f09f9c4c55d2de1df4c15770d54.json",
+      "bytes": 17368,
+      "sha256": "d16010eb5a25989cb70c712dcfdf49aceb2829d0ce26c7e424dd22f15e5a8774"
+    },
+    {
+      "path": "data/input/news/16b8540d09cc407f5445249100d2c406.json",
+      "bytes": 12146,
+      "sha256": "bf818c5d840474d89d6f21ebe26dfcff023233c1674ae615610f3cc7247e27e4"
+    },
+    {
+      "path": "data/input/news/16e9e39aa13fdd58b3c150a994c17ac9.json",
+      "bytes": 43455,
+      "sha256": "a531a2ca30a12b54ce985faaa3056067fc31ba86d851e3ab78df7892c4b5eca6"
+    },
+    {
+      "path": "data/input/news/16ed7f693af33d9f3938ba9e8ec1056d.json",
+      "bytes": 27839,
+      "sha256": "5a8097959f1b5863ce00c5e8197d0bd81340716f292c024ac0ec1e626ff61f81"
+    },
+    {
+      "path": "data/input/news/17b45b70b68bfcb57a61408d94b991aa.json",
+      "bytes": 41003,
+      "sha256": "b1a45d244093a4a61421f6bd7297ad20b5e2f398407a43cef1db9df3cbde67ca"
+    },
+    {
+      "path": "data/input/news/18602cf9f1c3a9974ac2ee89b6f2076e.json",
+      "bytes": 83273,
+      "sha256": "e4aa80c5ac624f6283953d75c2537857cd8633bd3cdf509bcd7dc6a00c899f63"
+    },
+    {
+      "path": "data/input/news/19e5820777a717a5d9ced28be6281045.json",
+      "bytes": 12890,
+      "sha256": "ec5fe46ce0f42cf4b2ba8e2336599ab326c3be6595205623249c49a29945ac94"
+    },
+    {
+      "path": "data/input/news/1a01dd3fabe7d9c1d04f10bf9e60bd59.json",
+      "bytes": 12939,
+      "sha256": "4819fe05d0fcd8b6ce3786c95e293c1ab69e4769cf3d6c98da9ce99de581a1b0"
+    },
+    {
+      "path": "data/input/news/1b18e0927df3a642c555e1c777652759.json",
+      "bytes": 22385,
+      "sha256": "db63f49681fa5f44b7e038989e90e73a8834f295bf714031fa2d87bb8108b5ed"
+    },
+    {
+      "path": "data/input/news/1bbb69188895079ce96371d356796d4f.json",
+      "bytes": 17605,
+      "sha256": "151df4c100e1b34d362ab0d509670ffaf42f1ea1528c957044418bd6ae797562"
+    },
+    {
+      "path": "data/input/news/1c12f19882b4ab280a47bc27f913d9b4.json",
+      "bytes": 16014,
+      "sha256": "99ab245c35cdc505d4d90c60a7a4ddf22d28445d86e7c3cb541f691ed60be0f4"
+    },
+    {
+      "path": "data/input/news/1ce555b23c5a47ecc6a47fea1fcf07e7.json",
+      "bytes": 19292,
+      "sha256": "6107e2bb8cea1294c59eeec9751e29a2d7597e0e7a2f8b9acc5eb78087ef22e9"
+    },
+    {
+      "path": "data/input/news/1da8fe54c103484f975e16787deb5f27.json",
+      "bytes": 17484,
+      "sha256": "ce8727793ced3f03090872b371d078a612cc30cbc6d76b164e030c07b6d85176"
+    },
+    {
+      "path": "data/input/news/1daab6a94347a9a1603cdb34258bebaa.json",
+      "bytes": 9829,
+      "sha256": "e36554a3b020481b9ff54480d48ee5dc6b7ea45b0a5615cc001f961a9652ffc9"
+    },
+    {
+      "path": "data/input/news/1e3a1a6365e6e3a921f6f8f147958c1a.json",
+      "bytes": 14372,
+      "sha256": "40cb8dd048f4891e7c52c78dee915217ad0cff138b5b61d888b7f220d530c0fe"
+    },
+    {
+      "path": "data/input/news/1e76d1bec471dc9d5e0a7c8971d252cd.json",
+      "bytes": 18108,
+      "sha256": "398d12fcc1fc4daf2502268a406a10035b6e97259736a0d9e8c8620aef215f2f"
+    },
+    {
+      "path": "data/input/news/1e8158a625f4569bcec8de31278230ec.json",
+      "bytes": 13438,
+      "sha256": "cea7d117e1f775f556b989a469fa5420668a40c838eedf807ebe3a4b9b7c0140"
+    },
+    {
+      "path": "data/input/news/1ef1f7edf83d3e213fb285428ecf4948.json",
+      "bytes": 11549,
+      "sha256": "1f78c5c3b9e2112889ade191d3964d66c8b85aff9c86b06f6f6028fdd1510fdd"
+    },
+    {
+      "path": "data/input/news/1f32f961a75e36beeeeb5d7672fdb0cf.json",
+      "bytes": 17087,
+      "sha256": "f851edeb6742a9bce63b58dc1187d8db76ae0f24341d29c100029e8d4fe74375"
+    },
+    {
+      "path": "data/input/news/1f3d14496246262e28b68bbda15141d3.json",
+      "bytes": 17260,
+      "sha256": "51eaa4cf2f299582bb26df43de87f2a32ecd1de65d3d445cb8b2a4db4a1306f0"
+    },
+    {
+      "path": "data/input/news/1f558d3a53005a8a90a2d2dcf0d02f50.json",
+      "bytes": 19298,
+      "sha256": "dedfae02b75d857d2025e9ecf315b462173f87f36c91a20810a9e765cceb45a9"
+    },
+    {
+      "path": "data/input/news/1f8a00c5b77114289b62eced404af06a.json",
+      "bytes": 14983,
+      "sha256": "38f6f4628c21ac49f8868d7284533e62fb5cdc4b2a9e5555969f49e0a5d622e8"
+    },
+    {
+      "path": "data/input/news/1fcef45143d0c1b2d88f28e092723995.json",
+      "bytes": 17195,
+      "sha256": "3ea15dd81ceffe82a3795023b4a30848e1e55d81b1018235b1a2d2b80b9fefe2"
+    },
+    {
+      "path": "data/input/news/20d307c05e64a23c17d8008c6d5ceb0b.json",
+      "bytes": 15733,
+      "sha256": "fe82758c23789d103a8d5db9caea79b8986a00a27a7f8dfd0c5d496cb97855b1"
+    },
+    {
+      "path": "data/input/news/211a1d981ea3718ea51198158f0052eb.json",
+      "bytes": 19502,
+      "sha256": "a1687a114728a53fc8de48e13175ef196e596a9a7dd9c483d5257d970dbd26d9"
+    },
+    {
+      "path": "data/input/news/2205befdd569bff5051bc7295568deb5.json",
+      "bytes": 22776,
+      "sha256": "0c2df15f495171def629ea10385e726f540c272e45c66430c90c311101b4a5ed"
+    },
+    {
+      "path": "data/input/news/2360335b34e271d1173c33397e8b2946.json",
+      "bytes": 21526,
+      "sha256": "bcefd88f75d347361e88bda679f0ea90eb4de34f7604b3ad3d6be47bf1560cd1"
+    },
+    {
+      "path": "data/input/news/24d66db936e05abe5eaa5c7e7c31d560.json",
+      "bytes": 12017,
+      "sha256": "9c662a07297ae3ccdf108d69f0c74e59a1ce3fa0f35df6989ac6ab1b83c37250"
+    },
+    {
+      "path": "data/input/news/24e73bd45441b8c795303ddf634d6f76.json",
+      "bytes": 24422,
+      "sha256": "ad58916636c0b7e607e31b0b44d760fae7864adf7171ec645fe0760843b72357"
+    },
+    {
+      "path": "data/input/news/252c25752e2bbc00759c269b1fdaccd4.json",
+      "bytes": 20799,
+      "sha256": "edfe311fbd6ef7178a66369cbb706948f3a9fb694f794b193beba6716b142371"
+    },
+    {
+      "path": "data/input/news/256f34377fe983b4850fdc2144a9ee2f.json",
+      "bytes": 12211,
+      "sha256": "f8d354e50596b103129afd00154238b9dd3fdecb2e5314adaa8456b94a5a82c0"
+    },
+    {
+      "path": "data/input/news/25dbb0f101633df44ea83d5ea947c342.json",
+      "bytes": 18816,
+      "sha256": "fb83540fde100f547b2d22d88fda64ad700ec15912c15d3be21dc36df6601d0c"
+    },
+    {
+      "path": "data/input/news/25f0c3f4c594c39de67441fea55651db.json",
+      "bytes": 14539,
+      "sha256": "e0bc11790e66c167753fe938ccacb23ec502ce021524b89acc82b5f830e61bd2"
+    },
+    {
+      "path": "data/input/news/260219770d397e5b6ae26cd169c98f91.json",
+      "bytes": 20031,
+      "sha256": "24f4447038d2a6c28a4afe9d4f93fb176c5f389920ebe94776e3b3350a952b33"
+    },
+    {
+      "path": "data/input/news/267f697ac56876fbe85eea0b4c733b46.json",
+      "bytes": 15666,
+      "sha256": "ef211611bc10f6c03c1faa89ed2c0050afcc6c4b413fe4b34fa6b486a3fb94d2"
+    },
+    {
+      "path": "data/input/news/276167a0ad9d8f9fade8a4dbac906719.json",
+      "bytes": 13893,
+      "sha256": "4681543e8cc1789edaea0b6b18ee455c959331d0c04a87f6689886358f7a6543"
+    },
+    {
+      "path": "data/input/news/2778d75a7d34b0b84f5dd60eef6a5fd0.json",
+      "bytes": 29041,
+      "sha256": "1e5165db5672361f4408cbb8a2c59d90ed2e99af6020dfd7507dc73b65e06dc8"
+    },
+    {
+      "path": "data/input/news/2782bd2df8dd8d774ce6e5920b2e13d7.json",
+      "bytes": 14559,
+      "sha256": "9cb376cb19a38f1608f627b80573d14bf2fbc9a1a626bb5567d43c9848dc417d"
+    },
+    {
+      "path": "data/input/news/2871a5be059f294a70f38410efe7d9f3.json",
+      "bytes": 21943,
+      "sha256": "ac84fdf4d5c34ee449f9251a4bec7940faace4fc05d546f04c21ebee6c1d03ec"
+    },
+    {
+      "path": "data/input/news/289e7d1022f9e8e7ac3b64e6e937d39a.json",
+      "bytes": 11795,
+      "sha256": "ea76ca79b0f2993bfb0e9bafcfd640eff0d043bfb4e46b908200973dc3893b75"
+    },
+    {
+      "path": "data/input/news/2a59ea7bc42f35e53622a4065ece167b.json",
+      "bytes": 11469,
+      "sha256": "f6f0a32240b3e7ccf2a7ed31578b35b42422c13dfb4189e374b66f721b821786"
+    },
+    {
+      "path": "data/input/news/2b1284cbf37276a0d9f1600a2b2ec548.json",
+      "bytes": 20013,
+      "sha256": "b5837ec5b0c034bb6ffd8d3bcbdf6926da8106fd2b90303538ae39ebd1957b14"
+    },
+    {
+      "path": "data/input/news/2b73b78fd3b59497f566081ddc944939.json",
+      "bytes": 42573,
+      "sha256": "0d96d2104d03aaeb6aadea36d7ffc8c0a649965ec26f908a022110ff7c72908b"
+    },
+    {
+      "path": "data/input/news/2c0092bdd09abaed5eab2e8baad33bea.json",
+      "bytes": 12979,
+      "sha256": "9dfa30a5229f2de526913e2101c9a3454e6762d402e1462af32a3a080b5c2dee"
+    },
+    {
+      "path": "data/input/news/2c19e421d80e21a0752f7d84b2c7fc90.json",
+      "bytes": 25131,
+      "sha256": "aafc33443adb5772ad3e393ee0cbb5e1f4b75b050ed9dded53aa5ab24ef7d88f"
+    },
+    {
+      "path": "data/input/news/2c8f133256ab2613d4073b84e9f093a4.json",
+      "bytes": 30629,
+      "sha256": "273d59b8125771109bdd317eaeb716652cfcf427ddae3c9b4eb448668780cf7a"
+    },
+    {
+      "path": "data/input/news/2d8c6558a3bb1e8bae2e875ff0109c95.json",
+      "bytes": 12384,
+      "sha256": "e922467937bf42cba6ed64464a4073d3e6be8ca3ce7616dccc4809cb70fb7917"
+    },
+    {
+      "path": "data/input/news/2e006e07be9128be8144162a885cf57a.json",
+      "bytes": 47466,
+      "sha256": "cbe6fbc7cd846675ffd441a5fe4ae4a0e0b2dd713126b4ba5c41467649c753a1"
+    },
+    {
+      "path": "data/input/news/2e2da5157c88741e3cb21465549370de.json",
+      "bytes": 25801,
+      "sha256": "c97f12b73bdd07e1a2b800718a38192d29e3e887684954b994db9873b7b292e5"
+    },
+    {
+      "path": "data/input/news/2e84865fdace920766bfc1012cc271e0.json",
+      "bytes": 15572,
+      "sha256": "bafb1db8a0360ccfdf040c0e3f86eac15ffa2bdeaa5043f128a734e1b5df6770"
+    },
+    {
+      "path": "data/input/news/2ee9815da95df506e0cf30e77dc4d29d.json",
+      "bytes": 16830,
+      "sha256": "e8417bef053efbdf3fd5d6193768ed7be5bdf7f13b14d4808b2bfd08afa5962e"
+    },
+    {
+      "path": "data/input/news/2f16471d64308bff96df3bd8cd2e5044.json",
+      "bytes": 14591,
+      "sha256": "8c34271135145cf1a37d603269957d17b73dfeec6a7850fd84d45e118c823118"
+    },
+    {
+      "path": "data/input/news/2f1aeb6cbd03c1e2ac8e079e16db611a.json",
+      "bytes": 18034,
+      "sha256": "6a9d2a1f4d50a3cb5126c3044beaf85cf4bab2514b440c43917028e24debf78c"
+    },
+    {
+      "path": "data/input/news/2f7411d925c628594d9eab85970e7ecd.json",
+      "bytes": 19416,
+      "sha256": "23a7de79bd80ff51204a56b68e6eac8529524a5c070214ecb21c9c5bc28f18e0"
+    },
+    {
+      "path": "data/input/news/306fb82cdb565e0e334aac6a7c029045.json",
+      "bytes": 10157,
+      "sha256": "47639ea7d4366b845c785bead3d2fc81c06ccada800780398397594f11267acd"
+    },
+    {
+      "path": "data/input/news/309ef880858a31448fa9aba1e21d7729.json",
+      "bytes": 34317,
+      "sha256": "29c41140c0b27838bc6ba10c8803e97c4efca34a4baea8f9b3c7ec863caead3e"
+    },
+    {
+      "path": "data/input/news/30f643a4cb6c012a5ebb1fb563ff9d0b.json",
+      "bytes": 12720,
+      "sha256": "ed89dbfae7c9113d6898e2f666c834b42d8fc3f2a2ef9c1bb3b36ff607a5b2dc"
+    },
+    {
+      "path": "data/input/news/316b9c6c7831320a33114f46c52f3adf.json",
+      "bytes": 18496,
+      "sha256": "2a1bcbc3412f98157c3e81753b87266f12d5838712f3ae6d8cff09303b69dd51"
+    },
+    {
+      "path": "data/input/news/3211ddd20b5e53f7f2daecca127c670c.json",
+      "bytes": 14503,
+      "sha256": "3ecf16ea4507df8610f84f08e4ba4579cd3c6883a68461902e03813cab7fba89"
+    },
+    {
+      "path": "data/input/news/32eee80925c14c2cb8b6d454ef79b6e9.json",
+      "bytes": 10818,
+      "sha256": "f4f87dffc5d01cd06687e5e21fa73567692ba1bf73eeac2dcb84302366410763"
+    },
+    {
+      "path": "data/input/news/3302dbd5e1808bdb7419bfb2286f63ba.json",
+      "bytes": 20939,
+      "sha256": "bd697e23e8c21b648032a5e89e267c743832a869a6571ea2b73106194a97854a"
+    },
+    {
+      "path": "data/input/news/33c1e79124d8d1fba5671cecc718c17a.json",
+      "bytes": 18898,
+      "sha256": "d3352f5484c689c4020159fea90c18a18b27d51139cc56df3ac5ebb41e68d745"
+    },
+    {
+      "path": "data/input/news/346d3187ea8a7dc6d0fcd13157c22e66.json",
+      "bytes": 19153,
+      "sha256": "9d7d0856efb3ad01984b5b91449d75c4cda5343a15f889b4d074e1cb44b42fe9"
+    },
+    {
+      "path": "data/input/news/353d1c7d0d7405c3a2427f636c34a71f.json",
+      "bytes": 22034,
+      "sha256": "750452b44a611823e631872541be2eefb4ee5a19e142920281a3ee06b9e1c7c7"
+    },
+    {
+      "path": "data/input/news/35675e0ad8bd974aa8e53ea45863ec87.json",
+      "bytes": 11314,
+      "sha256": "b36fe658f7d51e73d9dc5220e60c6b1fb0608f71377fafac267f16a814e47aba"
+    },
+    {
+      "path": "data/input/news/35aaef88a85bc7aa53fa0fc4aeb44481.json",
+      "bytes": 18558,
+      "sha256": "8403ab4668914401926a929620dbda0fcfaec6e9d5b126588ffcfdd195f7038a"
+    },
+    {
+      "path": "data/input/news/361aca3bc5029a472a4f02d547685001.json",
+      "bytes": 34269,
+      "sha256": "00543a1db65d338faa9d6aaaa98ed81d1f6580d754591808f86cf1af4205b333"
+    },
+    {
+      "path": "data/input/news/3760682cec477cdc9351b5d1a029709a.json",
+      "bytes": 10825,
+      "sha256": "f4f6b61725fa0a72dacd4a04162621de38159c85d8f2815137eb15bfc76e8180"
+    },
+    {
+      "path": "data/input/news/376d1c02a56a02be6ee4deb6321c33b3.json",
+      "bytes": 14250,
+      "sha256": "9c6e3e1d94686d5211bc0480d7474905e86a4ab5eee4f44234f0c13ffb9500f5"
+    },
+    {
+      "path": "data/input/news/379b6afbab8b15d4dcc1b5327b9cc42f.json",
+      "bytes": 14853,
+      "sha256": "901477a24f03c91acca92147f0206525efdba408e5d7f4a832041395db2f7f26"
+    },
+    {
+      "path": "data/input/news/385547c212d1a38d49e4b81342a638ec.json",
+      "bytes": 88539,
+      "sha256": "34d0ae05e350f55908e0dc1ce094acb198aab83a6598d2020af17643ac9087a2"
+    },
+    {
+      "path": "data/input/news/38c4339817cd36bc35d3c64ed76a7ce3.json",
+      "bytes": 16061,
+      "sha256": "b6c5924dd6ee46eea79917c34cca62a2cd304ea609e9c0e4ef48b5287feca8a2"
+    },
+    {
+      "path": "data/input/news/38cf5e3c660e7de0b77d3fa506a6e506.json",
+      "bytes": 21426,
+      "sha256": "7d33fda44357476dc056f8536eee4aa53bfaa2dfef6408e7adb6428504cf995c"
+    },
+    {
+      "path": "data/input/news/399c9232cd3001eeb209c46c39a1aaec.json",
+      "bytes": 22212,
+      "sha256": "df7ca23588b69080b83d98154963e5f1952cd661e258117cb0d4ef30e987738e"
+    },
+    {
+      "path": "data/input/news/39b9f704b7050cf8415babc4fbd54976.json",
+      "bytes": 10811,
+      "sha256": "fe66ba27d8ee874b65c162dd318280292fda8938ae08e5b757e2c28cf25b0533"
+    },
+    {
+      "path": "data/input/news/3a204d33eb38ff1667ecfc8c6b83c217.json",
+      "bytes": 63005,
+      "sha256": "825d69e03d1ef4c2348c578bc787f6f59a85208f5978d6eeac3a08a24762df9e"
+    },
+    {
+      "path": "data/input/news/3a3d9d1840548669e21d603486496bb0.json",
+      "bytes": 16022,
+      "sha256": "726308864074c968f99551dfebd913b07cfd2e46b4cbf4197c1c5800f9813064"
+    },
+    {
+      "path": "data/input/news/3a5c4af0db2754c5e57e07a10f9f52ec.json",
+      "bytes": 18077,
+      "sha256": "588d3a4274a928722445479374abf07a372dabb04266ca4a1e4381cec40a4fc4"
+    },
+    {
+      "path": "data/input/news/3a992a144c7f1dc2795d400039cea776.json",
+      "bytes": 17974,
+      "sha256": "1062396f7d9bc823d25108850525e644120a557ea6f919233c6325610b0ca0c8"
+    },
+    {
+      "path": "data/input/news/3ae4bce62f721e32d7cea64e04f718f5.json",
+      "bytes": 12778,
+      "sha256": "4e442d6a77e73c342d7f8ad4f11ae2e3899b3a0ff59e4f1e1cf04217fbc880db"
+    },
+    {
+      "path": "data/input/news/3b46f7aa822df2ea60d60a8a36a9e75f.json",
+      "bytes": 17795,
+      "sha256": "7341f498353b4d30efde90a4b4b5579074971a7c45cde390965981e73bc263a7"
+    },
+    {
+      "path": "data/input/news/3ba307cc5bbc227175ceea82d1afab58.json",
+      "bytes": 17816,
+      "sha256": "c4f02b3b15e16a2917816da087d3341859877be2cea553cff09a2eb7f9f97e71"
+    },
+    {
+      "path": "data/input/news/3c007747eec1f54ab30d930e4a9d2b0d.json",
+      "bytes": 21164,
+      "sha256": "a70e258992e8d8e9dc2ec7db003d038acb57fd3fbf6bb6dba03d5d931da70d0e"
+    },
+    {
+      "path": "data/input/news/3c7ff279e62897a93a7901fd5e79668b.json",
+      "bytes": 18212,
+      "sha256": "06b737cc93b88337f20ea0689fc0870464ff8e8b58cd3e5e7d820e6ebe93dec0"
+    },
+    {
+      "path": "data/input/news/3d5fd732a2261e0f9e880848d5661528.json",
+      "bytes": 12742,
+      "sha256": "435a71fad96bcc4940058f3403dbf7e8563c23fc8ecccf00215364224e9de446"
+    },
+    {
+      "path": "data/input/news/3f02802a413d27f5c560e5790284022d.json",
+      "bytes": 19144,
+      "sha256": "ee343d271c85d81b0ce7ea96f3ea9a7fada5ae6d1a4416deec3fe47ee4df9845"
+    },
+    {
+      "path": "data/input/news/3f5f207736abae54dba0d2a7c28e0d8a.json",
+      "bytes": 29295,
+      "sha256": "314608eca959710f2638cf83c6e0269790126d38bf8e537db5473df5daa7db39"
+    },
+    {
+      "path": "data/input/news/40fe257f9cea831fb060d00333beef09.json",
+      "bytes": 37318,
+      "sha256": "753081c4d98de5da21d7351974de714876698511888c6ea1a03869be6f5b0364"
+    },
+    {
+      "path": "data/input/news/4141217e04217996ba52a6e6d54d918c.json",
+      "bytes": 10869,
+      "sha256": "86300232b589104cc61be6b8c5209cda081200446c4d0c4a5559361f6c907752"
+    },
+    {
+      "path": "data/input/news/42e02220f221dd5d065f4c25c06701d5.json",
+      "bytes": 30865,
+      "sha256": "7a0b5ab79b405053fa397b3b5ad766248a869da34f36ef52ca1d433a62408ddf"
+    },
+    {
+      "path": "data/input/news/4323b1ce0fe5b23890aa89f8aac6c320.json",
+      "bytes": 17529,
+      "sha256": "8d2a1821f41837f53899e8a443fa75261016fee982a8e94bff5b0bb2e0b844b1"
+    },
+    {
+      "path": "data/input/news/432e7e171e9b792ff33358eb709f0a54.json",
+      "bytes": 11718,
+      "sha256": "95a4403f0cbd529554ac5750bc20a8267889967925b214141b9f618934ab4082"
+    },
+    {
+      "path": "data/input/news/4394c53dc751a840cbe990f30e33fc44.json",
+      "bytes": 44837,
+      "sha256": "6a0b28663d0048d837521729ed1bd46aa252eb4a068bb7fe8a6c83d9525164f5"
+    },
+    {
+      "path": "data/input/news/43b182dbaa2018d927851949b4d8c7cf.json",
+      "bytes": 28150,
+      "sha256": "afe29775b4fa07d90af25445c6377168d4f0c48307d25bfff06cb45467a9ccb1"
+    },
+    {
+      "path": "data/input/news/43f5196d272dffabe46299c0ebd646ce.json",
+      "bytes": 51409,
+      "sha256": "57b09fd85729a7a2e672350a00904ee35ad89bf441121ddeeed14da6c6b2f28f"
+    },
+    {
+      "path": "data/input/news/444031810469e53cb89b994e864842ca.json",
+      "bytes": 16646,
+      "sha256": "8cd5da7d4ac8eecd12dcdd83a9a5b6c25de90d5d8bd7d0d71062a507ba410ff0"
+    },
+    {
+      "path": "data/input/news/455b14f42c2dd2699ff08d5f6bf2cd38.json",
+      "bytes": 19075,
+      "sha256": "f9f1f6e64ac62d4364576a554ce2246b0ddd365e66ab8a98044e96c208d8afd0"
+    },
+    {
+      "path": "data/input/news/456a5215e938878673d2f10692a1f156.json",
+      "bytes": 47098,
+      "sha256": "4b087d035902fed29ba538a18f9429ae7b47b64d436c03875273902778584a8c"
+    },
+    {
+      "path": "data/input/news/45e71f13aafc5792c4826c749d635597.json",
+      "bytes": 45065,
+      "sha256": "97e6724bfe6093c6d3b573e1ab1c033ad79323d3f0a59b9ee6fb39e49511c955"
+    },
+    {
+      "path": "data/input/news/46317a244701eb572df803447244fc22.json",
+      "bytes": 11845,
+      "sha256": "5c70a628edc7d523a59ed01d1ddc593b7e747706ed364989c0b0762fd426a7cc"
+    },
+    {
+      "path": "data/input/news/46601c711f6363055dec11b2c25d9188.json",
+      "bytes": 12172,
+      "sha256": "2665c0ed529bdb65e4c62dfa6e705ce914ecf1a996bdf1ef50ea0f7ba73f679e"
+    },
+    {
+      "path": "data/input/news/46da70df82b828305a345e6753af1af0.json",
+      "bytes": 6265,
+      "sha256": "ce1ac75b31c942650861769fc6468fc561af7edab64d1933b622f5193c4367f2"
+    },
+    {
+      "path": "data/input/news/47279ccc253db8daaf20ce3d36809ddd.json",
+      "bytes": 19943,
+      "sha256": "3d911accd21e442deca8bb18fcbd1cb8dc4f8cabb72fd41a46057cfd99b28588"
+    },
+    {
+      "path": "data/input/news/47a2ee5f245f59e63156883356753170.json",
+      "bytes": 18615,
+      "sha256": "1010e3d4439656007f150ee9726e02906dc4538b809e17ec53d0cb4cefa584e6"
+    },
+    {
+      "path": "data/input/news/486bb419004472a6338f7aa5a739fb76.json",
+      "bytes": 17062,
+      "sha256": "89321f9271823e1d57ffbfc1a0331f8ac6e981c55515e0d47208a4a6d8c3fd18"
+    },
+    {
+      "path": "data/input/news/49eb07b7e22d5f346dc5baed79136f33.json",
+      "bytes": 14524,
+      "sha256": "e0694cf1e13ca3a5d3d95e3610430ecf1b85c3d7f499573274271bac1c84d83c"
+    },
+    {
+      "path": "data/input/news/4b2ceec41c2dcbfe44b4d2f4cd4e32b3.json",
+      "bytes": 18466,
+      "sha256": "a61c9395a76c016f12f65c80db0b1f12ad6e2edf4e2ae4c675b5de0690db2333"
+    },
+    {
+      "path": "data/input/news/4b33bbbd5aa4540c2ddefda1df87c372.json",
+      "bytes": 21881,
+      "sha256": "cdcaaf536440aa63a69c60dfe0ab17ca0892de2900f9874e055ba0c68dc837a2"
+    },
+    {
+      "path": "data/input/news/4b4da8292b64e0aaebd812eaf6b10e2c.json",
+      "bytes": 25295,
+      "sha256": "98d400d2b605a613ca10a23117003dcb32a37fb5b412d820595401d3d97117cd"
+    },
+    {
+      "path": "data/input/news/4b8901e496a0bb55100497917888fffd.json",
+      "bytes": 17382,
+      "sha256": "33901cd0c25c8a8e8106f064ff35b44b2100516f74a22122afba9ea94bc46612"
+    },
+    {
+      "path": "data/input/news/4c2129f7ca630fcf97b6cb6db0ff44cf.json",
+      "bytes": 19579,
+      "sha256": "c8b885977dfbdf38bb4639a238aab8e746b37feca3943887f7e2c3484f51ad40"
+    },
+    {
+      "path": "data/input/news/4cfb7667f954b14ad33e98e6f7330314.json",
+      "bytes": 17731,
+      "sha256": "4bb05480fd7bf633642c6ccb7709fad4375465ea076ec86d922f53cb029e5db6"
+    },
+    {
+      "path": "data/input/news/4d55ecee8ed01467ae8e4686ff48065e.json",
+      "bytes": 13250,
+      "sha256": "bbe2079b69336153aaed7ce2477b1674f4c871935257fbc0fe189fbb2cb00e43"
+    },
+    {
+      "path": "data/input/news/4e8b88cedf88acb2300370f9c62875b1.json",
+      "bytes": 22573,
+      "sha256": "584cd11376c72feba0e3f4d727a712e4396358406dd68d8585157c048b23586b"
+    },
+    {
+      "path": "data/input/news/4e9dbaf4105aab2a1f0362017e060188.json",
+      "bytes": 14262,
+      "sha256": "7292c0e44b9690b31d8e7c8a5451c305b444d2b0c2712f8840f7cea3ce076c41"
+    },
+    {
+      "path": "data/input/news/4ec7b22e48f14d7d92072249c2b7d169.json",
+      "bytes": 15192,
+      "sha256": "7c63d74b84651a01a9a6bd95e1f9c14343aab1277818d88b084a464b279685af"
+    },
+    {
+      "path": "data/input/news/4f4a256f13dfbdbf3b2754cf75712559.json",
+      "bytes": 20380,
+      "sha256": "fe5f4f98c44dd838019d9fdd408502ff2c5f3701ef4f9c205b7c80b874f09718"
+    },
+    {
+      "path": "data/input/news/4f5953a078d3d4578771d66834dbdb7d.json",
+      "bytes": 17932,
+      "sha256": "0ba258b238cb1adb3a51b93c6f598365b8ee81343557c8f1a7fe53728c08fbae"
+    },
+    {
+      "path": "data/input/news/4fa470c47352b00eb4125350f0c034f3.json",
+      "bytes": 40320,
+      "sha256": "18c22e3a705476aaaa8884e87cb4e61e17a4e4f9c6c3e617c17fa6b497fb39d4"
+    },
+    {
+      "path": "data/input/news/4fd2344bb0c308c1a608e028d9ab03e2.json",
+      "bytes": 11469,
+      "sha256": "a6770047844438e31a4c73bc8c95334f4a40228b901af3b4d5a121016f151f7c"
+    },
+    {
+      "path": "data/input/news/50f76388ebffac166746a134b31a4305.json",
+      "bytes": 30589,
+      "sha256": "2eff907a7afd078612ae18ac6356cd1163435b60235ec46ce46091a01985894d"
+    },
+    {
+      "path": "data/input/news/51094516b99ef92406f9866a27a217d3.json",
+      "bytes": 18710,
+      "sha256": "d0a1ad3f4bbd130f79369e58f3e3a65481a16989778446c5553414d060333a07"
+    },
+    {
+      "path": "data/input/news/522734ec5a865e2aa3d08db7cbcae9e7.json",
+      "bytes": 18714,
+      "sha256": "b94ba713b531f3e128775a476b028d69add5b6e177f37b7d679523f3a4d225cc"
+    },
+    {
+      "path": "data/input/news/529cd27cc71be7ad5a429b2a689fe170.json",
+      "bytes": 21216,
+      "sha256": "903843b75e5c56f110a3c85c3913db77db25e872ef947d738d249496c32e7bda"
+    },
+    {
+      "path": "data/input/news/52e753b27d0786aa0018678be4761ce3.json",
+      "bytes": 17795,
+      "sha256": "47eb43f48e745f3765d3e3d1edd8d5b67d1c5485e27de6f2e23ad6fb5d219184"
+    },
+    {
+      "path": "data/input/news/5340e1eecc0c7422b54d1111aded58d3.json",
+      "bytes": 32599,
+      "sha256": "ef2c8ca4e9a0561761c807f8c7d0f91e669c5ecf64cb62ed2d6920f1cdfdc144"
+    },
+    {
+      "path": "data/input/news/538afc8330a5bef8fd5187754b38cc19.json",
+      "bytes": 17420,
+      "sha256": "fcd465cfc35cf381c96c1abe5523c2a1817031fe951863f4a7317c405f088558"
+    },
+    {
+      "path": "data/input/news/53b209767d1b958725181410078c565b.json",
+      "bytes": 21486,
+      "sha256": "7d38680802d6bbd90c6e737e6ce1b4f66e7e54cd9e14bb9955a291ca4bc2f1a5"
+    },
+    {
+      "path": "data/input/news/53ec76270a776187918bf93435f05049.json",
+      "bytes": 19293,
+      "sha256": "91d57f88af3b2439674318af40b4b83772b0b8ae25954cb9ef79d9c76229633b"
+    },
+    {
+      "path": "data/input/news/54ab25b8aa130321007ad2640640d9c9.json",
+      "bytes": 17063,
+      "sha256": "26235187906b2098fd546e8a99eb66919de5fab25ce71b41f4652edf7d6fd700"
+    },
+    {
+      "path": "data/input/news/552e7b7f2555debbf9ac3d7c7ad1134e.json",
+      "bytes": 12546,
+      "sha256": "683b10160ac4b30d777797bcd7e6d2f8123408b222d669ff509218e825b6be64"
+    },
+    {
+      "path": "data/input/news/55a470fa36a2cfc8aeeaeabe255129e6.json",
+      "bytes": 25728,
+      "sha256": "0d456f43fc2ef92f000197aa29baa254976feaab669db88d44a27b1151baa732"
+    },
+    {
+      "path": "data/input/news/563d13b6a6163b2a7998f56d1cb046d6.json",
+      "bytes": 20510,
+      "sha256": "704e04e499e5034633cee3d1d5d21672431e855ce00e1e37c25797c49c3e289f"
+    },
+    {
+      "path": "data/input/news/56771bf9c675dcb18ece2563399e6c9b.json",
+      "bytes": 11197,
+      "sha256": "0f8e26382cf366855d1612ac0a67bd6a1d19300b59b03ad531b559c8f248eb43"
+    },
+    {
+      "path": "data/input/news/570a574c70bf6487ecd29cfce995ecf8.json",
+      "bytes": 20966,
+      "sha256": "2cf3fe7a91bfe4ac8b1dead2fc5b941f99bd44a113f94afb9dd10229149a413e"
+    },
+    {
+      "path": "data/input/news/57b497686774b65b1380cdce0b467cff.json",
+      "bytes": 19097,
+      "sha256": "880cec8971282c37d62c9871847c1836895cb0be824a31218b0301cdf08929d5"
+    },
+    {
+      "path": "data/input/news/57bea0707ce0b5498b74ff4941881f11.json",
+      "bytes": 15107,
+      "sha256": "3cf822615c4656d69abb1675cbabc5c6ab21865c91a7e8e3b75d7113b9e4746c"
+    },
+    {
+      "path": "data/input/news/58ab05bf4ddcc1cb10f2e0bc61fcda16.json",
+      "bytes": 13752,
+      "sha256": "94936dc49c0739a32e1bb17bd7a892ec76774b80181d8da3dc819e61d3383576"
+    },
+    {
+      "path": "data/input/news/59e4039a5d8056f3bda5a493cf692a34.json",
+      "bytes": 11906,
+      "sha256": "38a3dfbb49c13765291372f60c45a4f6f73c9631d3cda52ce1d0a354475585b5"
+    },
+    {
+      "path": "data/input/news/5a5079093428287123e4d30272d2aee7.json",
+      "bytes": 21818,
+      "sha256": "d1c6bb1f618a00ebe42e296ab74d9a51a7f5ca02b16a53c834b323680ae6d72a"
+    },
+    {
+      "path": "data/input/news/5b29fac974c32b33e557845b5b133b35.json",
+      "bytes": 49752,
+      "sha256": "07a5a9ee03445d2a23ef9236dcf8e3fa10c2a59a1194588a4a002bdcffa924e2"
+    },
+    {
+      "path": "data/input/news/5b66fdc35cd12b38e8dfc84c4968c6e2.json",
+      "bytes": 20652,
+      "sha256": "cf0c7616acd605002daa728afabe2626b792c073b2a994ab1bd4d8e5e8c5c7d6"
+    },
+    {
+      "path": "data/input/news/5ba6fb3a3a6633c92604eb66d4bfbadc.json",
+      "bytes": 20216,
+      "sha256": "76675568529c2cfc24a5481f5b0e61706c4b998dc816d2991f9cf8833ae03d75"
+    },
+    {
+      "path": "data/input/news/5c2ac8f19373d7a68001b102f82cbc6f.json",
+      "bytes": 26649,
+      "sha256": "10c832a43e6c7e18434cfa25aedd8bae00e5f93284ef7a88638473546d136c8c"
+    },
+    {
+      "path": "data/input/news/5c424ad76be40d6f4dcaf32e9f2e9d49.json",
+      "bytes": 64161,
+      "sha256": "ccbcf44434cd70e9012d67be9629936d7144a5b43d492bdd263d803beee19081"
+    },
+    {
+      "path": "data/input/news/5c59820cfa628553b6c75f224953f5fb.json",
+      "bytes": 18118,
+      "sha256": "81dcee78546d5cd47cc206bdb93e62c7254eb47648ab85a82d00efc3ca97a6f6"
+    },
+    {
+      "path": "data/input/news/5d1e28cc6f628a33b209e57a50be0632.json",
+      "bytes": 12085,
+      "sha256": "de093b12cad0f1fc9ed2880ed2c9b18e6c0ea17a498c7a53479a9d23b97a1606"
+    },
+    {
+      "path": "data/input/news/5d9752b33f1f2dbfe68684e508949f04.json",
+      "bytes": 68227,
+      "sha256": "1ff212ad8cdd1942fe9c7758bbf181d1f4e58ce69391fad4c3fc0a5934650b7b"
+    },
+    {
+      "path": "data/input/news/5da5d73011cf9a5f26a3e3f4843fba1d.json",
+      "bytes": 14164,
+      "sha256": "f232b525ffff1e6669291eeed0c40830ebc966bfbb41a67caa458d7e45d18a08"
+    },
+    {
+      "path": "data/input/news/5dccb77f4ff7e8cc0bf96b8578082003.json",
+      "bytes": 18598,
+      "sha256": "5652d2a66b517868244f97c6f343dc49e1775a9dca12e522be9b9ddef37b997e"
+    },
+    {
+      "path": "data/input/news/5eb08a9f5f9aafcb9278daa9af02075a.json",
+      "bytes": 26973,
+      "sha256": "e3b39c533d72fb796095eb0c127979d61ec52d3bb776470f46b79821746f53cc"
+    },
+    {
+      "path": "data/input/news/5ed69dad633b0918fd5c2e285d8b31e5.json",
+      "bytes": 38921,
+      "sha256": "7b1180db497ef42f6e267f00bfba30a2d059f8c83aab3de9e944e13216cfdb6a"
+    },
+    {
+      "path": "data/input/news/5f3e1e04c210666691dd983567cc5620.json",
+      "bytes": 22480,
+      "sha256": "0e73617c933dc9d2a3244e73d5b8da28f4eac2915c6ee83bccbf389a0d815941"
+    },
+    {
+      "path": "data/input/news/5f914eaaea97fae05ac455c4e655dc05.json",
+      "bytes": 19813,
+      "sha256": "0052628363af64dc4312f347c1748cf4d8ecdd7fcb53052a6259dab65b6bd171"
+    },
+    {
+      "path": "data/input/news/5f9a0a6c1a0ad378197720760e0c4f3e.json",
+      "bytes": 31761,
+      "sha256": "8289347fe5140c1fae048ec2a1a9e53f600efa8b100493ad3506f8488597647e"
+    },
+    {
+      "path": "data/input/news/6018dbb837aa3547563da35ad3e60d72.json",
+      "bytes": 44125,
+      "sha256": "9a1ccfb344cdf39fcc707eb1568aef0a6050569047ec87f453547e861abfe256"
+    },
+    {
+      "path": "data/input/news/6109a7de73f160897b6c07e4b0092e8d.json",
+      "bytes": 11927,
+      "sha256": "ed804c40ce91542bc9f94e8eb011121c442ce17a7c132fa21d67aa65502ff0ad"
+    },
+    {
+      "path": "data/input/news/611622b43209f26a6e8dbf3b2618fef9.json",
+      "bytes": 12359,
+      "sha256": "8d955c26fb01ef8aa5dfccf1932e0809e1bad336fa44b948e1b5aa4efbe57e30"
+    },
+    {
+      "path": "data/input/news/61c1132d97b712cdc68acc54ae9fd7a4.json",
+      "bytes": 43399,
+      "sha256": "1ff16e7410104913a05f0236b996e14238c2e02b1f924b1684d26bb913797796"
+    },
+    {
+      "path": "data/input/news/628472331ce6742b9ef3ef824c358bff.json",
+      "bytes": 48415,
+      "sha256": "0f9c7d384e362bf9432ba73a69e2ef26311d45ae413dfd8b3ffeb6a9790638d2"
+    },
+    {
+      "path": "data/input/news/62be307142aae6f5c0f1ed8a72f8ce70.json",
+      "bytes": 22070,
+      "sha256": "df113cc85dee2c8194c438fb01e71a4c2e4e6468a23a57fb06008b05431c197e"
+    },
+    {
+      "path": "data/input/news/630d9cd5ba0393c0c55ffa7f742797e8.json",
+      "bytes": 15054,
+      "sha256": "62c97571f0e059a952d6e7c13a866faa430cc84207fd06042f3685f5bfc3be68"
+    },
+    {
+      "path": "data/input/news/63296f14642c8778c8467a1d4b863e8f.json",
+      "bytes": 21349,
+      "sha256": "ac8e7bf17fc3e4d4e075dfcafd0f04f5bd2cfb49afe8d2ea9c60e9f7ed878bc8"
+    },
+    {
+      "path": "data/input/news/6350d933c71c4b474c1c7c9622e65f93.json",
+      "bytes": 19819,
+      "sha256": "147f4b443bbb9296a6c5953cc82e091c101325df58902a525c81c6f89dab532f"
+    },
+    {
+      "path": "data/input/news/6353e3f88d6fd0e054e84d6f09176ea9.json",
+      "bytes": 40012,
+      "sha256": "8836baf9662d540e9fea1aef3d6c387f8a254313c064c5023b61ce4060da6df7"
+    },
+    {
+      "path": "data/input/news/6442286ebece9ca28edc70f35d2fbff1.json",
+      "bytes": 16009,
+      "sha256": "965094a73d4429739f12b7d4aefebf149a2815de9230311a49aa9ad5c4a39bfc"
+    },
+    {
+      "path": "data/input/news/64794aeb6d503a5c36a59278d35ebd64.json",
+      "bytes": 73322,
+      "sha256": "edf0a529040e67890340340724ac1486075f688029ee008fc5352c84c664efa5"
+    },
+    {
+      "path": "data/input/news/650c51010d4d8b8ba81103d2f1d26792.json",
+      "bytes": 21727,
+      "sha256": "37d18299e9a0f7aba0b2299bf011d4e1ec8cc5904e41c0496308b11ab3f57c07"
+    },
+    {
+      "path": "data/input/news/661cdc303601986dc029891becedec92.json",
+      "bytes": 19020,
+      "sha256": "9e6901ea21c7d767eeca70a03f8a5d902ce7f2f7a1f07f45713fb4e8ce5052e5"
+    },
+    {
+      "path": "data/input/news/6643496c574383c8054daef89675d823.json",
+      "bytes": 13001,
+      "sha256": "e54a37d568ccc5ab7d84712abbd32eabae7eeb7579d83dbf6070c4c675cf3b4e"
+    },
+    {
+      "path": "data/input/news/667f086005d19ced9190cf337f6d1d46.json",
+      "bytes": 18842,
+      "sha256": "baeef16fc9da5ee886285c6fbda3e7e3467904771eff2cf1ceee160a2fe93873"
+    },
+    {
+      "path": "data/input/news/66a29eda4fa7d46b8880b431b3faa368.json",
+      "bytes": 41165,
+      "sha256": "cb39f630aaa54cd39b50bc261f4cf5b07d3a92607d3f1b4cdb3c0798d1d6b475"
+    },
+    {
+      "path": "data/input/news/671575872ac3c142a5aa4e8d074d5c9e.json",
+      "bytes": 15589,
+      "sha256": "7af0523fee2051beacd2c76ebc47455ffbf2ba6f5ba548c798f333fd4fcef3b4"
+    },
+    {
+      "path": "data/input/news/671865550dce24cd75378a70ce78b3f6.json",
+      "bytes": 23148,
+      "sha256": "2b532ff8a817f07d65aa52aa358bbc8ae6ad4b47deed7a7eca8dbdb1a23caedd"
+    },
+    {
+      "path": "data/input/news/681b376c6aa07c6a4b55abf744bac18a.json",
+      "bytes": 11251,
+      "sha256": "110a59352d7a354fe9bd1813f97196811faaa6a0c5cdff36b4ba3b14add8cd6e"
+    },
+    {
+      "path": "data/input/news/68da1a6923ad40cd9afeb63f9ce49aa4.json",
+      "bytes": 26104,
+      "sha256": "dc4fba51391217c6bb63528817c201b0262e3c41757d9afd2fb5d0f8699cff07"
+    },
+    {
+      "path": "data/input/news/692e2bb70e48c12858a8f53e22d3900d.json",
+      "bytes": 18185,
+      "sha256": "b2bf7e05092bdd939ddde5bf98fc99ad65e91fb1a8f8e981e763dbb6de7fa4c9"
+    },
+    {
+      "path": "data/input/news/6956178aba499549955097d182e05064.json",
+      "bytes": 22145,
+      "sha256": "1033e30923c0b4c51ab391756d6a40ce1765236695975a6375697b710f60782c"
+    },
+    {
+      "path": "data/input/news/6a64b5ada7824461c6958bf0e3dc6a90.json",
+      "bytes": 26716,
+      "sha256": "ebd5e7bf9af198c22e823fea132e12098b78359229720731f6c6f025172e21be"
+    },
+    {
+      "path": "data/input/news/6bbb15dd5a34b70a086c70b1029237cd.json",
+      "bytes": 11478,
+      "sha256": "70549c23633028f140d1a1de7da8612c54336b02e8daccbcbec44eb6bf5fbcf7"
+    },
+    {
+      "path": "data/input/news/6cae6970b79a9d3b2f2935cb9a62613c.json",
+      "bytes": 20834,
+      "sha256": "4a9dde43081b44223b672f8b8669abc189d68b6d9a6c51b8b645b6943fe87d87"
+    },
+    {
+      "path": "data/input/news/6cdf785f9809de713746451095b0cd5d.json",
+      "bytes": 17190,
+      "sha256": "65297e94098303801b5886f7b2bc67bb1dc0e74523b7053c06c03bebf75c2008"
+    },
+    {
+      "path": "data/input/news/6e0ef5979956ca3d41d4675bfe077a00.json",
+      "bytes": 25173,
+      "sha256": "453cd527afbd5019298b397dc2db4e0fc1822010c13980da6d45bfd6d626ca7c"
+    },
+    {
+      "path": "data/input/news/6e3bd0a41269137612e5d59f0c279d08.json",
+      "bytes": 8877,
+      "sha256": "7a24259744f6b0f010540f7bae5306f76b61598ef1c5736faf7d588f2f3ee2bf"
+    },
+    {
+      "path": "data/input/news/6e6d71267018c361382e71371b848f72.json",
+      "bytes": 13218,
+      "sha256": "b96837fd828615c7df275fdf92b2b3a86b08f8a86f15cd22e8b187530db15fa6"
+    },
+    {
+      "path": "data/input/news/6e7ed4c23c882e9b64416c83d4721df1.json",
+      "bytes": 19548,
+      "sha256": "2a0e5a8c6953fe3c93e0e0dd7aba95642f2e02b01317d9be9ff5e685f1615155"
+    },
+    {
+      "path": "data/input/news/6ec7f7033e795f2158ea0dd8b0156298.json",
+      "bytes": 30204,
+      "sha256": "c2e500841b438398e40266c7d8f2ef53efdfd12a7526311c70efeec5d357a92f"
+    },
+    {
+      "path": "data/input/news/6f16c64685dccc1ebadde12c03979224.json",
+      "bytes": 12212,
+      "sha256": "a5fcbb1c0977d64115ba5e61f1e9039a38fb8356c2c1781a2238e7c3e5663e52"
+    },
+    {
+      "path": "data/input/news/6f602d2e53d7eaaeae417aee067decbf.json",
+      "bytes": 38920,
+      "sha256": "0df0a73f44222dd52d9ca5147293a45c44ed0bacc83273170f560e074a7f53fe"
+    },
+    {
+      "path": "data/input/news/6f941a4688dfc7cd86e14114f7d4586c.json",
+      "bytes": 33260,
+      "sha256": "2c892f365207aef805bc391cdb22a485a3bc21f3998dd432b3928223cfe3990b"
+    },
+    {
+      "path": "data/input/news/702be7f2b20541df359640eff8c971e9.json",
+      "bytes": 19648,
+      "sha256": "c6c4bdb3490960a50964c608975c1e3b73e557f2e88716d11b7709a256ae3436"
+    },
+    {
+      "path": "data/input/news/70341716ebf362af0bbcefbc2894560d.json",
+      "bytes": 48152,
+      "sha256": "03b0b224fb3dbf241ad414e4b436f861a75a710ef2b14af0ab029d7746ef9dc8"
+    },
+    {
+      "path": "data/input/news/707b15752ba74e05ea31d4b402fb4866.json",
+      "bytes": 17996,
+      "sha256": "7673a442d995cb9a8576f3e6fa9484b4a9c4a8820f00825224d7f3a2da992372"
+    },
+    {
+      "path": "data/input/news/70fd1d351096e5848fe1521ce3331212.json",
+      "bytes": 14133,
+      "sha256": "15d6fa82acde417bcff95b7eeaca181fd9de3a7507e1628718822bdc842e6106"
+    },
+    {
+      "path": "data/input/news/72b8ca148e06c99c7f12919c8a4e4012.json",
+      "bytes": 10631,
+      "sha256": "d1aa81e5c699c5e2b6bc2c67f3363d96236ab5eec3628252a37269dabc4e40dd"
+    },
+    {
+      "path": "data/input/news/73313748df73754a46f5f940b2494171.json",
+      "bytes": 24282,
+      "sha256": "bd47da794c0a1dfcb62810d4e497b4d22c1fbe008c38b4b2a3389cc2ea98359a"
+    },
+    {
+      "path": "data/input/news/742b3a625a817add98fe2d7acb996efd.json",
+      "bytes": 23633,
+      "sha256": "faeb3eb56cfe05ebaf4eb08b67657904af72c71e2fc6ff5b895379a9022d26e6"
+    },
+    {
+      "path": "data/input/news/743a191d663b1a89461da2ec3915210d.json",
+      "bytes": 8197,
+      "sha256": "86102d0921b49f7613dff14f83c75f5346c12d2809a6e2562acc311098e9cca8"
+    },
+    {
+      "path": "data/input/news/74b09d37650645df383dcc04d2ba1c72.json",
+      "bytes": 48805,
+      "sha256": "402b25abfff0970715c505959f022a39690fdcff0a68cd1a0a0099e5cb53ba29"
+    },
+    {
+      "path": "data/input/news/757a691aba9f0ddd79c34f8ae5e48410.json",
+      "bytes": 20134,
+      "sha256": "cb04ca1ea057b68069d2dab6532cb89ab520c7e01634e433b7eeb8c868a21b8e"
+    },
+    {
+      "path": "data/input/news/759f14db952fb94b22269c873198b020.json",
+      "bytes": 15238,
+      "sha256": "0755d4bda08b2c0fad3c568c53e36f0be23a92c3e08a85b8172f5b7b99627f9b"
+    },
+    {
+      "path": "data/input/news/75b7fc0ba73419cb101433db2e2a627d.json",
+      "bytes": 13402,
+      "sha256": "424e266f5898257ea22b6adf7b55a7b90195be492bc2666a61a94f3650c77924"
+    },
+    {
+      "path": "data/input/news/75f69de8659b8fe27ecd4eaf8456d1b4.json",
+      "bytes": 18013,
+      "sha256": "d81f96ca4e83b60a99b80a5fd1e918989fd3a802872d04bc7eb17580a6eabb15"
+    },
+    {
+      "path": "data/input/news/7657e9e8bbd060cbc92a24d863cb102e.json",
+      "bytes": 11902,
+      "sha256": "40c5655342eaf5af1d019112fd0693748c6e77394c9b7e78b7a64a906a1c1ab7"
+    },
+    {
+      "path": "data/input/news/7672e82f6160d9099cf30b0304570f08.json",
+      "bytes": 10736,
+      "sha256": "5e52c618a4385e8b12352b94458abc695a34c4b47013b2d0aca71da251c9b7ae"
+    },
+    {
+      "path": "data/input/news/76a6abc32fb0c02da0fe16062d02fe0a.json",
+      "bytes": 12348,
+      "sha256": "2f965398b5e58b17f668f03e78adf0362cae571c05f268adc12aad3c16da69f7"
+    },
+    {
+      "path": "data/input/news/76d763ed082e779b48e6b31950cfc10c.json",
+      "bytes": 14680,
+      "sha256": "a7a117df6409f7e9d39801c7496e766c5d5ec61aeb60ce54e30020bdfd7218fe"
+    },
+    {
+      "path": "data/input/news/7875aca38f05e6283560218e431732e4.json",
+      "bytes": 16569,
+      "sha256": "501220c02b6f30d0874ba3ffb267b94dc2c74968ac64fd1254753bbfb4604d6f"
+    },
+    {
+      "path": "data/input/news/78fb9d1555195455641fc80243d85ea7.json",
+      "bytes": 26964,
+      "sha256": "0dd9683b65a62b1ddb0443add8e68564410136ed515e27a45e6aa6dcab549ad3"
+    },
+    {
+      "path": "data/input/news/791e278f769fabb69fe468079a154379.json",
+      "bytes": 16139,
+      "sha256": "cdffda2e6d4a0f4aa451f818c825b43c61d43a4f91d0e99da2ad37c2639d5e21"
+    },
+    {
+      "path": "data/input/news/792efb2d2aaa91b31f90ebf806f9cc68.json",
+      "bytes": 22534,
+      "sha256": "861801bc1baf3a28f76b5af10309ea8147972cb1ce721f6e4cc65c68541aa14c"
+    },
+    {
+      "path": "data/input/news/794a0e4cb0d3ee9e908a2da395a1a3fe.json",
+      "bytes": 14840,
+      "sha256": "babb7b895afef9c4332c4747ec6e255b57d4393aef584a257bbcc22d66c5eae8"
+    },
+    {
+      "path": "data/input/news/79b3fed191b432dee0ce41355f92fabf.json",
+      "bytes": 12639,
+      "sha256": "d729aa92d132a0f5f89f046901c47d53f0bcdf7e0824ca4b649296d545a503ad"
+    },
+    {
+      "path": "data/input/news/7a276e0a51f24a47f8487ffc33599d0e.json",
+      "bytes": 58592,
+      "sha256": "d88f2d48bdd7dfbbf49d403b9be16153fd2e6a01b3d34a43466573eec7e8e47f"
+    },
+    {
+      "path": "data/input/news/7a868349922bca471b61ad2724dac4d7.json",
+      "bytes": 29834,
+      "sha256": "8b705f22e7e16594adbff57c57a51be9e9ffac7c9f785f39c5cd0f60ef3ba810"
+    },
+    {
+      "path": "data/input/news/7a9fe7de3485444b718e790898624188.json",
+      "bytes": 15961,
+      "sha256": "cc0a9ab474655981f1fecd8fb136d9a4fd2b3c18bec885ff096c2323f05a0e7e"
+    },
+    {
+      "path": "data/input/news/7aa269229ecfdf03efbce89bea526eda.json",
+      "bytes": 29959,
+      "sha256": "a223a87d4dc984dbf23f2d04d5a687fd3b7b85166bd56b545fab8d808cc95f5d"
+    },
+    {
+      "path": "data/input/news/7ac72f24bea920868c12a23f5fb1bebd.json",
+      "bytes": 11156,
+      "sha256": "9ff35185fac73f4e798e368eec181e341e2238b6e91e0abf405f6a27d5b3e60f"
+    },
+    {
+      "path": "data/input/news/7adb93e1e36650c8fe11827c9f2d6c12.json",
+      "bytes": 13535,
+      "sha256": "e3e375068c92367a90349ecd39013a034a8cab8d550c09182b433db117a10350"
+    },
+    {
+      "path": "data/input/news/7bf2b7a05cd2b16105d44e13f4148af6.json",
+      "bytes": 11239,
+      "sha256": "e9780f9fc8ac3d2fc945ac6b16647e5232df904af66eb0658a5fd60014bb99e6"
+    },
+    {
+      "path": "data/input/news/7c0b3dfcd59d0324ad0edfe1c34953cd.json",
+      "bytes": 19460,
+      "sha256": "bac2837393e2523ede5c2ef105996f82b8572c5f5adfcb553f3fa8d5a9f1cfcf"
+    },
+    {
+      "path": "data/input/news/7c6a6956ea1ae1a345a4d3085eb50d3a.json",
+      "bytes": 18514,
+      "sha256": "bd09f4e64bccd58c2b1f7e2f537af518e4d46bc047de5f43125d641ce4669a06"
+    },
+    {
+      "path": "data/input/news/7c97a9b28064ba0f9cab71c5fd58ba52.json",
+      "bytes": 21985,
+      "sha256": "d2d4d8e4ef5b9aa285573fb9504e615c49271cf25fe3b37a3adec94e9e117674"
+    },
+    {
+      "path": "data/input/news/7ceb465e1141652612aa9217f3970c93.json",
+      "bytes": 23059,
+      "sha256": "c5e0c1c8094aec32f329b1555a00556ab22fb59d82f59d39a59ea8462c85d58e"
+    },
+    {
+      "path": "data/input/news/7d40f57c5db77f142ba3cf06342e4f8f.json",
+      "bytes": 13649,
+      "sha256": "fe0e9c1033ab4f4c74fe8cbc8b0bcb6288872b1f65c01db806e0578a55f6e25b"
+    },
+    {
+      "path": "data/input/news/7ddad9b907b5d26a69ea0aba947bdf05.json",
+      "bytes": 22977,
+      "sha256": "18ac869d5e79fab5a80cdcb2b40355ecc06bc1212b796a4da84b76cf0538710e"
+    },
+    {
+      "path": "data/input/news/7e610ab9e7f7b0312e5e145aa4db2f0d.json",
+      "bytes": 20194,
+      "sha256": "756644050c3e9b496c9b962cdea12b058b64804990a2b4330dc6e5999ba947c3"
+    },
+    {
+      "path": "data/input/news/80cd35381a920b22bafbc96f6356c979.json",
+      "bytes": 14253,
+      "sha256": "2c7f6191c118e07c79a245d5f6b031b254204c96913c54868507aec151235c52"
+    },
+    {
+      "path": "data/input/news/8120ef0fc820d8d5921d4ba67cadea70.json",
+      "bytes": 9939,
+      "sha256": "4f5a4a8987dcd96a49d45b93e78f1cc39a84b6f2014d861ebd41a430a4b4c7fc"
+    },
+    {
+      "path": "data/input/news/8193288bc42ce63f134a1ed095651afb.json",
+      "bytes": 21115,
+      "sha256": "c1ee1a81d603b8e0de12ecdccf7fd3fce7411e8d1059c98f6c17f89f709988f0"
+    },
+    {
+      "path": "data/input/news/81e5de249319fe0276f06a755e499fdb.json",
+      "bytes": 11196,
+      "sha256": "5f0e89512d7f318a8e559494925544bfb6da269f8be258115648a5a9ac3e6a73"
+    },
+    {
+      "path": "data/input/news/820c8d7471fc6de8c8bf5c47b908b6f3.json",
+      "bytes": 15864,
+      "sha256": "f67e2505e4e7c11dbe8a53c22ae55f19f1e66adae20ade7f9fab13165394422b"
+    },
+    {
+      "path": "data/input/news/831e4789caddb923ae283e0827a252d2.json",
+      "bytes": 15360,
+      "sha256": "59518e7f3831eb040e34fc7523e10ca80e9a3ea8134d214d69614e6a15f1a4ab"
+    },
+    {
+      "path": "data/input/news/836f6c2ecefab86090c5ff728511cb28.json",
+      "bytes": 23732,
+      "sha256": "4f423e44e8a0e7ffa6fc2cfe0ece83c803ec13935256b530a7c5d0d7b9df0bbf"
+    },
+    {
+      "path": "data/input/news/83a8d601ce4cdc0891c74ab553b6a18c.json",
+      "bytes": 22380,
+      "sha256": "69c55fe74eaf4515dc03c386cc290464c48b663da983cdfb0ad2d37f00bee8a4"
+    },
+    {
+      "path": "data/input/news/83f7e5f8d9da9fb537af913f63a9cba6.json",
+      "bytes": 14087,
+      "sha256": "e60b0ccc1fff6928cc3980cb1581c0034a2bbe39e300488aeb6e05df822f85ee"
+    },
+    {
+      "path": "data/input/news/846540f98c8ed0528d6f6641a796b927.json",
+      "bytes": 17533,
+      "sha256": "46a7e90cc838953b49c7dcc1daad3827b3ba1610da742455e3e00d0e39f783ee"
+    },
+    {
+      "path": "data/input/news/84af1aa15d564aeae76fab6c7fcc4401.json",
+      "bytes": 12938,
+      "sha256": "ab67f6ebe5231c31912c2f7e8205c6de3c6ce184333a6d3931648303af1053e4"
+    },
+    {
+      "path": "data/input/news/84da5dd368167ea92c24148f9c2480f3.json",
+      "bytes": 13339,
+      "sha256": "aa6d2f122659e8f6c00243dfca9c0c036c995954ee2764defb69b8e6a95faa5d"
+    },
+    {
+      "path": "data/input/news/851f85c23774b551c180d43d1a661330.json",
+      "bytes": 12624,
+      "sha256": "8a6f431b9718df5659501c5ba3688e93d81f0b26adbb11f9531f9d1cd423a3e9"
+    },
+    {
+      "path": "data/input/news/8530bf026621ee0816bf19ba4873b1cb.json",
+      "bytes": 21751,
+      "sha256": "99639a97c20393b674947a647da41c801cba3bbb6edd954f19fe70166e040af0"
+    },
+    {
+      "path": "data/input/news/853e6a101d6c0afd894b6f408eb402de.json",
+      "bytes": 23502,
+      "sha256": "05b664013e1698aadb184dd00c07b467d09732906a602689171da531d7ff775f"
+    },
+    {
+      "path": "data/input/news/8552bb7e8dcc41480cb2617ea03db20a.json",
+      "bytes": 16642,
+      "sha256": "3bf6a3461230c3c9bbe79411c514bfb81130b78cb217188d51a964e28b8ab03d"
+    },
+    {
+      "path": "data/input/news/856179f4f11bf6ee5198d227ba0e1efc.json",
+      "bytes": 19123,
+      "sha256": "7dafbbb148e36e7300e0a01883e16d1f7c79e8dc6169f009330b8d370662a68b"
+    },
+    {
+      "path": "data/input/news/863d264a1ad4b6b32d8c2b3823e2efad.json",
+      "bytes": 12434,
+      "sha256": "c531e66171a9c4f5cec90ee37c09bf6403517f3032b888d650864a614a71d313"
+    },
+    {
+      "path": "data/input/news/8693638d6f1e730e6aee0ef0861d12e5.json",
+      "bytes": 17789,
+      "sha256": "16e30920623daa6ddbbe70eca48a60ef0ead5e51d331fc11a301637ff61fd1b0"
+    },
+    {
+      "path": "data/input/news/86b938417dfd4db5dd05237efe05dfe5.json",
+      "bytes": 27376,
+      "sha256": "e800bf095c7a821c60081bef39c48244988af004fbee0509358c0b4e9286de4a"
+    },
+    {
+      "path": "data/input/news/86f24ab34472e499ded33017d7c9a17a.json",
+      "bytes": 57173,
+      "sha256": "6d0de96eb64b59f9d7534c14fea51092a6730401177fb8b20da2cfb2969d640c"
+    },
+    {
+      "path": "data/input/news/87816debc49d795b689689bac91f0a6a.json",
+      "bytes": 61599,
+      "sha256": "6ba3824a32e24d93a0f1dcaf7599ada8ab3c95db97e7bc3250ea24592114d9c5"
+    },
+    {
+      "path": "data/input/news/8897a60329ba43cfd2a0ce23fe5dd536.json",
+      "bytes": 16436,
+      "sha256": "f1318898b4ba11a076dfa466c28749964541b0be5dcd077ffacd2eab94eaead6"
+    },
+    {
+      "path": "data/input/news/890592dc1cc0258da3dfa365aa846485.json",
+      "bytes": 12797,
+      "sha256": "dd1f66c9a0190424ab126418967bffa442b8f047759331a0579d599c13bbbaff"
+    },
+    {
+      "path": "data/input/news/892c431b411f1d849ec35d6e275fb008.json",
+      "bytes": 14117,
+      "sha256": "0abf0021f3f2303c726a03383ff12fe33f86fe6c0fad00ea59ace10aae70fd0c"
+    },
+    {
+      "path": "data/input/news/89a439ea70e1b5fb1ced074b90abcbd3.json",
+      "bytes": 24368,
+      "sha256": "ab6530bbe31d2d2d3ebe089d7ce2f7d06956f1755af5955e5606967d8a5c4a7f"
+    },
+    {
+      "path": "data/input/news/89ed181fd3ebc0254a96b8dfe0737645.json",
+      "bytes": 17537,
+      "sha256": "66dec3059ead42c2b5e85c100d52df9de850db3d87fb7aaab84c6caededc3182"
+    },
+    {
+      "path": "data/input/news/8a1e491b0ca9d18d5497800feb9b5a2b.json",
+      "bytes": 28085,
+      "sha256": "75ed8721d2c20688ffb0e6f98595a25123361cbadadda77fb8222f31e5e9112b"
+    },
+    {
+      "path": "data/input/news/8a1fedb603412bc017096fb5a00b7e4e.json",
+      "bytes": 22782,
+      "sha256": "15f6a0c2557238315cc6ddca13819f288a35673c2043e8316b8b6ab27c2548d9"
+    },
+    {
+      "path": "data/input/news/8a5ec4ca391ce7034b268d69f3540674.json",
+      "bytes": 16136,
+      "sha256": "9c46d4d6345547318a3ba10869283516b20f8ae6adb5c34085587544086de12b"
+    },
+    {
+      "path": "data/input/news/8a9333a9265b52bb7dbf5f75c72a7af3.json",
+      "bytes": 17918,
+      "sha256": "b56f9da24ff6ce9daec2826632927fa0be62f4508541abd98cca14dfcc794a75"
+    },
+    {
+      "path": "data/input/news/8a93b3cac35e7e8981f4fec7ed79b84e.json",
+      "bytes": 17553,
+      "sha256": "d0dc93475739920e70fe39b6d9403f12614f674497fb698072a9203d9e37513c"
+    },
+    {
+      "path": "data/input/news/8b188639aa9c782dff2ec38575714c49.json",
+      "bytes": 9705,
+      "sha256": "3677fdaa7b158be3a154394a5729f608a920cc89422ee1b4548069a0caa711e2"
+    },
+    {
+      "path": "data/input/news/8b78c16218ee0a1c157200b83aae4baf.json",
+      "bytes": 15354,
+      "sha256": "d0de1c820a5e26a63598b5883d530e51987ba25516481cf1b6a35c558cb1fdfc"
+    },
+    {
+      "path": "data/input/news/8b8e6b34311138dbbd1050ffa05a2e1a.json",
+      "bytes": 22672,
+      "sha256": "5d8b001ae5c73d11e43683d4c0c4af7511c8a3518ebd7e89f02c1c838c603e91"
+    },
+    {
+      "path": "data/input/news/8c23d7469a9676d9decc024a48549d70.json",
+      "bytes": 17024,
+      "sha256": "55256706c0c0ca9c3d642cbc1773afa4a4cac835ad10c04017451e64c3df5b56"
+    },
+    {
+      "path": "data/input/news/8c2fa6542788877a7ca3ae35554ef288.json",
+      "bytes": 17020,
+      "sha256": "5634dadcd826f81bb1506c9eeadc7c1038c628ba30c9a896b253700cc209857b"
+    },
+    {
+      "path": "data/input/news/8d0ce0286649a463923001fb26b61f3b.json",
+      "bytes": 20369,
+      "sha256": "c5e9bbf1de29b2e2d7e6ab1435f497d83feffa2b283a36877e030088dfd89cf4"
+    },
+    {
+      "path": "data/input/news/8d743f3f5bd6c53fb413e16d38815c2d.json",
+      "bytes": 14771,
+      "sha256": "c47b39702a11abe5416ec12bbaeb172ecc2f7d34a5e2eed321b01e72df3f3c91"
+    },
+    {
+      "path": "data/input/news/8da553f0144d683e376511ed392d258b.json",
+      "bytes": 43630,
+      "sha256": "58f7acf695ffe3adc7a3a00d92aa584e0317986bfcc4f32bfff8f3614e86169b"
+    },
+    {
+      "path": "data/input/news/8ddf510c39447a5edc3e1160d2069c7b.json",
+      "bytes": 13040,
+      "sha256": "ba104ea2fecda35bffee4a57c57a442a9335bb343c147671dbfbb058536f8efe"
+    },
+    {
+      "path": "data/input/news/8e12eac23afc6efe3fd3b9ddee1387a7.json",
+      "bytes": 17663,
+      "sha256": "b89416cc37d84de73b384cffcdc82898d4ed0d99502c54494b63996aec338e6f"
+    },
+    {
+      "path": "data/input/news/8e19e28992e24ddbbdb4c035acad90a3.json",
+      "bytes": 24405,
+      "sha256": "c1849bf8dfdbd9d99a015a538e39f054dd9140228df9b288112d0fde2adf3166"
+    },
+    {
+      "path": "data/input/news/8e343e77f09d5be54e0cb799eb7aadd1.json",
+      "bytes": 18179,
+      "sha256": "fa924ef9324a524e43b0f39f62c66fd71fee98df18abbfd784f5c926697edf92"
+    },
+    {
+      "path": "data/input/news/8e85b7d079860d7d183831c2f40438a3.json",
+      "bytes": 16308,
+      "sha256": "40f1c53c879b1bbd7aab2cbb5055da9ba3ff583a23687d94a9f5398d6ed97e10"
+    },
+    {
+      "path": "data/input/news/8ea573e72cba25dcf598388ad7abc58a.json",
+      "bytes": 25920,
+      "sha256": "62a13d5ba43daf1d26933ff799e5b46494f4ceac019525ad0426689e2277b7ea"
+    },
+    {
+      "path": "data/input/news/8eb8fe9e7880821de577968a0a492221.json",
+      "bytes": 24344,
+      "sha256": "4042c24bec46b8a6d515ce32d7198d63241fc45f4f390c446d3539b5bbfca294"
+    },
+    {
+      "path": "data/input/news/8ed29aa91ce591e17ba6a0665f755574.json",
+      "bytes": 12650,
+      "sha256": "a8c7d0b039578bee7d55b426492902f45165556805047ce9aeaee719e2a7c615"
+    },
+    {
+      "path": "data/input/news/8ee50efe9c3052bd90a5f664581832fb.json",
+      "bytes": 22214,
+      "sha256": "a03016cdb7946e8d6c53f1602ce102b8c1e0f1d565c78316c8a03f9553ecaef8"
+    },
+    {
+      "path": "data/input/news/8f0141c16bb3991dc8fa1308c89a1cf7.json",
+      "bytes": 18557,
+      "sha256": "d9d45df6261c73f04f18dfc014f7fe34f0f3eb304712a57ab2801551b0dd1899"
+    },
+    {
+      "path": "data/input/news/9002c549138d4eb0d1f593925f72476c.json",
+      "bytes": 23184,
+      "sha256": "26f8497a3836f5eeaefe63233f06c24e7531c36116f6419ea4cdd92895ca4362"
+    },
+    {
+      "path": "data/input/news/90dc1d7f2c0609abb21060df204fcc40.json",
+      "bytes": 24734,
+      "sha256": "4393177a47839b2a9733ae4c5b51c84d22697e3822037fcee82e8434351569b6"
+    },
+    {
+      "path": "data/input/news/9147645f8355f714a3e0fc62c6e71276.json",
+      "bytes": 12079,
+      "sha256": "1b1d2470f34795290c299b841c02ec06ea5a635054b8e111e25d595699041720"
+    },
+    {
+      "path": "data/input/news/9182b74803a33a462425e7416abb242a.json",
+      "bytes": 16142,
+      "sha256": "808dcb6279c4e7646259978b2fff3cb563ddadf48a8fa84a1c52da1a2d281732"
+    },
+    {
+      "path": "data/input/news/91a9f8f402b3f3052f95d1d34f2cdb13.json",
+      "bytes": 57179,
+      "sha256": "96b8d77c2dcf71399b9d146b50cbf99f837ad799bdb2db38e6e05b6a63cd6ef0"
+    },
+    {
+      "path": "data/input/news/9465374cc482bae5452b027038ab759e.json",
+      "bytes": 23397,
+      "sha256": "2272a92a2d3c3ed9bc222e7d035083e174a91fb1852a13341aebe178733a71ea"
+    },
+    {
+      "path": "data/input/news/946fa6c6432eea1c09aef4628078b21e.json",
+      "bytes": 18073,
+      "sha256": "e5c8d2a09c506e66b1fed9b27cab1b5e787e2af461c73b5dcff1e5c426326cf3"
+    },
+    {
+      "path": "data/input/news/949d8a075e5a56d828a8f1803678ae6c.json",
+      "bytes": 13983,
+      "sha256": "1f4bbc4a7029d49972199c1a12f09fc3c92a9a047008a28f5477175bcfa6429c"
+    },
+    {
+      "path": "data/input/news/94bc82713cf85d929104cbe9d2fef3b7.json",
+      "bytes": 22782,
+      "sha256": "7fb8de59905e0bfb35fdb0b4219a1591f0fe8f167ff84f7fbf47e53d4c2e541c"
+    },
+    {
+      "path": "data/input/news/95d80d6c8c4b4852cd682e44817b5309.json",
+      "bytes": 13078,
+      "sha256": "2f0460d21713139f0b07a3feaef25cce896a34c7f38a938958becb5bb2aa7e5f"
+    },
+    {
+      "path": "data/input/news/96e3a98e030ec6264e29d1eef1eacbbb.json",
+      "bytes": 13577,
+      "sha256": "394c9b63185c3fc673d38ec959ff0494545bc7557ba5c56fdb2ec3b01cc96324"
+    },
+    {
+      "path": "data/input/news/984b227257793767ff11dd933931253f.json",
+      "bytes": 12969,
+      "sha256": "79c6b487ab6f902d2a4d739f183ac141099aa8d2192e8295751489f08b4b8961"
+    },
+    {
+      "path": "data/input/news/985885bf012a273333b70fe275118ff5.json",
+      "bytes": 11881,
+      "sha256": "e9182b18ee8e69823c93d8f329006c671c75055f1cd746a974504ad95bc61dda"
+    },
+    {
+      "path": "data/input/news/98e6eedcb9886dfb02dbb590388084d3.json",
+      "bytes": 13656,
+      "sha256": "869469f6b499f94d4a2ee6ee8fac69bba8255628ceb42965ace452c290021af1"
+    },
+    {
+      "path": "data/input/news/99721ce5d7f01df560605874cfaaf425.json",
+      "bytes": 16020,
+      "sha256": "984dfe3bc3082952ad34a13423c656e9c3947f5b0750f6d58729ffad37841696"
+    },
+    {
+      "path": "data/input/news/9978b276602e0f46dd309d441b1dea46.json",
+      "bytes": 20669,
+      "sha256": "76c27f7fad4eae34ab4846f51be4df56787387e0442c99d35ab44b863c1fa3b1"
+    },
+    {
+      "path": "data/input/news/9a0fb0fc876575ecaf7db6225ae995e8.json",
+      "bytes": 17269,
+      "sha256": "21b2ae0e8294f48bca92db6c2822f44084d45d5962bb3fc4c813c6b63993b9ea"
+    },
+    {
+      "path": "data/input/news/9a60d13d55ddd0f7781955a75f95476e.json",
+      "bytes": 26340,
+      "sha256": "1236361fa566fa3a1a62d0025fb9f6cf5e3975b71bcd296c5a065f0e86d22eac"
+    },
+    {
+      "path": "data/input/news/9b9977ad5b3280b0edb8df6ad077d7a3.json",
+      "bytes": 23209,
+      "sha256": "01531241f84fe76c4799175a360ba5f0c29f7a768577bd1c5b2500783784b74d"
+    },
+    {
+      "path": "data/input/news/9c9cad87aaf987526c15db560ab0074d.json",
+      "bytes": 20528,
+      "sha256": "81a43ba314a41527459452afba2e46f70d02f9c46aff81bf8febfdeb4f05328a"
+    },
+    {
+      "path": "data/input/news/9ca64a572abd5c2e49f902da063e7209.json",
+      "bytes": 20270,
+      "sha256": "64c80a813a61ccc5401efbb4371c40bc9c5e1f6b9e5fe21073f0bd3d798906c6"
+    },
+    {
+      "path": "data/input/news/9cf966fe4589464d1bff413e749ccca7.json",
+      "bytes": 27034,
+      "sha256": "79822599d46094c45447930521cefcc3ceeb68dbe5d1d923b3f1e9a4e8743275"
+    },
+    {
+      "path": "data/input/news/9cfdecab5a3a35705d0b669d485aedfc.json",
+      "bytes": 22189,
+      "sha256": "34790a4f2c5818b6199354013cc267516f46a12a61c162d45ea927b752089ea3"
+    },
+    {
+      "path": "data/input/news/9d84757faec7e668e2e8a025c497271b.json",
+      "bytes": 13725,
+      "sha256": "752f557b0581817cc6fe8842081174f77bfc04d3d7c7a35ad94996bc97f2024f"
+    },
+    {
+      "path": "data/input/news/9dcb127b4f55836fdec97085b4bc5781.json",
+      "bytes": 21373,
+      "sha256": "11f41c858959c9e5cc4c6b177ef57efd0928c1c341015915109d94c40ff279b5"
+    },
+    {
+      "path": "data/input/news/9f15e7855ac3e8463c8bcc4aaf5188b0.json",
+      "bytes": 20106,
+      "sha256": "fb782932ab383e92d3f44b27b04a0813b7f31ad41dbf4cc1bd76a41f941e17a4"
+    },
+    {
+      "path": "data/input/news/9fdbc5ccf9a23fe04de29c5134ecd5bd.json",
+      "bytes": 15574,
+      "sha256": "bdb37f32983f647b7f5c73b1957777285c2cabb0735d92c3eb2237be4f4bc65c"
+    },
+    {
+      "path": "data/input/news/a0734af019fd79002e5e40c2eb3c84b8.json",
+      "bytes": 10969,
+      "sha256": "285ebf3f6872c3ce1a49646efb0b577b616902781ae6e21cc81d3596acfba53b"
+    },
+    {
+      "path": "data/input/news/a0914db52e83bf6c9796b0e3324042ce.json",
+      "bytes": 16976,
+      "sha256": "ff6c1569abe85213c79e0eaab2d1ce25dfebbbc56f4e1e2f105370fd5b9cb652"
+    },
+    {
+      "path": "data/input/news/a09f2088f9a8c4b02a8f6ce1ced805d3.json",
+      "bytes": 17886,
+      "sha256": "90d4464cd0ad8f5734662d3ece3393da02a747e773192efa5ffc78107b75576e"
+    },
+    {
+      "path": "data/input/news/a0e793cafe5cecf5eadb1f79bdfaa0cb.json",
+      "bytes": 24633,
+      "sha256": "65e759ee16c5dca960f7a376a8adc44aeac5d2b5cd90030b1b4ea67202d10e0b"
+    },
+    {
+      "path": "data/input/news/a0ee8a74208108e5962aa565fea3d341.json",
+      "bytes": 21012,
+      "sha256": "5d8d250a1e954ea82b0322b5c215b8a25d3acf60264ce5ff4771ac241339bdad"
+    },
+    {
+      "path": "data/input/news/a138faa75c217ffb5d75e7d2598f11f9.json",
+      "bytes": 17554,
+      "sha256": "c5905f9929dc625ebe362694ab6e7db622cf00a70ba13bbc89156e76c31f5dbd"
+    },
+    {
+      "path": "data/input/news/a157dde04d6a9c58b9dfe8f9ea2c8398.json",
+      "bytes": 67466,
+      "sha256": "5602fe0f769a082792db4dbb4b8759fa778a26efa58680d4efab646eb9f4254f"
+    },
+    {
+      "path": "data/input/news/a1609188259243d04c28ddf929f9357a.json",
+      "bytes": 30963,
+      "sha256": "e672762c3531af38f63b2f23578129347f9ba1a15ac06c9a900663775448148f"
+    },
+    {
+      "path": "data/input/news/a1f29390609d79062ae2fed6e1fc92f9.json",
+      "bytes": 25280,
+      "sha256": "509cdebf7444710a451a301745db5a3d3a8720d5a70c1ab906ec77e63c13a16f"
+    },
+    {
+      "path": "data/input/news/a2337c16f8eb55a0ae07e19292133e87.json",
+      "bytes": 14492,
+      "sha256": "5655dd3e991b4144b1e9ec6031ab1797a28130c987b11f107f40d0bccf76eed0"
+    },
+    {
+      "path": "data/input/news/a255415912243535967246d4bc162692.json",
+      "bytes": 16913,
+      "sha256": "1b8ee275a060243a88c80d999b07106b1c4b07ae2f723d3c9bb934cf2d4d22e6"
+    },
+    {
+      "path": "data/input/news/a2822f669863a15374afc1858bcc9eea.json",
+      "bytes": 19582,
+      "sha256": "92b2586bced9cbf0b2fc8465a0b58063f3e9af38e1879919092b289a77974a7e"
+    },
+    {
+      "path": "data/input/news/a2abbb6cdf19fc530a1b32e3a7b5af2a.json",
+      "bytes": 16601,
+      "sha256": "be58498339a8d3317d5096ede91c47d33d27934ea79ff8934cab1d7d08514dda"
+    },
+    {
+      "path": "data/input/news/a2bf6c31252ea44671164b01fb868bbb.json",
+      "bytes": 16934,
+      "sha256": "fd88c70b1a0f11834dbfcf366c1fe3567d2a75d1d58afb1fdd34e42790eebf88"
+    },
+    {
+      "path": "data/input/news/a2e4b779da5ccf83eaea55c91e8df094.json",
+      "bytes": 11806,
+      "sha256": "eaf0504a632f69d6703c354fd2afa353badd722d0869727f3054eed186527780"
+    },
+    {
+      "path": "data/input/news/a32c4215f67846942c723612d5333503.json",
+      "bytes": 12038,
+      "sha256": "50a611b761f1cce01f6fc39f7158326c1f7b07b251566085cab0106d15e149d5"
+    },
+    {
+      "path": "data/input/news/a3aae3019dbb5643469199a8811698ff.json",
+      "bytes": 14987,
+      "sha256": "477833f61a7380d7ac39c1bdfcb22b7cd77e3447b4b6011a66d5411c1ef5f654"
+    },
+    {
+      "path": "data/input/news/a3c95755b23d1f507b1df9c7b643953a.json",
+      "bytes": 21938,
+      "sha256": "3070647ac6cfb3c65267efdebc143004042bc81344d68d772fcbd3de99170952"
+    },
+    {
+      "path": "data/input/news/a429c472fe4f9b606fcf8ab1916ae479.json",
+      "bytes": 19404,
+      "sha256": "ef5797ecd5abb606084576931cd83600e719ca2e53e2112ff9d456b77a19d15d"
+    },
+    {
+      "path": "data/input/news/a45de1926b95bf72d4bf9c791227c0cf.json",
+      "bytes": 23558,
+      "sha256": "5b8a8429e04f1b347146429b64991b71a2e25969750de6715fcb5ab3f254ec5f"
+    },
+    {
+      "path": "data/input/news/a50690b463a625f1118fe21f1606f85d.json",
+      "bytes": 14827,
+      "sha256": "f728930f702ad7ddce322bd4fcc8ae804ac7dfdba7c73afad5b6aad39a2f0d5d"
+    },
+    {
+      "path": "data/input/news/a52f342d9b0ad92dcd68a9a76d5fc592.json",
+      "bytes": 45955,
+      "sha256": "2a9cc25cddab475d78e225b8c141e5aed0b814c0106fb4bfa8c3f8f896d9ed22"
+    },
+    {
+      "path": "data/input/news/a57ff2ff05cf135bccff830ebebeef58.json",
+      "bytes": 27863,
+      "sha256": "2c9461947d1fedf123a4d1994c347b17ca61d6c6c1bf4c89a7d71d93c90604bd"
+    },
+    {
+      "path": "data/input/news/a5bc55f6a067528cce6a1047c750ac78.json",
+      "bytes": 16643,
+      "sha256": "932ad34e506a69d7f0119f9c63ffbd75521933d5590a087651549108cd6949f8"
+    },
+    {
+      "path": "data/input/news/a5e4c67300a60d3fadb406a4f41a2ab6.json",
+      "bytes": 13426,
+      "sha256": "3a861df579f9161212ac29d070e777294c7830a4609bb04cdd80c83e4c23459f"
+    },
+    {
+      "path": "data/input/news/a652e40e7033ad33dd2403e948caef4c.json",
+      "bytes": 13133,
+      "sha256": "990ab3c8d5eb6479c5959b685d2e1cc186afbf7e63f8789f5177bf3bc7390b7a"
+    },
+    {
+      "path": "data/input/news/a665737894e00459edaa32715e592ef7.json",
+      "bytes": 17728,
+      "sha256": "d0fe2a67e2ce7c46b585e18d18714be95f800e921cdf2ac66850a5d9f54e9d9c"
+    },
+    {
+      "path": "data/input/news/a6f37bd867eb17b7d1d1e104a960817a.json",
+      "bytes": 15007,
+      "sha256": "09ba24e3cc3ce3ae8ddf0c71fbd11875072bce8b30f3f57b4f2f54317d93502e"
+    },
+    {
+      "path": "data/input/news/a70a8b1a6afffd870465dcebb27a852b.json",
+      "bytes": 18627,
+      "sha256": "e7b967791708afc2ad41ebccc6afb205f104d2bdab016d2c0c64b35e15844a8a"
+    },
+    {
+      "path": "data/input/news/a74ccaabb7f2353ea9f89339e1af23d8.json",
+      "bytes": 13359,
+      "sha256": "02307662b8f362dba27ff9ee7a2ca9e44443b3cb568125543d05d46da8a4833d"
+    },
+    {
+      "path": "data/input/news/a78e94bd804f66891a68be2391437897.json",
+      "bytes": 15841,
+      "sha256": "b24e39a8ac618066e6e68f6fcba15e84fdbdc73d97aeb6839faca9a71aa366e0"
+    },
+    {
+      "path": "data/input/news/a803c13f0b791b0847b11a8e9ec2dd0b.json",
+      "bytes": 16625,
+      "sha256": "8f75d396a221da4b63b03e408cc462473f0f377a47615301ca29b399d01c8910"
+    },
+    {
+      "path": "data/input/news/a872c32146f089d9454cdf3e393e124f.json",
+      "bytes": 46912,
+      "sha256": "8997e3ba88c7f1d1c1d80f11952f2e42b918015f50cf9683daf89e8ebdda30d6"
+    },
+    {
+      "path": "data/input/news/a8a864f373d26a7a36e81b1e4918d4a4.json",
+      "bytes": 21058,
+      "sha256": "e8e33feb4c29f93d85141ea14f550acdf8be01722b6bc9f5f92415cdb160b616"
+    },
+    {
+      "path": "data/input/news/a8ae4a2bc6642282dd081424e67b7731.json",
+      "bytes": 15563,
+      "sha256": "d5814a2111c4828f2cd126f0e88324e13cdd18d1b44eb19c373c5b14675af3b2"
+    },
+    {
+      "path": "data/input/news/a94db38a3518be6ad33ecfbadf281124.json",
+      "bytes": 18256,
+      "sha256": "75feaa83bea2c0038003e5376f14d00f007f63bb365bf54093ef106c4e644578"
+    },
+    {
+      "path": "data/input/news/a9c59e8839fe2fe1f4809dbe3e879a3d.json",
+      "bytes": 72954,
+      "sha256": "74e024533e3aa74384be28e5f6cb77411b6c66a27aa3d79be81c8352a164ce15"
+    },
+    {
+      "path": "data/input/news/a9dfd3d34d470d56e384117144a104c0.json",
+      "bytes": 10260,
+      "sha256": "58a8dc7c09ada9e62decdf22e68f6983f6d970a7f6e06da716a3e385599a6e44"
+    },
+    {
+      "path": "data/input/news/aa44f409de8d2d3f0d1bbf2f9f4925e3.json",
+      "bytes": 32039,
+      "sha256": "82eb2500def83b3d9c748013bb4bd536b844f6730007797741cb6ce8a3930ead"
+    },
+    {
+      "path": "data/input/news/aacd7d12b14e89ed87155ad11fa3631a.json",
+      "bytes": 68310,
+      "sha256": "d5c3926b8797ac6405761edd0e0b31f55726932ecbe632b3a1d1ef47596039d8"
+    },
+    {
+      "path": "data/input/news/ab91a95ad2caa9e15b385e5cb92376ba.json",
+      "bytes": 43407,
+      "sha256": "52decacb95dbd0e203b19a59ea42a68f007f6a14d5d9a3190e7d94f2925ad839"
+    },
+    {
+      "path": "data/input/news/abee3572be8343f7d9f3b40c3eefbc99.json",
+      "bytes": 12164,
+      "sha256": "ec64bfba1f2567f414af5df9cecd85c304045ba691b3a412f20da4405a20e259"
+    },
+    {
+      "path": "data/input/news/ac9b58413c89e27c41af35af4b67dee4.json",
+      "bytes": 9527,
+      "sha256": "8141af2d36274383e2f3d8446fd20166e6376623192329ba8a287085e8453fbe"
+    },
+    {
+      "path": "data/input/news/aca88437c705c782eb1f7fc0af84f1cd.json",
+      "bytes": 37874,
+      "sha256": "d19a7d2cd6e458a3ab06c91643786e9f030381579ccd3986026f596e2144f18e"
+    },
+    {
+      "path": "data/input/news/ad5427157b9179e7d1aea70904b7ef1d.json",
+      "bytes": 20177,
+      "sha256": "451eb2d6c62255ee8fee1f1be71404695f2cf74d285fc85470c6a47cde52871d"
+    },
+    {
+      "path": "data/input/news/add3fa2eb3bd13be48e9a13025998436.json",
+      "bytes": 19388,
+      "sha256": "5486345f35c743b27e66e09cc8bd3a661966914cac19fd2a1bda83206c0193ed"
+    },
+    {
+      "path": "data/input/news/ae27686cd82065e045094d764b068176.json",
+      "bytes": 31831,
+      "sha256": "264cd3dfe956df3936cf08ccba06ac13b501c5b9724f33c77ed7b1239e230a9e"
+    },
+    {
+      "path": "data/input/news/ae27917df4fd125483bce6e85ab8c256.json",
+      "bytes": 22369,
+      "sha256": "3cfa07c64725689a40fa90b3869ddb55824421bd8996d7917db160a81eee38c9"
+    },
+    {
+      "path": "data/input/news/ae90bddadacca609cda309caac56694e.json",
+      "bytes": 24620,
+      "sha256": "bbe191390b68a8ef33b67aecac1779ae6d9b99d5d034735cc338414e9a4595a2"
+    },
+    {
+      "path": "data/input/news/aee78e94ecfcdad580755a10f8005821.json",
+      "bytes": 14291,
+      "sha256": "ecf1f9fbba2e025232d61b027ae9dc29e36c2637c620cbe69bc7e9c68e9235ba"
+    },
+    {
+      "path": "data/input/news/af00ee21c1ae7d53170a1cbcba013c37.json",
+      "bytes": 17656,
+      "sha256": "af35b9c210c941185447495cd69d3fb0a40aba734c220afeddfc67f84cef6983"
+    },
+    {
+      "path": "data/input/news/b09b49c40ca72a1857b6995e11bf2da2.json",
+      "bytes": 19332,
+      "sha256": "44d2b0da723fd197dd00b96dd1585594ad85ffcb2989e5ac488cd480f159f03e"
+    },
+    {
+      "path": "data/input/news/b189b82b0df052a65ff63a3f9d638bd5.json",
+      "bytes": 9771,
+      "sha256": "a9a0c028c70d5e0be04568cbc86362c347682a88bcd8e9a8e74faf069ccac57f"
+    },
+    {
+      "path": "data/input/news/b1dda1f04f1603550ff269a79be3c5ca.json",
+      "bytes": 12669,
+      "sha256": "60c4d0602d5b75f829023add5e0204122a6819334c717fcc4cb7e6bd850ef92f"
+    },
+    {
+      "path": "data/input/news/b2ae6d3887d607cb6c9336681ab814a8.json",
+      "bytes": 15662,
+      "sha256": "0f7370245d3cae89dc820aff405bbd9925d8efb9d3ea929ab99d6f96c5e72944"
+    },
+    {
+      "path": "data/input/news/b37f581d6f54a0d4b374d0e12d48e9cf.json",
+      "bytes": 15171,
+      "sha256": "5b539aacfeae5da8825a0d233f5c176193b219fa7ee490a987aac7e433022645"
+    },
+    {
+      "path": "data/input/news/b38af6d60fecbeec8176b85ce8a0e3db.json",
+      "bytes": 13700,
+      "sha256": "1532f57852e75b8c67041851942a4e2611417ec0f79ac8b8df3c75a9ff789a7a"
+    },
+    {
+      "path": "data/input/news/b39508a2d96a84c27b25019ff22ad93d.json",
+      "bytes": 30506,
+      "sha256": "74226785d0122afadef8b8584a06159491f7d71c4e5db223320d2a555fee9cb3"
+    },
+    {
+      "path": "data/input/news/b3b45b7e52a291952d28553886abbb5f.json",
+      "bytes": 23060,
+      "sha256": "a5edb47ad54df8280608669698b0d7b2bea8c8b53b32a0a401c963f6679c6cfb"
+    },
+    {
+      "path": "data/input/news/b3bcaeb8aadcb04425188fe52d4ee111.json",
+      "bytes": 7670,
+      "sha256": "a36238367fc936fe989313ca5d66d900f2d3b71ff076a5b2af00ce782f4719eb"
+    },
+    {
+      "path": "data/input/news/b3c59068170fa07fb6fb3a9388ed1cd1.json",
+      "bytes": 12223,
+      "sha256": "c643ca2d7b4c73bcd7d9b1fc276623fb0dc76bc5cd40676f386a2387b046a3d7"
+    },
+    {
+      "path": "data/input/news/b406f1d443271fe7e94a7f07c8913dbd.json",
+      "bytes": 65074,
+      "sha256": "53886e8603fe1aa1248033b3c2d389246d066e2e1143c5cc9b5f527c6815d006"
+    },
+    {
+      "path": "data/input/news/b42b9085a149b85cef217a8cfc83331c.json",
+      "bytes": 14661,
+      "sha256": "69293ade28d5627780096002847691415a129b0d01b44ca648d1909f1fa552af"
+    },
+    {
+      "path": "data/input/news/b560bb8484e4ba58c8eda11bc8816026.json",
+      "bytes": 24780,
+      "sha256": "edb11d4ba8a05566a12bace96cb9dfcb8a9dd38f79b571c3c9610c9c27a44ee1"
+    },
+    {
+      "path": "data/input/news/b617bbb822ee6c7997d9ad0011b3295c.json",
+      "bytes": 13012,
+      "sha256": "f4ca193f56aa257a02c45bd122909fd99693c3018330743c4cf3f594028c5065"
+    },
+    {
+      "path": "data/input/news/b65cb2a53855376a02800088b1c4b1dc.json",
+      "bytes": 24989,
+      "sha256": "1104ed6dd1073ef95e64b45a322b63650fbc7e062ae03b05e3d9de2f6c326adb"
+    },
+    {
+      "path": "data/input/news/b65e23add088e1fa7dcf885b289de897.json",
+      "bytes": 22423,
+      "sha256": "1ebe52cbee808d0cb41c1775010d6a3e123e6d73b9c960eb9aea502df6ee97f6"
+    },
+    {
+      "path": "data/input/news/b7285ee3311a7fee31f4fd7fb9263f34.json",
+      "bytes": 21716,
+      "sha256": "7a56c4844f31de73cb9955179e6c31784389a4ca948750078333d4061458023d"
+    },
+    {
+      "path": "data/input/news/b74c7aaf46f8b72a25eb77c5aaa7d0e5.json",
+      "bytes": 71965,
+      "sha256": "6e77ea3adee261bc8e88b204236a4281e2227515e230d0265d9f426477b0bc64"
+    },
+    {
+      "path": "data/input/news/b8486e05ec4c551e8080b74eb430b2c9.json",
+      "bytes": 17040,
+      "sha256": "9c31575767e82f9e736c43ccfb8133a1b3c9a5a4d4857a7fc3995ab2c4949001"
+    },
+    {
+      "path": "data/input/news/b8d5f0414d665dd3f97f9c01b6560b52.json",
+      "bytes": 9030,
+      "sha256": "cc2b538dbc6e76d2be77b6bae663f9b6e1ce3e84f48ff737a486e389447357c8"
+    },
+    {
+      "path": "data/input/news/b8f3a170e3b1270903d882da76654694.json",
+      "bytes": 18398,
+      "sha256": "db4b1a9c1469e9cca47973a8ff3de3877b452a65b6a5f6dbe18df6eabe7fbec3"
+    },
+    {
+      "path": "data/input/news/b920fd037bf194a3e42c897ae5bf7554.json",
+      "bytes": 14669,
+      "sha256": "15db6192cf58fef05263e267590179081a42f18674d2b724b694caa372d33545"
+    },
+    {
+      "path": "data/input/news/b9d34a42ae40a7357ed427935f385ce1.json",
+      "bytes": 13595,
+      "sha256": "b3b07947e01b50d53577f4e99e5394ce0270f3da961ab380532465c0da01baf1"
+    },
+    {
+      "path": "data/input/news/b9df5fabc75597a5236fc60487f88627.json",
+      "bytes": 61461,
+      "sha256": "42209883f25ca46e6e307033d025ce73174e5006c302c57b181bce0e62ef5cae"
+    },
+    {
+      "path": "data/input/news/bb13f6b2fbdfa4ad7de2537b619e54d1.json",
+      "bytes": 75500,
+      "sha256": "bcb58676f1062528da88b30bf9a21efbddd1653ce2a20cc60051b4d670f17958"
+    },
+    {
+      "path": "data/input/news/bb33370029b4b18a47612a9240937226.json",
+      "bytes": 21996,
+      "sha256": "f18ad963a9a5e7d91ccf4ab6a806f102b49e0dfbf5d48c977d263f8cdf298cc6"
+    },
+    {
+      "path": "data/input/news/bd75b4cef70197e82d64948bbd4cb551.json",
+      "bytes": 10988,
+      "sha256": "c41224f44a6df2159182bd60b48b8d92d42fa03b51adce0f12d94b3e36e0a705"
+    },
+    {
+      "path": "data/input/news/be79180e8f2414d9561148dde2f4339d.json",
+      "bytes": 36077,
+      "sha256": "2750c1f76e8f8a8c57842a33e48d0f56fd6436d525d5914968e7cca89b6f9a51"
+    },
+    {
+      "path": "data/input/news/beb306c528340f64a12ca9a1d94d8cef.json",
+      "bytes": 15437,
+      "sha256": "67bde8c940ad00fb88d11873c4407a21a72b62856fc1838ed11dbe588a8696ff"
+    },
+    {
+      "path": "data/input/news/bee721c42d0ea67aab464f127f4aaa47.json",
+      "bytes": 13869,
+      "sha256": "1ad6a712c27c072e29a42f6f5ac4565419df9efda5af16eb39b196040e82b6aa"
+    },
+    {
+      "path": "data/input/news/bf2aef02b5e261345345d80037228d3a.json",
+      "bytes": 60450,
+      "sha256": "f5d9be54c77760353e6f3d497eef65e8e9d0324233900a232a8e26ec0ada4acf"
+    },
+    {
+      "path": "data/input/news/c012352d321a69040e20bc589f9f791c.json",
+      "bytes": 26411,
+      "sha256": "b9749521586ad2d1a7349d346e666aaffa2e79f6f9bb196f401543a812e41655"
+    },
+    {
+      "path": "data/input/news/c02409cf149eb569866bea29b30ff9c5.json",
+      "bytes": 19779,
+      "sha256": "aac7914de77894fd9aa5ec4e86ed4c3b7b9b218f43159c068177c68ed830cf9a"
+    },
+    {
+      "path": "data/input/news/c04f48e0ceb943f23d43a1cb0244b635.json",
+      "bytes": 22270,
+      "sha256": "f7164cef6e5773d6aa3fcdfe908cce0f347065edb1d71cd808432d5af1a778d7"
+    },
+    {
+      "path": "data/input/news/c0b92099b7c4a208f5079b83a250e9db.json",
+      "bytes": 11160,
+      "sha256": "f84d0332ab277d1e3690a21f8b1fa1cde34f3ffef06a9c0876d9d84a8cebddfe"
+    },
+    {
+      "path": "data/input/news/c0bc434be75520b73ea0b290528787c1.json",
+      "bytes": 10850,
+      "sha256": "71109fc31bb5807838b564f21afcf4ea1046b6a40f85ae42fbcb21e5da77cf60"
+    },
+    {
+      "path": "data/input/news/c0db239bcc5c7d3924ba4963e421929e.json",
+      "bytes": 20444,
+      "sha256": "0aff561b72685fd3486696aac44150b7dba3b51579c18012e7d580e0937a147c"
+    },
+    {
+      "path": "data/input/news/c0ede07ff964c540cb1998d6b7164127.json",
+      "bytes": 23785,
+      "sha256": "fb616e5958f39f4f46981cf6c0f4441be86fbd6c051278c329da5c3e614e3472"
+    },
+    {
+      "path": "data/input/news/c134ee46949f26001cf6d5d06de8a425.json",
+      "bytes": 50477,
+      "sha256": "e4fd4fc64b8c519dc0eabdffc2668c2b52bb47d738e6b6014eae20c364602787"
+    },
+    {
+      "path": "data/input/news/c17a73a546fc10c0448d608193b7b8b3.json",
+      "bytes": 14438,
+      "sha256": "ff0ee8d1293a4805694f3f5b9dbc8980ddb2ed279617dcc9b237308451f5dab7"
+    },
+    {
+      "path": "data/input/news/c1d186e2edd33cbd889e1d7c052846dc.json",
+      "bytes": 12123,
+      "sha256": "bed484331fa63c50ed9925edd5b036d3e0f52f877fec098bc915bfcc6b31a1b0"
+    },
+    {
+      "path": "data/input/news/c2960740e630db973cd576d87d0f1a9f.json",
+      "bytes": 17262,
+      "sha256": "69b9152dc74ad708b72ee79a27d0b17d5af064d523df457795913d75482db1c3"
+    },
+    {
+      "path": "data/input/news/c2a7dfc396a019b68bf8c0cd3c8a6b2d.json",
+      "bytes": 33743,
+      "sha256": "bfa8eb0037e5477243333cc6c5aaaeaf483eba0a94be393c6ceacdeadd580306"
+    },
+    {
+      "path": "data/input/news/c2b00b82d9534c74e2466d003e9a4264.json",
+      "bytes": 18275,
+      "sha256": "7d5d3bad075d942e53ff595af7ad0e5934cf7984f9f16b563f2cfd2450696991"
+    },
+    {
+      "path": "data/input/news/c31372985c022418e731781fb2e2ec37.json",
+      "bytes": 22460,
+      "sha256": "716ee86e7ecb7e6cc16da2999b27e8541ab0d6d3b16d956d0e3f06f159742cc5"
+    },
+    {
+      "path": "data/input/news/c321f50b2be05f0a65fc6e7bb43c8194.json",
+      "bytes": 20844,
+      "sha256": "410eb250c182dfb9978d68171e5ccbe05332bd446e7e42c5b3564c1d5990cb14"
+    },
+    {
+      "path": "data/input/news/c413e8d7668b5044fbb352149b5e90c8.json",
+      "bytes": 14246,
+      "sha256": "f6c4e3092601cefc623938219835118cc4d48438e77de47aae6c5c95a495ac1d"
+    },
+    {
+      "path": "data/input/news/c4203c20ec6e406bfb3fc42d171e3bbe.json",
+      "bytes": 12159,
+      "sha256": "c90667006d9dfa0a7c8d611d1495ac0ccbfd362519971c78f0eeded20862037f"
+    },
+    {
+      "path": "data/input/news/c459e946db776842e89659e109f0f24a.json",
+      "bytes": 44637,
+      "sha256": "82e218aca8ccd5371aa62cb6e8ea553a3914a67e6704cb2c91f20169b98f8521"
+    },
+    {
+      "path": "data/input/news/c4ee3d0512e06a979f93e268a6fd4f49.json",
+      "bytes": 18751,
+      "sha256": "2e919e4748578ecf16c160beadae406dd92a302d24fdc2fee9bf209221fca179"
+    },
+    {
+      "path": "data/input/news/c50b2116f77c243540eee7f489cece5f.json",
+      "bytes": 21996,
+      "sha256": "0cbe2146d597b6a37f0313e10cc223efd08da374aa16f5224aeca410b35f97ec"
+    },
+    {
+      "path": "data/input/news/c52b6db65443b9e78d7370aad2ee7f26.json",
+      "bytes": 34030,
+      "sha256": "b403a6233dbbb698f19d7f1f9eaff4f50e829aca79726961c67b8d78b46c63f2"
+    },
+    {
+      "path": "data/input/news/c52d47c5d426b8aae6157cf0a5f502c1.json",
+      "bytes": 14857,
+      "sha256": "cbeb6863129f210f1c194a6e8ea5de4e66eebb517ca4c31ac1645d172a29f3f0"
+    },
+    {
+      "path": "data/input/news/c5f34dfa17259ff5d865693e57dffa6e.json",
+      "bytes": 29813,
+      "sha256": "622997ff5c090d41a094ecb699def7beca8e2dd7c05f7651247661ab58482040"
+    },
+    {
+      "path": "data/input/news/c6184391479631cf77d38a785da5d44e.json",
+      "bytes": 11701,
+      "sha256": "0347102a67c2952a220ab7b34ac990183cced8ab148d8fe6725e945d4279f342"
+    },
+    {
+      "path": "data/input/news/c66beddf69b729f0f5f8d07aa997d83b.json",
+      "bytes": 11486,
+      "sha256": "d80a112c6bda9fa3802ba09935b68d06e5fbaae656133308f6b28c3bc465b654"
+    },
+    {
+      "path": "data/input/news/c6888ba37cfde3ea521677af36842740.json",
+      "bytes": 21429,
+      "sha256": "393f400fef91ef8e826a28b147e8c81533c7ed94532eea5f357d4ff8fb2cb608"
+    },
+    {
+      "path": "data/input/news/c6dc44bf8272241ff51d85ef19af8518.json",
+      "bytes": 20144,
+      "sha256": "2399eb9752273e3d2ec31c60c6d1b99237dea8fe483687e774aa69ff20197913"
+    },
+    {
+      "path": "data/input/news/c73d0e519aaca071ad79571e90e9ad45.json",
+      "bytes": 22099,
+      "sha256": "d208fffea84c0380c8bc858337f85bf67a0f7031183cb31829b72e57bad912d6"
+    },
+    {
+      "path": "data/input/news/c759b5e16fee55b091dd28c98db391f2.json",
+      "bytes": 20764,
+      "sha256": "20475b3f211dbe7a2cef9fb8ffbd74a2dfda1256f6e3a6817d01e8d22bd4fb59"
+    },
+    {
+      "path": "data/input/news/c790a64fd939fb5b62dc3ea4fd7ad065.json",
+      "bytes": 16222,
+      "sha256": "da0cb71104a6d80aa513add7cdedff3097ed64a26d696f6c82fd68afed2e45a8"
+    },
+    {
+      "path": "data/input/news/c832801e89b89751d517ad335f91264d.json",
+      "bytes": 31473,
+      "sha256": "cd75930744b78074d6c13c9bd0b971599ff80d3073fd8b2dd7056c21198a5962"
+    },
+    {
+      "path": "data/input/news/c87005ea0ab0a895be9c74975d710629.json",
+      "bytes": 11286,
+      "sha256": "3866020092aacbf5e9aab1bb6eee0a0438a0c242221de496101e479fc79519a9"
+    },
+    {
+      "path": "data/input/news/c8711166db0ec765c89c25fdb27ff82f.json",
+      "bytes": 18380,
+      "sha256": "acaaa9e4d5b1b6df203e3196d7db25ec3f48b5a7fdfc09f55c5a134065d8d4bd"
+    },
+    {
+      "path": "data/input/news/c8b7bb0213b770da7702e3dd23d2d77e.json",
+      "bytes": 32794,
+      "sha256": "b63e77a0110e6c889a2df401643920ff8225f5470cf793bd0c47d86104ba7788"
+    },
+    {
+      "path": "data/input/news/c8e4a805f4198f9e3ca49b0bf6a02e59.json",
+      "bytes": 8435,
+      "sha256": "c856be545ca644c0ad1e000c116f248f4eabc08ed3e02737902164945cd1b744"
+    },
+    {
+      "path": "data/input/news/ca074cea05bd422376a225490c7219b1.json",
+      "bytes": 24953,
+      "sha256": "b0652dced54b30e27476614de16c907e44124319ae7c76dd4aab4ac6545b5477"
+    },
+    {
+      "path": "data/input/news/ca9c968e5a4de71db963663d5ced4b22.json",
+      "bytes": 15117,
+      "sha256": "6fbd50319801e4fb11e0ed544f2304faec9b2e0c44c69241161794535a550fae"
+    },
+    {
+      "path": "data/input/news/cabc58525d4196b8998099599de0bec9.json",
+      "bytes": 16879,
+      "sha256": "e94bdbaaa76fc77b7db6e6c64f003603fc3f2be0444ae807593e24482a64c365"
+    },
+    {
+      "path": "data/input/news/caca9523959aa8e1a12b731dd394a177.json",
+      "bytes": 21470,
+      "sha256": "9949b868640f2eaeea268fbd24593b92234e0ccbb12453697aa6b73d6c81c98e"
+    },
+    {
+      "path": "data/input/news/cace85de6815ab457539f59455b2bef7.json",
+      "bytes": 31212,
+      "sha256": "fcee6b8e79472af3b92d83036ef0dbccb9c6c4b8dae1dbc1bea145c57ca036d2"
+    },
+    {
+      "path": "data/input/news/cadea7f1f04607c234ada7916cac66e3.json",
+      "bytes": 19784,
+      "sha256": "6d0e7a5ff666ad7a960ba869c37e10b6ddcfe4d5d30d7de8df5e2ff564d64af2"
+    },
+    {
+      "path": "data/input/news/cb2cc7d034e5aaf9c9738ee4059d6a9e.json",
+      "bytes": 45561,
+      "sha256": "b2c477fc9d3f23d724adf1871380babafc38602e4a3df569a6ff5e1606be899f"
+    },
+    {
+      "path": "data/input/news/cb99e2092761f4acf7b9d8e8e80bcce7.json",
+      "bytes": 17361,
+      "sha256": "ceb74f58200823b598226bd78ecec75ae0e1b4eb3d0755d6fd1becd67809a311"
+    },
+    {
+      "path": "data/input/news/cc19f0250f3cc01b49a31c078a4921c1.json",
+      "bytes": 22342,
+      "sha256": "ac87f4be8602b85f813ea12db30d6fbedfde533897650d2f8ac8ba3b4701da0a"
+    },
+    {
+      "path": "data/input/news/cc348b3e36ad1f76f74cd47424282c43.json",
+      "bytes": 15903,
+      "sha256": "abf102594557853e46bd95a154aa65c8ad7f7f7c1d5e50f4fddb69bbd7657a0f"
+    },
+    {
+      "path": "data/input/news/cce0a510f54b2ac1eac67d350973220d.json",
+      "bytes": 28455,
+      "sha256": "42ef6a501355d012ed657ae81742b6864973130166e9cbc6bb2e700567b34af5"
+    },
+    {
+      "path": "data/input/news/cde55f4bdf2216c7f55a69f680b2ebad.json",
+      "bytes": 24686,
+      "sha256": "c5f16db5aa4c5937580364c4d7ca7a542fdaa20e497126e24c5832deb477e177"
+    },
+    {
+      "path": "data/input/news/ce66e6bb6d601e54ffd77970e53c2f2f.json",
+      "bytes": 22594,
+      "sha256": "9528dfffd3308a51ab34afb4cc1425e92d87c9e35dbdb339cfd59110a30fdc36"
+    },
+    {
+      "path": "data/input/news/cf555e7ea1014dd9e045687b09e5c64c.json",
+      "bytes": 13133,
+      "sha256": "8898b6af571d6fdb24079b26489bf3c370e714fc2e1073354477df01f5e39a04"
+    },
+    {
+      "path": "data/input/news/cf7fb5593db3482e6f90bcb458d48a7e.json",
+      "bytes": 12112,
+      "sha256": "ed8605bd566ae6a1dfa6e94e11046f7b197b801e96a6411508ec089d97796fe7"
+    },
+    {
+      "path": "data/input/news/cf91ec423039ddab3d408c03a504a807.json",
+      "bytes": 16845,
+      "sha256": "02a24942ccef1f47a125566aa1910e2c776a5ede7e60cc539aa175160ea46894"
+    },
+    {
+      "path": "data/input/news/cf939667c9dbb3fb259a1199df78f906.json",
+      "bytes": 18117,
+      "sha256": "5494a9866d52b230404e4ee219812a53c99888e27ea9f69ceb7de18b359228b9"
+    },
+    {
+      "path": "data/input/news/d0c0f4d29b0254a3ab34783cbe849a96.json",
+      "bytes": 20967,
+      "sha256": "e4626c325d710bb5c2bdae2180e3dd3d40d4e2ff1a7569f934f82fe1b16262bc"
+    },
+    {
+      "path": "data/input/news/d0e063dafe454a5f750152c5ee781730.json",
+      "bytes": 20412,
+      "sha256": "4876625b6aa97b692f33498324150e456f60043c7ddf63cf152fd878ed23981f"
+    },
+    {
+      "path": "data/input/news/d11fd879d6f98a33ac065507fcadb54b.json",
+      "bytes": 13950,
+      "sha256": "707619cb43d5c47d4645239d17abc5bb951cd553bd8c444d2f40ac861a0d49a1"
+    },
+    {
+      "path": "data/input/news/d14a59e91f6241f913d1968055f14346.json",
+      "bytes": 15996,
+      "sha256": "5d70bf0a25ad9ec729b6a7f0ab7746df2376f52a1e4037c2bcb1d22be128cbdf"
+    },
+    {
+      "path": "data/input/news/d166cacebb0fed2cc3b06c6685d11252.json",
+      "bytes": 20005,
+      "sha256": "1ca82902f036c4dc78688fcd30d9fd1430200711efce1656c7568c87692c0b5f"
+    },
+    {
+      "path": "data/input/news/d1daddffcafe966ef4edd8df13de5d59.json",
+      "bytes": 10169,
+      "sha256": "3d11333443bdd58c1d3ecd5bbd92c7f002641ae7417d3d1aa7fe9fa936d4672c"
+    },
+    {
+      "path": "data/input/news/d22e458970d61a8ac315feef2aff51ef.json",
+      "bytes": 15457,
+      "sha256": "376c9472d40ff70f5e63d08d00d5be8454faafdd566e95fc856d6e4ebd0ba4b6"
+    },
+    {
+      "path": "data/input/news/d266d592b332aa1b701a45ee9fe2dd7c.json",
+      "bytes": 11199,
+      "sha256": "16a289f46fb768f97fc985fc716fcc949e24c4c11a2a40185bd8383a9a5fae1a"
+    },
+    {
+      "path": "data/input/news/d312bbfcba95746324f4b257b2bd018e.json",
+      "bytes": 28309,
+      "sha256": "dc27a821ff1c91bbd598b288cfd9132b94e64b2b92d75fc51c0769571ff80476"
+    },
+    {
+      "path": "data/input/news/d376b9eb1279e269673298572323b8e1.json",
+      "bytes": 17878,
+      "sha256": "4d631304aeb5ac6d4ab60a849945491d8d7a4b16c00c0997341b0f3263e1e3bc"
+    },
+    {
+      "path": "data/input/news/d3965df53eec764c40b343bd262ddaec.json",
+      "bytes": 10419,
+      "sha256": "ab6173de9b1841f27f205bfc92f95cacea8af2bec84440d82b78f58f12014d59"
+    },
+    {
+      "path": "data/input/news/d3d0443eb00184d09ec0346edf1c7760.json",
+      "bytes": 15991,
+      "sha256": "05db553f3afd22c2149374714a282318bedf1620ce1af381076074181e1eb16b"
+    },
+    {
+      "path": "data/input/news/d4f49bca56a4dfc5bee3d0bc969b104b.json",
+      "bytes": 8984,
+      "sha256": "5955cc9d06d0db111d2a7270466038a8671134c8f92a86d190b2f4d5ffa124c3"
+    },
+    {
+      "path": "data/input/news/d537e0638d7ef28bceb6d449b9992e86.json",
+      "bytes": 71125,
+      "sha256": "ea70a7fb0be35e7896bd45f8f9cc06da4e6c7e4d577e0d5b03b574475f61e5dc"
+    },
+    {
+      "path": "data/input/news/d5c5ed22f28e05ec30d762bff739094a.json",
+      "bytes": 48315,
+      "sha256": "349aa8bbc94eb07a373bd0c21d1f5442fa40eb96a00b4d0dffd75aacd775146b"
+    },
+    {
+      "path": "data/input/news/d5f0142f29e4a23624ef157c1fa2e4ec.json",
+      "bytes": 11087,
+      "sha256": "2ee4c96efea517253619f7fd592fc5372f1c46808bf857b884cf2a0f41a56098"
+    },
+    {
+      "path": "data/input/news/d656e59069c55ecdab37a1b3df6cc0b8.json",
+      "bytes": 49458,
+      "sha256": "e66c699a6641ebe64b0b906652e8f26279e94fa7911f8660596d5148e1bc9f5a"
+    },
+    {
+      "path": "data/input/news/d6dc65ec543d8c720a1ef2df1a40d81e.json",
+      "bytes": 21273,
+      "sha256": "a9d874b84e54028af1286eb1e9fa635484f7140bcd408df880ef16570331dd20"
+    },
+    {
+      "path": "data/input/news/d6f0a1bc252e604725a5e4025303973b.json",
+      "bytes": 11829,
+      "sha256": "d8da8378408fff1dc4b18766a0017acb17d53ec8c3c8d30425daebc0dae9a974"
+    },
+    {
+      "path": "data/input/news/d713847e038fa8d4d1c76b1b1c046045.json",
+      "bytes": 22341,
+      "sha256": "44b75ffae3082b9e0bb25b770421346f687f3795e27c861713f19765b510e76d"
+    },
+    {
+      "path": "data/input/news/d775bcaeaf6aed05763b922e0e61d5ad.json",
+      "bytes": 11254,
+      "sha256": "b72a9f98a53e3d98e62261142cae141083cf4543411d180acfadd91007b6d7fe"
+    },
+    {
+      "path": "data/input/news/d7a46480b5b4cc14af037b9cc1c9ea55.json",
+      "bytes": 23219,
+      "sha256": "2f8d306800ea0269425f6f4b13abcd15c7c8e78b129e817dd76304bb79129230"
+    },
+    {
+      "path": "data/input/news/d7a8bf56abe433ee742b461232af43b2.json",
+      "bytes": 14194,
+      "sha256": "5ca8ca187807aee8cc0269d63916b9aa9b0fddfefba5c3b83dd3fd86e6e2953c"
+    },
+    {
+      "path": "data/input/news/d7f66576065b3bc32ab587e28a79901f.json",
+      "bytes": 25369,
+      "sha256": "a4726062b4ef89a434fe326c70443cc03775d8955f14a873933a455ee4a574a0"
+    },
+    {
+      "path": "data/input/news/d7fee232ca7380c86bdf91a07e6313ee.json",
+      "bytes": 11718,
+      "sha256": "90cd6288fefa3481c5eb624142d4df99b14d2074331293c3f78156909cf4437e"
+    },
+    {
+      "path": "data/input/news/d8cfbf64cfdbd9ec7d14fbb91f07bd5a.json",
+      "bytes": 44305,
+      "sha256": "1cd629e659996cc6b0cfe59958576c1f17003b754349cee0beb772d1549a417e"
+    },
+    {
+      "path": "data/input/news/d8dee991313424b9400785bd45525cd8.json",
+      "bytes": 16716,
+      "sha256": "68b7c07613a383736b04283c82feec938b128b9378bd2b83589ee7209500fe89"
+    },
+    {
+      "path": "data/input/news/d9305e30c58f659d829c738eb69c44ee.json",
+      "bytes": 12993,
+      "sha256": "edee1229e686fa0c2ea4666f17fd5b273b739223d710898ba8258973b6257435"
+    },
+    {
+      "path": "data/input/news/da1b9b6cee2fe4a675469c8a1df9ac47.json",
+      "bytes": 12045,
+      "sha256": "6d7baf9b3f7eb0867b00e1c9950214fa92ad38269ef321bc04ea25afb4324cb6"
+    },
+    {
+      "path": "data/input/news/da2ab374cb6d270a4aef488bc15cd8cd.json",
+      "bytes": 12371,
+      "sha256": "aa68ca478b652f84e8f3a2f9c105d29783c9fb3bd7628ae8a4232e4c91adf504"
+    },
+    {
+      "path": "data/input/news/da9f460c407968dcd3fff724183fd15c.json",
+      "bytes": 28070,
+      "sha256": "5d44cbc03f230b548706cb2468b2306175b3779599cb22cdc7e8a292599e6137"
+    },
+    {
+      "path": "data/input/news/daa66dda41a6d6a226feaa7e36b724ce.json",
+      "bytes": 13120,
+      "sha256": "0a9125241c03fbbf532332b25302cc2a8824cd259dbfd01de27aebaf688d2fbf"
+    },
+    {
+      "path": "data/input/news/dac8426eec0ebf8fbe2cc9dbe7146088.json",
+      "bytes": 13504,
+      "sha256": "fa094120ef7945b4b893ad8505b6a55ffd1baa36c322b190b868a787791b6b69"
+    },
+    {
+      "path": "data/input/news/daf6fd875f0388d91d1037b5d6d7f927.json",
+      "bytes": 14539,
+      "sha256": "2e77cbe4d6822b13130d4ce1630fa9f0c934bd578a713c022b24413b71d37a54"
+    },
+    {
+      "path": "data/input/news/db752208cf83f2e22d5dc48cfcc705ee.json",
+      "bytes": 9100,
+      "sha256": "a404877b0e4ce50967c71f6a01886735aec29f61918e9d009250f24c99ced244"
+    },
+    {
+      "path": "data/input/news/db995b3a919986eef2bc5e2aba964720.json",
+      "bytes": 14880,
+      "sha256": "1ae71265a93148cf3685d9d022fb609f856d04296207350f7d22702776bf3160"
+    },
+    {
+      "path": "data/input/news/dbfa466c90cf0e836341849f70e08bb7.json",
+      "bytes": 20100,
+      "sha256": "c58ffcd75e8fbfa5647ae2d23ec61dfef1f8345949ca5aed7631c32b44ac52ca"
+    },
+    {
+      "path": "data/input/news/dc403a86ab3ee3e5d229c89a02068520.json",
+      "bytes": 18163,
+      "sha256": "f688fdf8e2640c4b797ac6568a82df14f85ae9724ecbc447400d7f47faa546f2"
+    },
+    {
+      "path": "data/input/news/dc5a3393af27581e7d3c09bcb113dcc6.json",
+      "bytes": 23239,
+      "sha256": "f7dee2dc1e34c9a1fbaea3a7b43c35e0c51f39b19ef1ca4432cdfa5e1f69650f"
+    },
+    {
+      "path": "data/input/news/dc78e4190ee81b45f6382629fedef70b.json",
+      "bytes": 21581,
+      "sha256": "acc284ac5d583edabbe959d0b6a9e1c4add4f6dd349747b310adaf7a296505a2"
+    },
+    {
+      "path": "data/input/news/dcc64ff76d9413777e36e1eb96113000.json",
+      "bytes": 13476,
+      "sha256": "7a08d540fda3d4f44298686a215d6cb20d0488a4832acd11195a4a0668938066"
+    },
+    {
+      "path": "data/input/news/dceb19c82f9011209b542675f601060a.json",
+      "bytes": 19342,
+      "sha256": "e439ae40280a5bfe678ef559fa4acca1c937c84d9fdf916fc218a95b402509e2"
+    },
+    {
+      "path": "data/input/news/dd2d8453ba603fda1dda022355d7ab36.json",
+      "bytes": 91835,
+      "sha256": "9b7af3dd7346dfeeae3346ad3d2b8cc0bc7bef2419b917c3573867fee1d37dba"
+    },
+    {
+      "path": "data/input/news/dda3171c4cc6a10cbe88eee50e48ca05.json",
+      "bytes": 24392,
+      "sha256": "8dab698f937fb6b2f297412a2e2e650b065815dbd708c9033579eb43935157f2"
+    },
+    {
+      "path": "data/input/news/dda756f5a8ca22a337c044537f7fc055.json",
+      "bytes": 23030,
+      "sha256": "7153cb71955f3ae4b73911f06a4fe77de5484d45d86dd0aa627283d80891086b"
+    },
+    {
+      "path": "data/input/news/ddecde89dc0b46d2a2da6db616960c6a.json",
+      "bytes": 13780,
+      "sha256": "ce91ec3fb88f71a016fd0884ef98b312b95c278f815f90c365f7d5a660b14a58"
+    },
+    {
+      "path": "data/input/news/de357c6df758c5246bbd759917763c54.json",
+      "bytes": 20984,
+      "sha256": "f5113e568c31484b0fb99a1416213ef650b1405aac2e4d99cdd18e3538d36bf4"
+    },
+    {
+      "path": "data/input/news/de4a71f1bbf5d557bd5d925bb0e2e20e.json",
+      "bytes": 74353,
+      "sha256": "fc22f5e07c475426ae34b9c71d01a163afc1fec0cd88f152afb7d86cf90ef444"
+    },
+    {
+      "path": "data/input/news/de9ce0a92d4cb46dafca704d9587c047.json",
+      "bytes": 16099,
+      "sha256": "c1eb7e9cba4a707a32ea616eff96ceb718ff006dd9280f58cd155bd4188ebd65"
+    },
+    {
+      "path": "data/input/news/deb7141870c13971f1a3dde87e6f3917.json",
+      "bytes": 23800,
+      "sha256": "922306eecbbad0a9ab39033d0f3c90b7c5ecc771413cd2d6415032891894c346"
+    },
+    {
+      "path": "data/input/news/ded331bafbda5815d3e63ef188c59efa.json",
+      "bytes": 13599,
+      "sha256": "4ad80e77735d07ece16e4c52a044217385b53fe0dd2ae2d9444d7242397c2479"
+    },
+    {
+      "path": "data/input/news/df237327240cbb3d4f7cb2b2f67f8da4.json",
+      "bytes": 17426,
+      "sha256": "5d09d59a7ccfe6704b33a2d52a27f0fff3ad26b1b1558a2b5943fae1b1b1f9ba"
+    },
+    {
+      "path": "data/input/news/df75215a0483dd8151e77cb47124d22a.json",
+      "bytes": 23066,
+      "sha256": "1606754a560b0b559a4266501b2e4bf5f0f1bf3750256b8bd526c548a747ad3c"
+    },
+    {
+      "path": "data/input/news/df78c362adf3e3cafd17a122ee7b3cd0.json",
+      "bytes": 22362,
+      "sha256": "2fba0ade6c86d7d2845af5342960671d5e0e619d17756e7cb0b91acab6053271"
+    },
+    {
+      "path": "data/input/news/dffa99d34fdaf3bc3a2a6465d0e3a476.json",
+      "bytes": 14994,
+      "sha256": "26012dcbd6a2d5b49015490d493312e4d18cb91073782785e1a578f91a8d5353"
+    },
+    {
+      "path": "data/input/news/e048f71bd0d5629b3cb347b36a9be4e2.json",
+      "bytes": 12814,
+      "sha256": "f282cae2b68521ecd81a4f553a2b7dd6bb774a9b83e1ac51cc25b6c9d1cf8bd3"
+    },
+    {
+      "path": "data/input/news/e0bf02eb4447deda276360190c32d4fd.json",
+      "bytes": 24030,
+      "sha256": "17fb0e9d82a6e6576ecc93268e20f559b75f77fa5716790d37bcfb455420ca27"
+    },
+    {
+      "path": "data/input/news/e0f73c65a56602cd858eb9a852bf4894.json",
+      "bytes": 18480,
+      "sha256": "7832528815248ea021d6ad7d0ff3d2df784bf60916f410494efe5026e3b924d6"
+    },
+    {
+      "path": "data/input/news/e1608c2940376f450113012c931d03db.json",
+      "bytes": 11514,
+      "sha256": "de6c0a21979040fcf590f4eaafa91ed646e491f8adcb12d8fabc94060f8ff60a"
+    },
+    {
+      "path": "data/input/news/e19d6f028ac7c1647a2bf3123fc1f3e6.json",
+      "bytes": 21715,
+      "sha256": "ba18f488f5022879ead496482d2274b6d0c84e7ba6dc925928e0091e0ae7e0be"
+    },
+    {
+      "path": "data/input/news/e1f9e6a755edc881c90e8eef6476063b.json",
+      "bytes": 15406,
+      "sha256": "36b573077dab5fc81d9f79c85ff9f4d6a915c2aa95c90fb5dd5ce3577ac62e83"
+    },
+    {
+      "path": "data/input/news/e20cb8d0ffb0cac955e3860d0a48caec.json",
+      "bytes": 14594,
+      "sha256": "b1e59e15b5642c22c6e84d580b46144b7f1c702b72f76a244a5020fb9116f4dc"
+    },
+    {
+      "path": "data/input/news/e22365caf58bed45e6cc17bbd1878843.json",
+      "bytes": 16542,
+      "sha256": "73831277d29bca403056d444fc756ab4949eaa2aa7aedb9f0afbf7f88f9463c6"
+    },
+    {
+      "path": "data/input/news/e256b567564bf3060e6dcdd79ffa8e25.json",
+      "bytes": 17679,
+      "sha256": "0147e82f8845241a58b0ae8ed12e5ab8e800261abfeb0c263d0d6bde12231cf6"
+    },
+    {
+      "path": "data/input/news/e2daaf8d902c58a996057b3e5b877913.json",
+      "bytes": 18130,
+      "sha256": "41924fc079857e15b90632221cad833b07188daf5fe0f4f9ddff2f971111da17"
+    },
+    {
+      "path": "data/input/news/e2fd2ec450ffb878f1e1471321ac5af6.json",
+      "bytes": 15608,
+      "sha256": "bfc536e810984556a337cb63c5ed12751ef4f73c019944948965159b5a52d8c6"
+    },
+    {
+      "path": "data/input/news/e3dad728f12d1bddd7aff2e9cce0a262.json",
+      "bytes": 9610,
+      "sha256": "cb136eac33faadc02480707bdc18543853bd09957d0e3ecfb2469faa6036745b"
+    },
+    {
+      "path": "data/input/news/e40d782b9aa599bbd4453212ba18e83a.json",
+      "bytes": 13742,
+      "sha256": "f5de9d8e4b14f1b69efcd22464098635c81f87269b760b19c85254c31c46ac87"
+    },
+    {
+      "path": "data/input/news/e5316900ec2e82a4e4b7a8c4cff54877.json",
+      "bytes": 14215,
+      "sha256": "2ffd7606744813dae381aee139ed1082a6991e40e019aa24ff7ac31528d0f5b5"
+    },
+    {
+      "path": "data/input/news/e5a9e7e21b503e441d64ddf326a6b03f.json",
+      "bytes": 13252,
+      "sha256": "e0c7b5a81715c591e4ba6dc313022f2836de5a1e5a56ce2486a2304d15307d3d"
+    },
+    {
+      "path": "data/input/news/e68800475f9ec58097f60fb2a40b7fbf.json",
+      "bytes": 11748,
+      "sha256": "61d39bd5737645717d9b0d96463735bf148acc396a349d4c24ece68ad5ad31bd"
+    },
+    {
+      "path": "data/input/news/e6da289cec0e0aae2eadd08cc835ffb2.json",
+      "bytes": 24126,
+      "sha256": "f36ab939f593d78b59a378f9e245f9599c8277a7ddd41eb392f28eaee28dfe5d"
+    },
+    {
+      "path": "data/input/news/e6f9fa20c14e85c00d523110098261fe.json",
+      "bytes": 7313,
+      "sha256": "12051dd8fbe36515c2416d62715338a5ce5956a10ed3a432e4c62f6ddb085f45"
+    },
+    {
+      "path": "data/input/news/e915a448338eab6a1b789f81d5f941c4.json",
+      "bytes": 8733,
+      "sha256": "d21e5f93e921b7e117c3b704be86e43b98fe3c3fa0d2197e8c8c436aaaf3a4ec"
+    },
+    {
+      "path": "data/input/news/e9647d2e865335e2422ae6a2f5bec89d.json",
+      "bytes": 11855,
+      "sha256": "bef465daa2c3361da9b317ab5cf0f320f6c1514c89c9163028c8054eda67d5a7"
+    },
+    {
+      "path": "data/input/news/e987d24abefa43df145f39b505b24f68.json",
+      "bytes": 20762,
+      "sha256": "12556218d5bb91afbd8493a63fe115e382c22199148c655d27e2aefa6a0668e8"
+    },
+    {
+      "path": "data/input/news/e9a9696a7aa614e491873c5d60d43451.json",
+      "bytes": 26907,
+      "sha256": "786e8c516da47f6c1225607c8d360282e5e92d23e74204a433138cd73941bfd0"
+    },
+    {
+      "path": "data/input/news/ea492fcb66171a49725a65de09fcba3f.json",
+      "bytes": 12958,
+      "sha256": "5052c95872f83d7f37272dfeec9f78577bdcb8e523f67ec947474f5aaba25806"
+    },
+    {
+      "path": "data/input/news/ead9de7ab1e828d6bd6a687dcef2e24d.json",
+      "bytes": 60997,
+      "sha256": "ca6dc0866f6e3759b02c9ec8854477cb031f99989c9630eba3363dca6ffa3fca"
+    },
+    {
+      "path": "data/input/news/eb8c0aeb11c76870203633f5f567ae63.json",
+      "bytes": 13759,
+      "sha256": "e10e32a0980ec615b319edf5aafb73a18cf9fb8ad569f18792bd2846ede27c6b"
+    },
+    {
+      "path": "data/input/news/ebb42d8abdba8dfd7904b6423e546cc7.json",
+      "bytes": 13816,
+      "sha256": "b62d354cc5885b1bc53f9c4ec7a730d972f6e88f8debaccc04f38e88e66c57ca"
+    },
+    {
+      "path": "data/input/news/ec2652d2b7f6f9d93f60820441e105a9.json",
+      "bytes": 15967,
+      "sha256": "70c2dcaa416079f6b1e6013491718294e61060bad7ec40a90ebdc38accd32218"
+    },
+    {
+      "path": "data/input/news/ec334909f6b2e82927d2e88ae50fb176.json",
+      "bytes": 17429,
+      "sha256": "574913012dd9d15ba6102d20c054dce0dce1a70eaa6d4fb047d2dde8211f6218"
+    },
+    {
+      "path": "data/input/news/ec7f41b5c5eaf6176ea8abfed9477612.json",
+      "bytes": 21659,
+      "sha256": "ad8d05f003687319a52e6e52358616c20ae4622e6558f3a9156d2118c3a7f53e"
+    },
+    {
+      "path": "data/input/news/ed1780cdfd80dc44bfd36f1bab809ead.json",
+      "bytes": 19665,
+      "sha256": "7143222a937e6cb4fd7bc53a29038c8580fc98b1f4db76ea7ff41adc31023cba"
+    },
+    {
+      "path": "data/input/news/ee563e5b74dc9baa5e764ef422f7881f.json",
+      "bytes": 20418,
+      "sha256": "370d572aa105c9a2cf01ed302ab7aa97ed934adbd6036715bc331ba7823b4dfd"
+    },
+    {
+      "path": "data/input/news/eec9a06278bd114c133998c976758226.json",
+      "bytes": 22740,
+      "sha256": "84b02e60df77d97513879e45146dbb2bbc1ff134176c90a6311f23eebfe66c5c"
+    },
+    {
+      "path": "data/input/news/eecc422c7b6ce7407494997508dcaeae.json",
+      "bytes": 9799,
+      "sha256": "d730e998e763d5aaa9b70967a9823a37c453eed0ba51580bfbfc78a9b8f46407"
+    },
+    {
+      "path": "data/input/news/f05086b192fb810aaf50a1eeb05f8a6a.json",
+      "bytes": 62073,
+      "sha256": "d5c5f07699cc80eab60906b2f7cb101d47f1a9220ac31f9d3155c4322d7d3086"
+    },
+    {
+      "path": "data/input/news/f0aff42d4df8aefe05f867d472a302e4.json",
+      "bytes": 37432,
+      "sha256": "4f3246d98a84f7bb63d899814281d6ef70f108017ecd6ca640e34d03500c153e"
+    },
+    {
+      "path": "data/input/news/f0c8d7aef810c3c911b1c68a4f0dfca3.json",
+      "bytes": 18007,
+      "sha256": "0ca227d7360cab7874276f1e5d972ce51883516c2783d8335472118e02249f3a"
+    },
+    {
+      "path": "data/input/news/f1d4cea263cdf75c47c9b3224fd2ac22.json",
+      "bytes": 31786,
+      "sha256": "090eef5706ab6ecfeb7873cba77fcf6dc21b58528e4d4b0274de08f2f0c1b7db"
+    },
+    {
+      "path": "data/input/news/f248504238bc88c158282106b0d944d2.json",
+      "bytes": 17974,
+      "sha256": "95a01a33f42ac85eb465b39becd2d2a60485e6cdda7d516c9bf778dff83c7363"
+    },
+    {
+      "path": "data/input/news/f34c4102cd0640275c249ee791f76f3d.json",
+      "bytes": 15445,
+      "sha256": "d6df07a237dcc7458de057bf9438ff18812589b83abe2b9e2bb75abee0997735"
+    },
+    {
+      "path": "data/input/news/f37db70040f094f3174143b6e2ba1687.json",
+      "bytes": 25726,
+      "sha256": "1130e741bc9a770d454f950485a52abbf385e7528b7c09ad2184eaa43ae8a2ed"
+    },
+    {
+      "path": "data/input/news/f40e76f81031b5de3f09a18cf00db674.json",
+      "bytes": 25015,
+      "sha256": "7bd02e20edb173d6f7c0061959a8c2acd131ab563be5562b439c5608ef7c833c"
+    },
+    {
+      "path": "data/input/news/f5ce266666c137dff5ed0fe20e6e8a15.json",
+      "bytes": 14002,
+      "sha256": "f7be404af8dd824c81358cc602d673092901fa1f5b91322574c4a44fb9692ca1"
+    },
+    {
+      "path": "data/input/news/f613300c3347377b01b9600a1c159188.json",
+      "bytes": 16965,
+      "sha256": "f5bfd50896277e6f3722a169c6425d18a4291830fa67a53400172b2be55c5a16"
+    },
+    {
+      "path": "data/input/news/f69012b48c64fec1adf4bf248393bede.json",
+      "bytes": 34850,
+      "sha256": "c1572faa172844d011de7b82f5a95cd784677da46477cdaf28df3650f81a9703"
+    },
+    {
+      "path": "data/input/news/f6a859b855909145c749fa65a17740ad.json",
+      "bytes": 9367,
+      "sha256": "1f7eb6c518950c49f97a7d0eebcb73c80ad95682ab3ff3c8a29de506ed6a16cf"
+    },
+    {
+      "path": "data/input/news/f6bfa5456842ec9506e95d4ca9aafeb4.json",
+      "bytes": 18823,
+      "sha256": "d465cbd90015c6887f184d6f4ae60e440680899186db3e34cc2c17a497470ed8"
+    },
+    {
+      "path": "data/input/news/f7010ef03e8bb993a7ac63c7723ba0c2.json",
+      "bytes": 16085,
+      "sha256": "b9a3993a19dfda3c4e76cc61748487c68ce432f47d5cd160c3dc6c749e0c3b0b"
+    },
+    {
+      "path": "data/input/news/f726f331d89b6e31ca492ddcd43cb182.json",
+      "bytes": 16398,
+      "sha256": "db44e4f3a93721719787840e90cee0d345761aeacb5ebbb4a4f3f80d8d3ef8e5"
+    },
+    {
+      "path": "data/input/news/f757c13007aeb58569753dd470749816.json",
+      "bytes": 14904,
+      "sha256": "a12014348601b964a2bc86c90fad9b76e54dc7ffa87f95f03fa235273f9018e5"
+    },
+    {
+      "path": "data/input/news/f89fb936c9537cb131b4f644a725809d.json",
+      "bytes": 24476,
+      "sha256": "62783063581793721be01ebf89592d83a24a895c24330967c59bdc0d1f62b7ec"
+    },
+    {
+      "path": "data/input/news/f8daaee97e319d07ab79173cf684e0d7.json",
+      "bytes": 18384,
+      "sha256": "18aa70f886b26afe5b7acc87c8ed35ecbebca9f8d3c55167175b520b2d2ee4de"
+    },
+    {
+      "path": "data/input/news/fa2d6e9b2b0d5b18a5f11b45e49900bf.json",
+      "bytes": 14418,
+      "sha256": "bb89648a7ee1b3ad17524a6b22503a538c767c4a1d9d77b2ea2bc263cbd7fa23"
+    },
+    {
+      "path": "data/input/news/fa3e6533bd9371233f48819dbbe4c0ee.json",
+      "bytes": 15741,
+      "sha256": "d04cca08add6190aabbbc27f2f96daf3bdef237d19d66b2291e9d2afc68b3dbf"
+    },
+    {
+      "path": "data/input/news/fada36a4c7938ce17010b0be9ffbfd50.json",
+      "bytes": 16916,
+      "sha256": "b6bd866f79cc8c362cfd2515081116439c2b9a73d793f6d749f80d5577035681"
+    },
+    {
+      "path": "data/input/news/fb151db64b9872d86c26e354487218d2.json",
+      "bytes": 19832,
+      "sha256": "0233561138eaa383f079193c79f38cec0d78830c68fa26ad9d356c3f8092bd0b"
+    },
+    {
+      "path": "data/input/news/fb572900dfd205b7d1e8990d22d70f9c.json",
+      "bytes": 9032,
+      "sha256": "6d63abae22ea2fcde879f3f06125af1d512f3bff8303e69bb666212d384151e6"
+    },
+    {
+      "path": "data/input/news/fbb88c1369c51613a7fa53c44541e7ab.json",
+      "bytes": 10076,
+      "sha256": "2f45b69f1d848c191127d0136cfd8d7d7274164c0b6c513e2e3b0ef45cd42b2b"
+    },
+    {
+      "path": "data/input/news/fbfb9ca0af725475857a7a2d0e99d593.json",
+      "bytes": 22428,
+      "sha256": "7d506d6c35e5bdc8f7e8d7f4fc24e1f78dc11f68b05f1d03ec59df2538fe7b6e"
+    },
+    {
+      "path": "data/input/news/fc3460461b0a7e18db084e2331e6fd21.json",
+      "bytes": 25258,
+      "sha256": "8892893c743e3249e040a8cc3234886dca10537ca7dc38f9bcc8f77e20891d2e"
+    },
+    {
+      "path": "data/input/news/fd36d1b38cb70836eee4cd2354fee643.json",
+      "bytes": 15048,
+      "sha256": "62a687e1d8bc232bcf3f0c170105a7145b1d94c4ea2d0fef506609e0955552c7"
+    },
+    {
+      "path": "data/input/news/fda78f77799e6782206a1520398ea946.json",
+      "bytes": 14598,
+      "sha256": "e8a9a3d9b0d484b51f7e7b3a1a68984c725fc5145690971e2e9860c918d0d306"
+    },
+    {
+      "path": "data/input/news/fdbf09263b39617b6812e8e115b346c2.json",
+      "bytes": 17918,
+      "sha256": "08fd9e3ea7014bdcaa86e172bb7719ebaca7e8006461ba3c62e06465d7136b27"
+    },
+    {
+      "path": "data/input/news/fdc1c106cf6a94190e023a0881943744.json",
+      "bytes": 16837,
+      "sha256": "9e1fb1bfbcb4ca3ed8d52d52bc31e8d5762f4e80748711f7c0ff9614eacbdb4c"
+    },
+    {
+      "path": "data/input/news/feca6b82255eacdf5a3183a78a37035d.json",
+      "bytes": 34783,
+      "sha256": "1c05b8c186bb124f3e32f7ff0c7f22d3db005621002fd972a1c8afec728b00e8"
+    },
+    {
+      "path": "data/input/news/feda4348682bf941ced6dd375bd6cce4.json",
+      "bytes": 12734,
+      "sha256": "3586a4b5aff96781997fce0c42164f863e43d9886001c75a4da53187cee2588b"
+    },
+    {
+      "path": "data/input/news/ff22b5f6ca330447bea37a946704db5a.json",
+      "bytes": 12347,
+      "sha256": "0dec35c60455272dd356f167b04bf4b4f92cad9925bb9718e4bef7aaadbf96f6"
+    },
+    {
+      "path": "data/sources/analytics/ACRA_EKONIVA_20260128.pdf",
+      "bytes": 493253,
+      "sha256": "bf489593cc08daa9f4ff77b4a516bbe458e9277cdbb3141fe002bc8e5c39d394"
+    },
+    {
+      "path": "data/sources/analytics/AFC_FACTORING_2026H1.pdf",
+      "bytes": 1914512,
+      "sha256": "94d5059240abea5da733ce8551e8d37d1d8bcb95b8dfc68ff393b3c377da9fc0"
+    },
+    {
+      "path": "data/sources/analytics/CBR_BANKING_202608.pdf",
+      "bytes": 1114686,
+      "sha256": "783d793c76337f81afdca677371873444018a2a53c9730aaa10fe51c001c463a"
+    },
+    {
+      "path": "data/sources/analytics/CBR_CPD_202609.pdf",
+      "bytes": 1259110,
+      "sha256": "09365d4891f4933b72c604fd6c03c4de69b14d4929fa8c4f48742c90751b8b3f"
+    },
+    {
+      "path": "data/sources/analytics/CBR_DKU_202609.pdf",
+      "bytes": 773906,
+      "sha256": "9531eedf3ac506ced43d4311c018652e349d30714ca4642702b6cb6b9ee9f372"
+    },
+    {
+      "path": "data/sources/analytics/CBR_EXPECTATIONS_202609.pdf",
+      "bytes": 392298,
+      "sha256": "bf86b5ff4bb824582363034b354d9cab2283078aa64ee12ae4735c0c1a0ba38b"
+    },
+    {
+      "path": "data/sources/analytics/CBR_FINANCIAL_FLOWS_202609.pdf",
+      "bytes": 13474534,
+      "sha256": "5ce598cdb839e31cbc97cae25899ac0ab1494eef31df33116766ca4f62c122f4"
+    },
+    {
+      "path": "data/sources/analytics/CBR_MARKET_RISKS_202609.pdf",
+      "bytes": 1246569,
+      "sha256": "9271ab0c48862a3a0779ffc8d272184b5facbb9d126977af0f4ad96c8f860b2d"
+    },
+    {
+      "path": "data/sources/analytics/CBR_MONITOR_202609.pdf",
+      "bytes": 973771,
+      "sha256": "2c0e0421648e1559aebd6753f9e6796741cfa0c8b09831795f7063adfb76acdc"
+    },
+    {
+      "path": "data/sources/analytics/CBR_PROJECT_2026Q2.pdf",
+      "bytes": 540811,
+      "sha256": "14606d75a12ce78f3549861cce6807a1e9a6708f7deec06acc0bc6c82d242a55"
+    },
+    {
+      "path": "data/sources/analytics/CBR_RESTRUCTURING_202609.pdf",
+      "bytes": 99146,
+      "sha256": "be2cf000e70b27ddacf883c45e01b6d8ec47ecfd1ca2ceec66bd5dd8a56b7931"
+    },
+    {
+      "path": "data/sources/analytics/NRA_ADVERTISING_2026.pdf",
+      "bytes": 13633177,
+      "sha256": "00998ddd075eeb1cc67462b2b24e629420fce76baf7171a41cb5941aa5fef3aa"
+    },
+    {
+      "path": "data/sources/analytics/RA_LEASING_2026H1.pdf",
+      "bytes": 950136,
+      "sha256": "3cc46ed87b5b093261f3b6f146ad42c74ae00278b765c19a7b7d9b32f9d4592a"
+    },
+    {
+      "path": "data/sources/analytics/TOCHKA_FREIGHT_2026.pdf",
+      "bytes": 9051211,
+      "sha256": "766880b6bb4031d68acad93a452c456633e2f700dc7609dacd54bdd2688a2dd6"
+    },
+    {
+      "path": "data/sources/analytics/alfa_7m26_2026_09_07.pdf",
+      "bytes": 6458583,
+      "sha256": "3c64c1e43f3b46a795f9581967f2dbc8efb0994cb77ab82e95da180830e9ff8c"
+    },
+    {
+      "path": "data/sources/analytics/alfa_consumption_2026_08_05.pdf",
+      "bytes": 6658115,
+      "sha256": "807ee9925cf7d15ecffc72ad7142f9a83d342cd19690e12dd3b90aa2ba8ea1c6"
+    },
+    {
+      "path": "data/sources/analytics/alfa_gold_2026_08.pdf",
+      "bytes": 8613150,
+      "sha256": "4159576a6223985dd318b6f5a04ad4aeb888f47a6c266d0e9ee9eb35bf01e245"
+    },
+    {
+      "path": "data/sources/analytics/alfa_inflation_2026_09_02.pdf",
+      "bytes": 3385668,
+      "sha256": "09d5537f6a52f5f8f2d9518ed9171e794382972ce38cbdc4bd3099b2db129d0c"
+    },
+    {
+      "path": "data/sources/analytics/alfa_macro1h_2026_07_31.pdf",
+      "bytes": 6100459,
+      "sha256": "84899553fadf3e49abac7074c7b7d2afc2fa5c70b7fde0bf4c3eabe3d7402266"
+    },
+    {
+      "path": "data/sources/analytics/alfa_policy_2026_09_11.pdf",
+      "bytes": 6343186,
+      "sha256": "92a96805f2b720f76bd0c52d2491044812b38401ab62d0f4a9157b4ca81c49bb"
+    },
+    {
+      "path": "data/sources/analytics/alfa_steels_2021_04_15.pdf",
+      "bytes": 6968001,
+      "sha256": "36eaaa58ae68d858db3600dbf3cc93d0bdefb8ca03f1f5cc154c532cc32e0c86"
+    },
+    {
+      "path": "data/sources/analytics/alfa_strategy_2026_07_22.pdf",
+      "bytes": 34890230,
+      "sha256": "6c3a4882ee784b608880693d8ba2b62d0ba2236e34b404179adaab909c6dd046"
+    },
+    {
+      "path": "docs/ANALYTICS_PREPARATION.md",
+      "bytes": 7168,
+      "sha256": "0926b4bc1b72731fb8628b3a5d1022402a0da99828e02b42e8a63baee24bc3e9"
+    },
+    {
+      "path": "docs/CLI_INTEGRATION.md",
+      "bytes": 12040,
+      "sha256": "95c5c15819d012f839d55ab45436d86e5017786bfe038e52482e5bf4a1b2b04b"
+    },
+    {
+      "path": "docs/DATABASE.md",
+      "bytes": 5123,
+      "sha256": "157b91a52e6a159a459529e2ff2f94399e18c2f1b3acf6aa7191632130ecbbe5"
+    },
+    {
+      "path": "docs/DATASET.md",
+      "bytes": 3709,
+      "sha256": "fc03901268be1e3c21dda8416034b0c4eebc053c54fcd29009187bf5ce7706bb"
+    },
+    {
+      "path": "docs/GITHUB_UPLOAD.md",
+      "bytes": 2454,
+      "sha256": "8fe9081e0541a3b6c17efe4333bd2a2a0dbf1b162f38f38d5b1283de9d6683f1"
+    },
+    {
+      "path": "docs/INPUT_FORMATS.md",
+      "bytes": 8519,
+      "sha256": "713c08153a1a453e228d8452855e0386782571dd3eb625d25408b30c998449ae"
+    },
+    {
+      "path": "docs/LLM_REPORT_INPUT.md",
+      "bytes": 12299,
+      "sha256": "130d0f282fa1da35d3c8e896e3ead7c417c0f7a685a3ef8609e5f3f67be576e1"
+    },
+    {
+      "path": "docs/NEWS_PREPARATION.md",
+      "bytes": 4736,
+      "sha256": "68e80cbf94388656df4ea009b23e1f5612e7be9fe8786ceea55d5c3c2dc271f7"
+    },
+    {
+      "path": "docs/REFERENCES.md",
+      "bytes": 1290,
+      "sha256": "5a0574713cf4ef36cba4f5afb13cfcd5b965bc4f0f11ac2f0d65aa07d106f4c7"
+    },
+    {
+      "path": "docs/VALIDATION.md",
+      "bytes": 4774,
+      "sha256": "d0fcdf3ac11234c73a60600d774c01688b89f422e252f709d7ab1c1c98ba40a9"
+    },
+    {
+      "path": "docs/dataset-inventory.json",
+      "bytes": 4997,
+      "sha256": "60dfd2e8b66731b3eaab0a0f1a3ab931f5ab8bc2d01e8f57478ce33adc7352a5"
+    },
+    {
+      "path": "docs/dependency-availability.json",
+      "bytes": 3218,
+      "sha256": "6d2d8a609f99aa345d2c88f1fe37a70797b664f8b44b988263bb1e3362dfb5f0"
+    },
+    {
+      "path": "docs/real-model-check.json",
+      "bytes": 1766,
+      "sha256": "5a8dd656ae0126b7c6b9566782aef6a93898a054fb9d39d0dc429ef9bcba26b2"
+    },
+    {
+      "path": "docs/runtime-check.json",
+      "bytes": 2575,
+      "sha256": "a9bd3d945c580a4f79c87b8b13b20c1d2db6c5a755141aa65d36e08b77e99af8"
+    },
+    {
+      "path": "examples/analytics.json",
+      "bytes": 2641,
+      "sha256": "dd6674e5c24a039013c510d220d5b6c49ee4a0e11923cefa558deb03a41fee6f"
+    },
+    {
+      "path": "examples/company.json",
+      "bytes": 414,
+      "sha256": "38955f4815d2e0c31a980300ccdd6d64d007c117463e23823711881c1bdcbd05"
+    },
+    {
+      "path": "examples/llm/analytics-draft.example.json",
+      "bytes": 3968,
+      "sha256": "b36232fd5486a4a9da9b16c1ecdf314b2c934c9b77ddf430a914bf878540d2d2"
+    },
+    {
+      "path": "examples/llm/analytics-input.example.json",
+      "bytes": 898,
+      "sha256": "4ce327f1dbe42b5ad5f56205b01c41ce12ae25bf602405e1c02b6463fd8cfd86"
+    },
+    {
+      "path": "examples/llm/news-draft.example.json",
+      "bytes": 6370,
+      "sha256": "37a6c47910d203454120cb95daa9117b6c6d22d32572d26d0dc56ed93810a3f6"
+    },
+    {
+      "path": "examples/llm/news-input.example.json",
+      "bytes": 907,
+      "sha256": "f84dc4509d8beda072be5cbe7b9271ef38363500accac517ae64f76b93ddeef8"
+    },
+    {
+      "path": "examples/llm/report_input.example.json",
+      "bytes": 15657,
+      "sha256": "9143913c1126b3be7bb97c12c1e263ad45eac93d25659b1f643f3565dc193755"
+    },
+    {
+      "path": "examples/llm/search-report.example.json",
+      "bytes": 19040,
+      "sha256": "bf7748a728ddd68282676482c6de4dc0a05f71f636281f088855529ac1391375"
+    },
+    {
+      "path": "examples/news.json",
+      "bytes": 1050,
+      "sha256": "6e3179380f639a9367312bec972516bb78dfa726bf1c09e3a8e04e1e0a1a63cd"
+    },
+    {
+      "path": "models/README.md",
+      "bytes": 870,
+      "sha256": "ea9dfa8384afc362cb11a81fb1ae07e4eb1673d868a6b99b6fa4b35b18e08331"
+    },
+    {
+      "path": "news_analytics/__init__.py",
+      "bytes": 85,
+      "sha256": "9d8f456ae4b5477dcacab3fb6d8f98c2f5f1197bf9d9fefa55846fb35d691ded"
+    },
+    {
+      "path": "news_analytics/analytics_sources.py",
+      "bytes": 1067,
+      "sha256": "ceab8541986bdf36bd626e02a3e23fe855351bb468bc3cc07a64cd7281099a5d"
+    },
+    {
+      "path": "news_analytics/cli.py",
+      "bytes": 6409,
+      "sha256": "fe0989d9c8b020d839930c3c34ab8d802b361b467d77efb7d2620ce351e3df6a"
+    },
+    {
+      "path": "news_analytics/common.py",
+      "bytes": 1606,
+      "sha256": "6432f425e9f33bdc25f726b2dee273c25aab56037714b07fbed049a0b1ee1bf9"
+    },
+    {
+      "path": "news_analytics/company_context.py",
+      "bytes": 2493,
+      "sha256": "b8ce485838bc087c2105cbf68b82a4b2aac046c08aba2c25f800c1293fce6ffc"
+    },
+    {
+      "path": "news_analytics/database.py",
+      "bytes": 1682,
+      "sha256": "77fb27c18abcfb01c9034d4f91166c543e827487c1a880bc57019cb5c61ac92f"
+    },
+    {
+      "path": "news_analytics/embedding.py",
+      "bytes": 9387,
+      "sha256": "2c5f6ccd9f0081a042059773413656b959c60c1d63e147d2a4ba13d1997fdaa9"
+    },
+    {
+      "path": "news_analytics/importing.py",
+      "bytes": 9362,
+      "sha256": "517fccb3e4c2263f038581529766d37d0c76d48298eb0c4345d7d350cbd7318e"
+    },
+    {
+      "path": "news_analytics/llm_io.py",
+      "bytes": 19020,
+      "sha256": "070d1d9d3bebbd1c1f5483acbf292013fd234cd5bb01d0c58c09bb215c29cd07"
+    },
+    {
+      "path": "news_analytics/packet_selection.py",
+      "bytes": 3012,
+      "sha256": "e74be5b8a3194e68037df311d52d16fc396a589cd1ee7d4ca31ed98aa36baa24"
+    },
+    {
+      "path": "news_analytics/reporting.py",
+      "bytes": 11910,
+      "sha256": "ff1daec0b0d2977341122f20c4467cd3134fbcac39e90c3fab7d1acc040c302d"
+    },
+    {
+      "path": "news_analytics/retrieval.py",
+      "bytes": 18184,
+      "sha256": "6ed861647a1f7c6908ee18cdddd420889559175301a3ba32f81c9746d9048471"
+    },
+    {
+      "path": "news_analytics/schema.sql",
+      "bytes": 8071,
+      "sha256": "7f8e01feabf1292128f2bcb6825f10f16d21fc292fc3694c22eddf5fdf5358df"
+    },
+    {
+      "path": "news_analytics/validation.py",
+      "bytes": 14718,
+      "sha256": "2fab2a7c55c4b8b413a87dba34d33946dbf56fb5993de0a2d33e235b055c4d73"
+    },
+    {
+      "path": "news_analytics/web.py",
+      "bytes": 19359,
+      "sha256": "b8469e96e81c121d59a775192e8253477b00f21933105ecc2217d0b0bcaf7915"
+    },
+    {
+      "path": "news_analytics/web_static/app.js",
+      "bytes": 17725,
+      "sha256": "1094edc8793cf984d8f27fa9e7ca37d164fe960af7fa0e7c59875013c8005f56"
+    },
+    {
+      "path": "news_analytics/web_static/index.html",
+      "bytes": 6441,
+      "sha256": "a64ccb558aaa9e19b18320f78e4cee07870d4e2a4924a6700cb78522cd936e31"
+    },
+    {
+      "path": "news_analytics/web_static/style.css",
+      "bytes": 10408,
+      "sha256": "3cd54f0becaa8423d79ff5f88cf790e37757101dd0a577d4d6b9a5563a940f90"
+    },
+    {
+      "path": "news_analytics/workflow.py",
+      "bytes": 15844,
+      "sha256": "b097b1f43335638d09faa20a9111f43d3f65d0f6482b2fdf426276302524752f"
+    },
+    {
+      "path": "prompts/README.md",
+      "bytes": 8490,
+      "sha256": "cba228fa45fe4c6d0e3a4c03485564791f5c28afe1d172fe5733b8c0ea60229a"
+    },
+    {
+      "path": "prompts/analytics_json.md",
+      "bytes": 21808,
+      "sha256": "f32c911e78e7069f8dc8d115a986d3861b43916984fd06b06383995e110fc71a"
+    },
+    {
+      "path": "prompts/news_json.md",
+      "bytes": 18112,
+      "sha256": "28606e70ce79a5efb23d5c782ca5eb52a446516899dadaeb8606cdb1b6fb8fa1"
+    },
+    {
+      "path": "prompts/report_generation.md",
+      "bytes": 12499,
+      "sha256": "f5853edbc53916caf6cef4a841004c9ddc1d33205c2e306b6e41b4db106f0e81"
+    },
+    {
+      "path": "pyproject.toml",
+      "bytes": 626,
+      "sha256": "f72e506acaaed4b0c12365a5163af20db3a2055465880076c52f07c787260bac"
+    },
+    {
+      "path": "reports/.gitkeep",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "requirements-test.txt",
+      "bytes": 95,
+      "sha256": "66c3b35ed72d48195142e484afcb4fa723f2e85563e4c1ee971161d2d7422850"
+    },
+    {
+      "path": "requirements.lock",
+      "bytes": 568,
+      "sha256": "2123b3fb4c78657f62d6f09529a777771d700b88de338b98d539051adfb8fd30"
+    },
+    {
+      "path": "requirements.txt",
+      "bytes": 76,
+      "sha256": "6ce4d5f16876d986f4cec26e28b21691be08120b2030a5da2f86bd5b19dbc099"
+    },
+    {
+      "path": "run.py",
+      "bytes": 86,
+      "sha256": "835fc23a6266d73439e315147c71572f1b827083f66fa60166f281d0c448d131"
+    },
+    {
+      "path": "start_interface.cmd",
+      "bytes": 267,
+      "sha256": "5a86b96a7dc862432e6de199ea5ea5e877e7c2635e1a66591638f4c724d03fb3"
+    },
+    {
+      "path": "start_ui.py",
+      "bytes": 75,
+      "sha256": "749c6812a6014eadda2c20eea3327367a50d131a073cc1cbb04752622a1523b7"
+    },
+    {
+      "path": "tests/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tests/fixtures/regression/analytics-review.json",
+      "bytes": 17626,
+      "sha256": "b0d263617ef81630a1e0f6fdbe34dc9d38b0256b06c41823e63cdda87a7b4125"
+    },
+    {
+      "path": "tests/fixtures/regression/analytics/alfa_7m26_2026_09_07.json",
+      "bytes": 183753,
+      "sha256": "3acdb4ec5c593e5b33e9bb5eb8327678d2aae7377169979b2e890ac8ab84ef2d"
+    },
+    {
+      "path": "tests/fixtures/regression/analytics/alfa_consumption_2026_08_05.json",
+      "bytes": 184501,
+      "sha256": "8b53fcdbb7faed0a1cb8b63a00e8106f34a5acb40a780fea9e282811f719daf7"
+    },
+    {
+      "path": "tests/fixtures/regression/analytics/alfa_gold_2026_08.json",
+      "bytes": 212113,
+      "sha256": "f31fc6c68a51035e6638e2335baa19fc0729357670d385bb40b9d408ea117a43"
+    },
+    {
+      "path": "tests/fixtures/regression/analytics/alfa_inflation_2026_09_02.json",
+      "bytes": 105368,
+      "sha256": "159eb6b3f031526a44a3db740c3c9b12b9a0ec04af4e8617434e47c7e2e6e054"
+    },
+    {
+      "path": "tests/fixtures/regression/analytics/alfa_macro1h_2026_07_31.json",
+      "bytes": 288788,
+      "sha256": "f7fc1874092b8e2ecfd109b03b8788f140ab43a0304ab4a79c27503e9993ea7e"
+    },
+    {
+      "path": "tests/fixtures/regression/analytics/alfa_policy_2026_09_11.json",
+      "bytes": 147086,
+      "sha256": "2aede60ed21c19862bd555a211e4b9dbdabeb3a3c19dbc6147f0b48eeaea3cd2"
+    },
+    {
+      "path": "tests/fixtures/regression/analytics/alfa_steels_2021_04_15.json",
+      "bytes": 190619,
+      "sha256": "d2243018974daffba8f9fc4206e92f653f681cf72e50baff02d82bf6a1571962"
+    },
+    {
+      "path": "tests/fixtures/regression/analytics/alfa_strategy_2026_07_22.json",
+      "bytes": 1017660,
+      "sha256": "3ebdf204e26d40b4bbf8de0801140913a630b8b75d103d7b4dbed8a86db6700c"
+    },
+    {
+      "path": "tests/fixtures/regression/baseline-fusion.json",
+      "bytes": 32981,
+      "sha256": "f08d8fa8c74fd354dcf0be8dda76065538fd4d420749a80916df59eb71221e0d"
+    },
+    {
+      "path": "tests/fixtures/regression/baseline-mechanisms.json",
+      "bytes": 48757,
+      "sha256": "43e5b9a64eb53ab5c3e71193ef8f3b9156af5b6e889b12d57f543758235c62a5"
+    },
+    {
+      "path": "tests/fixtures/regression/baseline-sources.json",
+      "bytes": 55506,
+      "sha256": "4f093ae1f7f8579b2423071ce6d87735416d096bfe6770f89891c239da70a7c5"
+    },
+    {
+      "path": "tests/fixtures/regression/cached-vectors.json",
+      "bytes": 759010,
+      "sha256": "cd25aab5c84abedf33cecbe4bbcf7d78f9eb2a8fcff725a60c43b466cfed1d31"
+    },
+    {
+      "path": "tests/fixtures/regression/cached-vectors.npz",
+      "bytes": 1228463,
+      "sha256": "0dd760a62f89336dff2c3d836823b47bb9b77a00f5fe935f9572a872501c8ad2"
+    },
+    {
+      "path": "tests/fixtures/regression/companies/U_102920.json",
+      "bytes": 194324,
+      "sha256": "8c03b938eeb9d2204264121ee974cd0eb5e17dc6fdf51fca26de3c3113994e2f"
+    },
+    {
+      "path": "tests/fixtures/regression/companies/U_10529.json",
+      "bytes": 108351,
+      "sha256": "3e354301cb96bb38c55629f63e78e255659a191705a3b19f16e1f1211693becb"
+    },
+    {
+      "path": "tests/fixtures/regression/companies/U_105459.json",
+      "bytes": 99650,
+      "sha256": "b51b7364d850c3b0e651fca30809f492535d5e298eb9c84d784a53c643127a17"
+    },
+    {
+      "path": "tests/fixtures/regression/corpus.json",
+      "bytes": 2028,
+      "sha256": "2478302cd150c9b16fc94296d458a898b660952742df0103696b9b591898df9f"
+    },
+    {
+      "path": "tests/fixtures/regression/expectations.json",
+      "bytes": 14173,
+      "sha256": "1495e2bcfef2ec8a82184234407ca2aed9b5c662c75de8f2e9ac662a6ad43a3a"
+    },
+    {
+      "path": "tests/fixtures/regression/news/N01_fish.json",
+      "bytes": 6294,
+      "sha256": "2aeb9ba12de2a3e15073c635c633d8ea05f63d752ee382dcbb66054e32498694"
+    },
+    {
+      "path": "tests/fixtures/regression/news/N02_cell_therapy.json",
+      "bytes": 6496,
+      "sha256": "e81e25823f31b6b0671f3d28103e98bdcf39735fd97869b80b7725673979a9cc"
+    },
+    {
+      "path": "tests/fixtures/regression/news/N03_chip_strike.json",
+      "bytes": 6243,
+      "sha256": "238a03b8e0ba3915e29d642dd1dd707811db655e573ad3bbfac4788fb63de1ff"
+    },
+    {
+      "path": "tests/fixtures/regression/news/N04_retail_credit.json",
+      "bytes": 5548,
+      "sha256": "7fcd9acb55da0a4d65454340643a662fa6f6a883e8aba29f123d625e69562b55"
+    },
+    {
+      "path": "tests/fixtures/regression/news/N05_family_business.json",
+      "bytes": 6406,
+      "sha256": "69a90b52fb71b989a6092658ec41fec9f758609d45646dae2d9aa3e97f0b159e"
+    },
+    {
+      "path": "tests/fixtures/regression/news/N06_cfa.json",
+      "bytes": 4824,
+      "sha256": "09e89559ff069b68875c3c87240a1b7723293de4990e93e7b4ac6e75bd22b026"
+    },
+    {
+      "path": "tests/fixtures/regression/news/N07_oil.json",
+      "bytes": 6312,
+      "sha256": "05f6ebb84335d47382b0f0f6b11db3e7f9d046468c501f7eb2339c2df17a0dd7"
+    },
+    {
+      "path": "tests/fixtures/regression/news/N08_takeaway.json",
+      "bytes": 6318,
+      "sha256": "9a79f16d5c55f8e56229b46c8886b7e5784915cbee58c847de57512bc659f9a5"
+    },
+    {
+      "path": "tests/fixtures/regression/news/N09_football.json",
+      "bytes": 3868,
+      "sha256": "b9cbcac3b6c8a6ec03786f7afe2fd450992466050e5676429dc67f83f21dbbf2"
+    },
+    {
+      "path": "tests/fixtures/regression/news/N10_theatre.json",
+      "bytes": 4161,
+      "sha256": "44d52cd009442d45d43eecee77720235536fb3566ba97dcf38fd0b3a1a0f593f"
+    },
+    {
+      "path": "tests/fixtures/regression/news/N11_seller_loans.json",
+      "bytes": 6390,
+      "sha256": "98caf0d10745fc4394f53c578344edb94cb8b9817b1a961d680fb879229324b6"
+    },
+    {
+      "path": "tests/fixtures/regression/news/N12_vaccine.json",
+      "bytes": 6354,
+      "sha256": "4915bf68056fefa40c57f9fd0867bc7862b5a7af0e5dc679963927e04523bd5c"
+    },
+    {
+      "path": "tests/fixtures/regression/selection_U_102920.json",
+      "bytes": 137969,
+      "sha256": "cee7d42fc622394af0e0a6d89448450f0f2bdfeae3e264e0ddf4591ed3c19396"
+    },
+    {
+      "path": "tests/fixtures/regression/selection_U_10529.json",
+      "bytes": 56649,
+      "sha256": "7a505439fcfef41a14003c54ae3fb144540b56c99dd4f87e3bf40aa09fcde519"
+    },
+    {
+      "path": "tests/fixtures/regression/selection_U_105459.json",
+      "bytes": 3199,
+      "sha256": "0a840550b5e9f938c17110482d82f2ddb872a6de06b3d9a3cc38f5aa40165612"
+    },
+    {
+      "path": "tests/helpers.py",
+      "bytes": 2784,
+      "sha256": "e2ae3e8888fe059fd929cc88e81ef2e88abe3792a25206f249d026f7aacd1b51"
+    },
+    {
+      "path": "tests/model_smoke.py",
+      "bytes": 1887,
+      "sha256": "c05bb62591335261aefc8c63d6ac60ed049caaed52e80300551e391968b36c24"
+    },
+    {
+      "path": "tests/regression.py",
+      "bytes": 4763,
+      "sha256": "1adbdd6ac65e422b951c3e0f103c7d534b3e6ed9a7197e122abda0208b7b63c0"
+    },
+    {
+      "path": "tests/test_llm_io.py",
+      "bytes": 9726,
+      "sha256": "5c23dbbc9220742ab8b0f472e768bc0fc04a643f4438ec3357c9d60a6cb70324"
+    },
+    {
+      "path": "tests/test_news_loading.py",
+      "bytes": 7557,
+      "sha256": "2bf5ea8045c225690b848e4a2e92a8ec80ff533afdc23cbe6aa55279fb7b0b36"
+    },
+    {
+      "path": "tests/test_packet_context.py",
+      "bytes": 5446,
+      "sha256": "db056c1d16a7fe8786d58f5e7ba150a21c28160d67c6649afa6dce627d2dc022"
+    },
+    {
+      "path": "tests/test_pipeline.py",
+      "bytes": 10164,
+      "sha256": "fc920d193249ca56dbdca71b89bf30733630d40c69651342ede6aec2e4467159"
+    },
+    {
+      "path": "tests/test_source_provenance.py",
+      "bytes": 2738,
+      "sha256": "c49e32df0b56cc797be86bc5c2fd6296526143f74b1f4277aef993d188236a16"
+    },
+    {
+      "path": "tests/test_web.py",
+      "bytes": 10302,
+      "sha256": "306f7abcbad2dbfcd85fe492d984389011917248b34fcc28d94d87316387f712"
+    },
+    {
+      "path": "tests/test_workflow.py",
+      "bytes": 13930,
+      "sha256": "5d49f0cf4821909fc7b1017a234254bf5a054fbec60411c08f7ca7c9d4dc2fdb"
+    },
+    {
+      "path": "tools/validate_inputs.py",
+      "bytes": 1663,
+      "sha256": "70f33d0410a598d5ea93ea82a963b73ed8473776f536e830ad1f0986e03f9c6d"
+    },
+    {
+      "path": "tools/verify_release.py",
+      "bytes": 1966,
+      "sha256": "0ffb4e2bad1308a02473609caba2dae8b701af6b0290f707b7cd1da56cf392e3"
+    }
+  ]
+}

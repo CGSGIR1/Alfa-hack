@@ -1,0 +1,148 @@
+{
+  "coverage": {
+    "excluded_blocks": [],
+    "processed_block_ids": [
+      "B001",
+      "B002",
+      "B003"
+    ],
+    "unprocessed_block_ids": []
+  },
+  "document_date": "2026-10-09",
+  "document_id": "46da70df82b828305a345e6753af1af0",
+  "document_limitations": [],
+  "document_title": "Банк России вернул курс доллара к 84 рублям",
+  "event": {
+    "article_ids": [
+      "46da70df82b828305a345e6753af1af0"
+    ],
+    "event_id": "46da70df82b828305a345e6753af1af0"
+  },
+  "fragments": [
+    {
+      "analytics_embedding_text": null,
+      "analytics_query_version": "news-two-views-1.0",
+      "analytics_search_question": null,
+      "attributions": [],
+      "company_embedding_text": "Банк России вернул официальный курс доллара к отметке 84,9 рубля, снизив его 10 и 11 октября на 0,51 рубля.\n\nБанк России установил новые значения официального курса доллара, евро и юаня. По состоянию на 9 октября курс доллара составлял 85,42 руб., евро — 95,47 руб., юаня — 12,73 руб. В результате изменений курс евро составил 94,97 руб. (снижение на 0,5 руб.), а курс юаня — 12,67 руб. (снижение на 0,06 руб.).",
+      "context": "Банк России установил новые значения официального курса доллара, евро и юаня. По состоянию на 9 октября курс доллара составлял 85,42 руб., евро — 95,47 руб., юаня — 12,73 руб. В результате изменений курс евро составил 94,97 руб. (снижение на 0,5 руб.), а курс юаня — 12,67 руб. (снижение на 0,06 руб.).",
+      "countries": [
+        "Россия"
+      ],
+      "embedding_roles": {
+        "analytics": "encode_query",
+        "company": "encode_document"
+      },
+      "event_date_or_period": "2026-10-10/2026-10-11",
+      "id": "F001",
+      "limitations": [],
+      "mechanism": {
+        "boundaries": [
+          "Причина изменения курса Банком России в тексте не указана"
+        ],
+        "context": {
+          "conditions": "Официальные валютные курсы, устанавливаемые Банком России; изменения зафиксированы на 10 и 11 октября относительно данных на 9 октября."
+        },
+        "description": null,
+        "is_established_cause": false,
+        "source_attributions": [],
+        "status": "not_identified"
+      },
+      "okved_codes": [],
+      "organizations": [
+        "Банк России"
+      ],
+      "regions": [],
+      "sectors": [
+        "Финансы"
+      ],
+      "source_block_ids": [
+        "B001",
+        "B002",
+        "B003"
+      ],
+      "source_quotes": [
+        "Банк России вернул официальный курс доллара к отметке в 84,9 руб., понизив его на 10 и 11 октября на 0,51 руб.",
+        "Евро подешевел на 0,5 руб. его курс составил 94,97 руб. Курс юаня снизился до 12,67 руб. Китайская валюта подешевела на 0,06 руб.",
+        "Официальный курс доллара на 9 октября составляет 85,42 руб., евро – 95,47 руб., юаня – 12,73 руб."
+      ],
+      "thesis": "Банк России вернул официальный курс доллара к отметке 84,9 рубля, снизив его 10 и 11 октября на 0,51 рубля.",
+      "title": "Снижение официального курса доллара Банком России"
+    }
+  ],
+  "preparation": {
+    "prepared_by": "external_llm",
+    "representation_version": "news-two-views-1.0",
+    "source_access": "full_text"
+  },
+  "preparation_meta": {
+    "model": "google/gemma-4-26b-a4b-it",
+    "prepared_at": "2026-10-23T01:03:00",
+    "prompt_version": "news-two-views-1.0/p2",
+    "report": {
+      "calls": [
+        {
+          "completion_tokens": 1104,
+          "cost": 0.0514,
+          "prompt_tokens": 3130,
+          "seconds": 11.7,
+          "task": "prepare_news"
+        }
+      ],
+      "first_pass": {
+        "fragments": 1,
+        "quotes": {
+          "dropped": 0,
+          "exact": 3,
+          "fuzzy": 0,
+          "normalized": 0
+        }
+      },
+      "fixes": [],
+      "fragments": 1,
+      "model": "google/gemma-4-26b-a4b-it",
+      "params": {
+        "max_tokens": 16000,
+        "temperature": 0.1
+      },
+      "prompt_version": "news-two-views-1.0/p2",
+      "quotes": {
+        "dropped": 0,
+        "exact": 3,
+        "fuzzy": 0,
+        "normalized": 0
+      },
+      "seconds": 11.7,
+      "sentences": 5,
+      "uncovered_after": 0,
+      "uncovered_history": [
+        0
+      ],
+      "usage": {
+        "calls": 1,
+        "completion_tokens": 1104,
+        "cost": 0.0514,
+        "prompt_tokens": 3130
+      }
+    }
+  },
+  "schema_version": "news-two-views-1.0",
+  "source": {
+    "publisher": "Ведомости",
+    "url": "https://www.vedomosti.ru/finance/news/2026/10/09/1235925-vernul-kurs-dollara"
+  },
+  "source_blocks": [
+    {
+      "id": "B001",
+      "text": "Банк России вернул официальный курс доллара к отметке в 84,9 руб., понизив его на 10 и 11 октября на 0,51 руб."
+    },
+    {
+      "id": "B002",
+      "text": "Евро подешевел на 0,5 руб. его курс составил 94,97 руб. Курс юаня снизился до 12,67 руб. Китайская валюта подешевела на 0,06 руб."
+    },
+    {
+      "id": "B003",
+      "text": "Официальный курс доллара на 9 октября составляет 85,42 руб., евро – 95,47 руб., юаня – 12,73 руб."
+    }
+  ]
+}

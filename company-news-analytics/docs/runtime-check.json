@@ -1,0 +1,120 @@
+{
+  "passed": true,
+  "source_module": "news_analytics\\__init__.py",
+  "imported": {
+    "companies": {
+      "validated": 11,
+      "added": 11,
+      "updated": 0,
+      "skipped": 0,
+      "changed_skipped": 0
+    },
+    "news": {
+      "validated": 614,
+      "added": 614,
+      "updated": 0,
+      "skipped": 0,
+      "changed_skipped": 0
+    },
+    "analytics": {
+      "validated": 22,
+      "added": 22,
+      "updated": 0,
+      "skipped": 0,
+      "changed_skipped": 0
+    }
+  },
+  "cached_real_vectors_verified": 3813,
+  "profiles": [
+    {
+      "company": "U_102920",
+      "selected_news": 4,
+      "new_comparisons": 549,
+      "unchanged": true,
+      "retry_same_packet": true
+    },
+    {
+      "company": "U_10529",
+      "selected_news": 4,
+      "new_comparisons": 549,
+      "unchanged": true,
+      "retry_same_packet": true
+    },
+    {
+      "company": "U_105459",
+      "selected_news": 4,
+      "new_comparisons": 549,
+      "unchanged": true,
+      "retry_same_packet": true
+    },
+    {
+      "company": "U_11496",
+      "selected_news": 3,
+      "new_comparisons": 549,
+      "unchanged": true,
+      "retry_same_packet": true
+    },
+    {
+      "company": "U_136248",
+      "selected_news": 4,
+      "new_comparisons": 549,
+      "unchanged": true,
+      "retry_same_packet": true
+    },
+    {
+      "company": "U_22299",
+      "selected_news": 4,
+      "new_comparisons": 549,
+      "unchanged": true,
+      "retry_same_packet": true
+    },
+    {
+      "company": "U_234228",
+      "selected_news": 4,
+      "new_comparisons": 549,
+      "unchanged": true,
+      "retry_same_packet": true
+    },
+    {
+      "company": "U_31100",
+      "selected_news": 3,
+      "new_comparisons": 549,
+      "unchanged": true,
+      "retry_same_packet": true
+    },
+    {
+      "company": "U_49201",
+      "selected_news": 4,
+      "new_comparisons": 549,
+      "unchanged": true,
+      "retry_same_packet": true
+    },
+    {
+      "company": "U_83932",
+      "selected_news": 3,
+      "new_comparisons": 549,
+      "unchanged": true,
+      "retry_same_packet": true
+    },
+    {
+      "company": "group_132690_sb",
+      "selected_news": 3,
+      "new_comparisons": 549,
+      "unchanged": true,
+      "retry_same_packet": true
+    }
+  ],
+  "historical_regression": {
+    "passed": true,
+    "cases": 12,
+    "intersection_labels": {
+      "mechanism_context": 2,
+      "background": 1
+    },
+    "standalone": true,
+    "inference_performed": false
+  },
+  "source_database_mutated": false,
+  "model_downloaded": false,
+  "model_weights_packaged": false
+}

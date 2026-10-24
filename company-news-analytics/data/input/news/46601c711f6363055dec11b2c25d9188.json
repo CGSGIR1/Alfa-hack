@@ -1,0 +1,256 @@
+{
+  "coverage": {
+    "excluded_blocks": [],
+    "processed_block_ids": [
+      "B001",
+      "B002",
+      "B003",
+      "B004"
+    ],
+    "unprocessed_block_ids": []
+  },
+  "document_date": "2026-09-30",
+  "document_id": "46601c711f6363055dec11b2c25d9188",
+  "document_limitations": [],
+  "document_title": "ВВП России в августе вырос на 0,8% в годовом выражении",
+  "event": {
+    "article_ids": [
+      "46601c711f6363055dec11b2c25d9188"
+    ],
+    "event_id": "46601c711f6363055dec11b2c25d9188"
+  },
+  "fragments": [
+    {
+      "analytics_embedding_text": null,
+      "analytics_query_version": "news-two-views-1.0",
+      "analytics_search_question": null,
+      "attributions": [],
+      "company_embedding_text": "По оценке министерства, ВВП РФ за январь – август 2026 г. увеличился на 0,6%.\n\nРоссия, динамика ВВП по месяцам в 2026 году: рост в марте (1,9%), апреле (1,6%), мае (0,5%), июне (1,7%) и июле (0,6%); снижение в январе (-1,6%) и феврале (-0,9%).",
+      "context": "Россия, динамика ВВП по месяцам в 2026 году: рост в марте (1,9%), апреле (1,6%), мае (0,5%), июне (1,7%) и июле (0,6%); снижение в январе (-1,6%) и феврале (-0,9%).",
+      "countries": [
+        "Россия"
+      ],
+      "embedding_roles": {
+        "analytics": "encode_query",
+        "company": "encode_document"
+      },
+      "event_date_or_period": "январь – август 2026",
+      "id": "F001",
+      "limitations": [],
+      "mechanism": {
+        "boundaries": [
+          "Механизмы, вызвавшие колебания ВВП в указанный период, в тексте не указаны"
+        ],
+        "context": {
+          "conditions": "Данные по ВВП РФ за период январь-август 2026 года; информация основана на оценках министерства."
+        },
+        "description": null,
+        "is_established_cause": false,
+        "source_attributions": [],
+        "status": "not_identified"
+      },
+      "okved_codes": [],
+      "organizations": [],
+      "regions": [],
+      "sectors": [
+        "Экономика"
+      ],
+      "source_block_ids": [
+        "B001",
+        "B002"
+      ],
+      "source_quotes": [
+        "За январь – август 2026 г. ВВП РФ, по оценке министерства, увеличился на 0,6%.",
+        "В июле показатель ВВП увеличился на 0,6%, а в июне – на 1,7%. При этом в мае показатель ВВП вырос на 0,5%, в апреле – на 1,6%, а в марте – на 1,9%. Зимой 2026 г., наоборот, наблюдалось снижение показателей: в феврале – на 0,9%, а в январе – на 1,6%."
+      ],
+      "thesis": "По оценке министерства, ВВП РФ за январь – август 2026 г. увеличился на 0,6%.",
+      "title": "Динамика ВВП РФ за январь–август 2026 года"
+    },
+    {
+      "analytics_embedding_text": null,
+      "analytics_query_version": "news-two-views-1.0",
+      "analytics_search_question": null,
+      "attributions": [
+        {
+          "author": "Эльвира Набиуллина",
+          "quote": "рост ВВП (по данным Росстата, за полугодие он составил 0,6%) показывает, что экономика в III квартале продолжает умеренно расти",
+          "source_block_id": "B003",
+          "statement": "рост ВВП показывает, что экономика в III квартале продолжает умеренно расти"
+        }
+      ],
+      "company_embedding_text": "Председатель ЦБ Эльвира Набиуллина заявила, что рост ВВП показывает, что экономика в III квартале продолжает умеренно расти.\n\nРоссия, по данным Росстата за полугодие рост ВВП составил 0,6%; заявление сделано 14 сентября.",
+      "context": "Россия, по данным Росстата за полугодие рост ВВП составил 0,6%; заявление сделано 14 сентября.",
+      "countries": [
+        "Россия"
+      ],
+      "embedding_roles": {
+        "analytics": "encode_query",
+        "company": "encode_document"
+      },
+      "event_date_or_period": "III квартал 2026",
+      "id": "F002",
+      "limitations": [],
+      "mechanism": {
+        "boundaries": [
+          "Связь между данными Росстата за полугодие и темпами роста в III квартале является интерпретацией источника"
+        ],
+        "context": {
+          "conditions": "Данные Росстата по ВВП РФ за полугодие (0,6%); оценка состояния экономики в III квартале."
+        },
+        "description": null,
+        "is_established_cause": false,
+        "source_attributions": [],
+        "status": "not_identified"
+      },
+      "okved_codes": [],
+      "organizations": [
+        "ЦБ",
+        "Росстат"
+      ],
+      "regions": [],
+      "sectors": [
+        "Финансы"
+      ],
+      "source_block_ids": [
+        "B003"
+      ],
+      "source_quotes": [
+        "14 сентября председатель ЦБ Эльвира Набиуллина заявила, что рост ВВП (по данным Росстата, за полугодие он составил 0,6%) показывает, что экономика в III квартале продолжает умеренно расти."
+      ],
+      "thesis": "Председатель ЦБ Эльвира Набиуллина заявила, что рост ВВП показывает, что экономика в III квартале продолжает умеренно расти.",
+      "title": "Оценка темпов роста экономики председателем ЦБ"
+    },
+    {
+      "analytics_embedding_text": null,
+      "analytics_query_version": "news-two-views-1.0",
+      "analytics_search_question": null,
+      "attributions": [
+        {
+          "author": "Антон Силуанов",
+          "quote": "федеральный бюджет России на 2027 г. будет заложен с дефицитом в размере около 2% ВВП",
+          "source_block_id": "B004",
+          "statement": "федеральный бюджет России на 2027 г. будет заложен с дефицитом в размере около 2% ВВП"
+        }
+      ],
+      "company_embedding_text": "Министр финансов России Антон Силуанов заявил, что федеральный бюджет России на 2027 г. будет заложен с дефицитом в размере около 2% ВВП.\n\nРоссия, заявление сделано 21 сентября.",
+      "context": "Россия, заявление сделано 21 сентября.",
+      "countries": [
+        "Россия"
+      ],
+      "embedding_roles": {
+        "analytics": "encode_query",
+        "company": "encode_document"
+      },
+      "event_date_or_period": "2027 год",
+      "id": "F003",
+      "limitations": [],
+      "mechanism": {
+        "boundaries": [
+          "Влияние заложенного дефицита на экономические показатели не рассматривается"
+        ],
+        "context": {
+          "conditions": "Федеральный бюджет России на 2027 год; планируемый дефицит около 2% ВВП."
+        },
+        "description": null,
+        "is_established_cause": false,
+        "source_attributions": [],
+        "status": "not_identified"
+      },
+      "okved_codes": [],
+      "organizations": [
+        "министр финансов России"
+      ],
+      "regions": [],
+      "sectors": [
+        "Государственные финансы"
+      ],
+      "source_block_ids": [
+        "B004"
+      ],
+      "source_quotes": [
+        "21 сентября министр финансов России Антон Силуанов заявил, что федеральный бюджет России на 2027 г. будет заложен с дефицитом в размере около 2% ВВП."
+      ],
+      "thesis": "Министр финансов России Антон Силуанов заявил, что федеральный бюджет России на 2027 г. будет заложен с дефицитом в размере около 2% ВВП.",
+      "title": "Прогноз дефицита федерального бюджета на 2027 год"
+    }
+  ],
+  "preparation": {
+    "prepared_by": "external_llm",
+    "representation_version": "news-two-views-1.0",
+    "source_access": "full_text"
+  },
+  "preparation_meta": {
+    "model": "google/gemma-4-26b-a4b-it",
+    "prepared_at": "2026-10-23T01:16:15",
+    "prompt_version": "news-two-views-1.0/p2",
+    "report": {
+      "calls": [
+        {
+          "completion_tokens": 2215,
+          "cost": 0.0895,
+          "prompt_tokens": 3237,
+          "seconds": 18.0,
+          "task": "prepare_news"
+        }
+      ],
+      "first_pass": {
+        "fragments": 3,
+        "quotes": {
+          "dropped": 0,
+          "exact": 6,
+          "fuzzy": 0,
+          "normalized": 0
+        }
+      },
+      "fixes": [],
+      "fragments": 3,
+      "model": "google/gemma-4-26b-a4b-it",
+      "params": {
+        "max_tokens": 16000,
+        "temperature": 0.1
+      },
+      "prompt_version": "news-two-views-1.0/p2",
+      "quotes": {
+        "dropped": 0,
+        "exact": 6,
+        "fuzzy": 0,
+        "normalized": 0
+      },
+      "seconds": 18.0,
+      "sentences": 7,
+      "uncovered_after": 0,
+      "uncovered_history": [
+        0
+      ],
+      "usage": {
+        "calls": 1,
+        "completion_tokens": 2215,
+        "cost": 0.0895,
+        "prompt_tokens": 3237
+      }
+    }
+  },
+  "schema_version": "news-two-views-1.0",
+  "source": {
+    "publisher": "Ведомости",
+    "url": "https://www.vedomosti.ru/economics/news/2026/09/30/1233217-vvp-rossii-viros"
+  },
+  "source_blocks": [
+    {
+      "id": "B001",
+      "text": "За январь – август 2026 г. ВВП РФ, по оценке министерства, увеличился на 0,6%."
+    },
+    {
+      "id": "B002",
+      "text": "В июле показатель ВВП увеличился на 0,6%, а в июне – на 1,7%. При этом в мае показатель ВВП вырос на 0,5%, в апреле – на 1,6%, а в марте – на 1,9%. Зимой 2026 г., наоборот, наблюдалось снижение показателей: в феврале – на 0,9%, а в январе – на 1,6%."
+    },
+    {
+      "id": "B003",
+      "text": "14 сентября председатель ЦБ Эльвира Набиуллина заявила, что рост ВВП (по данным Росстата, за полугодие он составил 0,6%) показывает, что экономика в III квартале продолжает умеренно расти."
+    },
+    {
+      "id": "B004",
+      "text": "21 сентября министр финансов России Антон Силуанов заявил, что федеральный бюджет России на 2027 г. будет заложен с дефицитом в размере около 2% ВВП."
+    }
+  ]
+}

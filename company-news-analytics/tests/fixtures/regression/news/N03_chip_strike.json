@@ -1,0 +1,100 @@
+{
+  "schema_version": "news-two-views-1.0",
+  "document_type": "news",
+  "document_id": "85f1de9c5232ceff66305ae436aac456",
+  "document_title": "Работники тайваньского подразделения Micron объявили забастовку",
+  "document_date": "2026-10-22",
+  "source": {
+    "publisher": "Коммерсантъ",
+    "url": "https://www.kommersant.ru/doc/9044837",
+    "published_at": null,
+    "publication_precision": "day",
+    "retrieved_at": "2026-10-22T14:46:56.073984+00:00",
+    "access": "public_article"
+  },
+  "preparation": {
+    "method": "manual_source_grounded_test_annotation",
+    "text_origin": "editorial_summary",
+    "is_test_data": true,
+    "representation_version": "news-two-views-1.0",
+    "representation_origin": "new_news_unseen_by_retrieval_scoring",
+    "source_text_included": false
+  },
+  "document_limitations": [
+    "Тестируется разметка доступного текста; автоматическая фрагментация внешней LLM не проверяется."
+  ],
+  "fragments": [
+    {
+      "id": "F001",
+      "title": "Работники тайваньского подразделения Micron объявили забастовку",
+      "thesis": "Сотрудники тайваньского подразделения Micron начали однодневную забастовку после разногласий с руководством о премиях.",
+      "context": "Профсоюз сообщил, что выбрал длительность, позволяющую не нарушать производственный цикл. Срыв поставок чипов в сообщении не установлен.",
+      "statement_types": [
+        "reported_fact",
+        "assessment"
+      ],
+      "topics": [
+        "Микроэлектроника",
+        "Производство полупроводников"
+      ],
+      "countries": [
+        "Тайвань"
+      ],
+      "regions": [],
+      "organizations": [],
+      "sectors": [
+        "Микроэлектроника",
+        "Производство полупроводников"
+      ],
+      "okved_codes": [],
+      "source_quotes": [],
+      "source_block_ids": [],
+      "source_pages": [],
+      "event_date_or_period": "2026-10-22",
+      "attributions": [
+        {
+          "statement": "Сведения и атрибуции в публично доступной части публикации",
+          "author": "Профсоюз Micron; Nikkei в изложении Коммерсанта"
+        }
+      ],
+      "limitations": [
+        "Краткая редакционная передача доступной части публикации, не полный текст статьи."
+      ],
+      "mechanism": {
+        "description": "Спор о распределении доходов между компанией и персоналом вызвал протест; остановка поставок остаётся отдельной неподтверждённой гипотезой.",
+        "status": "attributed_in_news",
+        "boundaries": [
+          "Забастовка Micron на Тайване, один день. Производственный цикл заявлен как сохранённый; связи российского оптовика с данным поставщиком неизвестны."
+        ],
+        "is_established_cause": false,
+        "context": {
+          "conditions": "Забастовка Micron на Тайване, один день. Производственный цикл заявлен как сохранённый; связи российского оптовика с данным поставщиком неизвестны.",
+          "source_sectors": [
+            "Микроэлектроника",
+            "Производство полупроводников"
+          ],
+          "source_countries": [
+            "Тайвань"
+          ],
+          "event_period": "2026-10-22",
+          "unknown_company_exposure": true
+        },
+        "source_attributions": [
+          {
+            "statement": "Сведения и атрибуции в публично доступной части публикации",
+            "author": "Профсоюз Micron; Nikkei в изложении Коммерсанта"
+          }
+        ],
+        "source_attributions_origin": "fragment_attributions_compatibility"
+      },
+      "company_embedding_text": "Тема: Микроэлектроника, Производство полупроводников.\n\nСотрудники тайваньского подразделения Micron начали однодневную забастовку после разногласий с руководством о премиях.\n\nПрофсоюз сообщил, что выбрал длительность, позволяющую не нарушать производственный цикл. Срыв поставок чипов в сообщении не установлен.",
+      "analytics_embedding_text": "Как трудовой конфликт из-за премий влияет на производственные риски в микроэлектронике при заявленном сохранении выпуска?\nУсловия и границы применимости: Забастовка Micron на Тайване, один день. Производственный цикл заявлен как сохранённый; связи российского оптовика с данным поставщиком неизвестны.",
+      "embedding_roles": {
+        "company": "encode_document",
+        "analytics": "encode_query"
+      },
+      "analytics_search_question": "Как трудовой конфликт из-за премий влияет на производственные риски в микроэлектронике при заявленном сохранении выпуска?",
+      "analytics_query_version": "news-two-views-1.0"
+    }
+  ]
+}

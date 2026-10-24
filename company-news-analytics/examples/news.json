@@ -1,0 +1,32 @@
+{
+  "schema_version": "news-two-views-1.0",
+  "document_id": "N1",
+  "document_title": "Рост затрат",
+  "document_date": "2026-10-22",
+  "source": {
+    "url": "https://example.org/news/1",
+    "publisher": "Test"
+  },
+  "fragments": [
+    {
+      "id": "F1",
+      "title": "Рост затрат",
+      "thesis": "Затраты выросли.",
+      "context": "Торговля в России.",
+      "company_embedding_text": "Затраты выросли. Торговля в России.",
+      "analytics_search_question": "Как рост затрат влияет на цены?",
+      "mechanism": {
+        "description": "Рост затрат может влиять на цены.",
+        "status": "hypothesis",
+        "boundaries": [
+          "Условный механизм"
+        ],
+        "is_established_cause": false,
+        "context": {
+          "conditions": "Торговля, при возможности переноса затрат."
+        }
+      },
+      "limitations": []
+    }
+  ]
+}

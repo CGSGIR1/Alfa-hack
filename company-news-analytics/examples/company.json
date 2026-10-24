@@ -1,0 +1,19 @@
+{
+  "schema_version": "company-profile-2.0",
+  "subject_id": "C1",
+  "subject_type": "company",
+  "facts": {
+    "industry": {
+      "main_okved_name": "Торговля"
+    }
+  },
+  "profile_text": "Компания занимается торговлей.",
+  "queries": [
+    {
+      "id": "sector",
+      "channel": "industry",
+      "text": "Торговая компания",
+      "weight": 1
+    }
+  ]
+}

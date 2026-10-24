@@ -1,0 +1,267 @@
+{
+  "coverage": {
+    "excluded_blocks": [],
+    "processed_block_ids": [
+      "B001",
+      "B002"
+    ],
+    "unprocessed_block_ids": []
+  },
+  "document_date": "2026-10-21",
+  "document_id": "de9ce0a92d4cb46dafca704d9587c047",
+  "document_limitations": [],
+  "document_title": "Getty Images начал процедуру банкротства",
+  "event": {
+    "article_ids": [
+      "de9ce0a92d4cb46dafca704d9587c047"
+    ],
+    "event_id": "de9ce0a92d4cb46dafca704d9587c047"
+  },
+  "fragments": [
+    {
+      "analytics_embedding_text": "Как срыв крупных сделок по слиянию и поглощению (M&A) влияет на финансовую устойчивость и вероятность банкротства крупных медиа-сервисов?\nУсловия и границы применимости: Американский рынок фото и изображений; срыв сделки по слиянию на сумму $3,7 млрд; процедура реструктуризации по ст. 11 закона о банкротстве США.",
+      "analytics_query_version": "news-two-views-1.0",
+      "analytics_search_question": "Как срыв крупных сделок по слиянию и поглощению (M&A) влияет на финансовую устойчивость и вероятность банкротства крупных медиа-сервисов?",
+      "attributions": [],
+      "company_embedding_text": "Американский банк фото и изображений Getty Images подал в американский суд заявление о защите от кредиторов в соответствии со ст. 11 закона о банкротстве США.\n\nGetty Images планирует продолжать деятельность через процедуру реструктуризации, которую намерены завершить к концу года. Решение последовало за срывом сделки по слиянию с Shutterstock на сумму $3,7 млрд в июне. В рамках плана предполагается делистинг с Нью-Йоркской фондовой биржи, а новыми владельцами после реструктуризации станут Koch Equity Development и семья Гетти, обещавшие предоставить до $533 млн нового капитала.",
+      "context": "Getty Images планирует продолжать деятельность через процедуру реструктуризации, которую намерены завершить к концу года. Решение последовало за срывом сделки по слиянию с Shutterstock на сумму $3,7 млрд в июне. В рамках плана предполагается делистинг с Нью-Йоркской фондовой биржи, а новыми владельцами после реструктуризации станут Koch Equity Development и семья Гетти, обещавшие предоставить до $533 млн нового капитала.",
+      "countries": [
+        "США"
+      ],
+      "embedding_roles": {
+        "analytics": "encode_query",
+        "company": "encode_document"
+      },
+      "event_date_or_period": null,
+      "id": "F001",
+      "limitations": [],
+      "mechanism": {
+        "boundaries": [
+          "Связь между срывом сделки и банкротством в тексте представлена как контекст, но прямой причинно-следственной связи в виде закона не установлено"
+        ],
+        "context": {
+          "conditions": "Американский рынок фото и изображений; срыв сделки по слиянию на сумму $3,7 млрд; процедура реструктуризации по ст. 11 закона о банкротстве США."
+        },
+        "description": "Срыв крупной сделки по слиянию (M&A) может приводить к необходимости использования процедур защиты от кредиторов для реструктуризации долгов.",
+        "is_established_cause": false,
+        "source_attributions": [],
+        "status": "hypothesis"
+      },
+      "okved_codes": [],
+      "organizations": [
+        "Getty Images",
+        "Shutterstock",
+        "Koch Equity Development"
+      ],
+      "regions": [],
+      "sectors": [
+        "банк фото и изображений"
+      ],
+      "source_block_ids": [
+        "B001",
+        "B002"
+      ],
+      "source_quotes": [
+        "Американский банк фото и изображений Getty Images подал в американский суд заявление о защите от кредиторов в соответствии со ст. 11 закона о банкротстве США. Сервис собирается продолжать деятельность после процедуры реструктуризации, которую планируется завершить к концу года.",
+        "Решение было принято после того, как в конце июня сорвалась сделка по слиянию с конкурентом Shutterstock на сумму $3,7 млрд.",
+        "На прошлой неделе Getty Images сообщил о намерении подать заявление о банкротстве."
+      ],
+      "thesis": "Американский банк фото и изображений Getty Images подал в американский суд заявление о защите от кредиторов в соответствии со ст. 11 закона о банкротстве США.",
+      "title": "Getty Images подал заявление о защите от кредиторов"
+    },
+    {
+      "analytics_embedding_text": null,
+      "analytics_query_version": "news-two-views-1.0",
+      "analytics_search_question": null,
+      "attributions": [],
+      "company_embedding_text": "Getty Images собирается провести делистинг с Нью-Йоркской фондовой биржи.\n\nКомпания Getty Images планирует делистинг после подачи заявления о защите от кредиторов в рамках реструктуризации.",
+      "context": "Компания Getty Images планирует делистинг после подачи заявления о защите от кредиторов в рамках реструктуризации.",
+      "countries": [
+        "USA"
+      ],
+      "embedding_roles": {
+        "analytics": "encode_query",
+        "company": "encode_document"
+      },
+      "event_date_or_period": null,
+      "id": "F002",
+      "limitations": [],
+      "mechanism": {
+        "boundaries": [
+          "Событие является следствием процесса банкротства/реструктуризации"
+        ],
+        "context": {
+          "conditions": "Процесс банкротства Getty Images в США; планируемый делистинг с NYSE."
+        },
+        "description": null,
+        "is_established_cause": false,
+        "source_attributions": [],
+        "status": "not_identified"
+      },
+      "okved_codes": [],
+      "organizations": [
+        "Getty Images",
+        "NYSE"
+      ],
+      "regions": [],
+      "sectors": [
+        "Stock Exchange"
+      ],
+      "source_block_ids": [
+        "B002"
+      ],
+      "source_quotes": [
+        "Getty Images собирается провести делистинг с Нью-Йоркской фондовой биржи."
+      ],
+      "thesis": "Getty Images собирается провести делистинг с Нью-Йоркской фондовой биржи.",
+      "title": "Планируемый делистинг Getty Images с NYSE"
+    },
+    {
+      "analytics_embedding_text": "Как вливание нового капитала в размере $533 млн в рамках реструктуризации влияет на финансовую устойчивость компании?\nУсловия и границы применимости: Реструктуризация Getty Images; участие Koch Equity Development и семьи Гетти; объем капитала до $533 млн.",
+      "analytics_query_version": "news-two-views-1.0",
+      "analytics_search_question": "Как вливание нового капитала в размере $533 млн в рамках реструктуризации влияет на финансовую устойчивость компании?",
+      "attributions": [
+        {
+          "author": "Koch Equity Development and the Getty family",
+          "quote": "пообещали предоставить до $533 млн нового капитала",
+          "source_block_id": "B002",
+          "statement": "commitment to provide up to $533 million in new capital"
+        }
+      ],
+      "company_embedding_text": "После реструктуризации владельцами Getty Images станут Koch Equity Development и семья Гетти с обязательством предоставить до $533 млн капитала.\n\nВ рамках процесса реструктуризации инвестиционная фирма Koch Equity Development и семья Гетти выступят новыми владельцами и предоставят финансирование в размере до $533 млн.",
+      "context": "В рамках процесса реструктуризации инвестиционная фирма Koch Equity Development и семья Гетти выступят новыми владельцами и предоставят финансирование в размере до $533 млн.",
+      "countries": [
+        "USA"
+      ],
+      "embedding_roles": {
+        "analytics": "encode_query",
+        "company": "encode_document"
+      },
+      "event_date_or_period": null,
+      "id": "F003",
+      "limitations": [],
+      "mechanism": {
+        "boundaries": [
+          "Сумма является предельной (до $533 млн)",
+          "Условия реализации зависят от завершения реструктуризации"
+        ],
+        "context": {
+          "conditions": "Реструктуризация Getty Images; участие Koch Equity Development и семьи Гетти; объем капитала до $533 млн."
+        },
+        "description": "Привлечение нового капитала от текущих/новых владельцев в рамках реструктуризации для обеспечения финансовой устойчивости.",
+        "is_established_cause": false,
+        "source_attributions": [
+          {
+            "author": "Getty Images",
+            "quote": "пообещали предоставить до $533 млн нового капитала",
+            "source_block_id": "B002",
+            "statement": "предоставление нового капитала"
+          }
+        ],
+        "status": "attributed_in_news"
+      },
+      "okved_codes": [],
+      "organizations": [
+        "Getty Images",
+        "Koch Equity Development"
+      ],
+      "regions": [],
+      "sectors": [
+        "Private Equity",
+        "Investment"
+      ],
+      "source_block_ids": [
+        "B002"
+      ],
+      "source_quotes": [
+        "После реструктуризации владельцами сервиса будут инвестиционная фирма Koch Equity Development и семья Гетти, которые пообещали предоставить до $533 млн нового капитала."
+      ],
+      "thesis": "После реструктуризации владельцами Getty Images станут Koch Equity Development и семья Гетти с обязательством предоставить до $533 млн капитала.",
+      "title": "Параметры реструктуризации и новые инвесторы Getty Images"
+    }
+  ],
+  "preparation": {
+    "prepared_by": "external_llm",
+    "representation_version": "news-two-views-1.0",
+    "source_access": "full_text"
+  },
+  "preparation_meta": {
+    "model": "google/gemma-4-26b-a4b-it",
+    "prepared_at": "2026-10-23T00:27:58",
+    "prompt_version": "news-two-views-1.0/p2",
+    "report": {
+      "calls": [
+        {
+          "completion_tokens": 1164,
+          "cost": 0.0697,
+          "prompt_tokens": 3115,
+          "seconds": 28.4,
+          "task": "prepare_news"
+        },
+        {
+          "completion_tokens": 1309,
+          "cost": 0.0752,
+          "prompt_tokens": 3410,
+          "seconds": 16.6,
+          "task": "prepare_news_repair"
+        }
+      ],
+      "first_pass": {
+        "fragments": 1,
+        "quotes": {
+          "dropped": 0,
+          "exact": 2,
+          "fuzzy": 0,
+          "normalized": 0
+        }
+      },
+      "fixes": [
+        "add_quotes → F001: добавлена цитата (exact)",
+        "F003: company_embedding_text перестроен по формуле",
+        "F003: analytics_embedding_text перестроен по формуле",
+        "дозапрос: новых фрагментов 2"
+      ],
+      "fragments": 3,
+      "model": "google/gemma-4-26b-a4b-it",
+      "params": {
+        "max_tokens": 16000,
+        "temperature": 0.1
+      },
+      "prompt_version": "news-two-views-1.0/p2",
+      "quotes": {
+        "dropped": 0,
+        "exact": 7,
+        "fuzzy": 0,
+        "normalized": 0
+      },
+      "seconds": 45.0,
+      "sentences": 7,
+      "uncovered_after": 0,
+      "uncovered_history": [
+        3,
+        0
+      ],
+      "usage": {
+        "calls": 2,
+        "completion_tokens": 2473,
+        "cost": 0.1448,
+        "prompt_tokens": 6525
+      }
+    }
+  },
+  "schema_version": "news-two-views-1.0",
+  "source": {
+    "publisher": "Коммерсантъ",
+    "url": "https://www.kommersant.ru/doc/9044018"
+  },
+  "source_blocks": [
+    {
+      "id": "B001",
+      "text": "Американский банк фото и изображений Getty Images подал в американский суд заявление о защите от кредиторов в соответствии со ст. 11 закона о банкротстве США. Сервис собирается продолжать деятельность после процедуры реструктуризации, которую планируется завершить к концу года."
+    },
+    {
+      "id": "B002",
+      "text": "На прошлой неделе Getty Images сообщил о намерении подать заявление о банкротстве. Решение было принято после того, как в конце июня сорвалась сделка по слиянию с конкурентом Shutterstock на сумму $3,7 млрд. Getty Images собирается провести делистинг с Нью-Йоркской фондовой биржи. После реструктуризации владельцами сервиса будут инвестиционная фирма Koch Equity Development и семья Гетти, которые пообещали предоставить до $533 млн нового капитала."
+    }
+  ]
+}

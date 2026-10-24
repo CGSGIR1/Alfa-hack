@@ -1,0 +1,743 @@
+{
+  "description": "Post-hoc diagnostic, same twelve already used news; no independent validation or tuning.",
+  "match_unit": "exact set of source fragment IDs, not report ID",
+  "rrf_constant": 60,
+  "rrf_cutoff": 3,
+  "summary": {
+    "source_only": {
+      "total": 12,
+      "labels": {
+        "irrelevant": 1,
+        "background": 9,
+        "mechanism_context": 2
+      },
+      "cases_with_results": 4
+    },
+    "mechanism_only": {
+      "total": 17,
+      "labels": {
+        "irrelevant": 5,
+        "background": 7,
+        "conditional_analogy": 3,
+        "mechanism_context": 2
+      },
+      "cases_with_results": 6
+    },
+    "intersection": {
+      "total": 3,
+      "labels": {
+        "mechanism_context": 2,
+        "background": 1
+      },
+      "cases_with_results": 2
+    },
+    "rrf_union": {
+      "total": 17,
+      "labels": {
+        "irrelevant": 5,
+        "background": 8,
+        "conditional_analogy": 2,
+        "mechanism_context": 2
+      },
+      "cases_with_results": 6
+    }
+  },
+  "results": {
+    "source_only": {
+      "N01_fish": [
+        {
+          "source_fragment_ids": [
+            "alfa_strategy_2026_07_22_A30"
+          ],
+          "ranks": {
+            "analytics-source-text": 1
+          },
+          "id": "alfa_strategy_2026_07_22_A30",
+          "label": "irrelevant",
+          "reason": "Нефть, бюджетное правило и ОФЗ не объясняют климатический провал вылова лососевых.",
+          "rrf": 0.01639344262295082
+        },
+        {
+          "source_fragment_ids": [
+            "alfa_consumption_2026_08_05_G01"
+          ],
+          "ranks": {
+            "analytics-source-text": 2
+          },
+          "id": "alfa_consumption_2026_08_05_G01",
+          "label": "background",
+          "reason": "График агрегированного продовольственного спроса без механизма вылова и рыбных цен.",
+          "rrf": 0.016129032258064516
+        },
+        {
+          "source_fragment_ids": [
+            "alfa_macro1h_2026_07_31_A06"
+          ],
+          "ranks": {
+            "analytics-source-text": 3
+          },
+          "id": "alfa_macro1h_2026_07_31_A06",
+          "label": "background",
+          "reason": "Общий контекст продовольственной инфляции; топливный шок и смена структуры спроса не объясняют биологическую причину улова.",
+          "rrf": 0.015873015873015872
+        }
+      ],
+      "N02_cell_therapy": [],
+      "N03_chip_strike": [],
+      "N04_retail_credit": [
+        {
+          "source_fragment_ids": [
+            "alfa_consumption_2026_08_05_A05"
+          ],
+          "ranks": {
+            "analytics-source-text": 1
+          },
+          "id": "alfa_consumption_2026_08_05_A05",
+          "label": "background",
+          "reason": "Рост кредитного спроса объясняется инфляционными ожиданиями и семейной ипотекой; причина и последствия нового повышения ПСК не установлены.",
+          "rrf": 0.01639344262295082
+        },
+        {
+          "source_fragment_ids": [
+            "alfa_consumption_2026_08_05_A06"
+          ],
+          "ranks": {
+            "analytics-source-text": 2
+          },
+          "id": "alfa_consumption_2026_08_05_A06",
+          "label": "background",
+          "reason": "Норма сбережений и инфляционные ожидания — общий контекст потребления, не механизм повышения стоимости кредита.",
+          "rrf": 0.016129032258064516
+        },
+        {
+          "source_fragment_ids": [
+            "alfa_strategy_2026_07_22_A28"
+          ],
+          "ranks": {
+            "analytics-source-text": 3
+          },
+          "id": "alfa_strategy_2026_07_22_A28",
+          "label": "background",
+          "reason": "Общий макроэкономический фон спроса и инфляционных рисков; точного канала изменения ПСК нет.",
+          "rrf": 0.015873015873015872
+        }
+      ],
+      "N05_family_business": [],
+      "N06_cfa": [],
+      "N07_oil": [
+        {
+          "source_fragment_ids": [
+            "alfa_strategy_2026_07_22_A30"
+          ],
+          "ranks": {
+            "analytics-source-text": 1,
+            "analytics-contextual": 1
+          },
+          "id": "alfa_strategy_2026_07_22_A30::M02",
+          "label": "mechanism_context",
+          "reason": "Совпадают ближневосточный конфликт, нефтяные цены, доходы российского бюджета и инфляционные риски. Условия длительности и разных каналов сохранены; это объяснение возможных последствий, не точный прогноз цены.",
+          "rrf": 0.03278688524590164
+        },
+        {
+          "source_fragment_ids": [
+            "alfa_strategy_2026_07_22_G14"
+          ],
+          "ranks": {
+            "analytics-source-text": 2
+          },
+          "id": "alfa_strategy_2026_07_22_G14",
+          "label": "background",
+          "reason": "Полезная история цен Brent и Urals, но график не является самостоятельным объяснением шока поставок.",
+          "rrf": 0.016129032258064516
+        },
+        {
+          "source_fragment_ids": [
+            "alfa_macro1h_2026_07_31_A06"
+          ],
+          "ranks": {
+            "analytics-source-text": 3
+          },
+          "id": "alfa_macro1h_2026_07_31_A06",
+          "label": "background",
+          "reason": "Фон внутреннего топливного шока и переноса издержек; отсутствует проверенный переход от мировых нефтяных цен к внутренним ценам топлива.",
+          "rrf": 0.015873015873015872
+        }
+      ],
+      "N08_takeaway": [],
+      "N09_football": [],
+      "N10_theatre": [],
+      "N11_seller_loans": [
+        {
+          "source_fragment_ids": [
+            "alfa_strategy_2026_07_22_A55"
+          ],
+          "ranks": {
+            "analytics-source-text": 1,
+            "analytics-contextual": 1
+          },
+          "id": "alfa_strategy_2026_07_22_A55::M01",
+          "label": "mechanism_context",
+          "reason": "Есть общий канал: оценка кредитного качества ограничивает доступ к банковским ресурсам. Не доказаны общая причина каждого отказа, дефицит ликвидности конкретного банка и условия каждого договора.",
+          "rrf": 0.03278688524590164
+        },
+        {
+          "source_fragment_ids": [
+            "alfa_strategy_2026_07_22_A54"
+          ],
+          "ranks": {
+            "analytics-source-text": 2
+          },
+          "id": "alfa_strategy_2026_07_22_A54",
+          "label": "background",
+          "reason": "Фон слабых кредитных метрик на фоне ставок и курса; структура ставок продавцов неизвестна, а отказ в новом кредите не сводится к процентному риску существующего долга.",
+          "rrf": 0.016129032258064516
+        },
+        {
+          "source_fragment_ids": [
+            "alfa_7m26_2026_09_07_A03"
+          ],
+          "ranks": {
+            "analytics-source-text": 3,
+            "analytics-contextual": 3
+          },
+          "id": "alfa_7m26_2026_09_07_A03::M01",
+          "label": "background",
+          "reason": "Ухудшение финансов повышает потребность в кредите; это сторона спроса, а новость прежде всего об отказе банка и доступе к финансированию.",
+          "rrf": 0.031746031746031744
+        }
+      ],
+      "N12_vaccine": []
+    },
+    "mechanism_only": {
+      "N01_fish": [
+        {
+          "source_fragment_ids": [
+            "alfa_inflation_2026_09_02_A02"
+          ],
+          "ranks": {
+            "analytics-contextual": 1
+          },
+          "id": "alfa_inflation_2026_09_02_A02::M02",
+          "label": "irrelevant",
+          "reason": "Экспортные сложности урожая должны снижать продовольственные цены; новость о сокращении вылова и росте оптовых цен. Объект, причина и направление эффекта не совпадают.",
+          "rrf": 0.01639344262295082
+        },
+        {
+          "source_fragment_ids": [
+            "alfa_consumption_2026_08_05_A04"
+          ],
+          "ranks": {
+            "analytics-contextual": 2
+          },
+          "id": "alfa_consumption_2026_08_05_A04::M01",
+          "label": "background",
+          "reason": "Общий контекст издержек продовольствия; топливный канал не объясняет биологическое сокращение улова, а топливные издержки рыбного оптовика не измерены.",
+          "rrf": 0.016129032258064516
+        },
+        {
+          "source_fragment_ids": [
+            "alfa_strategy_2026_07_22_A28"
+          ],
+          "ranks": {
+            "analytics-contextual": 3
+          },
+          "id": "alfa_strategy_2026_07_22_A28::M01",
+          "label": "irrelevant",
+          "reason": "Топливные ограничения и риски складов не установлены причиной низкой лососевой путины; это другой шок.",
+          "rrf": 0.015873015873015872
+        }
+      ],
+      "N02_cell_therapy": [],
+      "N03_chip_strike": [
+        {
+          "source_fragment_ids": [
+            "alfa_7m26_2026_09_07_A05"
+          ],
+          "ranks": {
+            "analytics-contextual": 1
+          },
+          "id": "alfa_7m26_2026_09_07_A05::M01",
+          "label": "irrelevant",
+          "reason": "Рост зарплатных ожиданий из-за риска трудовой деятельности в России не объясняет спор о бонусах за прибыль Micron на Тайване.",
+          "rrf": 0.01639344262295082
+        },
+        {
+          "source_fragment_ids": [
+            "alfa_7m26_2026_09_07_A04"
+          ],
+          "ranks": {
+            "analytics-contextual": 2
+          },
+          "id": "alfa_7m26_2026_09_07_A04::M01",
+          "label": "irrelevant",
+          "reason": "Спрос на ремонтные и восстановительные работы — другой механизм, не спор о распределении прибыли; производственный цикл Micron заявлен сохранённым.",
+          "rrf": 0.016129032258064516
+        }
+      ],
+      "N04_retail_credit": [
+        {
+          "source_fragment_ids": [
+            "alfa_strategy_2026_07_22_A24"
+          ],
+          "ranks": {
+            "analytics-contextual": 1
+          },
+          "id": "alfa_strategy_2026_07_22_A24::M01",
+          "label": "conditional_analogy",
+          "reason": "Кредитные условия и потребительский спрос связаны, но источник описывает снижение ставок и рост трат; обратный перенос на повышение ПСК требует проверки и не объясняет причину нового повышения.",
+          "rrf": 0.01639344262295082
+        },
+        {
+          "source_fragment_ids": [
+            "alfa_macro1h_2026_07_31_A10"
+          ],
+          "ranks": {
+            "analytics-contextual": 2
+          },
+          "id": "alfa_macro1h_2026_07_31_A10::M02",
+          "label": "conditional_analogy",
+          "reason": "Источник описывает поддержку расходов кредитным плечом. Возможное ослабление этой поддержки при дорогом кредите — гипотеза, а не измеренный результат новости.",
+          "rrf": 0.016129032258064516
+        },
+        {
+          "source_fragment_ids": [
+            "alfa_strategy_2026_07_22_A22"
+          ],
+          "ranks": {
+            "analytics-contextual": 3
+          },
+          "id": "alfa_strategy_2026_07_22_A22::M01",
+          "label": "background",
+          "reason": "Общий контекст кредитной трансмиссии; рост доли льготного кредитования не установлен причиной изменения розничной ПСК в октябре.",
+          "rrf": 0.015873015873015872
+        }
+      ],
+      "N05_family_business": [],
+      "N06_cfa": [],
+      "N07_oil": [
+        {
+          "source_fragment_ids": [
+            "alfa_strategy_2026_07_22_A30"
+          ],
+          "ranks": {
+            "analytics-source-text": 1,
+            "analytics-contextual": 1
+          },
+          "id": "alfa_strategy_2026_07_22_A30::M02",
+          "label": "mechanism_context",
+          "reason": "Совпадают ближневосточный конфликт, нефтяные цены, доходы российского бюджета и инфляционные риски. Условия длительности и разных каналов сохранены; это объяснение возможных последствий, не точный прогноз цены.",
+          "rrf": 0.03278688524590164
+        },
+        {
+          "source_fragment_ids": [
+            "alfa_strategy_2026_07_22_A31"
+          ],
+          "ranks": {
+            "analytics-contextual": 2
+          },
+          "id": "alfa_strategy_2026_07_22_A31::M01",
+          "label": "background",
+          "reason": "Внутренняя нефтепереработка и мировые поставки сырой нефти — разные рынки; полезен лишь общий фон инфляционных рисков топливного дефицита.",
+          "rrf": 0.016129032258064516
+        },
+        {
+          "source_fragment_ids": [
+            "alfa_consumption_2026_08_05_A04"
+          ],
+          "ranks": {
+            "analytics-contextual": 3
+          },
+          "id": "alfa_consumption_2026_08_05_A04::M01",
+          "label": "background",
+          "reason": "Конечные продовольственные цены через внутреннее топливо — возможный следующий слой, но мост от Brent к российскому бензину и устойчивость спроса новостью не установлены.",
+          "rrf": 0.015873015873015872
+        }
+      ],
+      "N08_takeaway": [
+        {
+          "source_fragment_ids": [
+            "alfa_strategy_2026_07_22_A27"
+          ],
+          "ranks": {
+            "analytics-contextual": 1
+          },
+          "id": "alfa_strategy_2026_07_22_A27::M01",
+          "label": "conditional_analogy",
+          "reason": "Вес персонала в издержках услуг делает экономию труда потенциально существенной. Источник о бытовых/медицинских услугах и ценах, а не о доставке еды и аренде; перенос только условный.",
+          "rrf": 0.01639344262295082
+        },
+        {
+          "source_fragment_ids": [
+            "alfa_7m26_2026_09_07_A04"
+          ],
+          "ranks": {
+            "analytics-contextual": 2
+          },
+          "id": "alfa_7m26_2026_09_07_A04::M01",
+          "label": "irrelevant",
+          "reason": "Необходимость производственных ремонтов не объясняет экономию труда за счёт смены формата общепита.",
+          "rrf": 0.016129032258064516
+        },
+        {
+          "source_fragment_ids": [
+            "alfa_consumption_2026_08_05_A04"
+          ],
+          "ranks": {
+            "analytics-contextual": 3
+          },
+          "id": "alfa_consumption_2026_08_05_A04::M01",
+          "label": "background",
+          "reason": "Фон продуктовых издержек; рост топлива не является объяснением экономии площадей и персонала, приведённой в новости.",
+          "rrf": 0.015873015873015872
+        }
+      ],
+      "N09_football": [],
+      "N10_theatre": [],
+      "N11_seller_loans": [
+        {
+          "source_fragment_ids": [
+            "alfa_strategy_2026_07_22_A55"
+          ],
+          "ranks": {
+            "analytics-source-text": 1,
+            "analytics-contextual": 1
+          },
+          "id": "alfa_strategy_2026_07_22_A55::M01",
+          "label": "mechanism_context",
+          "reason": "Есть общий канал: оценка кредитного качества ограничивает доступ к банковским ресурсам. Не доказаны общая причина каждого отказа, дефицит ликвидности конкретного банка и условия каждого договора.",
+          "rrf": 0.03278688524590164
+        },
+        {
+          "source_fragment_ids": [
+            "alfa_strategy_2026_07_22_A56"
+          ],
+          "ranks": {
+            "analytics-contextual": 2
+          },
+          "id": "alfa_strategy_2026_07_22_A56::M02",
+          "label": "background",
+          "reason": "Сравнение публичного и банковского долга напоминает о возможности поддержки кредитора, но не объясняет конкретный отказ продавцу; структура публичного долга продавцов неизвестна.",
+          "rrf": 0.016129032258064516
+        },
+        {
+          "source_fragment_ids": [
+            "alfa_7m26_2026_09_07_A03"
+          ],
+          "ranks": {
+            "analytics-source-text": 3,
+            "analytics-contextual": 3
+          },
+          "id": "alfa_7m26_2026_09_07_A03::M01",
+          "label": "background",
+          "reason": "Ухудшение финансов повышает потребность в кредите; это сторона спроса, а новость прежде всего об отказе банка и доступе к финансированию.",
+          "rrf": 0.031746031746031744
+        }
+      ],
+      "N12_vaccine": []
+    },
+    "intersection": {
+      "N01_fish": [],
+      "N02_cell_therapy": [],
+      "N03_chip_strike": [],
+      "N04_retail_credit": [],
+      "N05_family_business": [],
+      "N06_cfa": [],
+      "N07_oil": [
+        {
+          "source_fragment_ids": [
+            "alfa_strategy_2026_07_22_A30"
+          ],
+          "ranks": {
+            "analytics-source-text": 1,
+            "analytics-contextual": 1
+          },
+          "id": "alfa_strategy_2026_07_22_A30::M02",
+          "label": "mechanism_context",
+          "reason": "Совпадают ближневосточный конфликт, нефтяные цены, доходы российского бюджета и инфляционные риски. Условия длительности и разных каналов сохранены; это объяснение возможных последствий, не точный прогноз цены.",
+          "rrf": 0.03278688524590164
+        }
+      ],
+      "N08_takeaway": [],
+      "N09_football": [],
+      "N10_theatre": [],
+      "N11_seller_loans": [
+        {
+          "source_fragment_ids": [
+            "alfa_strategy_2026_07_22_A55"
+          ],
+          "ranks": {
+            "analytics-source-text": 1,
+            "analytics-contextual": 1
+          },
+          "id": "alfa_strategy_2026_07_22_A55::M01",
+          "label": "mechanism_context",
+          "reason": "Есть общий канал: оценка кредитного качества ограничивает доступ к банковским ресурсам. Не доказаны общая причина каждого отказа, дефицит ликвидности конкретного банка и условия каждого договора.",
+          "rrf": 0.03278688524590164
+        },
+        {
+          "source_fragment_ids": [
+            "alfa_7m26_2026_09_07_A03"
+          ],
+          "ranks": {
+            "analytics-source-text": 3,
+            "analytics-contextual": 3
+          },
+          "id": "alfa_7m26_2026_09_07_A03::M01",
+          "label": "background",
+          "reason": "Ухудшение финансов повышает потребность в кредите; это сторона спроса, а новость прежде всего об отказе банка и доступе к финансированию.",
+          "rrf": 0.031746031746031744
+        }
+      ],
+      "N12_vaccine": []
+    },
+    "rrf_union": {
+      "N01_fish": [
+        {
+          "source_fragment_ids": [
+            "alfa_inflation_2026_09_02_A02"
+          ],
+          "ranks": {
+            "analytics-contextual": 1
+          },
+          "id": "alfa_inflation_2026_09_02_A02::M02",
+          "label": "irrelevant",
+          "reason": "Экспортные сложности урожая должны снижать продовольственные цены; новость о сокращении вылова и росте оптовых цен. Объект, причина и направление эффекта не совпадают.",
+          "rrf": 0.01639344262295082
+        },
+        {
+          "source_fragment_ids": [
+            "alfa_strategy_2026_07_22_A30"
+          ],
+          "ranks": {
+            "analytics-source-text": 1
+          },
+          "id": "alfa_strategy_2026_07_22_A30",
+          "label": "irrelevant",
+          "reason": "Нефть, бюджетное правило и ОФЗ не объясняют климатический провал вылова лососевых.",
+          "rrf": 0.01639344262295082
+        },
+        {
+          "source_fragment_ids": [
+            "alfa_consumption_2026_08_05_A04"
+          ],
+          "ranks": {
+            "analytics-contextual": 2
+          },
+          "id": "alfa_consumption_2026_08_05_A04::M01",
+          "label": "background",
+          "reason": "Общий контекст издержек продовольствия; топливный канал не объясняет биологическое сокращение улова, а топливные издержки рыбного оптовика не измерены.",
+          "rrf": 0.016129032258064516
+        }
+      ],
+      "N02_cell_therapy": [],
+      "N03_chip_strike": [
+        {
+          "source_fragment_ids": [
+            "alfa_7m26_2026_09_07_A05"
+          ],
+          "ranks": {
+            "analytics-contextual": 1
+          },
+          "id": "alfa_7m26_2026_09_07_A05::M01",
+          "label": "irrelevant",
+          "reason": "Рост зарплатных ожиданий из-за риска трудовой деятельности в России не объясняет спор о бонусах за прибыль Micron на Тайване.",
+          "rrf": 0.01639344262295082
+        },
+        {
+          "source_fragment_ids": [
+            "alfa_7m26_2026_09_07_A04"
+          ],
+          "ranks": {
+            "analytics-contextual": 2
+          },
+          "id": "alfa_7m26_2026_09_07_A04::M01",
+          "label": "irrelevant",
+          "reason": "Спрос на ремонтные и восстановительные работы — другой механизм, не спор о распределении прибыли; производственный цикл Micron заявлен сохранённым.",
+          "rrf": 0.016129032258064516
+        }
+      ],
+      "N04_retail_credit": [
+        {
+          "source_fragment_ids": [
+            "alfa_consumption_2026_08_05_A05"
+          ],
+          "ranks": {
+            "analytics-source-text": 1
+          },
+          "id": "alfa_consumption_2026_08_05_A05",
+          "label": "background",
+          "reason": "Рост кредитного спроса объясняется инфляционными ожиданиями и семейной ипотекой; причина и последствия нового повышения ПСК не установлены.",
+          "rrf": 0.01639344262295082
+        },
+        {
+          "source_fragment_ids": [
+            "alfa_strategy_2026_07_22_A24"
+          ],
+          "ranks": {
+            "analytics-contextual": 1
+          },
+          "id": "alfa_strategy_2026_07_22_A24::M01",
+          "label": "conditional_analogy",
+          "reason": "Кредитные условия и потребительский спрос связаны, но источник описывает снижение ставок и рост трат; обратный перенос на повышение ПСК требует проверки и не объясняет причину нового повышения.",
+          "rrf": 0.01639344262295082
+        },
+        {
+          "source_fragment_ids": [
+            "alfa_consumption_2026_08_05_A06"
+          ],
+          "ranks": {
+            "analytics-source-text": 2
+          },
+          "id": "alfa_consumption_2026_08_05_A06",
+          "label": "background",
+          "reason": "Норма сбережений и инфляционные ожидания — общий контекст потребления, не механизм повышения стоимости кредита.",
+          "rrf": 0.016129032258064516
+        }
+      ],
+      "N05_family_business": [],
+      "N06_cfa": [],
+      "N07_oil": [
+        {
+          "source_fragment_ids": [
+            "alfa_strategy_2026_07_22_A30"
+          ],
+          "ranks": {
+            "analytics-source-text": 1,
+            "analytics-contextual": 1
+          },
+          "id": "alfa_strategy_2026_07_22_A30::M02",
+          "label": "mechanism_context",
+          "reason": "Совпадают ближневосточный конфликт, нефтяные цены, доходы российского бюджета и инфляционные риски. Условия длительности и разных каналов сохранены; это объяснение возможных последствий, не точный прогноз цены.",
+          "rrf": 0.03278688524590164
+        },
+        {
+          "source_fragment_ids": [
+            "alfa_strategy_2026_07_22_A31"
+          ],
+          "ranks": {
+            "analytics-contextual": 2
+          },
+          "id": "alfa_strategy_2026_07_22_A31::M01",
+          "label": "background",
+          "reason": "Внутренняя нефтепереработка и мировые поставки сырой нефти — разные рынки; полезен лишь общий фон инфляционных рисков топливного дефицита.",
+          "rrf": 0.016129032258064516
+        },
+        {
+          "source_fragment_ids": [
+            "alfa_strategy_2026_07_22_G14"
+          ],
+          "ranks": {
+            "analytics-source-text": 2
+          },
+          "id": "alfa_strategy_2026_07_22_G14",
+          "label": "background",
+          "reason": "Полезная история цен Brent и Urals, но график не является самостоятельным объяснением шока поставок.",
+          "rrf": 0.016129032258064516
+        }
+      ],
+      "N08_takeaway": [
+        {
+          "source_fragment_ids": [
+            "alfa_strategy_2026_07_22_A27"
+          ],
+          "ranks": {
+            "analytics-contextual": 1
+          },
+          "id": "alfa_strategy_2026_07_22_A27::M01",
+          "label": "conditional_analogy",
+          "reason": "Вес персонала в издержках услуг делает экономию труда потенциально существенной. Источник о бытовых/медицинских услугах и ценах, а не о доставке еды и аренде; перенос только условный.",
+          "rrf": 0.01639344262295082
+        },
+        {
+          "source_fragment_ids": [
+            "alfa_7m26_2026_09_07_A04"
+          ],
+          "ranks": {
+            "analytics-contextual": 2
+          },
+          "id": "alfa_7m26_2026_09_07_A04::M01",
+          "label": "irrelevant",
+          "reason": "Необходимость производственных ремонтов не объясняет экономию труда за счёт смены формата общепита.",
+          "rrf": 0.016129032258064516
+        },
+        {
+          "source_fragment_ids": [
+            "alfa_consumption_2026_08_05_A04"
+          ],
+          "ranks": {
+            "analytics-contextual": 3
+          },
+          "id": "alfa_consumption_2026_08_05_A04::M01",
+          "label": "background",
+          "reason": "Фон продуктовых издержек; рост топлива не является объяснением экономии площадей и персонала, приведённой в новости.",
+          "rrf": 0.015873015873015872
+        }
+      ],
+      "N09_football": [],
+      "N10_theatre": [],
+      "N11_seller_loans": [
+        {
+          "source_fragment_ids": [
+            "alfa_strategy_2026_07_22_A55"
+          ],
+          "ranks": {
+            "analytics-source-text": 1,
+            "analytics-contextual": 1
+          },
+          "id": "alfa_strategy_2026_07_22_A55::M01",
+          "label": "mechanism_context",
+          "reason": "Есть общий канал: оценка кредитного качества ограничивает доступ к банковским ресурсам. Не доказаны общая причина каждого отказа, дефицит ликвидности конкретного банка и условия каждого договора.",
+          "rrf": 0.03278688524590164
+        },
+        {
+          "source_fragment_ids": [
+            "alfa_7m26_2026_09_07_A03"
+          ],
+          "ranks": {
+            "analytics-source-text": 3,
+            "analytics-contextual": 3
+          },
+          "id": "alfa_7m26_2026_09_07_A03::M01",
+          "label": "background",
+          "reason": "Ухудшение финансов повышает потребность в кредите; это сторона спроса, а новость прежде всего об отказе банка и доступе к финансированию.",
+          "rrf": 0.031746031746031744
+        },
+        {
+          "source_fragment_ids": [
+            "alfa_strategy_2026_07_22_A54"
+          ],
+          "ranks": {
+            "analytics-source-text": 2
+          },
+          "id": "alfa_strategy_2026_07_22_A54",
+          "label": "background",
+          "reason": "Фон слабых кредитных метрик на фоне ставок и курса; структура ставок продавцов неизвестна, а отказ в новом кредите не сводится к процентному риску существующего долга.",
+          "rrf": 0.016129032258064516
+        }
+      ],
+      "N12_vaccine": []
+    }
+  },
+  "end_to_end": {
+    "U_102920": {
+      "news": [
+        "N01_fish",
+        "N08_takeaway",
+        "N04_retail_credit"
+      ],
+      "analytics_after_intersection": 0
+    },
+    "U_10529": {
+      "news": [
+        "N02_cell_therapy",
+        "N12_vaccine",
+        "N01_fish"
+      ],
+      "analytics_after_intersection": 0
+    },
+    "U_105459": {
+      "news": [],
+      "analytics_after_intersection": 0
+    }
+  }
+}
