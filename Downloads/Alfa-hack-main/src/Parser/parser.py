@@ -23,6 +23,7 @@
   python parser.py --refetch  # ещё раз попробовать скачать полный текст
                               # для новостей, где текст неполный (is_full = 0)
   python parser.py --log      # вывод дописывается в parser.log (так запускает автозапуск)
+  python parser.py --rebuild  # пересчитать очистку и события по ВСЕЙ базе (обычно не нужно)
 
 Базу, собранную до появления новых колонок, переводит на них migrate.py.
 
@@ -37,12 +38,13 @@ import argparse
 import csv
 import hashlib
 import html
+import json
 import os
 import re
 import sqlite3
 import sys
 import time
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 
 if os.name == "nt":  # Windows: блокировка файла через msvcrt
     import msvcrt
@@ -54,11 +56,11 @@ import requests
 import trafilatura
 
 from cleaning import (
-    build_embed_text, clean_article, clean_body, clean_html, content_hash, detect_paywall,
-    find_boilerplate, guess_deck, make_lead, pick_lead, split_source, split_title,
+    boilerplate_from_index, boilerplate_index, build_embed_text, clean_article, clean_body, clean_html,
+    content_hash, detect_paywall, guess_deck, make_lead, pick_lead, split_source, split_title,
     to_utc_iso, url_section_from_url,
 )
-from events import cluster_events, event_text
+from events import EVENT_WINDOW_HOURS, cluster_events, event_text
 
 # Деловые источники. Адреса RSS иногда меняются — если источник пишет
 # «в ленте: 0», откройте ссылку в браузере и проверьте, что там XML со списком новостей.
@@ -169,6 +171,8 @@ def init_db(conn):
         except sqlite3.OperationalError:
             pass  # очень старый SQLite не умеет удалять колонки — не страшно
 
+    # служебные значения: сейчас — набор шаблонных абзацев, по которому посчитаны body_clean и др.
+    conn.execute("CREATE TABLE IF NOT EXISTS meta (key TEXT PRIMARY KEY, value TEXT)")
     conn.execute("CREATE INDEX IF NOT EXISTS idx_news_published_utc ON news(published_utc)")
     conn.execute("CREATE INDEX IF NOT EXISTS idx_news_event_id ON news(event_id)")
     conn.commit()
@@ -361,6 +365,9 @@ def refetch_summaries(conn):
             "fetch_error = ?, url_section = COALESCE(url_section, ?) WHERE id = ?",
             (text, summary, is_full, len(text), error, section, news_id),
         )
+        if text != old_text:
+            # текст изменился — очистка и события этой новости пересчитаются при следующей сборке
+            conn.execute("UPDATE news SET body_clean = NULL WHERE id = ?", (news_id,))
         conn.commit()
         if is_full:
             fixed += 1
@@ -373,7 +380,8 @@ def refetch_summaries(conn):
 
 # ---------- данные для разметки ----------
 
-# Колонки, которые зависят от всей базы сразу и пересчитываются после каждого запуска.
+# Колонки, которые зависят от всей базы сразу. Считаются для новых новостей (у них body_clean и
+# event_id пустые) и для недавнего окна событий; полный пересчёт — rebuild_derived(full=True).
 DERIVED_COLUMNS = ("body_clean", "lead", "embed_text", "content_hash", "is_paywalled", "event_id")
 
 
@@ -386,23 +394,94 @@ def event_time(row):
     return datetime.fromtimestamp(0, timezone.utc)
 
 
-def rebuild_derived(conn):
+def load_boilerplate(conn):
+    """Набор шаблонных абзацев прошлой сборки {издание: {абзацы}}; None, если сборки ещё не было."""
+    row = conn.execute("SELECT value FROM meta WHERE key = 'boilerplate'").fetchone()
+    return {outlet: set(paras) for outlet, paras in json.loads(row[0]).items()} if row else None
+
+
+def save_boilerplate(conn, boilerplate):
+    value = json.dumps({outlet: sorted(paras) for outlet, paras in boilerplate.items()}, ensure_ascii=False)
+    conn.execute("INSERT OR REPLACE INTO meta (key, value) VALUES ('boilerplate', ?)", (value,))
+
+
+def has_dirty_rows(conn):
+    """Есть ли новости, для которых производные колонки ещё не посчитаны (новые или с изменённым текстом)."""
+    return conn.execute(
+        "SELECT 1 FROM news WHERE event_id IS NULL OR body_clean IS NULL LIMIT 1").fetchone() is not None
+
+
+def assign_events(rows, new, full=False):
+    """
+    event_id для каждой новости: {id: event_id}.
+
+    Полная склейка по всей базе стоит дорого: время растёт с числом новостей, а между запусками
+    меняются единицы. Поэтому события пересчитываются только там, где их могли изменить новые
+    новости (у которых event_id или body_clean пустой):
+      * новость в момент t может попасть лишь в событие, которое началось не раньше t − окно
+        (событие укладывается в EVENT_WINDOW_HOURS), поэтому всё, что началось раньше
+        «самая ранняя новая новость − окно», закрыто и остаётся как есть;
+      * остальные новости склеиваются заново.
+    Время не зависит от размера базы — только от числа новостей за последние двое суток.
+    full=True (или когда пусто всё) — склейка по всей базе, как раньше.
+    """
+    times = {r["id"]: event_time(r) for r in rows}
+    items = {r["id"]: (r["id"], times[r["id"]], event_text(r["title"], r["subtitle"], new[r["id"]]["lead"]))
+             for r in rows}
+    dirty = [r for r in rows if r["event_id"] is None or r["body_clean"] is None]
+    if full or not dirty or len(dirty) == len(rows):
+        return cluster_events(list(items.values()))
+
+    start = min(times[r["id"]] for r in dirty) - timedelta(hours=EVENT_WINDOW_HOURS)
+    result, active = {}, []
+    for r in rows:
+        root = r["event_id"]
+        closed = times[r["id"]] < start or (root is not None and times.get(root, start) < start)
+        if closed and root is not None:
+            result[r["id"]] = root          # событие началось до окна — не трогаем
+        else:
+            active.append(items[r["id"]])
+    result.update(cluster_events(active))
+    return result
+
+
+def rebuild_derived(conn, full=False):
     """
     Пересчитывает колонки, которые зависят не от одной новости, а от всей базы:
     body_clean, lead, embed_text, content_hash (шаблонные абзацы ищутся по всем
     новостям издания), is_paywalled и event_id (события ищутся среди соседних
     по времени новостей). Записывает только изменившиеся значения.
+
+    Если новых новостей нет, ничего не считает: результат всё равно не изменился бы.
+    Очистка текста пересчитывается только у новых новостей и у тех старых, в которых появился или
+    пропал шаблонный абзац (набор прошлой сборки лежит в таблице meta): у остальных результат
+    тот же, что был. События пересчитываются не по всей базе, а за последнее окно
+    (см. assign_events). full=True пересчитывает всё.
     Возвращает (сколько строк изменилось, найденные шаблонные абзацы).
     """
+    if not full and not has_dirty_rows(conn):
+        return 0, {}
     rows = fetch_dicts(
         conn,
         "SELECT id, outlet, title_raw, title, subtitle, text, published_utc, parsed_at, "
         + ", ".join(DERIVED_COLUMNS) + " FROM news ORDER BY id",
     )
-    boilerplate = find_boilerplate(rows)
+    index = boilerplate_index(rows)
+    boilerplate = boilerplate_from_index(index)
+
+    todo = None   # None — посчитать у всех
+    old = None if full else load_boilerplate(conn)
+    if old is not None:
+        todo = {r["id"] for r in rows if r["event_id"] is None or r["body_clean"] is None}
+        for outlet in set(old) | set(boilerplate):
+            for p in old.get(outlet, set()) ^ set(boilerplate.get(outlet, ())):
+                todo |= index.get((outlet, p), set())   # новости, в которых этот абзац стал или перестал быть шаблонным
 
     new = {}
     for r in rows:
+        if todo is not None and r["id"] not in todo:
+            new[r["id"]] = {col: r[col] for col in DERIVED_COLUMNS if col != "event_id"}
+            continue
         body = clean_body(r["text"], r["title"], r["subtitle"], r["title_raw"],
                           boilerplate.get(r["outlet"], {}))
         embed = build_embed_text(r["title"], r["subtitle"], body)
@@ -413,10 +492,7 @@ def rebuild_derived(conn):
             "content_hash": content_hash(embed),
             "is_paywalled": int(detect_paywall(r["text"]) is not None),
         }
-    events = cluster_events([
-        (r["id"], event_time(r), event_text(r["title"], r["subtitle"], new[r["id"]]["lead"]))
-        for r in rows
-    ])
+    events = assign_events(rows, new, full)
 
     changed = 0
     for r in rows:
@@ -429,8 +505,17 @@ def rebuild_derived(conn):
                 [values[col] for col in DERIVED_COLUMNS] + [r["id"]],
             )
             changed += 1
+    save_boilerplate(conn, boilerplate)
     conn.commit()
     return changed, boilerplate
+
+
+def csv_is_fresh():
+    """CSV новее базы — после последней записи в базу он уже выгружался, перезапись не нужна."""
+    try:
+        return os.path.getmtime(CSV_PATH) >= os.path.getmtime(DB_PATH)
+    except OSError:
+        return False
 
 
 def export_csv(conn):
@@ -483,6 +568,8 @@ def main():
                     help="сколько НОВЫХ новостей брать с каждого источника")
     ap.add_argument("--refetch", action="store_true",
                     help="докачать полный текст для новостей, где есть только анонс")
+    ap.add_argument("--rebuild", action="store_true",
+                    help="пересчитать очистку и события по всей базе (обычно достаточно пересчёта нового)")
     ap.add_argument("--log", action="store_true",
                     help="дописывать весь вывод в parser.log рядом с парсером (так его запускает autostart.py)")
     args = ap.parse_args()
@@ -513,9 +600,15 @@ def main():
                 print(f"[{source}] ошибка: {e}")
         print(f"\nНовых за запуск: {total}")
 
-    changed, _ = rebuild_derived(conn)
-    print(f"Данные для разметки пересчитаны, изменилось строк: {changed}")
-    export_csv(conn)
+    if args.rebuild or has_dirty_rows(conn):
+        changed, _ = rebuild_derived(conn, full=args.rebuild)
+        print(f"Данные для разметки пересчитаны, изменилось строк: {changed}")
+    else:
+        print("Новых данных нет — пересчёт пропущен")
+    if csv_is_fresh():
+        print("news.csv уже актуален — не перезаписываю")
+    else:
+        export_csv(conn)
     count, full = conn.execute(
         "SELECT COUNT(*), SUM(is_full = 1) FROM news"
     ).fetchone()

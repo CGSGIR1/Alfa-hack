@@ -23,6 +23,10 @@ class LLMError(RuntimeError):
     pass
 
 
+class LLMUnavailable(LLMError):
+    """API не отвечает, отказывает по HTTP или не настроен: вина не в запросе, повтор позже может помочь."""
+
+
 def load_dotenv(path: Path = ROOT / ".env") -> None:
     """Подхватывает переменные из .env в корне проекта. Уже заданные в окружении не перезаписывает."""
     if not path.exists():
@@ -73,10 +77,13 @@ class LLMClient:
         except (urllib.error.URLError, TimeoutError, json.JSONDecodeError) as error:
             raise LLMError(f"Не удалось получить расход ключа: {error}") from error
 
-    def chat_json(self, model: str, messages: list[dict], task: str, temperature: float = 0.2) -> dict:
+    def chat_json(self, model: str, messages: list[dict], task: str, temperature: float = 0.2,
+                  params: dict | None = None) -> dict:
         """Запрос с ответом в JSON. При невалидном JSON — повтор с указанием ошибки."""
+        # JSON-режим API: модель не может вернуть синтаксически битый JSON (неэкранированные кавычки и т.п.)
+        params = {"response_format": {"type": "json_object"}, **(params or {})}
         for attempt in range(JSON_RETRIES + 1):
-            text = self.chat(model, messages, task, temperature)
+            text = self.chat(model, messages, task, temperature, params)
             try:
                 return parse_json(text)
             except ValueError as error:
@@ -88,8 +95,10 @@ class LLMClient:
                 ]
         raise AssertionError("unreachable")
 
-    def chat(self, model: str, messages: list[dict], task: str, temperature: float = 0.2) -> str:
-        payload = {"model": model, "messages": messages, "temperature": temperature}
+    def chat(self, model: str, messages: list[dict], task: str, temperature: float = 0.2,
+             params: dict | None = None) -> str:
+        """params — дополнительные поля запроса API (например, max_tokens); входят в ключ кеша."""
+        payload = {"model": model, "messages": messages, "temperature": temperature, **(params or {})}
         key = hashlib.sha256(json.dumps(payload, ensure_ascii=False, sort_keys=True).encode()).hexdigest()
         cached = self.cache_dir / f"{key}.json"
         if cached.exists():
@@ -98,7 +107,7 @@ class LLMClient:
             return _content(response)
 
         if not self.base_url or not self.api_key:
-            raise LLMError("Не заданы LLM_BASE_URL и LLM_API_KEY")
+            raise LLMUnavailable("Не заданы LLM_BASE_URL и LLM_API_KEY")
         request = urllib.request.Request(
             f"{self.base_url}/chat/completions",
             data=json.dumps(payload).encode(),
@@ -115,12 +124,12 @@ class LLMClient:
                 if error.code in RETRY_HTTP_CODES and attempt < NETWORK_RETRIES:
                     time.sleep(RETRY_PAUSE)
                     continue
-                raise LLMError(f"HTTP {error.code}: {error.read().decode(errors='replace')[:500]}") from error
+                raise LLMUnavailable(f"HTTP {error.code}: {error.read().decode(errors='replace')[:500]}") from error
             except (urllib.error.URLError, TimeoutError) as error:
                 if attempt < NETWORK_RETRIES:
                     time.sleep(RETRY_PAUSE)
                     continue
-                raise LLMError(f"Нет связи с API: {error}") from error
+                raise LLMUnavailable(f"Нет связи с API: {error}") from error
 
         self.cache_dir.mkdir(parents=True, exist_ok=True)
         cached.write_text(json.dumps(response, ensure_ascii=False))

@@ -14,6 +14,6 @@ OpenAI-совместимый API (POST {base_url}/chat/completions), тольк
 Каждый вызов журналируется: модель, задача, токены, время, попадание в кеш.
 """
 
-from .client import LLMClient, LLMError
+from .client import LLMClient, LLMError, LLMUnavailable
 
-__all__ = ["LLMClient", "LLMError"]
+__all__ = ["LLMClient", "LLMError", "LLMUnavailable"]

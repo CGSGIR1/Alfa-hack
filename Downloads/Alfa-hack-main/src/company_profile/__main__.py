@@ -10,7 +10,7 @@
     python -m src.company_profile --large-groups 5        # 5 крупнейших групп
 
     python -m src.company_profile U_9250 --queries        # запросы влияния (правила, без LLM)
-    python -m src.company_profile U_9250 --queries --llm  # запросы, доработанные LLM (нужны LLM_* переменные)
+    python -m src.company_profile U_9250 --queries --llm  # аспекты LLM: из кеша precomputed/, иначе считаются и сохраняются
     python -m src.company_profile U_9250 --queries --show-prompt  # промпт для LLM без вызова
 """
 
@@ -22,7 +22,8 @@ import json
 from . import DataStore, build_group_profile, build_profile, describe_full, describe_group, describe_short
 from .profile import LARGE_BUSINESS_REVENUE
 from .queries import QuerySet, company_queries, group_queries
-from .refine import allowed_sources, build_messages, refine
+from .impact import get_impact_queries
+from .refine import allowed_sources, build_messages
 
 SEPARATOR = "\n\n" + "=" * 80 + "\n\n"
 
@@ -79,7 +80,7 @@ def main() -> None:
                 for m in build_messages(seeds, text, allowed_sources(seeds, features)):
                     print(f"--- {m['role']} ---\n{m['content']}\n")
                 continue
-            result = refine(seeds, text, features) if args.llm else seeds
+            result = get_impact_queries(store, item) if args.llm else seeds
             data, text = result.to_dict(), format_queries(result)
 
         if args.json:

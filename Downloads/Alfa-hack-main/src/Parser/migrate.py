@@ -265,7 +265,7 @@ def main():
         found, total = fetch_kommersant_sections(conn)
         print(f"Раздел Коммерсанта со страниц: найден у {found} из {total}")
 
-    changed, _ = news_parser.rebuild_derived(conn)
+    changed, _ = news_parser.rebuild_derived(conn, full=True)
     print(f"body_clean, lead, embed_text, content_hash, is_paywalled, event_id: "
           f"изменилось строк — {changed}")
     news_parser.export_csv(conn)

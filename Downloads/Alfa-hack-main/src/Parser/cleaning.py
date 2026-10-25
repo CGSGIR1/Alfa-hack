@@ -227,6 +227,27 @@ def body_paragraphs(text, title, subtitle=None, title_raw=None):
     return [p for p in paras if not (len(p) < TEMPLATE_MAX_LEN and PAYWALL_RE.search(p))]
 
 
+def boilerplate_index(articles):
+    """
+    Где встречается каждый абзац: {(издание, абзац): {id новостей}}.
+    articles — словари с ключами id, outlet, text, title, subtitle, title_raw.
+    """
+    news_with = defaultdict(set)
+    for a in articles:
+        for p in set(body_paragraphs(a["text"], a["title"], a.get("subtitle"), a.get("title_raw"))):
+            news_with[(a["outlet"], p)].add(a["id"])
+    return news_with
+
+
+def boilerplate_from_index(news_with, min_news=BOILERPLATE_MIN_NEWS):
+    """Из индекса boilerplate_index оставляет абзацы, которые есть в min_news и более новостях издания."""
+    found = defaultdict(dict)
+    for (outlet, p), ids in news_with.items():
+        if len(ids) >= min_news:
+            found[outlet][p] = len(ids)
+    return dict(found)
+
+
 def find_boilerplate(articles, min_news=BOILERPLATE_MIN_NEWS):
     """
     Шаблонные абзацы — те, что дословно повторяются в min_news и более разных
@@ -236,15 +257,7 @@ def find_boilerplate(articles, min_news=BOILERPLATE_MIN_NEWS):
     articles — словари с ключами id, outlet, text, title, subtitle, title_raw.
     Возвращает {издание: {абзац: в скольких новостях он встретился}}.
     """
-    news_with = defaultdict(set)
-    for a in articles:
-        for p in set(body_paragraphs(a["text"], a["title"], a.get("subtitle"), a.get("title_raw"))):
-            news_with[(a["outlet"], p)].add(a["id"])
-    found = defaultdict(dict)
-    for (outlet, p), ids in news_with.items():
-        if len(ids) >= min_news:
-            found[outlet][p] = len(ids)
-    return dict(found)
+    return boilerplate_from_index(boilerplate_index(articles), min_news)
 
 
 def clean_body(text, title, subtitle=None, title_raw=None, boilerplate=()):

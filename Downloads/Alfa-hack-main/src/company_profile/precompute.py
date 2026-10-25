@@ -12,19 +12,16 @@
 from __future__ import annotations
 
 import argparse
-import json
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
 from ..llm import LLMClient, LLMError
-from . import DataStore, build_group_profile, build_profile, describe_full, describe_group
+from . import DataStore
+from .impact import CACHE_DIR as DEFAULT_OUT
+from .impact import compute, is_fallback, load_cached, prepare
 from .profile import LARGE_BUSINESS_REVENUE
-from .queries import company_queries, group_queries
-from .refine import MIN_ASPECTS, PROMPT_VERSION, allowed_sources, build_messages, refine
-
-ROOT = Path(__file__).resolve().parents[2]
-DEFAULT_OUT = ROOT / "precomputed" / "impact_queries"
+from .refine import MIN_ASPECTS, allowed_sources, build_messages
 
 # Демо-компании команды (src/company_data.py) и контрастные примеры из разбора данных.
 DEMO_COMPANIES = ["U_57706", "U_200890", "U_34911", "U_68157", "U_102920", "U_44792", "U_9250"]
@@ -34,27 +31,8 @@ SPEND_CHECK_EVERY = 10
 MAX_FALLBACKS_IN_ROW = 3
 
 
-def prepare(store: DataStore, subject: str):
-    """Черновые запросы, описание и признаки для компании или группы."""
-    if subject.startswith("group_"):
-        g = build_group_profile(store, subject)
-        return group_queries(g), describe_group(g), None
-    p = build_profile(store, subject)
-    return company_queries(p), describe_full(p), p.features
-
-
 def _num(n: int) -> str:
     return f"{n:,}".replace(",", " ")
-
-
-def is_done(path: Path, model: str) -> bool:
-    if not path.exists():
-        return False
-    try:
-        data = json.loads(path.read_text())
-    except json.JSONDecodeError:
-        return False
-    return data.get("model") == model and data.get("prompt_version") == PROMPT_VERSION
 
 
 def main() -> None:
@@ -92,7 +70,7 @@ def main() -> None:
     except LLMError as error:
         parser.error(f"{error}. Заполните .env по образцу .env.example")
     args.out.mkdir(parents=True, exist_ok=True)
-    todo = [s for s in subjects if args.force or not is_done(args.out / f"{s}.json", model)]
+    todo = [s for s in subjects if args.force or load_cached(s, args.out, model=model) is None]
     if args.limit:
         todo = todo[:args.limit]
     print(f"Субъектов: {len(subjects)}, к расчёту: {len(todo)}, модель: {model}")
@@ -129,9 +107,7 @@ def main() -> None:
         return
 
     def work(subject: str):
-        seeds, text, features = prepare(store, subject)
-        result = refine(seeds, text, features, client=client, model=model)
-        return subject, result
+        return subject, compute(store, subject, client, model, args.out)
 
     with ThreadPoolExecutor(max_workers=args.workers) as pool:
         pending = iter(todo)
@@ -144,15 +120,7 @@ def main() -> None:
             except (LLMError, KeyError) as error:
                 print(f"  ошибка: {error}")
             else:
-                fallback = any(n.startswith("LLM недоступна") for n in result.notes)
-                payload = {
-                    **result.to_dict(),
-                    "model": None if fallback else model,
-                    "prompt_version": PROMPT_VERSION,
-                    "generated_at": time.strftime("%Y-%m-%dT%H:%M:%S"),
-                }
-                if not fallback:
-                    (args.out / f"{subject}.json").write_text(json.dumps(payload, ensure_ascii=False, indent=2))
+                fallback = is_fallback(result)
                 n = len(result.queries)
                 stats["done"] += 1
                 stats["aspects"].append(n)

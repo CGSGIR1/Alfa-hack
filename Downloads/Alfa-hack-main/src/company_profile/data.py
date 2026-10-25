@@ -25,6 +25,12 @@ FLAG_COLUMNS = [
 ]
 
 
+def _csv(data_dir: Path, name: str) -> Path:
+    """Файл кейса: обычный .csv или сжатый .csv.gz (pandas сам распознаёт сжатие)."""
+    plain = data_dir / name
+    return plain if plain.exists() or not (data_dir / f"{name}.gz").exists() else data_dir / f"{name}.gz"
+
+
 def _read(path: Path, **kwargs) -> pd.DataFrame:
     return pd.read_csv(path, sep=";", encoding="utf-8-sig", **kwargs)
 
@@ -45,7 +51,7 @@ class DataStore:
     def __init__(self, data_dir: str | Path | None = None):
         self.data_dir = Path(data_dir or os.environ.get("DATA_DIR") or DEFAULT_DATA_DIR)
         companies = _read(
-            self.data_dir / "df_Uid_data_hack.csv",
+            _csv(self.data_dir, "df_Uid_data_hack.csv"),
             dtype={"MAINOKVED_CODE": str},
             low_memory=False,
         )
@@ -89,7 +95,7 @@ class DataStore:
 
     @cached_property
     def payments(self) -> pd.DataFrame:
-        return _read(self.data_dir / "df_Uid_payment_hack.csv")
+        return _read(_csv(self.data_dir, "df_Uid_payment_hack.csv"))
 
     @cached_property
     def payments_out(self) -> pd.DataFrame:
@@ -114,7 +120,11 @@ class DataStore:
 
     @cached_property
     def person_links(self) -> pd.DataFrame:
-        return _read(self.data_dir / "df_Fid_Uid_link_hack.csv")
+        """Связи физлиц с компаниями. Файл необязателен: без него связей просто нет."""
+        path = _csv(self.data_dir, "df_Fid_Uid_link_hack.csv")
+        if not path.exists():
+            return pd.DataFrame(columns=["SYNTHETIC_F", "SYNTHETIC_U"])
+        return _read(path)
 
     def outgoing(self, company_id: str) -> pd.DataFrame:
         return _lookup(self.payments_out, company_id, "BENEFICIARY")
