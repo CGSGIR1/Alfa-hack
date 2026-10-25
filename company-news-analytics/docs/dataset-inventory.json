@@ -1,0 +1,141 @@
+{
+  "documents": {
+    "companies": 11,
+    "news": 614,
+    "analytics": 22
+  },
+  "analytical_pdfs": [
+    {
+      "id": "ACRA_EKONIVA_20260128",
+      "file": "data/sources/analytics/ACRA_EKONIVA_20260128.pdf",
+      "sha256": "bf489593cc08daa9f4ff77b4a516bbe458e9277cdbb3141fe002bc8e5c39d394",
+      "bytes": 493253
+    },
+    {
+      "id": "AFC_FACTORING_2026H1",
+      "file": "data/sources/analytics/AFC_FACTORING_2026H1.pdf",
+      "sha256": "94d5059240abea5da733ce8551e8d37d1d8bcb95b8dfc68ff393b3c377da9fc0",
+      "bytes": 1914512
+    },
+    {
+      "id": "CBR_BANKING_202608",
+      "file": "data/sources/analytics/CBR_BANKING_202608.pdf",
+      "sha256": "783d793c76337f81afdca677371873444018a2a53c9730aaa10fe51c001c463a",
+      "bytes": 1114686
+    },
+    {
+      "id": "CBR_CPD_202609",
+      "file": "data/sources/analytics/CBR_CPD_202609.pdf",
+      "sha256": "09365d4891f4933b72c604fd6c03c4de69b14d4929fa8c4f48742c90751b8b3f",
+      "bytes": 1259110
+    },
+    {
+      "id": "CBR_DKU_202609",
+      "file": "data/sources/analytics/CBR_DKU_202609.pdf",
+      "sha256": "9531eedf3ac506ced43d4311c018652e349d30714ca4642702b6cb6b9ee9f372",
+      "bytes": 773906
+    },
+    {
+      "id": "CBR_EXPECTATIONS_202609",
+      "file": "data/sources/analytics/CBR_EXPECTATIONS_202609.pdf",
+      "sha256": "bf86b5ff4bb824582363034b354d9cab2283078aa64ee12ae4735c0c1a0ba38b",
+      "bytes": 392298
+    },
+    {
+      "id": "CBR_FINANCIAL_FLOWS_202609",
+      "file": "data/sources/analytics/CBR_FINANCIAL_FLOWS_202609.pdf",
+      "sha256": "5ce598cdb839e31cbc97cae25899ac0ab1494eef31df33116766ca4f62c122f4",
+      "bytes": 13474534
+    },
+    {
+      "id": "CBR_MARKET_RISKS_202609",
+      "file": "data/sources/analytics/CBR_MARKET_RISKS_202609.pdf",
+      "sha256": "9271ab0c48862a3a0779ffc8d272184b5facbb9d126977af0f4ad96c8f860b2d",
+      "bytes": 1246569
+    },
+    {
+      "id": "CBR_MONITOR_202609",
+      "file": "data/sources/analytics/CBR_MONITOR_202609.pdf",
+      "sha256": "2c0e0421648e1559aebd6753f9e6796741cfa0c8b09831795f7063adfb76acdc",
+      "bytes": 973771
+    },
+    {
+      "id": "CBR_PROJECT_2026Q2",
+      "file": "data/sources/analytics/CBR_PROJECT_2026Q2.pdf",
+      "sha256": "14606d75a12ce78f3549861cce6807a1e9a6708f7deec06acc0bc6c82d242a55",
+      "bytes": 540811
+    },
+    {
+      "id": "CBR_RESTRUCTURING_202609",
+      "file": "data/sources/analytics/CBR_RESTRUCTURING_202609.pdf",
+      "sha256": "be2cf000e70b27ddacf883c45e01b6d8ec47ecfd1ca2ceec66bd5dd8a56b7931",
+      "bytes": 99146
+    },
+    {
+      "id": "NRA_ADVERTISING_2026",
+      "file": "data/sources/analytics/NRA_ADVERTISING_2026.pdf",
+      "sha256": "00998ddd075eeb1cc67462b2b24e629420fce76baf7171a41cb5941aa5fef3aa",
+      "bytes": 13633177
+    },
+    {
+      "id": "RA_LEASING_2026H1",
+      "file": "data/sources/analytics/RA_LEASING_2026H1.pdf",
+      "sha256": "3cc46ed87b5b093261f3b6f146ad42c74ae00278b765c19a7b7d9b32f9d4592a",
+      "bytes": 950136
+    },
+    {
+      "id": "TOCHKA_FREIGHT_2026",
+      "file": "data/sources/analytics/TOCHKA_FREIGHT_2026.pdf",
+      "sha256": "766880b6bb4031d68acad93a452c456633e2f700dc7609dacd54bdd2688a2dd6",
+      "bytes": 9051211
+    },
+    {
+      "id": "alfa_7m26_2026_09_07",
+      "file": "data/sources/analytics/alfa_7m26_2026_09_07.pdf",
+      "sha256": "3c64c1e43f3b46a795f9581967f2dbc8efb0994cb77ab82e95da180830e9ff8c",
+      "bytes": 6458583
+    },
+    {
+      "id": "alfa_consumption_2026_08_05",
+      "file": "data/sources/analytics/alfa_consumption_2026_08_05.pdf",
+      "sha256": "807ee9925cf7d15ecffc72ad7142f9a83d342cd19690e12dd3b90aa2ba8ea1c6",
+      "bytes": 6658115
+    },
+    {
+      "id": "alfa_gold_2026_08",
+      "file": "data/sources/analytics/alfa_gold_2026_08.pdf",
+      "sha256": "4159576a6223985dd318b6f5a04ad4aeb888f47a6c266d0e9ee9eb35bf01e245",
+      "bytes": 8613150
+    },
+    {
+      "id": "alfa_inflation_2026_09_02",
+      "file": "data/sources/analytics/alfa_inflation_2026_09_02.pdf",
+      "sha256": "09d5537f6a52f5f8f2d9518ed9171e794382972ce38cbdc4bd3099b2db129d0c",
+      "bytes": 3385668
+    },
+    {
+      "id": "alfa_macro1h_2026_07_31",
+      "file": "data/sources/analytics/alfa_macro1h_2026_07_31.pdf",
+      "sha256": "84899553fadf3e49abac7074c7b7d2afc2fa5c70b7fde0bf4c3eabe3d7402266",
+      "bytes": 6100459
+    },
+    {
+      "id": "alfa_policy_2026_09_11",
+      "file": "data/sources/analytics/alfa_policy_2026_09_11.pdf",
+      "sha256": "92a96805f2b720f76bd0c52d2491044812b38401ab62d0f4a9157b4ca81c49bb",
+      "bytes": 6343186
+    },
+    {
+      "id": "alfa_steels_2021_04_15",
+      "file": "data/sources/analytics/alfa_steels_2021_04_15.pdf",
+      "sha256": "36eaaa58ae68d858db3600dbf3cc93d0bdefb8ca03f1f5cc154c532cc32e0c86",
+      "bytes": 6968001
+    },
+    {
+      "id": "alfa_strategy_2026_07_22",
+      "file": "data/sources/analytics/alfa_strategy_2026_07_22.pdf",
+      "sha256": "6c3a4882ee784b608880693d8ba2b62d0ba2236e34b404179adaab909c6dd046",
+      "bytes": 34890230
+    }
+  ]
+}

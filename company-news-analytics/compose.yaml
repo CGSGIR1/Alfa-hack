@@ -1,0 +1,35 @@
+x-application: &application
+  build: .
+  environment:
+    EMBEDDING_MODEL_PATH: /models/embeddinggemma-300m
+  volumes:
+    - type: bind
+      source: ./data
+      target: /app/data
+    - type: bind
+      source: ./reports
+      target: /app/reports
+    - type: bind
+      source: ${MODEL_HOST_PATH:?Set MODEL_HOST_PATH in .env}
+      target: /models/embeddinggemma-300m
+      read_only: true
+      bind:
+        create_host_path: false
+
+services:
+  web:
+    <<: *application
+    entrypoint: ["python", "start_ui.py"]
+    command: ["--host", "0.0.0.0", "--port", "8765", "--no-browser"]
+    ports:
+      - "127.0.0.1:${APP_PORT:-8765}:8765"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8765/api/state', timeout=5).close()"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+  analytics:
+    <<: *application
+    profiles: ["batch"]
+    command: ["status"]

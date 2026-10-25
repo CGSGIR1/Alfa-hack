@@ -1,0 +1,50 @@
+{
+  "analytics": [
+    {
+      "id": "alfa_7m26_2026_09_07",
+      "source_sha256": "3c64c1e43f3b46a795f9581967f2dbc8efb0994cb77ab82e95da180830e9ff8c",
+      "input_hash": "17cdd4122cfbbbc4c1c557aba0a6eeff998a9557f58e67dae8c12749584d61e1"
+    },
+    {
+      "id": "alfa_consumption_2026_08_05",
+      "source_sha256": "807ee9925cf7d15ecffc72ad7142f9a83d342cd19690e12dd3b90aa2ba8ea1c6",
+      "input_hash": "bb341f0c7c2d9d1c4d405be5bcc22830d939b2bc3157f7898350b613bba0523b"
+    },
+    {
+      "id": "alfa_gold_2026_08",
+      "source_sha256": "4159576a6223985dd318b6f5a04ad4aeb888f47a6c266d0e9ee9eb35bf01e245",
+      "input_hash": "dca66ac92a7d5bcca29bebe4b6c4ab9ad73acf3ae7344a85a3dfb2a25961bb01"
+    },
+    {
+      "id": "alfa_inflation_2026_09_02",
+      "source_sha256": "09d5537f6a52f5f8f2d9518ed9171e794382972ce38cbdc4bd3099b2db129d0c",
+      "input_hash": "d73ece6e99fc1394803a65869e91453b224e7be60064532905a2942e71c4729c"
+    },
+    {
+      "id": "alfa_macro1h_2026_07_31",
+      "source_sha256": "84899553fadf3e49abac7074c7b7d2afc2fa5c70b7fde0bf4c3eabe3d7402266",
+      "input_hash": "306641e94b0e303daccef377b89c20c50a2a7b4dd63e36068e92058c9558dcc9"
+    },
+    {
+      "id": "alfa_policy_2026_09_11",
+      "source_sha256": "92a96805f2b720f76bd0c52d2491044812b38401ab62d0f4a9157b4ca81c49bb",
+      "input_hash": "d5034c30fab7ebe674ed6597281b58fcad6a455d3a424ac07e7cacc99a25b7f9"
+    },
+    {
+      "id": "alfa_steels_2021_04_15",
+      "source_sha256": "36eaaa58ae68d858db3600dbf3cc93d0bdefb8ca03f1f5cc154c532cc32e0c86",
+      "input_hash": "959b79e3133afd3d04eadc1e64b23d4773cb141cdce552bc0f31e74f64db7202"
+    },
+    {
+      "id": "alfa_strategy_2026_07_22",
+      "source_sha256": "6c3a4882ee784b608880693d8ba2b62d0ba2236e34b404179adaab909c6dd046",
+      "input_hash": "24baab475ce1d38097c9d0ffbe72b1b46df30df03b719c95216d2deb8928b03e"
+    }
+  ],
+  "companies": [
+    "U_102920",
+    "U_10529",
+    "U_105459"
+  ],
+  "purpose": "Locked corpus for historical 12-news regression; expanded corpus tested separately."
+}

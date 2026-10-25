@@ -1,0 +1,233 @@
+{
+  "coverage": {
+    "excluded_blocks": [],
+    "processed_block_ids": [
+      "B001",
+      "B002",
+      "B003"
+    ],
+    "unprocessed_block_ids": []
+  },
+  "document_date": "2026-10-21",
+  "document_id": "c0bc434be75520b73ea0b290528787c1",
+  "document_limitations": [],
+  "document_title": "ЦБ впервые с августа опустил курс доллара ниже 82 рублей",
+  "event": {
+    "article_ids": [
+      "a9a4625af86cf367618ee780b5ca47d2",
+      "c0bc434be75520b73ea0b290528787c1"
+    ],
+    "event_id": "a9a4625af86cf367618ee780b5ca47d2"
+  },
+  "fragments": [
+    {
+      "analytics_embedding_text": null,
+      "analytics_query_version": "news-two-views-1.0",
+      "analytics_search_question": null,
+      "attributions": [],
+      "company_embedding_text": "Банк России установил курс доллара на уровне 81,9 руб., что является первым падением ниже отметки 82 руб. с 7 августа.\n\nБанк России (регулятор), курс доллара США, Россия, период: 22 октября (согласно курсу на дату публикации), сравнение с 7 августа (81,4 руб.).",
+      "context": "Банк России (регулятор), курс доллара США, Россия, период: 22 октября (согласно курсу на дату публикации), сравнение с 7 августа (81,4 руб.).",
+      "countries": [
+        "Россия"
+      ],
+      "embedding_roles": {
+        "analytics": "encode_query",
+        "company": "encode_document"
+      },
+      "event_date_or_period": "2026-10-22",
+      "id": "F001",
+      "limitations": [],
+      "mechanism": {
+        "boundaries": [
+          "Причина изменения курса в тексте не указана"
+        ],
+        "context": {
+          "conditions": "Курс валют устанавливается Банком России; данные на сайте регулятора."
+        },
+        "description": null,
+        "is_established_cause": false,
+        "source_attributions": [],
+        "status": "not_identified"
+      },
+      "okved_codes": [],
+      "organizations": [
+        "Банк России"
+      ],
+      "regions": [],
+      "sectors": [
+        "Финансы"
+      ],
+      "source_block_ids": [
+        "B001"
+      ],
+      "source_quotes": [
+        "Банк России установил курс доллара на уровне 81,9 руб. Последний раз курс американской валюты опускался ниже отметки в 82 руб. 7 августа — 81,4 руб., следует из данных на сайте регулятора."
+      ],
+      "thesis": "Банк России установил курс доллара на уровне 81,9 руб., что является первым падением ниже отметки 82 руб. с 7 августа.",
+      "title": "Снижение курса доллара Банком России ниже 82 рублей"
+    },
+    {
+      "analytics_embedding_text": null,
+      "analytics_query_version": "news-two-views-1.0",
+      "analytics_search_question": null,
+      "attributions": [],
+      "company_embedding_text": "Курс доллара, евро, юаня и иены снизился по сравнению с предыдущим периодом.\n\nКурсы валют на 22 октября: доллар (81,9 руб., -91,4 коп.), евро (91,9 руб., -1,1 руб.), юань (12,2 руб., -9 коп.), иена (51,7 руб., -50 коп.).",
+      "context": "Курсы валют на 22 октября: доллар (81,9 руб., -91,4 коп.), евро (91,9 руб., -1,1 руб.), юань (12,2 руб., -9 коп.), иена (51,7 руб., -50 коп.).",
+      "countries": [],
+      "embedding_roles": {
+        "analytics": "encode_query",
+        "company": "encode_document"
+      },
+      "event_date_or_period": "2026-10-22",
+      "id": "F002",
+      "limitations": [],
+      "mechanism": {
+        "boundaries": [
+          "Причины изменения курсов валют не указаны"
+        ],
+        "context": {
+          "conditions": "Курсы валют на 22 октября."
+        },
+        "description": null,
+        "is_established_cause": false,
+        "source_attributions": [],
+        "status": "not_identified"
+      },
+      "okved_codes": [],
+      "organizations": [],
+      "regions": [],
+      "sectors": [
+        "Финансы"
+      ],
+      "source_block_ids": [
+        "B002"
+      ],
+      "source_quotes": [
+        "Курс евро на 22 октября составит 91,9 руб., иены — 51,7 руб., юаня — 12,2 руб. Доллар подешевел на 91,4 коп., евро — на 1,1 руб., юань — на 9 коп., иена — на 50 коп."
+      ],
+      "thesis": "Курс доллара, евро, юаня и иены снизился по сравнению с предыдущим периодом.",
+      "title": "Изменение курсов основных иностранных валют"
+    },
+    {
+      "analytics_embedding_text": null,
+      "analytics_query_version": "news-two-views-1.0",
+      "analytics_search_question": null,
+      "attributions": [],
+      "company_embedding_text": "Ежедневный объем покупок иностранной валюты Банком России составляет 12,1 млрд руб., что в шесть раз выше объемов сентября.\n\nБанк России, объем операций с иностранной валютой, Россия, текущий показатель 12,1 млрд руб./день; сравнение с сентябрем (в 6 раз меньше) и историческим максимумом января 2022 года (23 млрд руб./день).",
+      "context": "Банк России, объем операций с иностранной валютой, Россия, текущий показатель 12,1 млрд руб./день; сравнение с сентябрем (в 6 раз меньше) и историческим максимумом января 2022 года (23 млрд руб./день).",
+      "countries": [
+        "Россия"
+      ],
+      "embedding_roles": {
+        "analytics": "encode_query",
+        "company": "encode_document"
+      },
+      "event_date_or_period": null,
+      "id": "F003",
+      "limitations": [],
+      "mechanism": {
+        "boundaries": [
+          "Связь между объемом покупок валюты и изменением курса в тексте не установлена"
+        ],
+        "context": {
+          "conditions": "Ежедневные операции Банка России по покупке иностранной валюты."
+        },
+        "description": null,
+        "is_established_cause": false,
+        "source_attributions": [],
+        "status": "not_identified"
+      },
+      "okved_codes": [],
+      "organizations": [
+        "Банк России"
+      ],
+      "regions": [],
+      "sectors": [
+        "Финансы"
+      ],
+      "source_block_ids": [
+        "B003"
+      ],
+      "source_quotes": [
+        "Ежедневный объем покупок иностранной валюты Банком России составляет 12,1 млрд руб. в день. Это в шесть раз выше объемов операций в сентябре и максимальный показатель с января 2022 года — 23 млрд руб. в день."
+      ],
+      "thesis": "Ежедневный объем покупок иностранной валюты Банком России составляет 12,1 млрд руб., что в шесть раз выше объемов сентября.",
+      "title": "Рост ежедневного объема покупок валюты Банком России"
+    }
+  ],
+  "preparation": {
+    "prepared_by": "external_llm",
+    "representation_version": "news-two-views-1.0",
+    "source_access": "full_text"
+  },
+  "preparation_meta": {
+    "model": "google/gemma-4-26b-a4b-it",
+    "prepared_at": "2026-10-23T00:26:07",
+    "prompt_version": "news-two-views-1.0/p2",
+    "report": {
+      "calls": [
+        {
+          "completion_tokens": 1929,
+          "cost": 0.0926,
+          "prompt_tokens": 3168,
+          "seconds": 17.2,
+          "task": "prepare_news"
+        }
+      ],
+      "first_pass": {
+        "fragments": 3,
+        "quotes": {
+          "dropped": 0,
+          "exact": 3,
+          "fuzzy": 0,
+          "normalized": 0
+        }
+      },
+      "fixes": [],
+      "fragments": 3,
+      "model": "google/gemma-4-26b-a4b-it",
+      "params": {
+        "max_tokens": 16000,
+        "temperature": 0.1
+      },
+      "prompt_version": "news-two-views-1.0/p2",
+      "quotes": {
+        "dropped": 0,
+        "exact": 3,
+        "fuzzy": 0,
+        "normalized": 0
+      },
+      "seconds": 17.2,
+      "sentences": 7,
+      "uncovered_after": 0,
+      "uncovered_history": [
+        0
+      ],
+      "usage": {
+        "calls": 1,
+        "completion_tokens": 1929,
+        "cost": 0.0926,
+        "prompt_tokens": 3168
+      }
+    }
+  },
+  "schema_version": "news-two-views-1.0",
+  "source": {
+    "publisher": "Коммерсантъ",
+    "url": "https://www.kommersant.ru/doc/9044172"
+  },
+  "source_blocks": [
+    {
+      "id": "B001",
+      "text": "Банк России установил курс доллара на уровне 81,9 руб. Последний раз курс американской валюты опускался ниже отметки в 82 руб. 7 августа — 81,4 руб., следует из данных на сайте регулятора."
+    },
+    {
+      "id": "B002",
+      "text": "Курс евро на 22 октября составит 91,9 руб., иены — 51,7 руб., юаня — 12,2 руб. Доллар подешевел на 91,4 коп., евро — на 1,1 руб., юань — на 9 коп., иена — на 50 коп."
+    },
+    {
+      "id": "B003",
+      "text": "Ежедневный объем покупок иностранной валюты Банком России составляет 12,1 млрд руб. в день. Это в шесть раз выше объемов операций в сентябре и максимальный показатель с января 2022 года — 23 млрд руб. в день."
+    }
+  ]
+}

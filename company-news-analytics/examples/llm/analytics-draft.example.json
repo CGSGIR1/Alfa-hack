@@ -1,0 +1,98 @@
+{
+  "schema_version": "analytics-contextual-mechanisms-2.0",
+  "document": {
+    "id": "AN_DEMO",
+    "title": "Синтетический пример: транспортные затраты и цены",
+    "publisher": "Учебный источник",
+    "date": "2026-10-20",
+    "period": null,
+    "page_count": 1,
+    "source_sha256": null
+  },
+  "source_pages": [
+    {
+      "page": 1,
+      "text": "Демонстрационный анализ: при устойчивом спросе торговые компании могут частично переносить рост транспортных расходов в розничные цены. При ослаблении спроса перенос может быть ограничен.",
+      "text_origin": "provided_text",
+      "limitations": []
+    }
+  ],
+  "charts": [],
+  "tables": [],
+  "chunks": [
+    {
+      "id": "AN_DEMO__F001",
+      "local_id": "F001",
+      "document_id": "AN_DEMO",
+      "title": "Транспортные издержки и перенос в цены",
+      "kind": "source_transcription",
+      "text_origin": "provided_text",
+      "pages": [
+        1
+      ],
+      "text": "Демонстрационный анализ: при устойчивом спросе торговые компании могут частично переносить рост транспортных расходов в розничные цены. При ослаблении спроса перенос может быть ограничен.",
+      "attribution": "Гипотеза учебного источника на дату 2026-10-20",
+      "related_visual_ids": [],
+      "limitations": [],
+      "embedding_text": null,
+      "content_sha256": null,
+      "mechanism_ids": null
+    }
+  ],
+  "mechanisms": [
+    {
+      "id": "AN_DEMO__M001",
+      "document_id": "AN_DEMO",
+      "title": "Частичный перенос транспортных затрат в цены",
+      "mechanism": {
+        "cause": "Рост транспортных расходов",
+        "channel": "Возможный частичный перенос издержек торговыми компаниями в розничные цены",
+        "effect": "Розничные цены могут вырасти"
+      },
+      "context": {
+        "conditions": "Торговые компании при устойчивом спросе; при ослаблении спроса перенос может быть ограничен.",
+        "geography": [],
+        "sectors": [
+          "Торговля"
+        ],
+        "observed_at": null,
+        "effect_horizon": null,
+        "regulatory_status": null
+      },
+      "statement_type": "author_hypothesis",
+      "attribution": "Учебный источник",
+      "source_fragment_ids": [
+        "AN_DEMO__F001"
+      ],
+      "evidence_refs": [
+        {
+          "fragment_id": "AN_DEMO__F001",
+          "quote": "Демонстрационный анализ: при устойчивом спросе торговые компании могут частично переносить рост транспортных расходов в розничные цены. При ослаблении спроса перенос может быть ограничен.",
+          "pages": [
+            1
+          ]
+        }
+      ],
+      "related_visual_ids": [],
+      "limitations": [
+        "Синтетический пример, не реальная аналитика."
+      ],
+      "eligible_for_retrieval": true,
+      "encoding_method": "encode_document",
+      "embedding_text": null,
+      "content_sha256": null,
+      "source_text": null,
+      "source_pages": null
+    }
+  ],
+  "coverage": {
+    "processed_pages": [
+      1
+    ],
+    "excluded": [],
+    "unprocessed": []
+  },
+  "preparation_limitations": [
+    "Синтетический пример."
+  ]
+}

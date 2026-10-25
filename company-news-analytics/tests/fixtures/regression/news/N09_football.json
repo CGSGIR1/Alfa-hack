@@ -1,0 +1,91 @@
+{
+  "schema_version": "news-two-views-1.0",
+  "document_type": "news",
+  "document_id": "084ea858e61b9f1d6703465987dc0c19",
+  "document_title": "Бавария и Арсенал завершили матч со счётом 2:2",
+  "document_date": "2026-10-22",
+  "source": {
+    "publisher": "Коммерсантъ",
+    "url": "https://www.kommersant.ru/doc/9044400",
+    "published_at": null,
+    "publication_precision": "day",
+    "retrieved_at": "2026-10-22T14:46:56.202762+00:00",
+    "access": "public_article"
+  },
+  "preparation": {
+    "method": "manual_source_grounded_test_annotation",
+    "text_origin": "editorial_summary",
+    "is_test_data": true,
+    "representation_version": "news-two-views-1.0",
+    "representation_origin": "new_news_unseen_by_retrieval_scoring",
+    "source_text_included": false
+  },
+  "document_limitations": [
+    "Тестируется разметка доступного текста; автоматическая фрагментация внешней LLM не проверяется."
+  ],
+  "fragments": [
+    {
+      "id": "F001",
+      "title": "Бавария и Арсенал завершили матч со счётом 2:2",
+      "thesis": "Бавария и Арсенал сыграли вничью в футбольной Лиге чемпионов со счётом 2:2.",
+      "context": "Материал описывает спортивный результат. Сведений о деятельности выбранных оптовых компаний в нём нет.",
+      "statement_types": [
+        "reported_fact"
+      ],
+      "topics": [
+        "Спорт"
+      ],
+      "countries": [
+        "Германия",
+        "Великобритания"
+      ],
+      "regions": [],
+      "organizations": [],
+      "sectors": [
+        "Спорт"
+      ],
+      "okved_codes": [],
+      "source_quotes": [],
+      "source_block_ids": [],
+      "source_pages": [],
+      "event_date_or_period": "2026-10-22",
+      "attributions": [
+        {
+          "statement": "Сведения и атрибуции в публично доступной части публикации",
+          "author": "Коммерсантъ"
+        }
+      ],
+      "limitations": [
+        "Краткая редакционная передача доступной части публикации, не полный текст статьи."
+      ],
+      "mechanism": {
+        "description": null,
+        "status": "not_identified",
+        "boundaries": [
+          "Результат футбольного матча; экономическая причинная связь не выделяется."
+        ],
+        "is_established_cause": false,
+        "context": {
+          "conditions": "Результат футбольного матча; экономическая причинная связь не выделяется.",
+          "source_sectors": [
+            "Спорт"
+          ],
+          "source_countries": [
+            "Германия",
+            "Великобритания"
+          ],
+          "event_period": "2026-10-22",
+          "unknown_company_exposure": true
+        }
+      },
+      "company_embedding_text": "Тема: Спорт.\n\nБавария и Арсенал сыграли вничью в футбольной Лиге чемпионов со счётом 2:2.\n\nМатериал описывает спортивный результат. Сведений о деятельности выбранных оптовых компаний в нём нет.",
+      "analytics_embedding_text": null,
+      "embedding_roles": {
+        "company": "encode_document",
+        "analytics": "encode_query"
+      },
+      "analytics_search_question": null,
+      "analytics_query_version": "news-two-views-1.0"
+    }
+  ]
+}

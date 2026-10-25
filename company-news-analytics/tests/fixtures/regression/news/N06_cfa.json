@@ -1,0 +1,92 @@
+{
+  "schema_version": "news-two-views-1.0",
+  "document_type": "news",
+  "document_id": "d1eeede408ad7dfdc2d73aa073e5fb64",
+  "document_title": "Ozon банк открыл покупку ЦФА юридическим лицам",
+  "document_date": "2026-10-22",
+  "source": {
+    "publisher": "Ведомости",
+    "url": "https://www.vedomosti.ru/finance/news/2026/10/22/1239317-ozon-bank",
+    "published_at": null,
+    "publication_precision": "day",
+    "retrieved_at": "2026-10-22T14:46:56.141085+00:00",
+    "access": "public_article"
+  },
+  "preparation": {
+    "method": "manual_source_grounded_test_annotation",
+    "text_origin": "editorial_summary",
+    "is_test_data": true,
+    "representation_version": "news-two-views-1.0",
+    "representation_origin": "new_news_unseen_by_retrieval_scoring",
+    "source_text_included": false
+  },
+  "document_limitations": [
+    "Тестируется разметка доступного текста; автоматическая фрагментация внешней LLM не проверяется."
+  ],
+  "fragments": [
+    {
+      "id": "F001",
+      "title": "Ozon банк открыл покупку ЦФА юридическим лицам",
+      "thesis": "Юридические лица — клиенты Ozon банка — получили возможность покупать ЦФА Озон капитала на короткие сроки. Подключение ИП пока планируется.",
+      "context": "В новости описана доступность инвестиционного продукта. Не сообщается, что выбранные компании являются клиентами этого банка или располагают свободными деньгами.",
+      "statement_types": [
+        "reported_fact"
+      ],
+      "topics": [
+        "Банковские инвестиционные продукты",
+        "ЦФА"
+      ],
+      "countries": [
+        "Россия"
+      ],
+      "regions": [],
+      "organizations": [],
+      "sectors": [
+        "Банковские инвестиционные продукты",
+        "ЦФА"
+      ],
+      "okved_codes": [],
+      "source_quotes": [],
+      "source_block_ids": [],
+      "source_pages": [],
+      "event_date_or_period": "2026-10-22",
+      "attributions": [
+        {
+          "statement": "Сведения и атрибуции в публично доступной части публикации",
+          "author": "Ozon банк"
+        }
+      ],
+      "limitations": [
+        "Краткая редакционная передача доступной части публикации, не полный текст статьи."
+      ],
+      "mechanism": {
+        "description": null,
+        "status": "not_identified",
+        "boundaries": [
+          "Покупка инвестиционного инструмента, а не закупка товара и не получение займа компанией. Плавающий купон и гарантированная доходность не установлены."
+        ],
+        "is_established_cause": false,
+        "context": {
+          "conditions": "Покупка инвестиционного инструмента, а не закупка товара и не получение займа компанией. Плавающий купон и гарантированная доходность не установлены.",
+          "source_sectors": [
+            "Банковские инвестиционные продукты",
+            "ЦФА"
+          ],
+          "source_countries": [
+            "Россия"
+          ],
+          "event_period": "2026-10-22",
+          "unknown_company_exposure": true
+        }
+      },
+      "company_embedding_text": "Тема: Банковские инвестиционные продукты, ЦФА.\n\nЮридические лица — клиенты Ozon банка — получили возможность покупать ЦФА Озон капитала на короткие сроки. Подключение ИП пока планируется.\n\nВ новости описана доступность инвестиционного продукта. Не сообщается, что выбранные компании являются клиентами этого банка или располагают свободными деньгами.",
+      "analytics_embedding_text": null,
+      "embedding_roles": {
+        "company": "encode_document",
+        "analytics": "encode_query"
+      },
+      "analytics_search_question": null,
+      "analytics_query_version": "news-two-views-1.0"
+    }
+  ]
+}

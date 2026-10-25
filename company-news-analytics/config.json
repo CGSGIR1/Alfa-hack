@@ -1,0 +1,29 @@
+{
+  "database": "data/news-analytics.db",
+  "model_path": "models/embeddinggemma-300m",
+  "inputs": {
+    "companies": "data/input/companies",
+    "news": "data/input/news",
+    "analytics": "data/input/analytics"
+  },
+  "reports": "reports",
+  "embedding": {"batch_size": 4, "threads": 4},
+  "retrieval": {
+    "top_news": 3,
+    "news_fragments": 2,
+    "analytics_per_news": 10,
+    "max_chunks_per_analytics": 2,
+    "news_days": 30,
+    "max_analytics_age_days": 365,
+    "min_news_score": 0.35,
+    "min_analytics_score": 0.375,
+    "financial_topic_coverage": 1,
+    "financial_news_limit": 1
+  },
+  "upload_folders": {
+    "companies": "data/input/companies-uploaded",
+    "news": "data/input/news-uploaded",
+    "analytics": "data/input/analytics-uploaded"
+  },
+  "import": {"skip_invalid_news": true}
+}

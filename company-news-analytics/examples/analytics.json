@@ -1,0 +1,77 @@
+{
+  "schema_version": "analytics-contextual-mechanisms-2.0",
+  "document": {
+    "id": "A1",
+    "title": "Затраты и цены",
+    "date": "2026-10-21",
+    "period": null,
+    "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "page_count": 1
+  },
+  "source_pages": [
+    {
+      "page": 1,
+      "text": "Рост затрат может приводить к росту цен, если спрос допускает перенос."
+    }
+  ],
+  "charts": [],
+  "tables": [],
+  "chunks": [
+    {
+      "id": "A1_F1",
+      "document_id": "A1",
+      "local_id": "F1",
+      "title": "Затраты и цены",
+      "text": "Рост затрат может приводить к росту цен, если спрос допускает перенос.",
+      "embedding_text": "Рост затрат может приводить к росту цен, если спрос допускает перенос.",
+      "content_sha256": "8e8b50929a1a950e250efc34c33849208aaa5ae467b9928926eacfb12726ead5",
+      "page": 1,
+      "pages": [
+        1
+      ],
+      "mechanism_ids": [
+        "A1_F1_M1"
+      ]
+    }
+  ],
+  "mechanisms": [
+    {
+      "id": "A1_F1_M1",
+      "document_id": "A1",
+      "title": "Перенос затрат",
+      "mechanism": {
+        "cause": "Рост затрат.",
+        "channel": "Перенос в цены.",
+        "effect": "Рост цен."
+      },
+      "context": {
+        "conditions": "При устойчивом спросе."
+      },
+      "embedding_text": "Причина: Рост затрат.\nКанал: Перенос в цены.\nСледствие: Рост цен.\nУсловия: При устойчивом спросе.",
+      "content_sha256": "48f4157ace848e4543fc29b2c287f78d5507ea85dff6a4cf9a41d620d83d5179",
+      "encoding_method": "encode_document",
+      "eligible_for_retrieval": true,
+      "statement_type": "author_hypothesis",
+      "source_fragment_ids": [
+        "A1_F1"
+      ],
+      "source_text": "Рост затрат может приводить к росту цен, если спрос допускает перенос.",
+      "source_pages": [
+        1
+      ],
+      "evidence_refs": [
+        {
+          "fragment_id": "A1_F1",
+          "quote": "Рост затрат может приводить к росту цен, если спрос допускает перенос.",
+          "pages": [
+            1
+          ]
+        }
+      ],
+      "related_visual_ids": [],
+      "limitations": [
+        "Перенос не гарантирован."
+      ]
+    }
+  ]
+}

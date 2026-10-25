@@ -1,0 +1,62 @@
+{
+  "passed": true,
+  "real_vectors": 5,
+  "cached_repeat": 0,
+  "overlength_rejected": true,
+  "embedding": {
+    "total": 5,
+    "reused": 0,
+    "computed": 5,
+    "roles": {
+      "analytics_mechanism": {
+        "total": 1,
+        "pending": 1
+      },
+      "analytics_source": {
+        "total": 1,
+        "pending": 1
+      },
+      "company_query": {
+        "total": 1,
+        "pending": 1
+      },
+      "news_context": {
+        "total": 1,
+        "pending": 1
+      },
+      "news_mechanism": {
+        "total": 1,
+        "pending": 1
+      }
+    },
+    "backup_created": true
+  },
+  "model": {
+    "model_id": "google/embeddinggemma-300m",
+    "model_revision": "local-sha256:d4a5367a0e4fedda9c93662aebf866ff0d037c665d7650215918a3d955f07f17",
+    "dimensions": 768,
+    "prompts": {
+      "query": "task: search result | query: ",
+      "document": "title: none | text: ",
+      "BitextMining": "task: search result | query: ",
+      "Clustering": "task: clustering | query: ",
+      "Classification": "task: classification | query: ",
+      "InstructionRetrieval": "task: code retrieval | query: ",
+      "MultilabelClassification": "task: classification | query: ",
+      "PairClassification": "task: sentence similarity | query: ",
+      "Reranking": "task: search result | query: ",
+      "Retrieval": "task: search result | query: ",
+      "Retrieval-query": "task: search result | query: ",
+      "Retrieval-document": "title: none | text: ",
+      "STS": "task: sentence similarity | query: ",
+      "Summarization": "task: summarization | query: "
+    },
+    "versions": {
+      "sentence-transformers": "5.7.0",
+      "transformers": "4.57.6",
+      "torch": "2.14.1+cpu",
+      "numpy": "2.5.4",
+      "tokenizers": "0.22.2"
+    }
+  }
+}
