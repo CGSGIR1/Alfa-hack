@@ -37,7 +37,7 @@ class WebTests(unittest.TestCase):
         second=self.upload([company(),news(),analytics()]);self.assertEqual(second['changed_documents'],0)
         for kind in self.folders:
             files=list(self.folders[kind].glob('*.json'));self.assertEqual(len(files),1)
-            with connect(self.db,True) as c:self.assertEqual(Path(c.execute('SELECT input_file FROM '+kind).fetchone()[0]),files[0])
+            with connect(self.db,True) as c:self.assertTrue(Path(c.execute('SELECT input_file FROM '+kind).fetchone()[0]).samefile(files[0]))
     def test_fresh_start_imports_included_json_without_loading_model(self):
         write_json(self.folders['companies']/'company.json',company())
         self.app.pool.shutdown(wait=True)

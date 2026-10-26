@@ -573,8 +573,8 @@
     },
     {
       "path": "company-news-analytics/tests/test_web.py",
-      "bytes": 10302,
-      "sha256": "306f7abcbad2dbfcd85fe492d984389011917248b34fcc28d94d87316387f712"
+      "bytes": 10311,
+      "sha256": "23d2bd28d0e7458e7b772965e524cb713886f89045878bf63e5c80a2f7db30d9"
     },
     {
       "path": "company-news-analytics/tests/test_workflow.py",
@@ -708,8 +708,8 @@
     },
     {
       "path": "docs/RELEASE_CHECKS.md",
-      "bytes": 12299,
-      "sha256": "72c182093024860375f785410f3262bdbfe4a8db8953bd942be08b49271be07f"
+      "bytes": 12553,
+      "sha256": "8b7ff100736d29e6bebe7020d0947ad948868bde1c725fd995486e113f65a1eb"
     },
     {
       "path": "docs/REPORT_PRESENTATION.md",
@@ -4727,6 +4727,6 @@
       "sha256": "201a54980829de993b10a2a18b1580cae14f73d380821c394b72e5aac20e6d06"
     }
   ],
-  "updated_at": "2026-10-26T00:57:50.913516+00:00",
-  "documentation_revision": "CI uses UTF-8 for Russian JSON and diagnostic output on Windows"
+  "updated_at": "2026-10-26T01:03:49.310453+00:00",
+  "documentation_revision": "Windows CI: UTF-8 and short-path aliases handled in tests"
 }
