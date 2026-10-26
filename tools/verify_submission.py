@@ -8,7 +8,7 @@ import subprocess
 
 SECRET = re.compile(rb'\b(?:ghp_[A-Za-z0-9]{30,}|github_pat_[A-Za-z0-9_]{40,}|hf_[A-Za-z0-9]{24,}|sk-(?:proj-)?[A-Za-z0-9_-]{35,})\b')
 WEIGHTS = {'.safetensors','.gguf','.onnx','.pt','.pth','.bin','.model'}
-PRESENTATION = 'docs/Новостная аналитика в Альфа-Бизнесе.pdf'
+PRESENTATION = 'Новостная аналитика в Альфа-Бизнесе.pdf'
 FORBIDDEN = {'.venv','venv','__pycache__','runtime','models','.cache','exports','precomputed','experiments','reports'}
 
 

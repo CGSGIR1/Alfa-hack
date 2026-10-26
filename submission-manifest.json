@@ -28,8 +28,8 @@
     },
     {
       "path": ".gitignore",
-      "bytes": 944,
-      "sha256": "8f03203b28aa853ed563d174fc7ce3dfd6e389ae77620a6266d7464b229f8001"
+      "bytes": 939,
+      "sha256": "abbef44c51397454d995f433c977e1b0f31b55d5348782f8ae7d592ec2ffab71"
     },
     {
       "path": "app.py",
@@ -737,7 +737,7 @@
       "sha256": "00a77908f267ab51854aca99b069bdca091dd60732461b3de883ca781c891407"
     },
     {
-      "path": "docs/Новостная аналитика в Альфа-Бизнесе.pdf",
+      "path": "Новостная аналитика в Альфа-Бизнесе.pdf",
       "bytes": 7072728,
       "sha256": "630d55622d44b4fbfeb37de0d7914996b258674e5f33112c6c34bc311b88bcce"
     },
@@ -4003,8 +4003,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 55166,
-      "sha256": "eaf2e79f9a825c6911c1c793a8bad0b53b2d09af5ec3843ef46f6603bf5383ba"
+      "bytes": 55389,
+      "sha256": "47e552755b0063f5176a8d215c2bf49124899fe148df35b63c7d8b5a22891098"
     },
     {
       "path": "requirements-test.txt",
@@ -4738,8 +4738,8 @@
     },
     {
       "path": "tools/verify_submission.py",
-      "bytes": 3785,
-      "sha256": "16b49c07912b891c7ff6e21f3d2ada6aa807de17478e6f6bf8bf382fd87bb353"
+      "bytes": 3780,
+      "sha256": "16199ee428a7c4d84203508d6e26ac7dc797466150c0910e93cbcb373662994e"
     }
   ],
   "updated_at": "2026-10-26T01:03:49.310453+00:00",
