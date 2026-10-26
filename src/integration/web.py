@@ -131,7 +131,7 @@ class Application(SearchApplication):
                 self.poll_wake.set()
             else:
                 self._update(jid, phase='Подбираем материалы и вызываем LLM для оценки, отчёта и проверки…')
-                item = self.service.generate(payload.get('company_id'), payload.get('as_of'), payload.get('top_news'),single_news=True)
+                item = self.service.generate(payload.get('company_id'), payload.get('as_of'), payload.get('top_news'),feed=True)
                 values = dict(status='complete', phase='Отчёт готов.' if item['status'] == 'completed' else 'Новых подходящих новостей нет.',
                     workflow_status=item['status'], workflow=item.get('workflow', {}),
                     report=item.get('report'), saved=item.get('saved'))

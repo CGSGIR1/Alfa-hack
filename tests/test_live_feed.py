@@ -108,13 +108,20 @@ class IncrementalTests(unittest.TestCase):
             self.assertEqual(result['workflow']['queued_after_selection'],0)
         self.assertEqual(len(client.tasks),calls)
 
-    def test_old_multi_news_packet_is_replaced_by_separate_single_news_results(self):
+    def test_feed_report_keeps_several_news_within_configured_limit(self):
+        self.add_news('N2','Новые транспортные расходы')
+        current=self.service.generate('C1','2026-10-23',client=fixture.FakeClient(),feed=True)
+        self.assertEqual(current['status'],'completed')
+        self.assertEqual(len(current['result']['items']),2)
+
+    def test_old_packet_above_feed_limit_is_replaced_by_smaller_reports(self):
         self.add_news('N2','Новые транспортные расходы')
         old=self.service.compare('C1','2026-10-23',top_news=3)
         self.assertEqual(len(old['report']['news']),2)
+        self.service.config['retrieval']['max_total_news']=1
         client=fixture.FakeClient()
         for _ in range(2):
-            current=self.service.generate('C1','2026-10-23',client=client,single_news=True)
+            current=self.service.generate('C1','2026-10-23',client=client,feed=True)
             self.assertEqual(current['status'],'completed')
             self.assertEqual(len(current['result']['items']),1)
         rows=history(self.service.db,'C1')
@@ -123,10 +130,10 @@ class IncrementalTests(unittest.TestCase):
 
     def test_stricter_threshold_does_not_pay_for_unchanged_completed_news_again(self):
         client=fixture.FakeClient()
-        self.service.generate('C1','2026-10-23',client=client,single_news=True)
+        self.service.generate('C1','2026-10-23',client=client,feed=True)
         calls=len(client.tasks)
         self.service.config['retrieval']['min_news_score']=.41
-        repeated=self.service.generate('C1','2026-10-23',client=client,single_news=True)
+        repeated=self.service.generate('C1','2026-10-23',client=client,feed=True)
         self.assertEqual(repeated['status'],'idle')
         self.assertEqual(len(client.tasks),calls)
 

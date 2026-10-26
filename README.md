@@ -1,9 +1,10 @@
 # Альфа Хак — персональная новостная аналитика для бизнеса
 
-> Версия 1.1.1: публичный Docker-образ содержит программу и EmbeddingGemma,
+> Версия 1.1.2: публичный Docker-образ содержит программу и EmbeddingGemma,
 > а материалы организаторов подключаются из `private-data/` в приватном репозитории.
-> Адрес новой сборки — `ghcr.io/rastok314/alfa-hack-public:1.1.1`.
-> Образ 1.1.1 опубликован и скачивается без входа в GHCR.
+> Адрес сборки — `ghcr.io/rastok314/alfa-hack-public:1.1.2` (до 5 новостей в отчёте,
+> метка «Не является инвестиционной рекомендацией»).
+> Образ 1.1.2 опубликован и скачивается без входа в GHCR.
 
 Приложение собирает деловые новости, отбирает события для выбранной компании,
 находит подтверждающую аналитику и публикует проверенный LLM отчёт в личном кабинете.
@@ -12,6 +13,7 @@
 **Единая точка входа — `app.py`.** Пользовательский сайт — `/`, служебная панель — `/manage`.
 
 [Установка](#быстрый-запуск-готового-образа) ·
+[Запуск из исходников](#запуск-из-исходников) ·
 [Пять видов векторов](#какие-именно-векторы-формируются) ·
 [Добавление компании](#как-добавляется-новая-компания) ·
 [Сборка отчёта](#как-собирается-персональный-отчёт).
@@ -44,22 +46,106 @@ Docker должен быть запущен с Linux-контейнерами; �
 **Запускайте проект прямо из скачанной папки репозитория. Создавать отдельную
 папку запуска или переносить туда файлы и данные не нужно.**
 
+### Что установить заранее
+
+| ОС | Что нужно |
+| --- | --- |
+| macOS | [Docker Desktop for Mac](https://docs.docker.com/desktop/setup/install/mac-install/). На Apple Silicon (M1–M4) образ `linux/amd64` работает через эмуляцию: включите **Settings → General → Use Rosetta for x86_64/amd64 emulation on Apple Silicon**. Векторизация при этом идёт медленнее, чем на Intel |
+| Linux | Docker Engine и плагин Compose v2 (команда `docker compose`, а не устаревшая `docker-compose`). Если пользователь не входит в группу `docker`, добавляйте `sudo` перед командами Docker или выполните `sudo usermod -aG docker $USER` и перезайдите в систему. На ARM-машинах (`aarch64`) нужна настроенная эмуляция amd64 |
+| Windows 10/11 | [Docker Desktop for Windows](https://docs.docker.com/desktop/setup/install/windows-install/) с бэкендом WSL 2 в режиме **Linux containers** (если включены Windows-контейнеры: значок Docker в трее → *Switch to Linux containers*). Команды ниже — для PowerShell |
+
+Проверьте, что Docker запущен (команды одинаковы для всех ОС):
+
+```sh
+docker --version
+docker compose version
+```
+
+### Шаги запуска
+
 1. Скачайте репозиторий через **Code → Download ZIP**, распакуйте архив и откройте
    папку, в которой находится этот `README.md`. Здесь уже лежат
    `compose.bundled.yaml`, `.env.example` и готовая папка `private-data`.
    При использовании `git clone` откройте корень полученной копии репозитория.
+
+   Перейдите в эту папку в терминале и проверьте, что нужные файлы на месте
+   (путь замените на свой):
+
+   **macOS / Linux** (Терминал):
+
+   ```sh
+   cd ~/Downloads/папка-репозитория
+   ls -d compose.bundled.yaml .env.example private-data
+   ```
+
+   **Windows** (PowerShell; в Проводнике можно открыть папку и выбрать
+   «Открыть в терминале» в контекстном меню):
+
+   ```powershell
+   cd "$HOME\Downloads\папка-репозитория"
+   Test-Path compose.bundled.yaml, .env.example, private-data
+   ```
+
+   Все три проверки должны найти файл (на Windows — три строки `True`).
+   Файлы с точкой в начале имени скрыты в Finder (показать: **Cmd+Shift+.**)
+   и в большинстве файловых менеджеров Linux (**Ctrl+H**).
+
 2. **В этой же папке** создайте копию `.env.example` с именем `.env`.
    Откройте `.env` текстовым редактором и заполните `LLM_API_KEY` своим ключом.
    Адрес API и названия моделей уже указаны; измените их, если ваш ключ выдан
    для другого адреса или моделей. Сохраните файл. Ключ LLM не является GitHub-токеном.
-3. Откройте терминал **в этой же папке репозитория**, рядом с `compose.bundled.yaml`,
-   и выполните(на линукс нужно выполнять команду с правами root, то есть с приставкой sudo):
+
+   **macOS:**
+
+   ```sh
+   cp .env.example .env
+   open -e .env
+   ```
+
+   **Linux** (в `nano` сохранить — Ctrl+O, Enter; выйти — Ctrl+X):
+
+   ```sh
+   cp .env.example .env
+   nano .env
+   ```
+
+   **Windows** (PowerShell):
+
+   ```powershell
+   Copy-Item .env.example .env
+   notepad .env
+   ```
+
+   На Windows создавайте файл командой, а не через Проводник: так он не превратится
+   в `.env.txt`. В командной строке `cmd.exe` вместо `Copy-Item` используйте
+   `copy .env.example .env`.
+
+3. В том же терминале, **в папке репозитория** рядом с `compose.bundled.yaml`,
+   выполните команду. Она одинакова для macOS, Linux и Windows:
 
    ```sh
    docker compose -f compose.bundled.yaml up -d
    ```
 
-4. Откройте **http://127.0.0.1:8765/**. Выберите компанию в шапке и откройте
+   На Linux без доступа к группе `docker`: `sudo docker compose -f compose.bundled.yaml up -d`.
+
+   Если на Mac с Apple Silicon или на ARM-Linux появляется ошибка
+   `no matching manifest for linux/arm64`, явно укажите платформу образа:
+
+   ```sh
+   export DOCKER_DEFAULT_PLATFORM=linux/amd64
+   docker compose -f compose.bundled.yaml up -d
+   ```
+
+4. Откройте **http://127.0.0.1:8765/** в браузере или командой:
+
+   | ОС | Команда |
+   | --- | --- |
+   | macOS | `open http://127.0.0.1:8765/` |
+   | Linux | `xdg-open http://127.0.0.1:8765/` |
+   | Windows | `Start-Process http://127.0.0.1:8765/` |
+
+   Выберите компанию в шапке и откройте
    «Новостная аналитика». Для `U_106783` сразу доступны два готовых отчёта,
    для `U_9250` — ещё один. Это реальные ранее сформированные отчёты от
    **25 октября 2026 года**: даты, источники и выводы сохранены, они не выдаются
@@ -108,12 +194,15 @@ Docker должен быть запущен с Linux-контейнерами; �
 интерфейса без автоматических вызовов LLM установите `PIPELINE_AUTO_POLL=0`.
 Закрытие вкладки не останавливает приложение.
 
+Команды управления одинаковы для macOS, Linux и Windows; выполняйте их из папки
+репозитория (на Linux при необходимости — с `sudo`):
+
 ```sh
 # Остановить приложение, сохранив данные
 docker compose -f compose.bundled.yaml down
 # Повторно запустить
 docker compose -f compose.bundled.yaml up -d
-# Посмотреть журнал работы
+# Посмотреть журнал работы (выход — Ctrl+C, приложение продолжит работать)
 docker compose -f compose.bundled.yaml logs -f app
 # Применить изменения .env
 docker compose -f compose.bundled.yaml up -d --force-recreate
@@ -126,24 +215,101 @@ docker compose -f compose.bundled.yaml up -d --force-recreate
 ## Запуск из исходников
 
 Нужны Python **3.12 x86-64**, полная локальная папка `google/embeddinggemma-300m`
-и ключ API. На Windows, из корня проекта:
+и ключ API. Все команды выполняются из корня проекта. Веса в Git не хранятся.
+
+В `.env` задайте `EMBEDDING_MODEL_PATH` (путь к папке модели) и `LLM_API_KEY`.
+Примеры пути для разных ОС:
+
+```text
+macOS:    EMBEDDING_MODEL_PATH=/Users/имя/models/embeddinggemma-300m
+Linux:    EMBEDDING_MODEL_PATH=/home/имя/models/embeddinggemma-300m
+Windows:  EMBEDDING_MODEL_PATH=C:/models/embeddinggemma-300m
+```
+
+На Windows путь можно писать с прямыми слешами `/` — Python понимает такой вариант.
+
+Исходные JSON импортируются при запуске сайта; `init` полезен для отдельной
+проверки данных. После `serve` откройте **http://127.0.0.1:8765/**.
+
+### Windows
+
+Установите Python 3.12 (64-bit) с [python.org](https://www.python.org/downloads/windows/)
+или через `winget install Python.Python.3.12`. Затем в PowerShell:
 
 ```powershell
+py -3.12 --version
 py -3.12 -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
 Copy-Item .env.example .env
-```
-
-В `.env` задайте `EMBEDDING_MODEL_PATH` и `LLM_API_KEY`. Затем:
-
-```powershell
+notepad .env
 .\.venv\Scripts\python.exe app.py init
 .\.venv\Scripts\python.exe app.py serve
 ```
 
-Для Linux: `python3.12 -m venv .venv`, далее `.venv/bin/python` вместо
-`.venv\Scripts\python.exe`. Исходные JSON импортируются при запуске сайта;
-`init` полезен для отдельной проверки данных. Веса в Git не хранятся.
+В командной строке `cmd.exe` вместо `Copy-Item` используйте `copy .env.example .env`,
+а интерпретатор вызывайте как `.venv\Scripts\python.exe`.
+
+### Linux
+
+Установите Python 3.12 с модулем `venv`, например:
+
+```sh
+# Ubuntu 24.04 / Debian 13
+sudo apt install python3.12 python3.12-venv
+# Fedora
+sudo dnf install python3.12
+```
+
+На дистрибутивах без пакета 3.12 используйте `pyenv` или сборку из исходников.
+Затем:
+
+```sh
+python3.12 --version
+python3.12 -m venv .venv
+.venv/bin/python -m pip install -r requirements.txt
+cp .env.example .env
+nano .env
+.venv/bin/python app.py init
+.venv/bin/python app.py serve
+```
+
+### macOS
+
+**Mac на Intel.** Установите Python 3.12 с [python.org](https://www.python.org/downloads/macos/)
+или через Homebrew (`brew install python@3.12`), затем:
+
+```sh
+python3.12 --version
+python3.12 -m venv .venv
+.venv/bin/python -m pip install -r requirements.txt
+cp .env.example .env
+open -e .env
+.venv/bin/python app.py init
+.venv/bin/python app.py serve
+```
+
+**Mac на Apple Silicon (M1–M4).** Проект требует x86-64-интерпретатор, поэтому
+проще всего использовать [готовый Docker-образ](#быстрый-запуск-готового-образа).
+Для запуска из исходников нужен Rosetta 2 и Python 3.12 с python.org
+(универсальный установщик; Homebrew на Apple Silicon ставит только arm64-версию).
+Каждую команду Python выполняйте через `arch -x86_64`:
+
+```sh
+softwareupdate --install-rosetta --agree-to-license
+arch -x86_64 /usr/local/bin/python3.12 -c "import platform; print(platform.machine())"
+# должно вывести x86_64
+arch -x86_64 /usr/local/bin/python3.12 -m venv .venv
+arch -x86_64 .venv/bin/python -m pip install -r requirements.txt
+cp .env.example .env
+open -e .env
+arch -x86_64 .venv/bin/python app.py init
+arch -x86_64 .venv/bin/python app.py serve
+```
+
+Чтобы не писать `arch -x86_64` перед каждой командой, откройте x86-64-оболочку
+командой `arch -x86_64 zsh`: всё, что запущено из неё, работает как x86-64.
+
+### Запуск, панель и остановка
 
 На Windows доступны скрипты:
 
@@ -154,8 +320,19 @@ Copy-Item .env.example .env
 | `restart_interface.cmd` | Дождаться завершения текущей обработки и перезапустить сервер |
 | `stop_interface.cmd` | Дождаться завершения обработки и остановить сервер |
 
-Скрипты используют `.venv` в корне. При обычном запуске сервер работает,
-пока открыто его окно терминала; Ctrl+C завершает сервер.
+Скрипты используют `.venv` в корне. На macOS и Linux готовых скриптов нет;
+используйте команды:
+
+| Действие | macOS | Linux |
+| --- | --- | --- |
+| Запустить сервер | `.venv/bin/python app.py serve` | `.venv/bin/python app.py serve` |
+| Открыть сайт | `open http://127.0.0.1:8765/` | `xdg-open http://127.0.0.1:8765/` |
+| Открыть служебную панель | `open http://127.0.0.1:8765/manage` | `xdg-open http://127.0.0.1:8765/manage` |
+| Остановить сервер | Ctrl+C в окне сервера | Ctrl+C в окне сервера |
+
+На Mac с Apple Silicon добавляйте `arch -x86_64` перед командой запуска сервера.
+При обычном запуске сервер работает, пока открыто его окно терминала;
+Ctrl+C завершает сервер.
 
 ## Как пользоваться
 
@@ -393,8 +570,9 @@ flowchart LR
 
 ### Когда появляется карточка и что вычисляется повторно
 
-Автоматика работает для выбранной компании экземпляра сервера, по **одной новости
-за раз**. История разных компаний сохраняется отдельно. Сначала могут обрабатываться
+Автоматика работает для выбранной компании экземпляра сервера; один отчёт берёт
+**до 5 новостей** (`retrieval.max_total_news` в `config.json`), чтобы одна ложная
+находка поиска не обнуляла отчёт. История разных компаний сохраняется отдельно. Сначала могут обрабатываться
 уже подготовленные новости, затем новые результаты подготовки поступают в ту же
 цепочку. Готовые карточки доставляются через SSE без ручной перезагрузки; при
 недоступности SSE клиент повторяет проверку обновлений.
@@ -444,7 +622,20 @@ flowchart LR
 
 ## Команды
 
-Ниже `python` — интерпретатор установленного окружения.
+Ниже `python` — интерпретатор установленного окружения. Чтобы команда `python`
+указывала на `.venv`, активируйте окружение в корне проекта:
+
+| ОС / оболочка | Активация |
+| --- | --- |
+| macOS, Linux | `source .venv/bin/activate` |
+| macOS на Apple Silicon | сначала `arch -x86_64 zsh`, затем `source .venv/bin/activate` |
+| Windows, PowerShell | `.\.venv\Scripts\Activate.ps1` |
+| Windows, cmd.exe | `.venv\Scripts\activate.bat` |
+
+Если PowerShell запрещает запуск скрипта активации, разрешите его для текущего окна:
+`Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass`. Без активации
+вызывайте интерпретатор полным путём: `.venv/bin/python` на macOS и Linux,
+`.\.venv\Scripts\python.exe` на Windows. Выйти из окружения — `deactivate`.
 
 ```sh
 python app.py status

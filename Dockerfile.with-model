@@ -1,11 +1,11 @@
 # Context contains only the embedding model and its terms, never organizer data.
-ARG APPLICATION_IMAGE=alfa-hack:application-1.1.1
+ARG APPLICATION_IMAGE=alfa-hack:application-1.1.2
 FROM ${APPLICATION_IMAGE}
 COPY embeddinggemma-300m /models/embeddinggemma-300m
 COPY Gemma-Terms.txt Gemma-Notice.txt /licenses/gemma/
 ENV DATA_DIR=/app/private-data/csv
 ARG SUBMISSION_SHA256=unrecorded
-LABEL org.opencontainers.image.version="1.1.1" \
+LABEL org.opencontainers.image.version="1.1.2" \
       org.opencontainers.image.source="https://github.com/CGSGIR1/Alfa-hack" \
       io.alfa-hack.submission.sha256="${SUBMISSION_SHA256}" \
       io.alfa-hack.organizer-data="external-read-only-mount"

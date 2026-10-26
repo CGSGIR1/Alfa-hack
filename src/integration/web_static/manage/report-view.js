@@ -294,7 +294,8 @@ window.ReportView = (() => {
     const footer=el('div',null,'rv-summary-footer');
     const n=accepted.length,word=n%100>=11&&n%100<=14?'новостей':n%10===1?'новость':n%10>=2&&n%10<=4?'новости':'новостей';
     footer.append(el('span',n+' '+word+' в выводах'),el('span',omitted.length+' без существенной связи'));
-    if(createdAt)footer.append(el('span','Сохранён '+dateLabel(createdAt)));summary.append(footer);root.append(summary);
+    if(createdAt)footer.append(el('span','Сохранён '+dateLabel(createdAt)));
+    footer.append(el('span','Не является инвестиционной рекомендацией'));summary.append(footer);root.append(summary);
     for (const item of accepted) {
       const prose=narrative(item,result),card=el('article',null,'rv-news');card.dataset.newsId=item.news_id;
       const head=el('header',null,'rv-news-head'),meta=el('div',null,'rv-meta');

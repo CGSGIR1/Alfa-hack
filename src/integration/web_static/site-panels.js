@@ -34,7 +34,8 @@ window.SitePanels = (() => {
       ...(hasCheck?[['chk','Что не установлено']]:[]),['acts','Рекомендации'+(acts.length?' · '+acts.length:'')]];
     const contents={short:()=>short(n),more:()=>more(n),bank:()=>tagged(p.bank_view),
       chk:()=>section('Что не установлено',list(p.not_established))+section('Что стоит проверить',list(p.to_verify))+conditions(n.record.required_conditions),
-      acts:()=>acts.length ? '<div class="nb-acts">'+acts.map((x,i)=>'<div class="nb-act"><span class="nbt-n">'+(i+1)+'</span>'+esc(x)+'</div>').join('')+'</div>' : empty('Реакция не требуется')};
+      acts:()=>(acts.length ? '<div class="nb-acts">'+acts.map((x,i)=>'<div class="nb-act"><span class="nbt-n">'+(i+1)+'</span>'+esc(x)+'</div>').join('')+'</div>' : empty('Реакция не требуется'))+
+        '<p class="small muted nb-not-advice">Не является инвестиционной рекомендацией.</p>'};
     return '<div class="nbt"><div class="nbt-tabs" role="tablist" aria-label="Разделы разбора">'+tabs.map(([key,title],i)=>
       '<button type="button" role="tab" class="nbt-tab" id="t-'+id+'-'+key+'" data-tab="'+key+'" aria-controls="p-'+id+'-'+key+'" aria-selected="'+(i===0)+'" tabindex="'+(i===0?0:-1)+'">'+esc(title)+'</button>').join('')+'</div>'+tabs.map(([key])=>
       '<div class="nbt-panel" role="tabpanel" id="p-'+id+'-'+key+'" aria-labelledby="t-'+id+'-'+key+'"'+(key === 'short'?'':' hidden')+'>'+contents[key]()+'</div>').join('')+'</div>';

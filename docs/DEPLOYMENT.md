@@ -1,9 +1,10 @@
 # Docker: публичная программа и приватные данные
 
-Версия 1.1.1 разделяет поставку. `ghcr.io/rastok314/alfa-hack-public:1.1.1`
+Версия 1.1.2 (как и 1.1.1) разделяет поставку. `ghcr.io/rastok314/alfa-hack-public:1.1.2`
 предназначен для публичного скачивания и содержит код, зависимости и EmbeddingGemma.
 Материалов организаторов в нём нет. Тег 1.1.1 опубликован в публичном пакете;
-скачивание через Docker без авторизации проверено. Исходники, CSV и стартовая
+скачивание через Docker без авторизации проверено. Тег 1.1.2 опубликован 26.10.2026
+в том же пакете; анонимное скачивание и запуск по README проверены. Исходники, CSV и стартовая
 база остаются в приватном репозитории.
 Прежний пакет `alfa-hack` с версиями 1.0.0/1.0.1 удалён владельцем.
 Старые локальные образы и архивы с материалами остаются закрытыми.
@@ -28,7 +29,7 @@ CSV находятся в `/app/private-data/csv`; профили, аналит�
 исходные тексты, цитаты, страницы и механизмы. Все эти JSON остаются закрытыми.
 Новые профили, векторы, отчёты и очередь сохраняются в локальном `runtime/`.
 
-Перед первым запуском сервера сервис Compose `initialize` тем же образом 1.1.1
+Перед первым запуском сервера сервис Compose `initialize` тем же образом приложения
 копирует `private-data/startup/news-analytics.db` в `runtime/news-analytics.db`.
 В ней 10 профилей и 3 готовых отчёта с исходными датами: две карточки `U_106783`
 и одна `U_9250`. Новые новости и аналитика импортируются обычным загрузчиком.
@@ -42,9 +43,9 @@ CSV находятся в `/app/private-data/csv`; профили, аналит�
 как родителя и просто удалить файлы командой RUN — они останутся в старых слоях.
 
 ```sh
-docker build -t alfa-hack:application-1.1.1 .
+docker build -t alfa-hack:application-1.1.2 .
 python tools/prepare_model_context.py --model /path/to/embeddinggemma-300m --output /path/to/new-model-context
-docker build -f Dockerfile.with-model --build-arg APPLICATION_IMAGE=alfa-hack:application-1.1.1 -t alfa-hack:1.1.1-public /path/to/new-model-context
+docker build -f Dockerfile.with-model --build-arg APPLICATION_IMAGE=alfa-hack:application-1.1.2 -t alfa-hack:1.1.2-public /path/to/new-model-context
 ```
 
 Контекст второго этапа содержит только модель, официальные условия и Notice.
@@ -57,8 +58,8 @@ CSV туда больше не копируются. Dockerfile копирует
 
 ```sh
 python tools/validate_private_data.py
-docker image save -o alfa-hack-public-1.1.1-linux-amd64.tar alfa-hack:1.1.1-public
-python tools/verify_public_image.py /path/to/alfa-hack-public-1.1.1-linux-amd64.tar
+docker image save -o alfa-hack-public-1.1.2-linux-amd64.tar alfa-hack:1.1.2-public
+python tools/verify_public_image.py /path/to/alfa-hack-public-1.1.2-linux-amd64.tar
 ```
 
 Последняя проверка читает каждый слой образа, а не только финальную файловую
@@ -67,17 +68,17 @@ python tools/verify_public_image.py /path/to/alfa-hack-public-1.1.1-linux-amd64.
 Результаты реальной проверки поставки сохраняются отдельно рядом с архивом.
 
 Для проверки локально собранного образа задайте в `.env`
-`APP_IMAGE=alfa-hack:1.1.1-public` для образа из примера сборки выше
-(либо `alfa-hack:1.1.1-local` для подготовленной локальной сборки) и используйте обычную команду Compose.
-После публикации верните адрес `ghcr.io/rastok314/alfa-hack-public:1.1.1`.
+`APP_IMAGE=alfa-hack:1.1.2-public` для образа из примера сборки выше
+(либо `alfa-hack:1.1.2-local` для подготовленной локальной сборки) и используйте обычную команду Compose.
+После публикации верните адрес `ghcr.io/rastok314/alfa-hack-public:1.1.2`.
 
 ## Публикация отдельным пакетом
 
 Следующие команды выполняются только на этапе публикации:
 
 ```sh
-docker tag alfa-hack:1.1.1-public ghcr.io/rastok314/alfa-hack-public:1.1.1
-docker push ghcr.io/rastok314/alfa-hack-public:1.1.1
+docker tag alfa-hack:1.1.2-public ghcr.io/rastok314/alfa-hack-public:1.1.2
+docker push ghcr.io/rastok314/alfa-hack-public:1.1.2
 ```
 
 Владелец входит в GHCR токеном с `write:packages`. Новый пакет по умолчанию

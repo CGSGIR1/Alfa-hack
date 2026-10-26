@@ -22,7 +22,8 @@
     "threads": 4
   },
   "retrieval": {
-    "top_news": 1,
+    "top_news": 5,
+    "max_total_news": 5,
     "news_fragments": 2,
     "analytics_per_news": 10,
     "max_chunks_per_analytics": 2,

@@ -100,16 +100,25 @@ def process_company(db,output,model,company_id,settings,stages=None,candidate_fi
                     'SELECT news_id,news_revision FROM company_news_checks WHERE assigned_run_id=? AND company_id=?',(prepared[0],company_id))}
                 saved_report=json.loads(batch['report_json']);saved_news=saved_report['news']
                 within_limit=settings.max_total_news is None or len(saved_news)<=settings.max_total_news
+                # An unpaid batch packed under a smaller news limit is repacked while
+                # more news waits; an answer already received from the LLM is kept.
+                limits=saved_report.get('settings') or {}
+                saved_limit=min(limits.get('top_news') or 0,limits.get('max_total_news') or limits.get('top_news') or 0)
+                current_limit=min(settings.top_news,settings.max_total_news or settings.top_news)
+                paid=(Path(json.loads(batch['saved_json'])['output'])/('llm-result-'+report_name(company_id).removeprefix('company_')+'.json')).is_file()
+                more_waiting=c.execute('''SELECT 1 FROM company_news_checks WHERE company_id=? AND company_revision=?
+                  AND scoring_revision=? AND disposition='queued' AND assigned_run_id IS NULL LIMIT 1''',(company_id,crev,srev)).fetchone()
+                fully_packed=paid or not saved_limit or len(saved_news)>=current_limit or saved_limit>=current_limit or not more_waiting
                 within_admission=candidate_admission is None or len(candidate_admission(data,company_id,saved_news))==len(saved_news)
                 within_event_policy=candidate_filter is None or len(candidate_filter(data,company_id,
                     [dict(news_id=n['news_id'],_score=n['company_score']) for n in saved_news]))==len(saved_news)
                 with_analytics={n['id'] for n in report_input(saved_report)['news']}=={n['news_id'] for n in saved_news}
                 exhausted=batch['failed_attempts']>=MAX_REPORT_ATTEMPTS
-                if not exhausted and within_limit and within_admission and within_event_policy and with_analytics and batch['company_revision']==crev and batch['scoring_revision']==srev and _current(c,company_id,crev,refs):
+                if not exhausted and within_limit and fully_packed and within_admission and within_event_policy and with_analytics and batch['company_revision']==crev and batch['scoring_revision']==srev and _current(c,company_id,crev,refs):
                     return _restore(batch)
                 # Updated input must not be delivered as if it were the current one.
                 with c:
-                    reason=('Report retry limit reached: '+(batch['last_error'] or 'unknown error')) if exhausted else 'Event already processed under current policy' if not within_event_policy else 'No selected analytical support under current policy' if not with_analytics else 'Input revision changed'
+                    reason=('Report retry limit reached: '+(batch['last_error'] or 'unknown error')) if exhausted else 'Event already processed under current policy' if not within_event_policy else 'No selected analytical support under current policy' if not with_analytics else 'News limit increased; repacking' if not fully_packed else 'Input revision changed'
                     c.execute("UPDATE company_report_batches SET status='cancelled',last_error=? WHERE run_id=? AND company_id=?",(reason,prepared[0],company_id))
                     # A failed report remains attached to its news revisions so
                     # the next selection cannot immediately recreate it.

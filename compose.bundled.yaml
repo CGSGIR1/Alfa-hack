@@ -2,7 +2,7 @@
 name: alfa-hack
 services:
   initialize:
-    image: ${APP_IMAGE:-ghcr.io/rastok314/alfa-hack-public:1.1.1}
+    image: ${APP_IMAGE:-ghcr.io/rastok314/alfa-hack-public:1.1.2}
     entrypoint: [python, -c]
     command:
       - |
@@ -41,7 +41,7 @@ services:
       disable: true
     restart: 'no'
   app:
-    image: ${APP_IMAGE:-ghcr.io/rastok314/alfa-hack-public:1.1.1}
+    image: ${APP_IMAGE:-ghcr.io/rastok314/alfa-hack-public:1.1.2}
     depends_on:
       initialize:
         condition: service_completed_successfully

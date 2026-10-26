@@ -197,3 +197,6 @@ html{scroll-behavior:smooth;scrollbar-gutter:stable}
  .app[data-variant="b"] #view-home .home-stories{justify-content:space-between;gap:12px}
  .home-theme{right:14px;bottom:84px}
 }
+/* Disclaimer stays visible next to the generated conclusions, not only in the page footer. */
+.an-hero .not-advice{display:inline-block;margin-top:14px;padding:4px 12px;border-radius:99px;border:1px solid rgba(255,255,255,.28);font-size:13px;line-height:18px;color:#D9D9DE}
+.nb-not-advice{margin:14px 0 0}

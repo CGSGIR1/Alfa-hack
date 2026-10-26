@@ -195,15 +195,17 @@ class Service:
         data.setdefault('selection_stats',{}).update(stats)
         return candidates
 
-    def _compare(self, company_id, as_of=None, top_news=None, single_news=False):
+    def _compare(self, company_id, as_of=None, top_news=None, feed=False):
         require(isinstance(company_id, str) and company_id.strip(), 'Выберите компанию')
         require(top_news is None or type(top_news) is int and 1 <= top_news <= 50, 'Можно выбрать от 1 до 50 новостей')
         with connect(self.db, True) as c:
             require(c.execute('SELECT 1 FROM companies WHERE id=?', (company_id,)).fetchone(), 'Компания не найдена')
         stages = {'cleanup':self._cleanup(as_of),'embedding': self._embed()}
         options=retrieval(self.config, as_of, top_news)
-        if single_news:
-            options=replace(options,top_news=1,max_total_news=1)
+        if feed:
+            # Several news per report: one false retrieval hit must not empty it.
+            limit=min(options.top_news,options.max_total_news or options.top_news)
+            options=replace(options,top_news=limit,max_total_news=limit)
         return process_company(self.db, self.output, self.model(), company_id,
                                options, stages, candidate_filter=self._candidate_filter,
                                candidate_admission=partial(filter_admitted, **policy(self.config)))
@@ -212,8 +214,8 @@ class Service:
         with self.lock():
             return self._compare(company_id, as_of, top_news)
 
-    def _generate(self, company_id, as_of=None, top_news=None, client=None, prepared=None, single_news=False):
-        item = prepared or self._compare(company_id, as_of, top_news, single_news)
+    def _generate(self, company_id, as_of=None, top_news=None, client=None, prepared=None, feed=False):
+        item = prepared or self._compare(company_id, as_of, top_news, feed)
         if item['status'] == 'idle':
             return item
         saved = item['saved']
@@ -224,7 +226,7 @@ class Service:
         if (len(permitted)!=len(item['report']['news']) or
                 {n['id'] for n in packet['news']} != {n['news_id'] for n in item['report']['news']}):
             # Explicitly finishing a saved old batch must also respect the current gate.
-            return self._generate(company_id,as_of or item['report']['as_of'],top_news,client,single_news=single_news)
+            return self._generate(company_id,as_of or item['report']['as_of'],top_news,client,feed=feed)
         folder = Path(saved['output'])
         result_path = folder / ('llm-result-' + report_name(company_id).removeprefix('company_') + '.json')
         try:
@@ -271,9 +273,9 @@ class Service:
                 return {**item,'status':'skipped','error':str(error),'failure':failure}
             raise
 
-    def generate(self, company_id, as_of=None, top_news=None, client=None, single_news=False):
+    def generate(self, company_id, as_of=None, top_news=None, client=None, feed=False):
         with self.lock():
-            return self._generate(company_id, as_of, top_news, client, single_news=single_news)
+            return self._generate(company_id, as_of, top_news, client, feed=feed)
 
     def retry_report(self,company_id,run_id):
         with self.lock():
@@ -459,7 +461,7 @@ class Service:
                         continue
                     try:
                         if progress:progress(dict(stage='report', phase='Проверяем новую новость для компании ' + cid, company_id=cid))
-                        prepared = self._compare(cid, as_of, 1 if continuous else None, single_news=continuous)
+                        prepared = self._compare(cid, as_of, None, feed=continuous)
                         result = self._generate(cid, client=client, prepared=prepared) if generate else prepared
                         results.append({k: result[k] for k in ('status', 'saved', 'workflow','error','failure') if k in result} | {'company_id': cid})
                         if progress and result['status'] == 'completed':

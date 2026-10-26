@@ -45,7 +45,8 @@ def _brief(part: dict) -> list[str]:
 
 
 def to_markdown(doc: dict) -> str:
-    out = [f"# Отчёт для компании {doc['company_id']} на {doc['as_of']}", "", doc.get("summary") or "", ""]
+    out = [f"# Отчёт для компании {doc['company_id']} на {doc['as_of']}", "",
+           "> Не является инвестиционной рекомендацией.", "", doc.get("summary") or "", ""]
     if doc.get("key_recommendations"):
         out += ["**Ключевые рекомендации:**", *(f"{i}. {k['text']}" for i, k in enumerate(doc["key_recommendations"], 1)), ""]
     for item in doc["items"]:

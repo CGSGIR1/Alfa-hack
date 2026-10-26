@@ -87,6 +87,23 @@ class WorkflowTests(unittest.TestCase):
         self.assertEqual(second['workflow']['new_comparisons'],0);self.assertEqual(second['workflow']['queued_after_selection'],1)
         self.assertNotEqual(first['report']['news'][0]['news_id'],second['report']['news'][0]['news_id'])
 
+    def test_unpaid_batch_is_repacked_after_news_limit_increase(self):
+        self.add_news('N2');first=self.run_batch(settings=Settings('2026-10-22',top_news=1,financial_topic_coverage=0))
+        self.assertEqual(len(first['report']['news']),1)
+        with patch('news_analytics.workflow.score_company_news',side_effect=AssertionError('recompared')):
+            second=self.run_batch(settings=Settings('2026-10-22',top_news=5,financial_topic_coverage=0))
+        self.assertEqual(len(second['report']['news']),2)
+        statuses={r['run_id']:r['status'] for r in workflow.history(self.db,'C1')}
+        self.assertEqual(statuses[first['saved']['run_id']],'cancelled')
+        self.assertEqual(statuses[second['saved']['run_id']],'prepared')
+
+    def test_batch_with_llm_answer_is_not_repacked(self):
+        self.add_news('N2');first=self.run_batch(settings=Settings('2026-10-22',top_news=1,financial_topic_coverage=0))
+        write_json(Path(first['saved']['output'])/'llm-result-C1.json',self.result(first))
+        second=self.run_batch(settings=Settings('2026-10-22',top_news=5,financial_topic_coverage=0))
+        self.assertEqual(second['saved']['run_id'],first['saved']['run_id'])
+        self.assertEqual(len(second['report']['news']),1)
+
     def test_report_write_failure_keeps_cached_queue_for_retry(self):
         with patch('news_analytics.workflow.save',side_effect=OSError('disk full')):
             with self.assertRaisesRegex(OSError,'disk full'):self.run_batch()
