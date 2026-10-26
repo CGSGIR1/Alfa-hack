@@ -126,7 +126,7 @@ docker compose version
    выполните команду. Она одинакова для macOS, Linux и Windows:
 
    ```sh
-   docker compose -f compose.bundled.yaml up -d
+   DOCKER_DEFAULT_PLATFORM=linux/amd64 docker compose -f compose.bundled.yaml up -d
    ```
 
    На Linux без доступа к группе `docker`: `sudo docker compose -f compose.bundled.yaml up -d`.
