@@ -28,8 +28,8 @@
     },
     {
       "path": ".gitignore",
-      "bytes": 766,
-      "sha256": "84d5bf14a01773375d4257789c6c1be232df43ff7414320eb7083268af239714"
+      "bytes": 944,
+      "sha256": "8f03203b28aa853ed563d174fc7ce3dfd6e389ae77620a6266d7464b229f8001"
     },
     {
       "path": "app.py",
@@ -735,6 +735,11 @@
       "path": "docs/VALIDATION.md",
       "bytes": 18939,
       "sha256": "00a77908f267ab51854aca99b069bdca091dd60732461b3de883ca781c891407"
+    },
+    {
+      "path": "docs/Новостная аналитика в Альфа-Бизнесе.pdf",
+      "bytes": 7072728,
+      "sha256": "630d55622d44b4fbfeb37de0d7914996b258674e5f33112c6c34bc311b88bcce"
     },
     {
       "path": "private-data/analytics/ACRA_EKONIVA_20260128.json",
@@ -4733,8 +4738,8 @@
     },
     {
       "path": "tools/verify_submission.py",
-      "bytes": 3637,
-      "sha256": "17c54b36c9c7d4e1a67a5588cdd729977aac3e1ba747f157fe22574ef02d9ee1"
+      "bytes": 3785,
+      "sha256": "16b49c07912b891c7ff6e21f3d2ada6aa807de17478e6f6bf8bf382fd87bb353"
     }
   ],
   "updated_at": "2026-10-26T01:03:49.310453+00:00",

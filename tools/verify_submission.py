@@ -8,6 +8,7 @@ import subprocess
 
 SECRET = re.compile(rb'\b(?:ghp_[A-Za-z0-9]{30,}|github_pat_[A-Za-z0-9_]{40,}|hf_[A-Za-z0-9]{24,}|sk-(?:proj-)?[A-Za-z0-9_-]{35,})\b')
 WEIGHTS = {'.safetensors','.gguf','.onnx','.pt','.pth','.bin','.model'}
+PRESENTATION = 'docs/Новостная аналитика в Альфа-Бизнесе.pdf'
 FORBIDDEN = {'.venv','venv','__pycache__','runtime','models','.cache','exports','precomputed','experiments','reports'}
 
 
@@ -40,7 +41,7 @@ def verify(root, key=None, git_index=True):
     for folder, count, suffix in (('csv',3,'.csv'),('companies',10,'.json'),('analytics',22,'.json'),('news',614,'.json')):
         if len(list((root/'private-data'/folder).glob('*'+suffix))) != count:
             errors.append('Private data missing or incomplete: '+folder)
-    if list(root.rglob('*.pdf')):errors.append('PDF files should not be in this release')
+    if [p for p in root.rglob('*.pdf') if p.relative_to(root).as_posix()!=PRESENTATION]:errors.append('PDF files should not be in this release')
     indexed=None
     if git_index and (root/'.git').exists():
         tracked=subprocess.check_output(['git','ls-files','-z'],cwd=root).decode().split('\x00')
