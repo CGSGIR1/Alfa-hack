@@ -1,8 +1,50 @@
 # Public image: application + Gemma only. Organizer materials stay on the host.
 name: alfa-hack
 services:
+  initialize:
+    image: ${APP_IMAGE:-ghcr.io/rastok314/alfa-hack-public:1.1.1}
+    entrypoint: [python, -c]
+    command:
+      - |
+        from pathlib import Path
+        import shutil
+        import tempfile
+        runtime = Path('/app/runtime')
+        runtime.mkdir(parents=True, exist_ok=True)
+        target = runtime / 'news-analytics.db'
+        if target.exists():
+            print('Existing database preserved.', flush=True)
+        else:
+            temporary = None
+            try:
+                with tempfile.NamedTemporaryFile(dir=runtime, prefix='.startup-', delete=False) as stream:
+                    temporary = Path(stream.name)
+                    with Path('/seed/news-analytics.db').open('rb') as source:
+                        shutil.copyfileobj(source, stream)
+                if target.exists():
+                    print('Existing database preserved.', flush=True)
+                else:
+                    temporary.replace(target)
+                    print('Startup database installed: 3 saved reports.', flush=True)
+            finally:
+                if temporary is not None:
+                    temporary.unlink(missing_ok=True)
+    volumes:
+      - ./runtime:/app/runtime
+      - type: bind
+        source: ./private-data/startup/news-analytics.db
+        target: /seed/news-analytics.db
+        read_only: true
+        bind:
+          create_host_path: false
+    healthcheck:
+      disable: true
+    restart: 'no'
   app:
-    image: ${APP_IMAGE:-ghcr.io/rastok314/alfa-hack-public:1.1.0}
+    image: ${APP_IMAGE:-ghcr.io/rastok314/alfa-hack-public:1.1.1}
+    depends_on:
+      initialize:
+        condition: service_completed_successfully
     env_file: .env
     environment:
       EMBEDDING_MODEL_PATH: /models/embeddinggemma-300m

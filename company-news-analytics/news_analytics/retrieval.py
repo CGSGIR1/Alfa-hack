@@ -20,7 +20,7 @@ class Settings:
     max_chunks_per_analytics:int=2
     news_days:int=30
     max_analytics_age_days:int=365
-    min_news_score:float=.35
+    min_news_score:float=.345
     min_analytics_score:float=.375
     financial_topic_coverage:int=0
     financial_news_limit:int=1

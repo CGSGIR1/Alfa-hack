@@ -1,4 +1,4 @@
-"""Verify the source manifest and reject runtime state, weights and credentials."""
+"""Verify sources, one curated startup DB, and reject live state/credentials."""
 import argparse
 import hashlib
 import json
@@ -26,9 +26,10 @@ def verify(root, key=None, git_index=True):
         if not path.is_relative_to(root) or not path.is_file():
             errors.append('Missing/unsafe path: '+name);continue
         rel=Path(name)
+        startup_db = name == 'private-data/startup/news-analytics.db'
         if (any(part in FORBIDDEN for part in rel.parts) or rel.parts[0]=='data'
             or (rel.name.startswith('.env') and rel.name!='.env.example')
-            or rel.suffix.lower() in WEIGHTS|{'.db','.sqlite','.sqlite3','.log','.tar','.zip'}):
+            or (rel.suffix.lower() in WEIGHTS|{'.db','.sqlite','.sqlite3','.log','.tar','.zip'} and not startup_db)):
             errors.append('Forbidden file: '+name)
         body=path.read_bytes()
         if len(body)!=row['bytes'] or hashlib.sha256(body).hexdigest()!=row['sha256']:

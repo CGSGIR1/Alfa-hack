@@ -28,6 +28,7 @@ jobs:
         working-directory: company-news-analytics
       - run: python tools/validate_inputs.py
         working-directory: company-news-analytics
+      - run: python tools/validate_private_data.py
       - run: node tests/test_live_client.cjs
       - run: node tests/test_company_onboarding_client.cjs
       - run: node tests/test_report_presentation.cjs

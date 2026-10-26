@@ -12,46 +12,6 @@
       "sha256": "5fbe2d2783adbce0672245f660ff38573c9391934224b9e564b903f41a1bbde5"
     },
     {
-      "path": "analytics/alfa_7m26_2026_09_07.json",
-      "bytes": 193617,
-      "sha256": "3e1d6b62e774f90f6adffc0ac4f74794a3aefae8e5d41b59f981450b6d7b497b"
-    },
-    {
-      "path": "analytics/alfa_consumption_2026_08_05.json",
-      "bytes": 200280,
-      "sha256": "6ed536a77024e037795e5df5903f36bfcdddaf0c43d2238e1efee5546cd15974"
-    },
-    {
-      "path": "analytics/alfa_gold_2026_08.json",
-      "bytes": 227334,
-      "sha256": "cbd929e34345c286c7383f9d43ec0be8c74d6fb548c9cc28595020d378a90397"
-    },
-    {
-      "path": "analytics/alfa_inflation_2026_09_02.json",
-      "bytes": 113691,
-      "sha256": "5794a8173870e85614e0cef88345394b44b9f37360f3278c5b77557e3fdcefb3"
-    },
-    {
-      "path": "analytics/alfa_macro1h_2026_07_31.json",
-      "bytes": 316264,
-      "sha256": "fbaf2eaa2c64c0030baca8ac0206cfa39a1eda9c422f0249018d40e547d422ac"
-    },
-    {
-      "path": "analytics/alfa_policy_2026_09_11.json",
-      "bytes": 164804,
-      "sha256": "7e7409b2f2e7a54075a6f047df32e4105be6c7c2cba3e865141c5718691ef5b1"
-    },
-    {
-      "path": "analytics/alfa_steels_2021_04_15.json",
-      "bytes": 204940,
-      "sha256": "fa250405c9e22c6151dcb44108aa2dd4f9c4c912a43379ed71bd62020dbe203a"
-    },
-    {
-      "path": "analytics/alfa_strategy_2026_07_22.json",
-      "bytes": 1090169,
-      "sha256": "53102a2aa7100d1ea6182178190b40dba608f4fc71af9e696195c46ffc40536d"
-    },
-    {
       "path": "analytics/CBR_BANKING_202608.json",
       "bytes": 304947,
       "sha256": "77599e99ca83af7244b91d6605db4bae4a467db69502f8ef6b8069bc5d458f01"
@@ -110,6 +70,46 @@
       "path": "analytics/TOCHKA_FREIGHT_2026.json",
       "bytes": 463161,
       "sha256": "1973b2f7bc2590bed8676b808d0489992066ca3fd30b6c12cd6e1bc4b5690a2d"
+    },
+    {
+      "path": "analytics/alfa_7m26_2026_09_07.json",
+      "bytes": 193617,
+      "sha256": "3e1d6b62e774f90f6adffc0ac4f74794a3aefae8e5d41b59f981450b6d7b497b"
+    },
+    {
+      "path": "analytics/alfa_consumption_2026_08_05.json",
+      "bytes": 200280,
+      "sha256": "6ed536a77024e037795e5df5903f36bfcdddaf0c43d2238e1efee5546cd15974"
+    },
+    {
+      "path": "analytics/alfa_gold_2026_08.json",
+      "bytes": 227334,
+      "sha256": "cbd929e34345c286c7383f9d43ec0be8c74d6fb548c9cc28595020d378a90397"
+    },
+    {
+      "path": "analytics/alfa_inflation_2026_09_02.json",
+      "bytes": 113691,
+      "sha256": "5794a8173870e85614e0cef88345394b44b9f37360f3278c5b77557e3fdcefb3"
+    },
+    {
+      "path": "analytics/alfa_macro1h_2026_07_31.json",
+      "bytes": 316264,
+      "sha256": "fbaf2eaa2c64c0030baca8ac0206cfa39a1eda9c422f0249018d40e547d422ac"
+    },
+    {
+      "path": "analytics/alfa_policy_2026_09_11.json",
+      "bytes": 164804,
+      "sha256": "7e7409b2f2e7a54075a6f047df32e4105be6c7c2cba3e865141c5718691ef5b1"
+    },
+    {
+      "path": "analytics/alfa_steels_2021_04_15.json",
+      "bytes": 204940,
+      "sha256": "fa250405c9e22c6151dcb44108aa2dd4f9c4c912a43379ed71bd62020dbe203a"
+    },
+    {
+      "path": "analytics/alfa_strategy_2026_07_22.json",
+      "bytes": 1090169,
+      "sha256": "53102a2aa7100d1ea6182178190b40dba608f4fc71af9e696195c46ffc40536d"
     },
     {
       "path": "companies/U_106783.json",
@@ -3245,6 +3245,11 @@
       "path": "news/ff22b5f6ca330447bea37a946704db5a.json",
       "bytes": 12347,
       "sha256": "0dec35c60455272dd356f167b04bf4b4f92cad9925bb9718e4bef7aaadbf96f6"
+    },
+    {
+      "path": "startup/news-analytics.db",
+      "bytes": 2199552,
+      "sha256": "9f5afe3d1361ad87c9f40ce0374ba210259d8051691e44b3d258dc7cdb272c15"
     }
   ]
 }

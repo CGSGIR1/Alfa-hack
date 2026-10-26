@@ -50,13 +50,13 @@ class EventTests(unittest.TestCase):
             chosen=choose_company_news(data,'C1',Settings(as_of='2026-10-23',top_news=1,max_total_news=1),candidates)
         self.assertEqual([n['news_id'] for n in chosen],['N1'])
 
-    def test_weak_profile_evidence_requires_higher_similarity(self):
+    def test_weak_profile_evidence_can_use_an_explicit_higher_threshold(self):
         weak=dict(company_score=.42,matching_queries=[dict(weighted_score=.42,evidence={'evidence_status':'partial_payment_evidence'})])
-        self.assertFalse(admits(weak))
+        self.assertFalse(admits(weak,minimum=.40,weak_minimum=.45))
         weak['company_score']=.46
-        self.assertTrue(admits(weak))
+        self.assertTrue(admits(weak,minimum=.40,weak_minimum=.45))
         grounded=dict(company_score=.418,matching_queries=[dict(weighted_score=.418,evidence={'evidence_status':'grounded_topic'})])
-        self.assertTrue(admits(grounded))
+        self.assertTrue(admits(grounded,minimum=.40,weak_minimum=.45))
     def test_republication_is_duplicate_but_new_daily_fixing_is_new_evidence(self):
         one=fixing('N1','2026-10-21',22,'81,97')
         copy=fixing('N2','2026-10-21',22,'81,9')
