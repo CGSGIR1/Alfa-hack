@@ -594,7 +594,7 @@
     {
       "path": "compose.bundled.yaml",
       "bytes": 2155,
-      "sha256": "f6daee0885e183f2da1b3902e06907137245fc0be88ceb7cbac03d7828cf0462"
+      "sha256": "a3ea357dfedaa71c1cf22ddc1e0d7e761c4ce0351290d99b9e980cc472943bfa"
     },
     {
       "path": "compose.yaml",
@@ -658,8 +658,8 @@
     },
     {
       "path": "docs/DEPLOYMENT.md",
-      "bytes": 6862,
-      "sha256": "815c37865df6ddb09f3ea75e460073759b4e8bd23448e9ad3b7f31f9f441f902"
+      "bytes": 7134,
+      "sha256": "d298ac92a4b4eac6afaf330088fe84862696ff19641fc95027d8480ac1cbaa16"
     },
     {
       "path": "docs/FINAL_UI_REPORTS_2026-10-25.md",
@@ -708,8 +708,8 @@
     },
     {
       "path": "docs/RELEASE_CHECKS.md",
-      "bytes": 16517,
-      "sha256": "127868c6a65f6f623233ca4efdd8b76189f9f118ab694415c3585952ada24547"
+      "bytes": 17524,
+      "sha256": "8c1da4b671fbd2d6c34e3a37bf7afca28024bed6804a0e984011121e1cdf9888"
     },
     {
       "path": "docs/REPORT_PRESENTATION.md",
@@ -3988,18 +3988,18 @@
     },
     {
       "path": "private-data/README.md",
-      "bytes": 2298,
-      "sha256": "4788ad6b8a63a27aaa511c8c0fbb12f357e460cd67f33794fad5262e735d2c84"
+      "bytes": 2453,
+      "sha256": "09f50285444942788a1b84eb0cbeed15ea6546a1531f6ca72a8cd4bff8834841"
     },
     {
       "path": "private-data/startup/news-analytics.db",
-      "bytes": 2199552,
-      "sha256": "9f5afe3d1361ad87c9f40ce0374ba210259d8051691e44b3d258dc7cdb272c15"
+      "bytes": 3899392,
+      "sha256": "11eca38b86d949d2548349a1e5f4f7c538ed1a0b70be1c923d5b3adb467d0e1c"
     },
     {
       "path": "README.md",
-      "bytes": 45456,
-      "sha256": "1833f1868d84dce39ef6e2410788b5d2f2b798f476ef1062dde439d5e5a4ef62"
+      "bytes": 54783,
+      "sha256": "f801323788ce59845bd32526029992a080e4d7b7aaae302dcd93e971fef8142e"
     },
     {
       "path": "requirements-test.txt",
@@ -4723,8 +4723,8 @@
     },
     {
       "path": "tools/validate_private_data.py",
-      "bytes": 3275,
-      "sha256": "6fa7ebf312d377f2b668a17d47ca0b7e96c8df10e5284361851115c05fdb0eb5"
+      "bytes": 3324,
+      "sha256": "18418ad78246108676945998098e46bb06b7ac6f5f625d6fdd8acdad1b9ff705"
     },
     {
       "path": "tools/verify_public_image.py",

@@ -25,7 +25,7 @@ services:
                     print('Existing database preserved.', flush=True)
                 else:
                     temporary.replace(target)
-                    print('Startup database installed: 3 saved reports.', flush=True)
+                    print('Startup database installed: 4 saved reports.', flush=True)
             finally:
                 if temporary is not None:
                     temporary.unlink(missing_ok=True)

@@ -3248,8 +3248,8 @@
     },
     {
       "path": "startup/news-analytics.db",
-      "bytes": 2199552,
-      "sha256": "9f5afe3d1361ad87c9f40ce0374ba210259d8051691e44b3d258dc7cdb272c15"
+      "bytes": 3899392,
+      "sha256": "11eca38b86d949d2548349a1e5f4f7c538ed1a0b70be1c923d5b3adb467d0e1c"
     }
   ]
 }
