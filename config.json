@@ -28,7 +28,7 @@
     "max_chunks_per_analytics": 2,
     "news_days": 7,
     "max_analytics_age_days": 365,
-    "min_news_score": 0.4,
+    "min_news_score": 0.345,
     "min_analytics_score": 0.375,
     "financial_topic_coverage": 0
   },
@@ -50,7 +50,7 @@
     "auto_generate": true
   },
   "admission": {
-    "min_weak_news_score": 0.45,
+    "min_weak_news_score": 0.345,
     "interest_rate_interval_hours": 12
   }
 }

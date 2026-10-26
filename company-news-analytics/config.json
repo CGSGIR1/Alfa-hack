@@ -18,7 +18,7 @@
     "max_chunks_per_analytics": 2,
     "news_days": 30,
     "max_analytics_age_days": 365,
-    "min_news_score": 0.35,
+    "min_news_score": 0.345,
     "min_analytics_score": 0.375,
     "financial_topic_coverage": 0
   },

@@ -7,3 +7,4 @@
 *.ico binary
 *.npz binary
 private-data/csv/*.csv -text
+private-data/startup/*.db binary

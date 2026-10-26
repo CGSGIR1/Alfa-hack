@@ -12,7 +12,7 @@ SECRET = re.compile(rb'\b(?:ghp_[A-Za-z0-9]{30,}|github_pat_[A-Za-z0-9_]{40,}|hf
 def private_signatures(root):
     fingerprints, snippets = set(), set()
     for item in (root/'private-data').rglob('*'):
-        if not item.is_file() or item.suffix not in {'.csv', '.json'}:
+        if not item.is_file() or item.suffix not in {'.csv', '.json', '.db'}:
             continue
         body = item.read_bytes()
         fingerprints.add(hashlib.sha256(body).hexdigest())

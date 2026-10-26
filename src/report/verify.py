@@ -164,7 +164,10 @@ def check_report(report: dict, index: PackageIndex, assessment: dict, facts: dic
             if not basis:
                 issues.append(f"{where}: ai_inference без company_basis")
             if label == "conditional" and not HEDGES.search(claim["text"]) and not NEGATIVE_FINDING.search(claim["text"]):
-                issues.append(f"{where}: условный вывод сформулирован без условности")
+                issues.append(f"{where}: условный вывод сформулирован без условности; "
+                              "добавь в само ai_inference «может», «возможно» или подтверждённое условие. "
+                              "Условие в not_established не заменяет условность этого утверждения; "
+                              "неподтверждённое утверждение можно удалить")
         if CATEGORICAL.search(claim["text"]):
             issues.append(f"{where}: категоричная формулировка о будущем")
         # даты документов и as_of тоже законный источник чисел (годы, месяцы)

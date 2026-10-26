@@ -7,7 +7,7 @@ C. проверка оценки кодом
 D. отдельный агент на каждую принятую новость (DeepSeek с рассуждениями): каналы влияния,
    рубрика силы, инструменты (полный текст, доп. аналитика, история показателей), до 2 раундов
 E. синтез: сводка, ранжирование по силе и уверенности, независимые риски
-F. проверка кодом + критик (GLM с рассуждениями) + одна доработка
+F. проверка кодом + критик (GLM с рассуждениями) + до двух ограниченных доработок
 Бюджетный предохранитель: при приближении к лимиту необязательные шаги пропускаются.
 """
 
@@ -312,7 +312,11 @@ def revise_parts(run: Run, report: dict, issues: list[str], data: dict,index=Non
                 + "\nФакты компании:\n" + json.dumps(data["company"]["facts"], ensure_ascii=False)
                 + '\n\nИсходные материалы для проверки:\n'+json.dumps(evidence,ensure_ascii=False)
                 + "\n\nЗамечания:\n" + "\n".join(f"- {x}" for x in part_issues))
-        system=ANALYST+'\nСейчас этап доработки: верни только запрошенный объект part или summary, без action и без вызовов инструментов.'
+        system=ANALYST+(
+            '\nСейчас этап доработки: верни только запрошенный объект part или summary, без action и без вызовов инструментов. '
+            'Для conditional каждое ai_inference и brief.takeaway должно само содержать «может», «возможно» или условие; '
+            'not_established не заменяет эту формулировку. Неподтверждённый вывод удали. '
+            'Сохрани все пять факторов impact.rubric как объекты {score, note}, с непустым пояснением каждого балла.')
         return key, run.call(run.main, [{"role": "system", "content": system}, {"role": "user", "content": user}],
                              f"revise_{kind}_{idx}", NO_REASONING)
 
@@ -460,18 +464,28 @@ def generate(package: dict, extras: dict, client: LLMClient | None = None, budge
     # сначала замечания критика (содержание), затем проверки кодом и рубрики, затем мягкие — объём
     all_issues = critic_text + code_issues + impact_issues + soft
     revised_parts = revise_parts(run, report, all_issues, data,index,full_texts) if all_issues else []
-    remaining_impact=[]
-    for i,item in enumerate(report["items"]):
-        item["impact"], problems=impact.compute(item.get("impact"), labels.get(item.get("news_id"), "conditional"))
-        remaining_impact.extend(f'items[{i}].impact: {p}' for p in problems)
-    for i,r in enumerate(report["independent_risks"]):
-        r["impact"], problems=impact.compute(r.get("impact"), "conditional")
-        remaining_impact.extend(f'independent_risks[{i}].impact: {p}' for p in problems)
-    front_fields(report,index)
-    remaining = verify.check_report(report, index, assessment, facts, profile, full_texts, require_front_fields=True)
-    remaining+=remaining_impact
-    if {n.get('news_id') for n in report['items']}!=expected:
-        remaining.append('После проверки потеряны разделы принятых новостей')
+    def blocking_issues():
+        remaining_impact=[]
+        for i,item in enumerate(report["items"]):
+            item["impact"], problems=impact.compute(item.get("impact"), labels.get(item.get("news_id"), "conditional"))
+            remaining_impact.extend(f'items[{i}].impact: {p}' for p in problems)
+        for i,r in enumerate(report["independent_risks"]):
+            r["impact"], problems=impact.compute(r.get("impact"), "conditional")
+            remaining_impact.extend(f'independent_risks[{i}].impact: {p}' for p in problems)
+        front_fields(report,index)
+        issues=verify.check_report(report,index,assessment,facts,profile,full_texts,require_front_fields=True)
+        issues+=remaining_impact
+        if {n.get('news_id') for n in report['items']}!=expected:
+            issues.append('После проверки потеряны разделы принятых новостей')
+        return issues
+
+    remaining = blocking_issues()
+    # One bounded second repair of only blocking errors, within the same budget.
+    # Never publish invalid text or replay an indefinitely failing report.
+    if remaining and run.affordable('revise'):
+        run.trace['steps']['F_second_revision']={'issues':list(remaining)}
+        revised_parts += revise_parts(run,report,remaining,data,index,full_texts)
+        remaining = blocking_issues()
     if remaining:
         raise ReportValidationError(remaining)
     deviations = {it.get("news_id"): {k: (hint["score"], it["impact"]["rubric"][k]["score"])
