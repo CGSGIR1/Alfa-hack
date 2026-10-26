@@ -23,8 +23,8 @@
     },
     {
       "path": ".github/workflows/ci.yml",
-      "bytes": 2009,
-      "sha256": "f3e130abb4adf5ba9748340a4876f74e2cb370dcc3aae708477ce23936be96a3"
+      "bytes": 2058,
+      "sha256": "6a5dd1d5191cd15afe3fbe78d246d83e74f8ef204f49cf3cb192e616bd9228a4"
     },
     {
       "path": ".gitignore",
@@ -708,8 +708,8 @@
     },
     {
       "path": "docs/RELEASE_CHECKS.md",
-      "bytes": 12117,
-      "sha256": "13e053c2535a811a1ce9525f8c72c0d08611636a7dda2a4384fa07eb55accd11"
+      "bytes": 12299,
+      "sha256": "72c182093024860375f785410f3262bdbfe4a8db8953bd942be08b49271be07f"
     },
     {
       "path": "docs/REPORT_PRESENTATION.md",
@@ -4727,6 +4727,6 @@
       "sha256": "201a54980829de993b10a2a18b1580cae14f73d380821c394b72e5aac20e6d06"
     }
   ],
-  "updated_at": "2026-10-26T00:52:52.930254+00:00",
-  "documentation_revision": "Main replacement candidate; Windows test reads UTF-8 explicitly"
+  "updated_at": "2026-10-26T00:57:50.913516+00:00",
+  "documentation_revision": "CI uses UTF-8 for Russian JSON and diagnostic output on Windows"
 }
