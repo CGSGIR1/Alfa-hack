@@ -3998,8 +3998,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 54986,
-      "sha256": "dc67c4e534d16bef8009958e8ba7cddfe2a3df5620a3b1949274318faf99f9b6"
+      "bytes": 55166,
+      "sha256": "eaf2e79f9a825c6911c1c793a8bad0b53b2d09af5ec3843ef46f6603bf5383ba"
     },
     {
       "path": "requirements-test.txt",

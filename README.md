@@ -123,15 +123,23 @@ docker compose version
    `copy .env.example .env`.
 
 3. В том же терминале, **в папке репозитория** рядом с `compose.bundled.yaml`,
-   выполните команду. Она одинакова для macOS, Linux и Windows:
+   выполните команду для своей ОС.
+
+   **macOS** (Терминал):
 
    ```sh
    DOCKER_DEFAULT_PLATFORM=linux/amd64 docker compose -f compose.bundled.yaml up -d
    ```
 
+   **Windows** (PowerShell или `cmd.exe`) и **Linux** — одна и та же команда:
+
+   ```sh
+   docker compose -f compose.bundled.yaml up -d
+   ```
+
    На Linux без доступа к группе `docker`: `sudo docker compose -f compose.bundled.yaml up -d`.
 
-   Если на Mac с Apple Silicon или на ARM-Linux появляется ошибка
+   Если на ARM-Linux (`aarch64`) появляется ошибка
    `no matching manifest for linux/arm64`, явно укажите платформу образа:
 
    ```sh
