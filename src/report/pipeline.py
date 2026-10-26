@@ -60,6 +60,9 @@ def generate(package: dict, client: LLMClient | None = None, critic: bool = True
         fixes += more_fixes
         trace["steps"]["C"] = {"raw": raw, "problems_after_repair": problems, "auto_fixes": more_fixes}
 
+    if problems:
+        raise LLMError("Не удалось получить полную проверяемую оценку: " + "; ".join(problems[:8]))
+
     # D
     data = write.writer_input(view, index, assessment)
     dismissed = write.dismissed(view, assessment)
@@ -91,6 +94,10 @@ def generate(package: dict, client: LLMClient | None = None, critic: bool = True
         report = call(main_model, verify.revise_messages(writer_messages, report, issues), "report_revise", WRITE_PARAMS)
         remaining = verify.check_report(report, index, assessment, facts, profile)
         trace["steps"]["E_revision"] = {"remaining_issues": remaining}
+
+    if remaining:
+        from .errors import ReportValidationError
+        raise ReportValidationError(remaining)
 
     document = {
         "schema_version": SCHEMA_VERSION,

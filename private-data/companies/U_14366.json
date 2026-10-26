@@ -1,0 +1,1044 @@
+{
+  "schema_version": "company-profile-2.0",
+  "subject_id": "U_14366",
+  "subject_type": "company",
+  "profile_text": "## Компания U_14366\n\nКомпания занимается деятельностью «Деятельность по финансовой аренде (лизингу/сублизингу) в прочих областях, кроме племенных животных» (ОКВЭД 64.91.2). Зарегистрирована: г. Москва. Форма собственности — частная собственность. Возраст компании — 16–25 лет. Стадия развития бизнеса по оценке банка — «Оптимизация». По данным ФНС, численность работников — 101–250 человек.\n\n### Масштаб и положение в отрасли\n\nГодовая выручка — 19,9 млрд ₽. Это крупный бизнес по критерию кейса (выручка от 15 млрд ₽). По выручке компания на 1-м месте из 134 компаний с ОКВЭД 64.91 в данных банка, на неё приходится 23% их суммарной выручки (это доля внутри выборки банка, а не рыночная доля).\n\n### Группа компаний\n\nВходит в группу компаний group_134934_sb: 36 компаний в 5 регионах, суммарная выручка группы — 24,5 млрд ₽, доля компании — 81%. Основные направления группы по выручке: финансовые услуги (91%), операции с недвижимостью (4%).\n\n### Отношения с банком\n\nСтатус — действующий клиент банка. Использует продукты банка: расчётно-кассовое обслуживание, кредиты, лизинг, зарплатный проект. Не использует: депозиты, банковские гарантии, факторинг. Чувствительность к ключевой ставке: рост ставки увеличивает стоимость заёмного финансирования, снижение — уменьшает.\n\n### Внешнеэкономическая деятельность\n\nСведений о внешнеэкономической деятельности нет.\n\n### Контрагенты (по платежам через банк)\n\nПоставщики (исходящие платежи): 15 контрагентов, 70,4 млн ₽. Отрасли внешних контрагентов (по сумме платежей с известной отраслью): торговля и ремонт автомобилей (74%), разработка ПО и ИТ-консалтинг (24%). Регионы внешних контрагентов: Москва (99%). Крупнейшие внешние контрагенты с известной отраслью: U_86261 — техническое обслуживание и ремонт автотранспортных средств, 68%; U_114248 — разработка компьютерного программного обеспечения, 24%; U_46920 — торговля оптовая автомобильными деталями, узлами и принадлежностями, 5%.\n\nПокупатели (входящие платежи): 24 контрагента, 321 млн ₽. Отрасли внешних контрагентов (по сумме платежей с известной отраслью): разработка ПО и ИТ-консалтинг (64%), торговля и ремонт автомобилей (32%), операции с недвижимостью (4%). Регионы внешних контрагентов: Москва (94%), Краснодарский край (5%). Крупнейшие внешние контрагенты с известной отраслью: U_114248 — разработка компьютерного программного обеспечения, 16%; U_104326 — торговля прочими автотранспортными средствами, 7%; U_21675 — техническое обслуживание и ремонт легковых автомобилей и легких грузовых автотранспортных средств, 1%.\n\nПереводы между собственными счетами: 91,4 млн ₽, в анализ контрагентов не включены.\n\n### Связи и отметки\n\nС компанией связано 1 физлицо, через них — ещё 1 компания вне группы. В данных стоит признак ключевого собственника (NEGATIVEMARK=1).\n\n### Факторы влияния (выведены правилами из признаков выше, не факты)\n\n- импорт: поставщики: торговля и ремонт автомобилей (74% платежей) [косвенно через контрагентов]; покупатели: торговля и ремонт автомобилей (32% платежей) [косвенно через контрагентов]\n- налоги: поставщики: разработка ПО и ИТ-консалтинг (24% платежей) [косвенно через контрагентов]; покупатели: разработка ПО и ИТ-консалтинг (64% платежей) [косвенно через контрагентов]\n- рынок_труда: CL_PRODUCT_ZPP_MARK=1 (зарплатный проект) [продукты банка]\n- ставка: CL_PRODUCT_LOA_MARK=1 (кредиты) [продукты банка]; CL_PRODUCT_LEA_MARK=1 (лизинг) [продукты банка]; ОКВЭД 64 (основной вид деятельности) [отрасль]; поставщики: торговля и ремонт автомобилей (74% платежей) [косвенно через контрагентов]; покупатели: торговля и ремонт автомобилей (32% платежей) [косвенно через контрагентов]\n\n### Ограничения данных\n\n- Платежи отражают только операции, видимые банку, а не весь оборот компании.\n- Отрасль известна только для 39% суммы платежей с контрагентами.",
+  "facts": {
+    "annual_revenue": {
+      "currency": null,
+      "source_value": "19949480221.0",
+      "unit": null,
+      "year": null
+    },
+    "bank_client_status_source": "CLIENT",
+    "banking_product_flags": {
+      "settlement_services": true,
+      "loans": true,
+      "leasing": true,
+      "deposits": false,
+      "payroll_project": true,
+      "bank_guarantees": false,
+      "factoring": false
+    },
+    "business_stage_source": "Оптимизация",
+    "company_age_years_band": "16-25",
+    "employees": {
+      "fns_band": "101-250",
+      "spark_band": null
+    },
+    "foreign_trade": {
+      "countries": [],
+      "direction": null,
+      "fts_record_present": false,
+      "interpretation": "Флаг 0 означает отсутствие записи в этих данных, а не доказанное отсутствие ВЭД.",
+      "settlement_currencies": null
+    },
+    "group_id": "group_134934_sb",
+    "industry": {
+      "main_okved_code": "64.91.2",
+      "main_okved_name": "Деятельность по финансовой аренде (лизингу/сублизингу) в прочих областях, кроме племенных животных"
+    },
+    "key_owner_marker": true,
+    "organization_type_source": "КОММ_ОРГ",
+    "ownership_form_source": "ЧАСТНАЯ СОБСТВЕННОСТЬ",
+    "registration": {
+      "city": "г. Москва",
+      "region": "Москва"
+    },
+    "counterparties": {
+      "suppliers_industry_mix": [
+        {
+          "role": "supplier",
+          "division": "45",
+          "name": "торговля и ремонт автомобилей",
+          "share": 0.7401675504016324
+        },
+        {
+          "role": "supplier",
+          "division": "62",
+          "name": "разработка ПО и ИТ-консалтинг",
+          "share": 0.24474429164690836
+        },
+        {
+          "role": "supplier",
+          "division": "49",
+          "name": "сухопутный транспорт",
+          "share": 0.00780273311204035
+        },
+        {
+          "role": "supplier",
+          "division": "46",
+          "name": "оптовая торговля",
+          "share": 0.00696929200615022
+        },
+        {
+          "role": "supplier",
+          "division": "80",
+          "name": "охрана и безопасность",
+          "share": 0.0003161328332686698
+        }
+      ],
+      "buyers_industry_mix": [
+        {
+          "role": "buyer",
+          "division": "62",
+          "name": "разработка ПО и ИТ-консалтинг",
+          "share": 0.6391831946328409
+        },
+        {
+          "role": "buyer",
+          "division": "45",
+          "name": "торговля и ремонт автомобилей",
+          "share": 0.31948772470090797
+        },
+        {
+          "role": "buyer",
+          "division": "68",
+          "name": "операции с недвижимостью",
+          "share": 0.03592770465960333
+        },
+        {
+          "role": "buyer",
+          "division": "52",
+          "name": "складское хозяйство и транспортные услуги",
+          "share": 0.0054013760066478475
+        }
+      ],
+      "suppliers_region_mix": [
+        {
+          "role": "supplier",
+          "region": "Москва",
+          "share": 0.9921972668879596
+        },
+        {
+          "role": "supplier",
+          "region": "Санкт-Петербург",
+          "share": 0.00780273311204035
+        }
+      ],
+      "buyers_region_mix": [
+        {
+          "role": "buyer",
+          "region": "Москва",
+          "share": 0.9445320233163471
+        },
+        {
+          "role": "buyer",
+          "region": "Краснодарский край",
+          "share": 0.050066600677005045
+        },
+        {
+          "role": "buyer",
+          "region": "Санкт-Петербург",
+          "share": 0.0054013760066478475
+        }
+      ],
+      "classified_share": {
+        "suppliers": 0.9879,
+        "buyers": 0.2592
+      },
+      "industry_mix_denominator": "Только контрагенты с известной отраслью вне своей группы; это не доля всех платежей.",
+      "observed_counts": {
+        "payers": 24,
+        "beneficiaries": 15
+      }
+    },
+    "group_summary": {
+      "members_count": 36,
+      "revenue_share": 0.8135303649639339,
+      "industries": [
+        {
+          "division": "64",
+          "name": "финансовые услуги",
+          "share": 0.9135631656827693
+        },
+        {
+          "division": "68",
+          "name": "операции с недвижимостью",
+          "share": 0.04418092234424502
+        },
+        {
+          "division": "41",
+          "name": "строительство зданий",
+          "share": 0.008683346920825653
+        },
+        {
+          "division": "70",
+          "name": "управление и консалтинг",
+          "share": 0.00835446497084114
+        },
+        {
+          "division": "49",
+          "name": "сухопутный транспорт",
+          "share": 0.007192996391992781
+        }
+      ],
+      "region_count": 5
+    },
+    "linked_persons_summary": {
+      "known_links_count": 1,
+      "linked_companies_outside_group_count": 1,
+      "interpretation": "Связи по физлицам не устанавливают роли владельца или руководителя и контроль."
+    }
+  },
+  "limitations": [
+    "Компания обезличена; сопоставление её названия с внешними новостями не установлено.",
+    "Год, валюта и единица измерения выручки не определены в предоставленных данных.",
+    "Продуктовые флаги относятся к данным банка; нулевой флаг не доказывает отсутствие продукта в других банках.",
+    "ОКВЭД не устанавливает фактический ассортимент и конкретные операции компании.",
+    "Платежи отражают только операции, видимые банку; период и валюта платежей не установлены.",
+    "Платежи отражают только операции, видимые банку, а не весь оборот компании.",
+    "Отрасль известна только для 39% суммы платежей с контрагентами."
+  ],
+  "queries": [
+    {
+      "id": "U_14366_Q01",
+      "channel": "industry:64.91",
+      "category": "industry",
+      "text": "Российский рынок лизинга: новые сделки, спрос корпоративных клиентов, конкуренция и рентабельность лизинговых компаний",
+      "weight": 1.0,
+      "evidence_status": "grounded_topic",
+      "source_refs": [
+        "/facts/industry"
+      ],
+      "assumptions": [],
+      "limitations": [],
+      "provenance": {
+        "origin": "llm",
+        "original_sources": [
+          "MAINOKVED_CODE=64.91.2"
+        ],
+        "rationale": "Основной вид деятельности — финансовая аренда (лизинг/сублизинг), ОКВЭД 64.91.2; компания занимает 1-е место по выручке среди компаний с ОКВЭД 64.91 в выборке банка."
+      }
+    },
+    {
+      "id": "U_14366_Q02",
+      "channel": "ставка",
+      "category": "finance",
+      "text": "Ключевая ставка ЦБ, стоимость кредитов и облигационных займов для лизинговых компаний",
+      "weight": 1.0,
+      "evidence_status": "grounded_topic",
+      "source_refs": [
+        "/facts/banking_product_flags"
+      ],
+      "assumptions": [],
+      "limitations": [],
+      "provenance": {
+        "origin": "llm",
+        "original_sources": [
+          "CL_PRODUCT_LOA_MARK=1 (кредиты)",
+          "CL_PRODUCT_LEA_MARK=1 (лизинг)",
+          "ОКВЭД 64 (основной вид деятельности)",
+          "поставщики: торговля и ремонт автомобилей (74% платежей)",
+          "покупатели: торговля и ремонт автомобилей (32% платежей)"
+        ],
+        "rationale": "Клиент использует кредиты и лизинг банка, чувствителен к ключевой ставке: рост ставки увеличивает стоимость заёмного финансирования лизингового портфеля."
+      }
+    },
+    {
+      "id": "U_14366_Q03",
+      "channel": "налоги",
+      "category": "regulation",
+      "text": "Налогообложение лизинговых операций: НДС, налог на прибыль, льготы и амортизация предмета лизинга",
+      "weight": 0.5,
+      "evidence_status": "grounded_topic",
+      "source_refs": [
+        "/facts/industry"
+      ],
+      "assumptions": [],
+      "limitations": [],
+      "provenance": {
+        "origin": "llm",
+        "original_sources": [
+          "поставщики: разработка ПО и ИТ-консалтинг (24% платежей)",
+          "покупатели: разработка ПО и ИТ-консалтинг (64% платежей)"
+        ],
+        "rationale": "Компания — плательщик налогов в сфере финансовой аренды (ОКВЭД 64.91.2), крупный бизнес с выручкой 19,9 млрд ₽; изменения в налогообложении лизинга прямо влияют на стоимость сделок."
+      }
+    },
+    {
+      "id": "U_14366_Q04",
+      "channel": "рынок_труда",
+      "category": "labor",
+      "text": "Рынок труда Москвы: зарплаты, дефицит кадров в финансовом секторе и у автодилеров",
+      "weight": 0.5,
+      "evidence_status": "grounded_topic",
+      "source_refs": [
+        "/facts/employees",
+        "/facts/banking_product_flags/payroll_project"
+      ],
+      "assumptions": [],
+      "limitations": [],
+      "provenance": {
+        "origin": "llm",
+        "original_sources": [
+          "CL_PRODUCT_ZPP_MARK=1 (зарплатный проект)"
+        ],
+        "rationale": "Численность 101–250 человек, зарплатный проект банка, регистрация в Москве — рост зарплат и дефицит кадров влияют на расходы компании."
+      }
+    },
+    {
+      "id": "U_14366_Q05",
+      "channel": "supplier:45",
+      "category": "supply_chain",
+      "text": "Рынок автомобилей и спецтехники: цены, дефицит и доступность предметов лизинга у дилеров",
+      "weight": 0.5,
+      "evidence_status": "grounded_topic",
+      "source_refs": [
+        "/facts/counterparties"
+      ],
+      "assumptions": [],
+      "limitations": [],
+      "provenance": {
+        "origin": "llm",
+        "original_sources": [
+          "поставщики из сферы «торговля и ремонт автомобилей» — 74% платежей"
+        ],
+        "rationale": "Поставщики из сферы «торговля и ремонт автомобилей» дают 74% платежей; от цен и наличия техники зависит стоимость и объём лизингового портфеля."
+      }
+    },
+    {
+      "id": "U_14366_Q06",
+      "channel": "buyer:62",
+      "category": "sales",
+      "text": "ИТ-компании: инвестиции в оборудование, спрос на лизинг и платёжеспособность заказчиков",
+      "weight": 0.5,
+      "evidence_status": "grounded_topic",
+      "source_refs": [
+        "/facts/counterparties"
+      ],
+      "assumptions": [],
+      "limitations": [],
+      "provenance": {
+        "origin": "llm",
+        "original_sources": [
+          "покупатели из сферы «разработка ПО и ИТ-консалтинг» — 64% платежей"
+        ],
+        "rationale": "Покупатели из сферы «разработка ПО и ИТ-консалтинг» дают 64% входящих платежей — это ключевой сегмент лизинговых сделок."
+      }
+    },
+    {
+      "id": "U_14366_Q07",
+      "channel": "region:Москва",
+      "category": "region",
+      "text": "Москва: экономика города, меры поддержки бизнеса, решения городских властей и инфраструктура",
+      "weight": 0.4,
+      "evidence_status": "grounded_topic",
+      "source_refs": [
+        "/facts/registration"
+      ],
+      "assumptions": [],
+      "limitations": [],
+      "provenance": {
+        "origin": "llm",
+        "original_sources": [
+          "REGION=Москва",
+          "CITY=г. Москва"
+        ],
+        "rationale": "Компания зарегистрирована в г. Москва; 99% поставщиков и 94% покупателей по платежам также московские."
+      }
+    },
+    {
+      "id": "U_14366_Q08",
+      "channel": "buyer:45",
+      "category": "sales",
+      "text": "Автодилеры и сервисные компании: спрос на лизинг автотранспорта и их платёжеспособность",
+      "weight": 0.36,
+      "evidence_status": "grounded_topic",
+      "source_refs": [
+        "/facts/counterparties"
+      ],
+      "assumptions": [],
+      "limitations": [],
+      "provenance": {
+        "origin": "llm",
+        "original_sources": [
+          "покупатели из сферы «торговля и ремонт автомобилей» — 32% платежей"
+        ],
+        "rationale": "Покупатели из сферы «торговля и ремонт автомобилей» дают 32% входящих платежей."
+      }
+    },
+    {
+      "id": "U_14366_Q09",
+      "channel": "supplier:62",
+      "category": "supply_chain",
+      "text": "Поставщики ИТ-решений: стоимость разработки и поддержки ПО, финансовое положение подрядчиков",
+      "weight": 0.322,
+      "evidence_status": "grounded_topic",
+      "source_refs": [
+        "/facts/counterparties"
+      ],
+      "assumptions": [],
+      "limitations": [],
+      "provenance": {
+        "origin": "llm",
+        "original_sources": [
+          "поставщики из сферы «разработка ПО и ИТ-консалтинг» — 24% платежей"
+        ],
+        "rationale": "Поставщики из сферы «разработка ПО и ИТ-консалтинг» дают 24% исходящих платежей — значимая статья затрат на ИТ-инфраструктуру."
+      }
+    },
+    {
+      "id": "U_14366_Q10",
+      "channel": "llm:предмет_лизинга",
+      "category": "commodities",
+      "text": "Цены на новые легковые и грузовые автомобили, спецтехнику и оборудование — предмет лизинга",
+      "weight": 0.5,
+      "evidence_status": "hypothesis",
+      "source_refs": [
+        "/facts/industry"
+      ],
+      "assumptions": [
+        "Лизинговая компания покупает технику у дилеров и передаёт в аренду; динамика цен на предмет лизинга определяет объём и доходность сделок."
+      ],
+      "limitations": [],
+      "provenance": {
+        "origin": "llm",
+        "original_sources": [
+          "поставщики: торговля и ремонт автомобилей (74% платежей)",
+          "покупатели: торговля и ремонт автомобилей (32% платежей)"
+        ],
+        "rationale": "Лизинговая компания покупает технику у дилеров и передаёт в аренду; динамика цен на предмет лизинга определяет объём и доходность сделок."
+      }
+    },
+    {
+      "id": "U_14366_Q11",
+      "channel": "llm:макро_и_спрос",
+      "category": "macro",
+      "text": "Инфляция, курс рубля и инвестиции в основной капитал: влияние на спрос на лизинг",
+      "weight": 0.5,
+      "evidence_status": "hypothesis",
+      "source_refs": [
+        "/facts/foreign_trade",
+        "/facts/banking_product_flags"
+      ],
+      "assumptions": [
+        "Макропараметры определяют инвестиционную активность клиентов, стоимость фондирования и реальную доходность лизингового портфеля."
+      ],
+      "limitations": [],
+      "provenance": {
+        "origin": "llm",
+        "original_sources": [
+          "ОКВЭД 64 (основной вид деятельности)",
+          "REVENUE_COMPANY=19949480221.0"
+        ],
+        "rationale": "Макропараметры определяют инвестиционную активность клиентов, стоимость фондирования и реальную доходность лизингового портфеля."
+      }
+    },
+    {
+      "id": "U_14366_Q12",
+      "channel": "llm:импорт_техники",
+      "category": "foreign_trade",
+      "text": "Пошлины, санкции и ограничения импорта автомобилей и оборудования для рынка предметов лизинга",
+      "weight": 0.5,
+      "evidence_status": "hypothesis",
+      "source_refs": [
+        "/facts/foreign_trade"
+      ],
+      "assumptions": [
+        "Внешнеторговые ограничения меняют цены и доступность техники, которую компания приобретает и сдаёт в лизинг автотранспортным клиентам."
+      ],
+      "limitations": [],
+      "provenance": {
+        "origin": "llm",
+        "original_sources": [
+          "поставщики: торговля и ремонт автомобилей (74% платежей)",
+          "покупатели: торговля и ремонт автомобилей (32% платежей)"
+        ],
+        "rationale": "Внешнеторговые ограничения меняют цены и доступность техники, которую компания приобретает и сдаёт в лизинг автотранспортным клиентам."
+      }
+    },
+    {
+      "id": "U_14366_Q13",
+      "channel": "llm:надзор_ЦБ",
+      "category": "regulation",
+      "text": "Надзор Банка России за лизинговыми компаниями: отчётность, нормативы и стандарты лизинговой деятельности",
+      "weight": 0.5,
+      "evidence_status": "hypothesis",
+      "source_refs": [
+        "/facts/industry"
+      ],
+      "assumptions": [
+        "Отрасль финансовой аренды регулируется Банком России; изменения надзорных требований влияют на структуру сделок и капитал компании."
+      ],
+      "limitations": [],
+      "provenance": {
+        "origin": "llm",
+        "original_sources": [
+          "MAINOKVED_CODE=64.91.2",
+          "ОКВЭД 64 (основной вид деятельности)"
+        ],
+        "rationale": "Отрасль финансовой аренды регулируется Банком России; изменения надзорных требований влияют на структуру сделок и капитал компании."
+      }
+    },
+    {
+      "id": "U_14366_Q14",
+      "channel": "llm:группа_компаний",
+      "category": "related",
+      "text": "Сделки и отчётность компаний группы в сфере финансовых услуг и недвижимости, смена собственников",
+      "weight": 0.5,
+      "evidence_status": "hypothesis",
+      "source_refs": [
+        "/facts/group_id"
+      ],
+      "assumptions": [
+        "Компания входит в группу из 36 компаний в 5 регионах (финансовые услуги 91%, недвижимость 4%) и имеет признак ключевого собственника — события группы и собственников отражаются на бизнесе."
+      ],
+      "limitations": [],
+      "provenance": {
+        "origin": "llm",
+        "original_sources": [
+          "NEGATIVEMARK=1",
+          "OKFS_NAME=ЧАСТНАЯ СОБСТВЕННОСТЬ"
+        ],
+        "rationale": "Компания входит в группу из 36 компаний в 5 регионах (финансовые услуги 91%, недвижимость 4%) и имеет признак ключевого собственника — события группы и собственников отражаются на бизнесе."
+      }
+    }
+  ],
+  "relationships": {
+    "payments": {
+      "currency": null,
+      "amount_unit": null,
+      "period_start": null,
+      "period_end": null,
+      "direction_rules": {
+        "incoming": "BENEFICIARY == company_id",
+        "outgoing": "PAYER == company_id",
+        "self_transfers": "Excluded"
+      },
+      "amount_share_denominator": "All observed amounts in the direction and selected scope, including unknown industries",
+      "count_share_denominator": "All observed PAY_CNT in the direction and selected scope",
+      "counterparty_roles": "Плательщик не обязательно покупатель; получатель не обязательно поставщик.",
+      "same_group_rule": "Excludes counterparties with the same known GROUP_ID; unknown-group counterparties remain.",
+      "summaries": {
+        "all_observed": {
+          "incoming": {
+            "source_rows": 24,
+            "unique_counterparties": 24,
+            "pay_amt_total": "321193000.0",
+            "pay_cnt_total": 189,
+            "aggregates": {
+              "okved_division": [
+                {
+                  "key": "(unknown)",
+                  "pay_amt": "237951000.0",
+                  "pay_cnt": 110,
+                  "source_rows": 17,
+                  "share_amount_pct": 74.0834949703138,
+                  "share_count_pct": 58.201058201058196,
+                  "share_amount_among_known_pct": null,
+                  "share_count_among_known_pct": null
+                },
+                {
+                  "key": "62",
+                  "pay_amt": "52305000.0",
+                  "pay_cnt": 8,
+                  "source_rows": 1,
+                  "share_amount_pct": 16.284601470144118,
+                  "share_count_pct": 4.232804232804233,
+                  "share_amount_among_known_pct": 62.834867014247614,
+                  "share_count_among_known_pct": 10.126582278481013
+                },
+                {
+                  "key": "45",
+                  "pay_amt": "26144000.0",
+                  "pay_cnt": 54,
+                  "source_rows": 2,
+                  "share_amount_pct": 8.139654351122223,
+                  "share_count_pct": 28.57142857142857,
+                  "share_amount_among_known_pct": 31.40722231565796,
+                  "share_count_among_known_pct": 68.35443037974683
+                },
+                {
+                  "key": "68",
+                  "pay_amt": "2940000.0",
+                  "pay_cnt": 4,
+                  "source_rows": 1,
+                  "share_amount_pct": 0.9153375073553907,
+                  "share_count_pct": 2.1164021164021163,
+                  "share_amount_among_known_pct": 3.531870930539872,
+                  "share_count_among_known_pct": 5.063291139240507
+                },
+                {
+                  "key": "69",
+                  "pay_amt": "1070000.0",
+                  "pay_cnt": 9,
+                  "source_rows": 1,
+                  "share_amount_pct": 0.33313303839124764,
+                  "share_count_pct": 4.761904761904762,
+                  "share_amount_among_known_pct": 1.2854088080536268,
+                  "share_count_among_known_pct": 11.39240506329114
+                },
+                {
+                  "key": "52",
+                  "pay_amt": "442000.0",
+                  "pay_cnt": 1,
+                  "source_rows": 1,
+                  "share_amount_pct": 0.13761196539152473,
+                  "share_count_pct": 0.5291005291005291,
+                  "share_amount_among_known_pct": 0.5309819562240216,
+                  "share_count_among_known_pct": 1.2658227848101267
+                },
+                {
+                  "key": "77",
+                  "pay_amt": "341000.0",
+                  "pay_cnt": 3,
+                  "source_rows": 1,
+                  "share_amount_pct": 0.10616669728169667,
+                  "share_count_pct": 1.5873015873015872,
+                  "share_amount_among_known_pct": 0.40964897527690347,
+                  "share_count_among_known_pct": 3.79746835443038
+                }
+              ]
+            },
+            "coverage": {
+              "okved_division": {
+                "matched_amount_pct": 25.916505029686203,
+                "unknown_amount_pct": 74.0834949703138,
+                "matched_count_pct": 41.7989417989418,
+                "unknown_count_pct": 58.201058201058196
+              }
+            }
+          },
+          "outgoing": {
+            "source_rows": 15,
+            "unique_counterparties": 15,
+            "pay_amt_total": "70445000.0",
+            "pay_cnt_total": 109,
+            "aggregates": {
+              "okved_division": [
+                {
+                  "key": "45",
+                  "pay_amt": "51509000.0",
+                  "pay_cnt": 42,
+                  "source_rows": 2,
+                  "share_amount_pct": 73.11945489388884,
+                  "share_count_pct": 38.53211009174312,
+                  "share_amount_among_known_pct": 74.01675504016323,
+                  "share_count_among_known_pct": 58.333333333333336
+                },
+                {
+                  "key": "62",
+                  "pay_amt": "17032000.0",
+                  "pay_cnt": 21,
+                  "source_rows": 2,
+                  "share_amount_pct": 24.17772730498971,
+                  "share_count_pct": 19.26605504587156,
+                  "share_amount_among_known_pct": 24.474429164690836,
+                  "share_count_among_known_pct": 29.166666666666668
+                },
+                {
+                  "key": "(unknown)",
+                  "pay_amt": "854000.0",
+                  "pay_cnt": 37,
+                  "source_rows": 8,
+                  "share_amount_pct": 1.2122932784441762,
+                  "share_count_pct": 33.94495412844037,
+                  "share_amount_among_known_pct": null,
+                  "share_count_among_known_pct": null
+                },
+                {
+                  "key": "49",
+                  "pay_amt": "543000.0",
+                  "pay_cnt": 2,
+                  "source_rows": 1,
+                  "share_amount_pct": 0.7708141102988146,
+                  "share_count_pct": 1.834862385321101,
+                  "share_amount_among_known_pct": 0.780273311204035,
+                  "share_count_among_known_pct": 2.7777777777777777
+                },
+                {
+                  "key": "46",
+                  "pay_amt": "485000.0",
+                  "pay_cnt": 3,
+                  "source_rows": 1,
+                  "share_amount_pct": 0.6884803747604514,
+                  "share_count_pct": 2.7522935779816518,
+                  "share_amount_among_known_pct": 0.6969292006150221,
+                  "share_count_among_known_pct": 4.166666666666666
+                },
+                {
+                  "key": "80",
+                  "pay_amt": "22000.0",
+                  "pay_cnt": 4,
+                  "source_rows": 1,
+                  "share_amount_pct": 0.03123003761799986,
+                  "share_count_pct": 3.669724770642202,
+                  "share_amount_among_known_pct": 0.03161328332686698,
+                  "share_count_among_known_pct": 5.555555555555555
+                }
+              ]
+            },
+            "coverage": {
+              "okved_division": {
+                "matched_amount_pct": 98.78770672155582,
+                "unknown_amount_pct": 1.2122932784441762,
+                "matched_count_pct": 66.05504587155964,
+                "unknown_count_pct": 33.94495412844037
+              }
+            }
+          }
+        },
+        "excluding_same_group": {
+          "incoming": {
+            "source_rows": 22,
+            "unique_counterparties": 22,
+            "pay_amt_total": "319782000.0",
+            "pay_cnt_total": 177,
+            "aggregates": {
+              "okved_division": [
+                {
+                  "key": "(unknown)",
+                  "pay_amt": "237951000.0",
+                  "pay_cnt": 110,
+                  "source_rows": 17,
+                  "share_amount_pct": 74.4103795710828,
+                  "share_count_pct": 62.14689265536724,
+                  "share_amount_among_known_pct": null,
+                  "share_count_among_known_pct": null
+                },
+                {
+                  "key": "62",
+                  "pay_amt": "52305000.0",
+                  "pay_cnt": 8,
+                  "source_rows": 1,
+                  "share_amount_pct": 16.356455335197104,
+                  "share_count_pct": 4.519774011299435,
+                  "share_amount_among_known_pct": 63.918319463284085,
+                  "share_count_among_known_pct": 11.940298507462686
+                },
+                {
+                  "key": "45",
+                  "pay_amt": "26144000.0",
+                  "pay_cnt": 54,
+                  "source_rows": 2,
+                  "share_amount_pct": 8.175569606794628,
+                  "share_count_pct": 30.508474576271187,
+                  "share_amount_among_known_pct": 31.9487724700908,
+                  "share_count_among_known_pct": 80.59701492537313
+                },
+                {
+                  "key": "68",
+                  "pay_amt": "2940000.0",
+                  "pay_cnt": 4,
+                  "source_rows": 1,
+                  "share_amount_pct": 0.919376325121489,
+                  "share_count_pct": 2.2598870056497176,
+                  "share_amount_among_known_pct": 3.592770465960333,
+                  "share_count_among_known_pct": 5.970149253731343
+                },
+                {
+                  "key": "52",
+                  "pay_amt": "442000.0",
+                  "pay_cnt": 1,
+                  "source_rows": 1,
+                  "share_amount_pct": 0.13821916180397897,
+                  "share_count_pct": 0.5649717514124294,
+                  "share_amount_among_known_pct": 0.5401376006647848,
+                  "share_count_among_known_pct": 1.4925373134328357
+                }
+              ]
+            },
+            "coverage": {
+              "okved_division": {
+                "matched_amount_pct": 25.5896204289172,
+                "unknown_amount_pct": 74.4103795710828,
+                "matched_count_pct": 37.85310734463277,
+                "unknown_count_pct": 62.14689265536724
+              }
+            }
+          },
+          "outgoing": {
+            "source_rows": 15,
+            "unique_counterparties": 15,
+            "pay_amt_total": "70445000.0",
+            "pay_cnt_total": 109,
+            "aggregates": {
+              "okved_division": [
+                {
+                  "key": "45",
+                  "pay_amt": "51509000.0",
+                  "pay_cnt": 42,
+                  "source_rows": 2,
+                  "share_amount_pct": 73.11945489388884,
+                  "share_count_pct": 38.53211009174312,
+                  "share_amount_among_known_pct": 74.01675504016323,
+                  "share_count_among_known_pct": 58.333333333333336
+                },
+                {
+                  "key": "62",
+                  "pay_amt": "17032000.0",
+                  "pay_cnt": 21,
+                  "source_rows": 2,
+                  "share_amount_pct": 24.17772730498971,
+                  "share_count_pct": 19.26605504587156,
+                  "share_amount_among_known_pct": 24.474429164690836,
+                  "share_count_among_known_pct": 29.166666666666668
+                },
+                {
+                  "key": "(unknown)",
+                  "pay_amt": "854000.0",
+                  "pay_cnt": 37,
+                  "source_rows": 8,
+                  "share_amount_pct": 1.2122932784441762,
+                  "share_count_pct": 33.94495412844037,
+                  "share_amount_among_known_pct": null,
+                  "share_count_among_known_pct": null
+                },
+                {
+                  "key": "49",
+                  "pay_amt": "543000.0",
+                  "pay_cnt": 2,
+                  "source_rows": 1,
+                  "share_amount_pct": 0.7708141102988146,
+                  "share_count_pct": 1.834862385321101,
+                  "share_amount_among_known_pct": 0.780273311204035,
+                  "share_count_among_known_pct": 2.7777777777777777
+                },
+                {
+                  "key": "46",
+                  "pay_amt": "485000.0",
+                  "pay_cnt": 3,
+                  "source_rows": 1,
+                  "share_amount_pct": 0.6884803747604514,
+                  "share_count_pct": 2.7522935779816518,
+                  "share_amount_among_known_pct": 0.6969292006150221,
+                  "share_count_among_known_pct": 4.166666666666666
+                },
+                {
+                  "key": "80",
+                  "pay_amt": "22000.0",
+                  "pay_cnt": 4,
+                  "source_rows": 1,
+                  "share_amount_pct": 0.03123003761799986,
+                  "share_count_pct": 3.669724770642202,
+                  "share_amount_among_known_pct": 0.03161328332686698,
+                  "share_count_among_known_pct": 5.555555555555555
+                }
+              ]
+            },
+            "coverage": {
+              "okved_division": {
+                "matched_amount_pct": 98.78770672155582,
+                "unknown_amount_pct": 1.2122932784441762,
+                "matched_count_pct": 66.05504587155964,
+                "unknown_count_pct": 33.94495412844037
+              }
+            }
+          }
+        }
+      },
+      "rows": [
+        {
+          "payer_id": "U_4193",
+          "beneficiary_id": "U_14366",
+          "amount_source_value": "189854000.0",
+          "payment_count": 15
+        },
+        {
+          "payer_id": "U_114248",
+          "beneficiary_id": "U_14366",
+          "amount_source_value": "52305000.0",
+          "payment_count": 8
+        },
+        {
+          "payer_id": "U_104326",
+          "beneficiary_id": "U_14366",
+          "amount_source_value": "22047000.0",
+          "payment_count": 51
+        },
+        {
+          "payer_id": "U_46189",
+          "beneficiary_id": "U_14366",
+          "amount_source_value": "9794000.0",
+          "payment_count": 3
+        },
+        {
+          "payer_id": "U_143524",
+          "beneficiary_id": "U_14366",
+          "amount_source_value": "9150000.0",
+          "payment_count": 13
+        },
+        {
+          "payer_id": "U_74058",
+          "beneficiary_id": "U_14366",
+          "amount_source_value": "7330000.0",
+          "payment_count": 4
+        },
+        {
+          "payer_id": "U_132716",
+          "beneficiary_id": "U_14366",
+          "amount_source_value": "7028000.0",
+          "payment_count": 8
+        },
+        {
+          "payer_id": "U_116624",
+          "beneficiary_id": "U_14366",
+          "amount_source_value": "5579000.0",
+          "payment_count": 13
+        },
+        {
+          "payer_id": "U_125716",
+          "beneficiary_id": "U_14366",
+          "amount_source_value": "4757000.0",
+          "payment_count": 2
+        },
+        {
+          "payer_id": "U_21675",
+          "beneficiary_id": "U_14366",
+          "amount_source_value": "4097000.0",
+          "payment_count": 3
+        },
+        {
+          "payer_id": "U_14366",
+          "beneficiary_id": "U_86261",
+          "amount_source_value": "47638000.0",
+          "payment_count": 28
+        },
+        {
+          "payer_id": "U_14366",
+          "beneficiary_id": "U_114248",
+          "amount_source_value": "16995000.0",
+          "payment_count": 18
+        },
+        {
+          "payer_id": "U_14366",
+          "beneficiary_id": "U_46920",
+          "amount_source_value": "3871000.0",
+          "payment_count": 14
+        },
+        {
+          "payer_id": "U_14366",
+          "beneficiary_id": "U_213914",
+          "amount_source_value": "543000.0",
+          "payment_count": 2
+        },
+        {
+          "payer_id": "U_14366",
+          "beneficiary_id": "U_44564",
+          "amount_source_value": "485000.0",
+          "payment_count": 3
+        },
+        {
+          "payer_id": "U_14366",
+          "beneficiary_id": "U_47247",
+          "amount_source_value": "323000.0",
+          "payment_count": 5
+        },
+        {
+          "payer_id": "U_14366",
+          "beneficiary_id": "U_79817",
+          "amount_source_value": "170000.0",
+          "payment_count": 1
+        },
+        {
+          "payer_id": "U_14366",
+          "beneficiary_id": "U_85453",
+          "amount_source_value": "100000.0",
+          "payment_count": 1
+        },
+        {
+          "payer_id": "U_14366",
+          "beneficiary_id": "U_11759",
+          "amount_source_value": "93000.0",
+          "payment_count": 3
+        },
+        {
+          "payer_id": "U_14366",
+          "beneficiary_id": "U_110687",
+          "amount_source_value": "79000.0",
+          "payment_count": 11
+        }
+      ],
+      "counterparty_directory": {
+        "U_114248": {
+          "main_okved_name": "Разработка компьютерного программного обеспечения",
+          "main_okved_code": "62.01",
+          "group_id": "group_134612_sb",
+          "region": "Москва"
+        },
+        "U_104326": {
+          "main_okved_name": "Торговля прочими автотранспортными средствами",
+          "main_okved_code": "45.19",
+          "group_id": "group_133316_sb",
+          "region": "Москва"
+        },
+        "U_21675": {
+          "main_okved_name": "Техническое обслуживание и ремонт легковых автомобилей и легких грузовых автотранспортных средств",
+          "main_okved_code": "45.20.1",
+          "group_id": "group_84751_sb",
+          "region": "Краснодарский край"
+        },
+        "U_86261": {
+          "main_okved_name": "Техническое обслуживание и ремонт автотранспортных средств",
+          "main_okved_code": "45.20",
+          "group_id": "group_27653_sb",
+          "region": "Москва"
+        },
+        "U_46920": {
+          "main_okved_name": "Торговля оптовая автомобильными деталями, узлами и принадлежностями",
+          "main_okved_code": "45.31",
+          "group_id": "group_125883_sb",
+          "region": "Москва"
+        },
+        "U_213914": {
+          "main_okved_name": "Деятельность автомобильного грузового транспорта",
+          "main_okved_code": "49.41",
+          "group_id": "group_117795_sb",
+          "region": "Санкт-Петербург"
+        },
+        "U_44564": {
+          "main_okved_name": "Торговля оптовая компьютерами, периферийными устройствами к компьютерам и программным обеспечением",
+          "main_okved_code": "46.51",
+          "group_id": "group_133407_sb",
+          "region": "Москва"
+        }
+      },
+      "rows_scope": {
+        "aggregation": "Sum PAY_AMT and PAY_CNT per counterparty and direction",
+        "top_per_direction": 10,
+        "complete": false,
+        "self_transfers_excluded": true,
+        "complete_totals_path": "summaries"
+      }
+    }
+  },
+  "provenance": {
+    "company_source": {
+      "csv_file": "df_Uid_data_hack.csv",
+      "raw_fields": {
+        "SYNTHETIC_U": "U_14366",
+        "ORG_TYPE": "КОММ_ОРГ",
+        "OKFS_NAME": "ЧАСТНАЯ СОБСТВЕННОСТЬ",
+        "COMPANY_AGE_YEARS_GRADATION": "16-25",
+        "ECO_MARK_LABEL": "Оптимизация",
+        "MAINOKVED_CODE": "64.91.2",
+        "MAINOKVED_NAME": "Деятельность по финансовой аренде (лизингу/сублизингу) в прочих областях, кроме племенных животных",
+        "NEGATIVEMARK": 1,
+        "AMOUNT_WORKERS_FNS_GRADATION": "101-250",
+        "AMOUNT_WORKERS_SPARK_GRADATION": null,
+        "CL_TYPE": "CLIENT",
+        "CL_PRODUCT_RKO_MARK": 1,
+        "CL_PRODUCT_GAR_MARK": 0,
+        "CL_PRODUCT_LOA_MARK": 1,
+        "CL_PRODUCT_LEA_MARK": 1,
+        "CL_PRODUCT_DEP_MARK": 0,
+        "CL_PRODUCT_ZPP_MARK": 1,
+        "FTS_FLAG": 0,
+        "FTS_COUNTRY_NAME": null,
+        "FACTORING_MARK": 0,
+        "REVENUE_COMPANY": 19949480221.0,
+        "GROUP_ID": "group_134934_sb",
+        "CITY": "г. Москва",
+        "REGION": "Москва"
+      }
+    },
+    "impact_queries": {
+      "source_file": "D:\\Hack\\Alfa-hack\\precomputed\\impact_queries\\U_14366.json",
+      "sha256": "52319febe0b42a24fc50d80ff08e27fd2d835a080f987ab9f7f04574baa0a6d7",
+      "prompt_version": "impact-queries-v2",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "generated_at": "2026-10-22T00:08:46"
+    }
+  }
+}

@@ -22,8 +22,9 @@ class Settings:
     max_analytics_age_days:int=365
     min_news_score:float=.35
     min_analytics_score:float=.375
-    financial_topic_coverage:int=1
+    financial_topic_coverage:int=0
     financial_news_limit:int=1
+    max_total_news:int|None=None
     def validate(self):
         date.fromisoformat(self.as_of)
         for key in ('top_news','news_fragments','analytics_per_news','max_chunks_per_analytics','news_days','max_analytics_age_days','financial_news_limit'):
@@ -31,6 +32,7 @@ class Settings:
         for key in ('min_news_score','min_analytics_score'):
             v=getattr(self,key);require(type(v) in (int,float) and math.isfinite(v) and 0<=v<=1,key+' must be in [0,1]')
         require(type(self.financial_topic_coverage) is int and self.financial_topic_coverage in (0,1),'financial_topic_coverage must be 0 or 1')
+        require(self.max_total_news is None or type(self.max_total_news) is int and self.max_total_news>0,'max_total_news must be positive or null')
         return self
 
 def available(doc):
@@ -131,9 +133,16 @@ def score_company_news(data,company_id,settings):
 
 
 def choose_company_news(data,company_id,settings,candidates,with_coverage=False):
-    """Apply existing ranking/coverage limits to new or cached comparison results."""
+    """Rank all topics alike by default; legacy topical coverage is opt-in."""
     import copy
     output=copy.deepcopy(candidates)
+    output.sort(key=lambda x:(-x['_score'],x['news_id']))
+    if not settings.financial_topic_coverage:
+        limit=min(settings.top_news,settings.max_total_news or settings.top_news)
+        chosen=[n for n in output if n['_score']>=settings.min_news_score][:limit]
+        for n in chosen:n['selection_reason']='company_similarity'
+        coverage=dict(enabled=False,base_limit=settings.top_news,max_extra_news=0,financial_news_limit=None,topics=[])
+        return (chosen,coverage) if with_coverage else chosen
     queries=[q for q in data['company_queries'] if q['company_id']==company_id and q['is_active'] and q['weight']>0]
     requested=financial_queries(queries,data['inputs']) if settings.financial_topic_coverage else {}
     coverage=dict(enabled=bool(settings.financial_topic_coverage),base_limit=settings.top_news,max_extra_news=min(len(requested),settings.financial_news_limit),financial_news_limit=settings.financial_news_limit,topics=[])
@@ -143,11 +152,12 @@ def choose_company_news(data,company_id,settings,candidates,with_coverage=False)
         if n['_score']<settings.min_news_score:continue
         if is_financial(n) and sum(is_financial(x) for x in chosen)>=settings.financial_news_limit:continue
         chosen.append(n)
-        if len(chosen)>=settings.top_news:break
+        if len(chosen)>=min(settings.top_news,settings.max_total_news or settings.top_news):break
     missing={t for t in requested if not any(any(m['topic']==t for m in n['financial_topic_matches']) for n in chosen)}
     extras=[n for n in output if n not in chosen and any(m['topic'] in missing for m in n['financial_topic_matches'])]
     extras.sort(key=lambda n:(-len({m['topic'] for m in n['financial_topic_matches']} & missing),-date.fromisoformat(n['publication_date']).toordinal(),-max(m['cosine'] for m in n['financial_topic_matches']),n['news_id']))
     for n in extras:
+        if settings.max_total_news is not None and len(chosen)>=settings.max_total_news:break
         if sum(is_financial(x) for x in chosen)>=settings.financial_news_limit:break
         if not any(m['topic'] in missing for m in n['financial_topic_matches']):continue
         n['selection_reason']='financial_topic_coverage';chosen.append(n)
@@ -234,11 +244,23 @@ def compare_analytics(data,news_day,news_chunks,settings):
     return dict(analytics=accepted,mechanism_candidates=mtop,source_candidates=stop,not_in_intersection=rejected,
        diagnostics=dict(no_mechanism_fragments=missing,excluded_analytics_documents=dict(exclusions),allowed_documents=len(allowed)))
 
+def supported_news(data,candidates,settings):
+    """Check analytics before news quotas; unsupported news stays in the queue."""
+    supported=[];omitted=[]
+    for candidate in candidates:
+        matches=compare_analytics(data,candidate['publication_date'],candidate['_chunks'],settings)
+        if matches['analytics']:
+            supported.append({**candidate,'_analytical_matches':matches})
+        else:omitted.append(candidate['news_id'])
+    return supported,omitted
+
+
 def retrieve(data,company_id,settings,selection=None):
     settings.validate();company=next(c for c in data['companies'] if c['id']==company_id)
     selected,coverage=selection if selection is not None else select_company_news(data,company_id,settings,with_coverage=True)
     for n in selected:
-        n.update(compare_analytics(data,n['publication_date'],n.pop('_chunks'),settings));n.pop('_score')
+        chunks=n.pop('_chunks');matches=n.pop('_analytical_matches',None)
+        n.update(matches if matches is not None else compare_analytics(data,n['publication_date'],chunks,settings));n.pop('_score')
     return dict(schema_version='comparison-report-1.0',company_id=company_id,subject_type=json.loads(company['source_json']).get('subject_type','company'),company_profile=company['profile_text'],
       company_facts={**json.loads(company['facts_json']),'counterparty_payments':counterparty_summary(json.loads(company['source_json']))},
       company_limitations=json.loads(company['source_json']).get('limitations',[]),financial_topic_coverage=coverage,

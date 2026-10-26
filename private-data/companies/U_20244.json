@@ -1,0 +1,1082 @@
+{
+  "schema_version": "company-profile-2.0",
+  "subject_id": "U_20244",
+  "subject_type": "company",
+  "profile_text": "## Компания U_20244\n\nКомпания занимается деятельностью «Торговля оптовая зерном, необработанным табаком, семенами и кормами для сельскохозяйственных животных» (ОКВЭД 46.21). Зарегистрирована: г. Новосибирск, Новосибирская область. Форма собственности — частная собственность. Возраст компании — 16–25 лет. Стадия развития бизнеса по оценке банка — «Бизнес в новой реальности». По данным ФНС, численность работников — 16–100 человек.\n\n### Масштаб и положение в отрасли\n\nГодовая выручка — 23 млрд ₽. Это крупный бизнес по критерию кейса (выручка от 15 млрд ₽). По выручке компания на 3-м месте из 236 компаний с ОКВЭД 46.21 в данных банка, на неё приходится 6% их суммарной выручки (это доля внутри выборки банка, а не рыночная доля).\n\n### Группа компаний\n\nСведений о группе компаний нет: в своей группе компания единственная.\n\n### Отношения с банком\n\nСтатус — действующий клиент банка. Использует продукты банка: расчётно-кассовое обслуживание, кредиты, лизинг, депозиты, зарплатный проект. Не использует: банковские гарантии, факторинг. Чувствительность к ключевой ставке: ставка влияет в обе стороны: удорожает заёмные средства, но повышает доход по депозитам.\n\n### Внешнеэкономическая деятельность\n\nВедёт внешнеэкономическую деятельность (данные ФТС), страны: Индия, Китай, Италия.\n\n### Контрагенты (по платежам через банк)\n\nПоставщики (исходящие платежи): 128 контрагентов, 10,4 млрд ₽. Отрасли внешних контрагентов (по сумме платежей с известной отраслью): оптовая торговля (61%), складское хозяйство и транспортные услуги (27%), сухопутный транспорт (12%). Регионы внешних контрагентов: Новосибирская область (49%), Красноярский край (23%), Кемеровская область (22%). Крупнейшие внешние контрагенты с известной отраслью: U_71470 — деятельность вспомогательная прочая, связанная с перевозками, 3%; U_105098 — торговля оптовая зерном, необработанным табаком, семенами и кормами для сельскохозяйственных животных, 3%; U_8138 — торговля оптовая удобрениями и агрохимическими продуктами, 3%.\n\nПокупатели (входящие платежи): 31 контрагент, 7,2 млрд ₽. Отрасли внешних контрагентов (по сумме платежей с известной отраслью): оптовая торговля (86%), производство пищевых продуктов (8%), производство резины и пластмасс (5%). Регионы внешних контрагентов: Новосибирская область (80%), Алтайский край (14%), Москва (6%). Крупнейшие внешние контрагенты с известной отраслью: U_105098 — торговля оптовая зерном, необработанным табаком, семенами и кормами для сельскохозяйственных животных, 4%; U_128772 — торговля оптовая зерном, необработанным табаком, семенами и кормами для сельскохозяйственных животных, менее 1%; U_135026 — производство прочих пищевых продуктов, не включенных в другие группировки, менее 1%.\n\nПереводы между собственными счетами: 2,5 млрд ₽, в анализ контрагентов не включены.\n\n### Связи и отметки\n\nВ данных стоит признак ключевого собственника (NEGATIVEMARK=1).\n\n### Факторы влияния (выведены правилами из признаков выше, не факты)\n\n- аренда: поставщики: складское хозяйство и транспортные услуги (27% платежей) [косвенно через контрагентов]\n- валюта: ВЭД по данным ФТС: ИНДИЯ, КИТАЙ, ИТАЛИЯ [ВЭД]\n- зерно: ОКВЭД 46.21 (основной вид деятельности) [отрасль]\n- логистика: поставщики: складское хозяйство и транспортные услуги (27% платежей) [косвенно через контрагентов]; поставщики: сухопутный транспорт (12% платежей) [косвенно через контрагентов]\n- нефть: поставщики: сухопутный транспорт (12% платежей) [косвенно через контрагентов]\n- погода: ОКВЭД 46.21 (основной вид деятельности) [отрасль]\n- рынок_труда: CL_PRODUCT_ZPP_MARK=1 (зарплатный проект) [продукты банка]\n- санкции: ВЭД по данным ФТС: ИНДИЯ, КИТАЙ, ИТАЛИЯ [ВЭД]\n- спрос: ОКВЭД 46 (основной вид деятельности) [отрасль]\n- ставка: CL_PRODUCT_LOA_MARK=1 (кредиты) [продукты банка]; CL_PRODUCT_LEA_MARK=1 (лизинг) [продукты банка]; CL_PRODUCT_DEP_MARK=1 (депозиты) [продукты банка]\n- экспортные_пошлины: ОКВЭД 46.21 (основной вид деятельности) [отрасль]\n- юань: ВЭД по данным ФТС: ИНДИЯ, КИТАЙ, ИТАЛИЯ [ВЭД]\n\n### Ограничения данных\n\n- Платежи отражают только операции, видимые банку, а не весь оборот компании.\n- Отрасль известна только для 10% суммы платежей с контрагентами.",
+  "facts": {
+    "annual_revenue": {
+      "currency": null,
+      "source_value": "23049498002.0",
+      "unit": null,
+      "year": null
+    },
+    "bank_client_status_source": "CLIENT",
+    "banking_product_flags": {
+      "settlement_services": true,
+      "loans": true,
+      "leasing": true,
+      "deposits": true,
+      "payroll_project": true,
+      "bank_guarantees": false,
+      "factoring": false
+    },
+    "business_stage_source": "Бизнес в новой реальности",
+    "company_age_years_band": "16-25",
+    "employees": {
+      "fns_band": "16-100",
+      "spark_band": null
+    },
+    "foreign_trade": {
+      "countries": [
+        "ИНДИЯ",
+        "КИТАЙ",
+        "ИТАЛИЯ"
+      ],
+      "direction": null,
+      "fts_record_present": true,
+      "interpretation": "Флаг 0 означает отсутствие записи в этих данных, а не доказанное отсутствие ВЭД.",
+      "settlement_currencies": null
+    },
+    "group_id": "group_133138_sb",
+    "industry": {
+      "main_okved_code": "46.21",
+      "main_okved_name": "Торговля оптовая зерном, необработанным табаком, семенами и кормами для сельскохозяйственных животных"
+    },
+    "key_owner_marker": true,
+    "organization_type_source": "КОММ_ОРГ",
+    "ownership_form_source": "ЧАСТНАЯ СОБСТВЕННОСТЬ",
+    "registration": {
+      "city": "г. Новосибирск",
+      "region": "Новосибирская область"
+    },
+    "counterparties": {
+      "suppliers_industry_mix": [
+        {
+          "role": "supplier",
+          "division": "46",
+          "name": "оптовая торговля",
+          "share": 0.6060487236157301
+        },
+        {
+          "role": "supplier",
+          "division": "52",
+          "name": "складское хозяйство и транспортные услуги",
+          "share": 0.2706066058005902
+        },
+        {
+          "role": "supplier",
+          "division": "49",
+          "name": "сухопутный транспорт",
+          "share": 0.12052992908277312
+        },
+        {
+          "role": "supplier",
+          "division": "62",
+          "name": "разработка ПО и ИТ-консалтинг",
+          "share": 0.0014398727320257053
+        },
+        {
+          "role": "supplier",
+          "division": "45",
+          "name": "торговля и ремонт автомобилей",
+          "share": 0.0012022238345068994
+        }
+      ],
+      "buyers_industry_mix": [
+        {
+          "role": "buyer",
+          "division": "46",
+          "name": "оптовая торговля",
+          "share": 0.8597059444249032
+        },
+        {
+          "role": "buyer",
+          "division": "10",
+          "name": "производство пищевых продуктов",
+          "share": 0.08465705240942666
+        },
+        {
+          "role": "buyer",
+          "division": "22",
+          "name": "производство резины и пластмасс",
+          "share": 0.047884628913119946
+        },
+        {
+          "role": "buyer",
+          "division": "80",
+          "name": "охрана и безопасность",
+          "share": 0.007752374252550123
+        }
+      ],
+      "suppliers_region_mix": [
+        {
+          "role": "supplier",
+          "region": "Новосибирская область",
+          "share": 0.48776946938592924
+        },
+        {
+          "role": "supplier",
+          "region": "Красноярский край",
+          "share": 0.22849522116025783
+        },
+        {
+          "role": "supplier",
+          "region": "Кемеровская область",
+          "share": 0.2174836895969894
+        }
+      ],
+      "buyers_region_mix": [
+        {
+          "role": "buyer",
+          "region": "Новосибирская область",
+          "share": 0.8042799859303552
+        },
+        {
+          "role": "buyer",
+          "region": "Алтайский край",
+          "share": 0.14008301090397468
+        },
+        {
+          "role": "buyer",
+          "region": "Москва",
+          "share": 0.055637003165670065
+        }
+      ],
+      "classified_share": {
+        "suppliers": 0.1373,
+        "buyers": 0.0495
+      },
+      "industry_mix_denominator": "Только контрагенты с известной отраслью вне своей группы; это не доля всех платежей.",
+      "observed_counts": {
+        "payers": 31,
+        "beneficiaries": 128
+      }
+    },
+    "group_summary": {
+      "members_count": 1,
+      "revenue_share": 1.0,
+      "industries": [],
+      "region_count": 1
+    },
+    "linked_persons_summary": {
+      "known_links_count": 0,
+      "linked_companies_outside_group_count": 0,
+      "interpretation": "Связи по физлицам не устанавливают роли владельца или руководителя и контроль."
+    }
+  },
+  "limitations": [
+    "Компания обезличена; сопоставление её названия с внешними новостями не установлено.",
+    "Год, валюта и единица измерения выручки не определены в предоставленных данных.",
+    "Продуктовые флаги относятся к данным банка; нулевой флаг не доказывает отсутствие продукта в других банках.",
+    "ОКВЭД не устанавливает фактический ассортимент и конкретные операции компании.",
+    "Платежи отражают только операции, видимые банку; период и валюта платежей не установлены.",
+    "Платежи отражают только операции, видимые банку, а не весь оборот компании.",
+    "Отрасль известна только для 10% суммы платежей с контрагентами."
+  ],
+  "queries": [
+    {
+      "id": "U_20244_Q01",
+      "channel": "industry:46.21",
+      "category": "industry",
+      "text": "Оптовый рынок зерна, семян, кормов для сельхозживотных и необработанного табака: цены, спрос, конкуренция в России и Сибири",
+      "weight": 1.0,
+      "evidence_status": "grounded_topic",
+      "source_refs": [
+        "/facts/industry"
+      ],
+      "assumptions": [],
+      "limitations": [],
+      "provenance": {
+        "origin": "llm",
+        "original_sources": [
+          "MAINOKVED_CODE=46.21"
+        ],
+        "rationale": "Основной ОКВЭД 46.21 — оптовая торговля зерном, семенами, кормами и табаком."
+      }
+    },
+    {
+      "id": "U_20244_Q02",
+      "channel": "ставка",
+      "category": "finance",
+      "text": "Ключевая ставка ЦБ РФ, условия кредитования, лизинга и депозитов для агротрейдеров и оптовых компаний",
+      "weight": 1.0,
+      "evidence_status": "grounded_topic",
+      "source_refs": [
+        "/facts/banking_product_flags"
+      ],
+      "assumptions": [],
+      "limitations": [],
+      "provenance": {
+        "origin": "llm",
+        "original_sources": [
+          "CL_PRODUCT_LOA_MARK=1 (кредиты)",
+          "CL_PRODUCT_LEA_MARK=1 (лизинг)",
+          "CL_PRODUCT_DEP_MARK=1 (депозиты)"
+        ],
+        "rationale": "Использует кредиты, лизинг, депозиты; ставка влияет на стоимость заимствований и доходность депозитов."
+      }
+    },
+    {
+      "id": "U_20244_Q03",
+      "channel": "валюта",
+      "category": "macro",
+      "text": "Курс рубля к доллару, евро, юаню и индийской рупии; валютный контроль при расчётах с Индией, Китаем, Италией",
+      "weight": 0.9,
+      "evidence_status": "grounded_topic",
+      "source_refs": [
+        "/facts/foreign_trade",
+        "/facts/banking_product_flags"
+      ],
+      "assumptions": [],
+      "limitations": [],
+      "provenance": {
+        "origin": "llm",
+        "original_sources": [
+          "ВЭД по данным ФТС: ИНДИЯ, КИТАЙ, ИТАЛИЯ"
+        ],
+        "rationale": "ВЭД по данным ФТС со странами Индия, Китай, Италия; чувствительность к валюте."
+      }
+    },
+    {
+      "id": "U_20244_Q04",
+      "channel": "санкции",
+      "category": "foreign_trade",
+      "text": "Санкции, экспортный контроль и ограничения внешней торговли с Индией, Китаем и Италией для агропродовольственной продукции",
+      "weight": 0.9,
+      "evidence_status": "grounded_topic",
+      "source_refs": [
+        "/facts/foreign_trade"
+      ],
+      "assumptions": [],
+      "limitations": [],
+      "provenance": {
+        "origin": "llm",
+        "original_sources": [
+          "ВЭД по данным ФТС: ИНДИЯ, КИТАЙ, ИТАЛИЯ"
+        ],
+        "rationale": "ВЭД со странами Индия, Китай, Италия; санкционные ограничения влияют на расчёты и поставки."
+      }
+    },
+    {
+      "id": "U_20244_Q05",
+      "channel": "зерно",
+      "category": "commodities",
+      "text": "Цены на зерно, урожай зерновых, экспорт зерна и кормов из России, мировые цены на пшеницу и кукурузу",
+      "weight": 0.8,
+      "evidence_status": "grounded_topic",
+      "source_refs": [
+        "/facts/industry"
+      ],
+      "assumptions": [],
+      "limitations": [],
+      "provenance": {
+        "origin": "llm",
+        "original_sources": [
+          "ОКВЭД 46.21 (основной вид деятельности)"
+        ],
+        "rationale": "Основной ОКВЭД 46.21 — оптовая торговля зерном и кормами."
+      }
+    },
+    {
+      "id": "U_20244_Q06",
+      "channel": "погода",
+      "category": "industry",
+      "text": "Погодные условия и урожайность: засуха, заморозки, паводки в Сибири и основных зерновых регионах",
+      "weight": 0.8,
+      "evidence_status": "grounded_topic",
+      "source_refs": [
+        "/facts/industry"
+      ],
+      "assumptions": [],
+      "limitations": [],
+      "provenance": {
+        "origin": "llm",
+        "original_sources": [
+          "ОКВЭД 46.21 (основной вид деятельности)"
+        ],
+        "rationale": "ОКВЭД 46.21; урожайность напрямую влияет на предложение и цены зерна и кормов."
+      }
+    },
+    {
+      "id": "U_20244_Q07",
+      "channel": "экспортные_пошлины",
+      "category": "foreign_trade",
+      "text": "Экспортные пошлины, квоты и фитосанитарные ограничения на вывоз зерна, семян и кормов из России",
+      "weight": 0.8,
+      "evidence_status": "grounded_topic",
+      "source_refs": [
+        "/facts/foreign_trade"
+      ],
+      "assumptions": [],
+      "limitations": [],
+      "provenance": {
+        "origin": "llm",
+        "original_sources": [
+          "ОКВЭД 46.21 (основной вид деятельности)"
+        ],
+        "rationale": "ОКВЭД 46.21; экспортные пошлины и квоты регулируют внешние поставки зерна."
+      }
+    },
+    {
+      "id": "U_20244_Q08",
+      "channel": "логистика",
+      "category": "supply_chain",
+      "text": "Грузоперевозки и логистика: ставки, сроки, железнодорожные и автомобильные перевозки зерна и кормов в Сибири",
+      "weight": 0.5,
+      "evidence_status": "grounded_topic",
+      "source_refs": [
+        "/facts/counterparties"
+      ],
+      "assumptions": [],
+      "limitations": [],
+      "provenance": {
+        "origin": "llm",
+        "original_sources": [
+          "поставщики: складское хозяйство и транспортные услуги (27% платежей)",
+          "поставщики: сухопутный транспорт (12% платежей)"
+        ],
+        "rationale": "Поставщики — складское хозяйство и транспортные услуги (27%), сухопутный транспорт (12%)."
+      }
+    },
+    {
+      "id": "U_20244_Q09",
+      "channel": "нефть",
+      "category": "commodities",
+      "text": "Цены на нефть, дизельное топливо и топливный рынок; демпфер и акцизы",
+      "weight": 0.5,
+      "evidence_status": "grounded_topic",
+      "source_refs": [
+        "/facts/industry"
+      ],
+      "assumptions": [],
+      "limitations": [],
+      "provenance": {
+        "origin": "llm",
+        "original_sources": [
+          "поставщики: сухопутный транспорт (12% платежей)"
+        ],
+        "rationale": "Поставщики — сухопутный транспорт (12% платежей); топливо влияет на логистические издержки."
+      }
+    },
+    {
+      "id": "U_20244_Q10",
+      "channel": "region:Новосибирская область",
+      "category": "region",
+      "text": "г. Новосибирск, Новосибирская область и соседние регионы поставок и сбыта: местная экономика, инфраструктура, поддержка АПК",
+      "weight": 0.4,
+      "evidence_status": "grounded_topic",
+      "source_refs": [
+        "/facts/registration"
+      ],
+      "assumptions": [],
+      "limitations": [],
+      "provenance": {
+        "origin": "llm",
+        "original_sources": [
+          "REGION=Новосибирская область",
+          "CITY=г. Новосибирск"
+        ],
+        "rationale": "Компания зарегистрирована в Новосибирске; местные условия влияют на деятельность."
+      }
+    },
+    {
+      "id": "U_20244_Q11",
+      "channel": "llm:сырьё_семена_корма",
+      "category": "commodities",
+      "text": "Цены на семена, корма для сельхозживотных, зернофураж; урожай кормовых культур и поставки",
+      "weight": 0.5,
+      "evidence_status": "hypothesis",
+      "source_refs": [
+        "/facts/industry"
+      ],
+      "assumptions": [
+        "Компания торгует семенами и кормами по ОКВЭД 46.21; цены на сырьё для кормов влияют на закупки и сбыт."
+      ],
+      "limitations": [],
+      "provenance": {
+        "origin": "llm",
+        "original_sources": [
+          "MAINOKVED_CODE=46.21",
+          "MAINOKVED_NAME=Торговля оптовая зерном, необработанным табаком, семенами и кормами для сельскохозяйственных животных"
+        ],
+        "rationale": "Компания торгует семенами и кормами по ОКВЭД 46.21; цены на сырьё для кормов влияют на закупки и сбыт."
+      }
+    },
+    {
+      "id": "U_20244_Q12",
+      "channel": "llm:сбыт_оптовые_покупатели",
+      "category": "sales",
+      "text": "Спрос оптовых покупателей и переработчиков на зерно, семена и корма; закупки пищевой промышленности и производителей",
+      "weight": 0.5,
+      "evidence_status": "hypothesis",
+      "source_refs": [
+        "/facts/counterparties"
+      ],
+      "assumptions": [
+        "Основной ОКВЭД 46.21 — оптовая торговля; сбыт зависит от спроса оптовиков и переработчиков."
+      ],
+      "limitations": [],
+      "provenance": {
+        "origin": "llm",
+        "original_sources": [
+          "MAINOKVED_CODE=46.21",
+          "MAINOKVED_NAME=Торговля оптовая зерном, необработанным табаком, семенами и кормами для сельскохозяйственных животных"
+        ],
+        "rationale": "Основной ОКВЭД 46.21 — оптовая торговля; сбыт зависит от спроса оптовиков и переработчиков."
+      }
+    },
+    {
+      "id": "U_20244_Q13",
+      "channel": "llm:регулирование_агротрейдинга",
+      "category": "regulation",
+      "text": "Госрегулирование агропродовольственного рынка: НДС, фитосанитарный контроль, сертификация зерна, семян и кормов",
+      "weight": 0.5,
+      "evidence_status": "hypothesis",
+      "source_refs": [
+        "/facts/industry"
+      ],
+      "assumptions": [
+        "ОКВЭД 46.21; отрасль подлежит фитосанитарному и налоговому регулированию."
+      ],
+      "limitations": [],
+      "provenance": {
+        "origin": "llm",
+        "original_sources": [
+          "MAINOKVED_CODE=46.21",
+          "MAINOKVED_NAME=Торговля оптовая зерном, необработанным табаком, семенами и кормами для сельскохозяйственных животных"
+        ],
+        "rationale": "ОКВЭД 46.21; отрасль подлежит фитосанитарному и налоговому регулированию."
+      }
+    },
+    {
+      "id": "U_20244_Q14",
+      "channel": "llm:ключевой_собственник",
+      "category": "related",
+      "text": "Ключевой собственник и связанные компании: смена контроля, судебные споры, банкротство, деловая репутация",
+      "weight": 0.5,
+      "evidence_status": "hypothesis",
+      "source_refs": [
+        "/facts/group_id"
+      ],
+      "assumptions": [
+        "В данных есть признак ключевого собственника NEGATIVEMARK=1; его статус влияет на бизнес."
+      ],
+      "limitations": [],
+      "provenance": {
+        "origin": "llm",
+        "original_sources": [
+          "NEGATIVEMARK=1"
+        ],
+        "rationale": "В данных есть признак ключевого собственника NEGATIVEMARK=1; его статус влияет на бизнес."
+      }
+    },
+    {
+      "id": "U_20244_Q15",
+      "channel": "llm:рынок_труда_Новосибирск",
+      "category": "labor",
+      "text": "Рынок труда в Новосибирской области: зарплаты, кадры для логистики и оптовой торговли, миграция",
+      "weight": 0.5,
+      "evidence_status": "hypothesis",
+      "source_refs": [
+        "/facts/employees",
+        "/facts/banking_product_flags/payroll_project"
+      ],
+      "assumptions": [
+        "Зарплатный проект, численность 16–100, регион присутствия."
+      ],
+      "limitations": [],
+      "provenance": {
+        "origin": "llm",
+        "original_sources": [
+          "CL_PRODUCT_ZPP_MARK=1",
+          "AMOUNT_WORKERS_FNS_GRADATION=16-100",
+          "REGION=Новосибирская область",
+          "CITY=г. Новосибирск"
+        ],
+        "rationale": "Зарплатный проект, численность 16–100, регион присутствия."
+      }
+    }
+  ],
+  "relationships": {
+    "payments": {
+      "currency": null,
+      "amount_unit": null,
+      "period_start": null,
+      "period_end": null,
+      "direction_rules": {
+        "incoming": "BENEFICIARY == company_id",
+        "outgoing": "PAYER == company_id",
+        "self_transfers": "Excluded"
+      },
+      "amount_share_denominator": "All observed amounts in the direction and selected scope, including unknown industries",
+      "count_share_denominator": "All observed PAY_CNT in the direction and selected scope",
+      "counterparty_roles": "Плательщик не обязательно покупатель; получатель не обязательно поставщик.",
+      "same_group_rule": "Excludes counterparties with the same known GROUP_ID; unknown-group counterparties remain.",
+      "summaries": {
+        "all_observed": {
+          "incoming": {
+            "source_rows": 31,
+            "unique_counterparties": 31,
+            "pay_amt_total": "7177970000.0",
+            "pay_cnt_total": 369,
+            "aggregates": {
+              "okved_division": [
+                {
+                  "key": "(unknown)",
+                  "pay_amt": "6822595000.0",
+                  "pay_cnt": 338,
+                  "source_rows": 26,
+                  "share_amount_pct": 95.04908769471034,
+                  "share_count_pct": 91.59891598915989,
+                  "share_amount_among_known_pct": null,
+                  "share_count_among_known_pct": null
+                },
+                {
+                  "key": "46",
+                  "pay_amt": "305518000.0",
+                  "pay_cnt": 11,
+                  "source_rows": 2,
+                  "share_amount_pct": 4.256328739183919,
+                  "share_count_pct": 2.9810298102981028,
+                  "share_amount_among_known_pct": 85.97059444249032,
+                  "share_count_among_known_pct": 35.483870967741936
+                },
+                {
+                  "key": "10",
+                  "pay_amt": "30085000.0",
+                  "pay_cnt": 18,
+                  "source_rows": 1,
+                  "share_amount_pct": 0.41912964250338186,
+                  "share_count_pct": 4.878048780487805,
+                  "share_amount_among_known_pct": 8.465705240942667,
+                  "share_count_among_known_pct": 58.06451612903226
+                },
+                {
+                  "key": "22",
+                  "pay_amt": "17017000.0",
+                  "pay_cnt": 1,
+                  "source_rows": 1,
+                  "share_amount_pct": 0.23707259852019444,
+                  "share_count_pct": 0.27100271002710025,
+                  "share_amount_among_known_pct": 4.788462891311994,
+                  "share_count_among_known_pct": 3.225806451612903
+                },
+                {
+                  "key": "80",
+                  "pay_amt": "2755000.0",
+                  "pay_cnt": 1,
+                  "source_rows": 1,
+                  "share_amount_pct": 0.03838132508216111,
+                  "share_count_pct": 0.27100271002710025,
+                  "share_amount_among_known_pct": 0.7752374252550123,
+                  "share_count_among_known_pct": 3.225806451612903
+                }
+              ]
+            },
+            "coverage": {
+              "okved_division": {
+                "matched_amount_pct": 4.950912305289657,
+                "unknown_amount_pct": 95.04908769471034,
+                "matched_count_pct": 8.401084010840108,
+                "unknown_count_pct": 91.59891598915989
+              }
+            }
+          },
+          "outgoing": {
+            "source_rows": 128,
+            "unique_counterparties": 128,
+            "pay_amt_total": "10416492000.0",
+            "pay_cnt_total": 2595,
+            "aggregates": {
+              "okved_division": [
+                {
+                  "key": "(unknown)",
+                  "pay_amt": "8985810000.0",
+                  "pay_cnt": 2000,
+                  "source_rows": 100,
+                  "share_amount_pct": 86.2652224952508,
+                  "share_count_pct": 77.07129094412332,
+                  "share_amount_among_known_pct": null,
+                  "share_count_among_known_pct": null
+                },
+                {
+                  "key": "46",
+                  "pay_amt": "867063000.0",
+                  "pay_cnt": 226,
+                  "source_rows": 7,
+                  "share_amount_pct": 8.323944375899295,
+                  "share_count_pct": 8.709055876685934,
+                  "share_amount_among_known_pct": 60.604872361573015,
+                  "share_count_among_known_pct": 37.983193277310924
+                },
+                {
+                  "key": "52",
+                  "pay_amt": "387152000.0",
+                  "pay_cnt": 172,
+                  "source_rows": 9,
+                  "share_amount_pct": 3.716721521986481,
+                  "share_count_pct": 6.628131021194605,
+                  "share_amount_among_known_pct": 27.06066058005902,
+                  "share_count_among_known_pct": 28.907563025210088
+                },
+                {
+                  "key": "49",
+                  "pay_amt": "172440000.0",
+                  "pay_cnt": 146,
+                  "source_rows": 3,
+                  "share_amount_pct": 1.6554517586150885,
+                  "share_count_pct": 5.626204238921002,
+                  "share_amount_among_known_pct": 12.05299290827731,
+                  "share_count_among_known_pct": 24.53781512605042
+                },
+                {
+                  "key": "62",
+                  "pay_amt": "2060000.0",
+                  "pay_cnt": 8,
+                  "source_rows": 2,
+                  "share_amount_pct": 0.01977633160952843,
+                  "share_count_pct": 0.3082851637764933,
+                  "share_amount_among_known_pct": 0.14398727320257051,
+                  "share_count_among_known_pct": 1.3445378151260505
+                },
+                {
+                  "key": "45",
+                  "pay_amt": "1720000.0",
+                  "pay_cnt": 26,
+                  "source_rows": 3,
+                  "share_amount_pct": 0.016512276877858688,
+                  "share_count_pct": 1.001926782273603,
+                  "share_amount_among_known_pct": 0.12022238345068995,
+                  "share_count_among_known_pct": 4.369747899159663
+                },
+                {
+                  "key": "71",
+                  "pay_amt": "132000.0",
+                  "pay_cnt": 2,
+                  "source_rows": 1,
+                  "share_amount_pct": 0.0012672212487658994,
+                  "share_count_pct": 0.07707129094412332,
+                  "share_amount_among_known_pct": 0.00922636896249481,
+                  "share_count_among_known_pct": 0.33613445378151263
+                },
+                {
+                  "key": "56",
+                  "pay_amt": "59000.0",
+                  "pay_cnt": 2,
+                  "source_rows": 1,
+                  "share_amount_pct": 0.000566409497554455,
+                  "share_count_pct": 0.07707129094412332,
+                  "share_amount_among_known_pct": 0.004123907339296923,
+                  "share_count_among_known_pct": 0.33613445378151263
+                },
+                {
+                  "key": "11",
+                  "pay_amt": "40000.0",
+                  "pay_cnt": 8,
+                  "source_rows": 1,
+                  "share_amount_pct": 0.00038400643901996946,
+                  "share_count_pct": 0.3082851637764933,
+                  "share_amount_among_known_pct": 0.002795869382574185,
+                  "share_count_among_known_pct": 1.3445378151260505
+                },
+                {
+                  "key": "96",
+                  "pay_amt": "16000.0",
+                  "pay_cnt": 5,
+                  "source_rows": 1,
+                  "share_amount_pct": 0.00015360257560798778,
+                  "share_count_pct": 0.1926782273603083,
+                  "share_amount_among_known_pct": 0.001118347753029674,
+                  "share_count_among_known_pct": 0.8403361344537815
+                }
+              ]
+            },
+            "coverage": {
+              "okved_division": {
+                "matched_amount_pct": 13.7347775047492,
+                "unknown_amount_pct": 86.2652224952508,
+                "matched_count_pct": 22.928709055876688,
+                "unknown_count_pct": 77.07129094412332
+              }
+            }
+          }
+        },
+        "excluding_same_group": {
+          "incoming": {
+            "source_rows": 31,
+            "unique_counterparties": 31,
+            "pay_amt_total": "7177970000.0",
+            "pay_cnt_total": 369,
+            "aggregates": {
+              "okved_division": [
+                {
+                  "key": "(unknown)",
+                  "pay_amt": "6822595000.0",
+                  "pay_cnt": 338,
+                  "source_rows": 26,
+                  "share_amount_pct": 95.04908769471034,
+                  "share_count_pct": 91.59891598915989,
+                  "share_amount_among_known_pct": null,
+                  "share_count_among_known_pct": null
+                },
+                {
+                  "key": "46",
+                  "pay_amt": "305518000.0",
+                  "pay_cnt": 11,
+                  "source_rows": 2,
+                  "share_amount_pct": 4.256328739183919,
+                  "share_count_pct": 2.9810298102981028,
+                  "share_amount_among_known_pct": 85.97059444249032,
+                  "share_count_among_known_pct": 35.483870967741936
+                },
+                {
+                  "key": "10",
+                  "pay_amt": "30085000.0",
+                  "pay_cnt": 18,
+                  "source_rows": 1,
+                  "share_amount_pct": 0.41912964250338186,
+                  "share_count_pct": 4.878048780487805,
+                  "share_amount_among_known_pct": 8.465705240942667,
+                  "share_count_among_known_pct": 58.06451612903226
+                },
+                {
+                  "key": "22",
+                  "pay_amt": "17017000.0",
+                  "pay_cnt": 1,
+                  "source_rows": 1,
+                  "share_amount_pct": 0.23707259852019444,
+                  "share_count_pct": 0.27100271002710025,
+                  "share_amount_among_known_pct": 4.788462891311994,
+                  "share_count_among_known_pct": 3.225806451612903
+                },
+                {
+                  "key": "80",
+                  "pay_amt": "2755000.0",
+                  "pay_cnt": 1,
+                  "source_rows": 1,
+                  "share_amount_pct": 0.03838132508216111,
+                  "share_count_pct": 0.27100271002710025,
+                  "share_amount_among_known_pct": 0.7752374252550123,
+                  "share_count_among_known_pct": 3.225806451612903
+                }
+              ]
+            },
+            "coverage": {
+              "okved_division": {
+                "matched_amount_pct": 4.950912305289657,
+                "unknown_amount_pct": 95.04908769471034,
+                "matched_count_pct": 8.401084010840108,
+                "unknown_count_pct": 91.59891598915989
+              }
+            }
+          },
+          "outgoing": {
+            "source_rows": 128,
+            "unique_counterparties": 128,
+            "pay_amt_total": "10416492000.0",
+            "pay_cnt_total": 2595,
+            "aggregates": {
+              "okved_division": [
+                {
+                  "key": "(unknown)",
+                  "pay_amt": "8985810000.0",
+                  "pay_cnt": 2000,
+                  "source_rows": 100,
+                  "share_amount_pct": 86.2652224952508,
+                  "share_count_pct": 77.07129094412332,
+                  "share_amount_among_known_pct": null,
+                  "share_count_among_known_pct": null
+                },
+                {
+                  "key": "46",
+                  "pay_amt": "867063000.0",
+                  "pay_cnt": 226,
+                  "source_rows": 7,
+                  "share_amount_pct": 8.323944375899295,
+                  "share_count_pct": 8.709055876685934,
+                  "share_amount_among_known_pct": 60.604872361573015,
+                  "share_count_among_known_pct": 37.983193277310924
+                },
+                {
+                  "key": "52",
+                  "pay_amt": "387152000.0",
+                  "pay_cnt": 172,
+                  "source_rows": 9,
+                  "share_amount_pct": 3.716721521986481,
+                  "share_count_pct": 6.628131021194605,
+                  "share_amount_among_known_pct": 27.06066058005902,
+                  "share_count_among_known_pct": 28.907563025210088
+                },
+                {
+                  "key": "49",
+                  "pay_amt": "172440000.0",
+                  "pay_cnt": 146,
+                  "source_rows": 3,
+                  "share_amount_pct": 1.6554517586150885,
+                  "share_count_pct": 5.626204238921002,
+                  "share_amount_among_known_pct": 12.05299290827731,
+                  "share_count_among_known_pct": 24.53781512605042
+                },
+                {
+                  "key": "62",
+                  "pay_amt": "2060000.0",
+                  "pay_cnt": 8,
+                  "source_rows": 2,
+                  "share_amount_pct": 0.01977633160952843,
+                  "share_count_pct": 0.3082851637764933,
+                  "share_amount_among_known_pct": 0.14398727320257051,
+                  "share_count_among_known_pct": 1.3445378151260505
+                },
+                {
+                  "key": "45",
+                  "pay_amt": "1720000.0",
+                  "pay_cnt": 26,
+                  "source_rows": 3,
+                  "share_amount_pct": 0.016512276877858688,
+                  "share_count_pct": 1.001926782273603,
+                  "share_amount_among_known_pct": 0.12022238345068995,
+                  "share_count_among_known_pct": 4.369747899159663
+                },
+                {
+                  "key": "71",
+                  "pay_amt": "132000.0",
+                  "pay_cnt": 2,
+                  "source_rows": 1,
+                  "share_amount_pct": 0.0012672212487658994,
+                  "share_count_pct": 0.07707129094412332,
+                  "share_amount_among_known_pct": 0.00922636896249481,
+                  "share_count_among_known_pct": 0.33613445378151263
+                },
+                {
+                  "key": "56",
+                  "pay_amt": "59000.0",
+                  "pay_cnt": 2,
+                  "source_rows": 1,
+                  "share_amount_pct": 0.000566409497554455,
+                  "share_count_pct": 0.07707129094412332,
+                  "share_amount_among_known_pct": 0.004123907339296923,
+                  "share_count_among_known_pct": 0.33613445378151263
+                },
+                {
+                  "key": "11",
+                  "pay_amt": "40000.0",
+                  "pay_cnt": 8,
+                  "source_rows": 1,
+                  "share_amount_pct": 0.00038400643901996946,
+                  "share_count_pct": 0.3082851637764933,
+                  "share_amount_among_known_pct": 0.002795869382574185,
+                  "share_count_among_known_pct": 1.3445378151260505
+                },
+                {
+                  "key": "96",
+                  "pay_amt": "16000.0",
+                  "pay_cnt": 5,
+                  "source_rows": 1,
+                  "share_amount_pct": 0.00015360257560798778,
+                  "share_count_pct": 0.1926782273603083,
+                  "share_amount_among_known_pct": 0.001118347753029674,
+                  "share_count_among_known_pct": 0.8403361344537815
+                }
+              ]
+            },
+            "coverage": {
+              "okved_division": {
+                "matched_amount_pct": 13.7347775047492,
+                "unknown_amount_pct": 86.2652224952508,
+                "matched_count_pct": 22.928709055876688,
+                "unknown_count_pct": 77.07129094412332
+              }
+            }
+          }
+        }
+      },
+      "rows": [
+        {
+          "payer_id": "U_100647",
+          "beneficiary_id": "U_20244",
+          "amount_source_value": "2384692000.0",
+          "payment_count": 39
+        },
+        {
+          "payer_id": "U_134391",
+          "beneficiary_id": "U_20244",
+          "amount_source_value": "1045402000.0",
+          "payment_count": 24
+        },
+        {
+          "payer_id": "U_134388",
+          "beneficiary_id": "U_20244",
+          "amount_source_value": "999601000.0",
+          "payment_count": 18
+        },
+        {
+          "payer_id": "U_134392",
+          "beneficiary_id": "U_20244",
+          "amount_source_value": "967281000.0",
+          "payment_count": 24
+        },
+        {
+          "payer_id": "U_121641",
+          "beneficiary_id": "U_20244",
+          "amount_source_value": "458326000.0",
+          "payment_count": 17
+        },
+        {
+          "payer_id": "U_105098",
+          "beneficiary_id": "U_20244",
+          "amount_source_value": "255736000.0",
+          "payment_count": 5
+        },
+        {
+          "payer_id": "U_143432",
+          "beneficiary_id": "U_20244",
+          "amount_source_value": "175625000.0",
+          "payment_count": 23
+        },
+        {
+          "payer_id": "U_37915",
+          "beneficiary_id": "U_20244",
+          "amount_source_value": "163251000.0",
+          "payment_count": 31
+        },
+        {
+          "payer_id": "U_102420",
+          "beneficiary_id": "U_20244",
+          "amount_source_value": "123687000.0",
+          "payment_count": 1
+        },
+        {
+          "payer_id": "U_335151",
+          "beneficiary_id": "U_20244",
+          "amount_source_value": "119163000.0",
+          "payment_count": 5
+        },
+        {
+          "payer_id": "U_20244",
+          "beneficiary_id": "U_100647",
+          "amount_source_value": "2634412000.0",
+          "payment_count": 300
+        },
+        {
+          "payer_id": "U_20244",
+          "beneficiary_id": "U_134391",
+          "amount_source_value": "1398975000.0",
+          "payment_count": 38
+        },
+        {
+          "payer_id": "U_20244",
+          "beneficiary_id": "U_134388",
+          "amount_source_value": "1072789000.0",
+          "payment_count": 137
+        },
+        {
+          "payer_id": "U_20244",
+          "beneficiary_id": "U_134392",
+          "amount_source_value": "976539000.0",
+          "payment_count": 133
+        },
+        {
+          "payer_id": "U_20244",
+          "beneficiary_id": "U_121641",
+          "amount_source_value": "563972000.0",
+          "payment_count": 123
+        },
+        {
+          "payer_id": "U_20244",
+          "beneficiary_id": "U_102420",
+          "amount_source_value": "392607000.0",
+          "payment_count": 122
+        },
+        {
+          "payer_id": "U_20244",
+          "beneficiary_id": "U_184394",
+          "amount_source_value": "379758000.0",
+          "payment_count": 49
+        },
+        {
+          "payer_id": "U_20244",
+          "beneficiary_id": "U_71470",
+          "amount_source_value": "326904000.0",
+          "payment_count": 118
+        },
+        {
+          "payer_id": "U_20244",
+          "beneficiary_id": "U_105098",
+          "amount_source_value": "314871000.0",
+          "payment_count": 51
+        },
+        {
+          "payer_id": "U_20244",
+          "beneficiary_id": "U_8138",
+          "amount_source_value": "271951000.0",
+          "payment_count": 70
+        }
+      ],
+      "counterparty_directory": {
+        "U_105098": {
+          "main_okved_name": "Торговля оптовая зерном, необработанным табаком, семенами и кормами для сельскохозяйственных животных",
+          "main_okved_code": "46.21",
+          "group_id": "group_87265_sb",
+          "region": "Новосибирская область"
+        },
+        "U_71470": {
+          "main_okved_name": "Деятельность вспомогательная прочая, связанная с перевозками",
+          "main_okved_code": "52.29",
+          "group_id": "group_41959_sb",
+          "region": "Красноярский край"
+        },
+        "U_8138": {
+          "main_okved_name": "Торговля оптовая удобрениями и агрохимическими продуктами",
+          "main_okved_code": "46.75.1",
+          "group_id": "group_99618_sb",
+          "region": "Кемеровская область"
+        }
+      },
+      "rows_scope": {
+        "aggregation": "Sum PAY_AMT and PAY_CNT per counterparty and direction",
+        "top_per_direction": 10,
+        "complete": false,
+        "self_transfers_excluded": true,
+        "complete_totals_path": "summaries"
+      }
+    }
+  },
+  "provenance": {
+    "company_source": {
+      "csv_file": "df_Uid_data_hack.csv",
+      "raw_fields": {
+        "SYNTHETIC_U": "U_20244",
+        "ORG_TYPE": "КОММ_ОРГ",
+        "OKFS_NAME": "ЧАСТНАЯ СОБСТВЕННОСТЬ",
+        "COMPANY_AGE_YEARS_GRADATION": "16-25",
+        "ECO_MARK_LABEL": "Бизнес в новой реальности",
+        "MAINOKVED_CODE": "46.21",
+        "MAINOKVED_NAME": "Торговля оптовая зерном, необработанным табаком, семенами и кормами для сельскохозяйственных животных",
+        "NEGATIVEMARK": 1,
+        "AMOUNT_WORKERS_FNS_GRADATION": "16-100",
+        "AMOUNT_WORKERS_SPARK_GRADATION": null,
+        "CL_TYPE": "CLIENT",
+        "CL_PRODUCT_RKO_MARK": 1,
+        "CL_PRODUCT_GAR_MARK": 0,
+        "CL_PRODUCT_LOA_MARK": 1,
+        "CL_PRODUCT_LEA_MARK": 1,
+        "CL_PRODUCT_DEP_MARK": 1,
+        "CL_PRODUCT_ZPP_MARK": 1,
+        "FTS_FLAG": 1,
+        "FTS_COUNTRY_NAME": "ИНДИЯ, КИТАЙ, ИТАЛИЯ",
+        "FACTORING_MARK": 0,
+        "REVENUE_COMPANY": 23049498002.0,
+        "GROUP_ID": "group_133138_sb",
+        "CITY": "г. Новосибирск",
+        "REGION": "Новосибирская область"
+      }
+    },
+    "impact_queries": {
+      "source_file": "D:\\Hack\\Alfa-hack\\precomputed\\impact_queries\\U_20244.json",
+      "sha256": "bf9707a4215fe4ff7a5916a72efeb2c90de880cdbcab517958bb89ff55d04832",
+      "prompt_version": "impact-queries-v2",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "generated_at": "2026-10-22T00:07:03"
+    }
+  }
+}

@@ -1,5 +1,5 @@
-# Данные и материалы организаторов: тяжёлые, распространяются отдельно (см. README)
-data/
+# Приватный репозиторий: материалы только в private-data/; образ их исключает.
+/data/
 *.zip
 *.pdf
 
@@ -14,3 +14,19 @@ __pycache__/
 
 # Эксперименты со сторонними текстами (статьи СМИ): только локально
 experiments/
+
+# Integrated application state and secrets
+runtime/
+models/
+.env.*
+!.env.example
+*.egg-info/
+dist/
+build/
+
+# Generated previews, research inputs and profile caches are not the submission.
+/exports/
+/precomputed/
+/design/*
+!/design/reference.html
+# PDF не включаются в новую поставку. private-data/ с CSV и JSON включается в приватный Git.

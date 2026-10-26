@@ -15,6 +15,8 @@ from __future__ import annotations
 
 import difflib
 import json
+import math
+import os
 import re
 import time
 from concurrent.futures import ThreadPoolExecutor
@@ -22,6 +24,7 @@ from pathlib import Path
 
 from ..llm import LLMClient, LLMError
 from . import assess, impact, verify, write
+from .errors import ReportValidationError
 from .package import build
 
 PROMPTS = Path(__file__).parent / "prompts"
@@ -46,7 +49,8 @@ class Run:
     def __init__(self, client: LLMClient, budget: float):
         self.client, self.budget = client, budget
         self.main = client.model("report", fallback="main")
-        self.second = "z-ai/glm-5.3-flash"
+        self.second = os.environ.get('LLM_MODEL_SECOND') or "z-ai/glm-5.3-flash"
+        self.critic = os.environ.get('LLM_MODEL_CRITIC') or self.second
         self.start_cost = client.usage["cost"]
         self.trace: dict = {"calls": [], "steps": {}, "skipped": []}
 
@@ -61,14 +65,15 @@ class Run:
         return ok
 
     def call(self, model: str, messages: list[dict], task: str, params: dict) -> dict:
-        before, t = self.client.usage["cost"], time.monotonic()
-        tokens_before = (self.client.usage["prompt_tokens"], self.client.usage["completion_tokens"])
+        before=self.client.thread_usage() if hasattr(self.client,'thread_usage') else dict(self.client.usage)
+        t=time.monotonic()
         result = self.client.chat_json(model, messages, task=task, params=params)
+        after=self.client.thread_usage() if hasattr(self.client,'thread_usage') else dict(self.client.usage)
         self.trace["calls"].append({
             "task": task, "model": model, "seconds": round(time.monotonic() - t, 1),
-            "prompt_tokens": self.client.usage["prompt_tokens"] - tokens_before[0],
-            "completion_tokens": self.client.usage["completion_tokens"] - tokens_before[1],
-            "cost": round(self.client.usage["cost"] - before, 4)})
+            "prompt_tokens": after['prompt_tokens']-before['prompt_tokens'],
+            "completion_tokens": after['completion_tokens']-before['completion_tokens'],
+            "cost": round(after['cost']-before['cost'],4)})
         return result
 
 
@@ -100,6 +105,8 @@ def dual_assessment(run: Run, view: dict, index, facts: dict, instructions: list
     run.trace["steps"]["B"] = {"main": la, "second": lb, "disputed": disputed,
                                "agreement": round(1 - len(disputed) / max(len(la), 1), 3),
                                "problems": {"main": pa, "second": pb}, "auto_fixes": {"main": xa, "second": xb}}
+    if pa or pb:
+        raise LLMError('Не завершена проверка применимости: '+'; '.join(pa+pb)[:1200])
     if not disputed or not run.affordable("arbiter"):
         return a
 
@@ -122,6 +129,8 @@ def dual_assessment(run: Run, view: dict, index, facts: dict, instructions: list
                         for x in merged[kind]]
     result, problems, fixes = assess.check(merged, index, facts)
     run.trace["steps"]["B_arbiter"] = {"decisions": _labels(result), "problems": problems, "auto_fixes": fixes}
+    if problems:
+        raise LLMError('Арбитр вернул неполную оценку: '+'; '.join(problems)[:1200])
     return result
 
 
@@ -136,6 +145,9 @@ class Tools:
         return [c for c in found if isinstance(c, dict) and c.get("source_kind") == "bank"][:limit] if isinstance(found, list) else []
 
     def run(self, tool: str, args: dict):
+        if not isinstance(args,dict):return 'Аргументы инструмента должны быть объектом.'
+        if tool in ('full_text','more_analytics') and args.get('news_id') not in self.index.news:
+            return 'Новость отсутствует в пакете.'
         if tool == "full_text":
             text = self.extras["full_texts"].get(args.get("news_id"))
             return text or "Полный текст недоступен."
@@ -154,7 +166,8 @@ class Tools:
                     self.index.sources.setdefault(s["id"], {**s, "ocr_note": None})
                 if doc["id"] not in self.index.documents:
                     from .package import _age_days, _source_kind
-                    self.index.documents[doc["id"]] = {**doc, "source_kind": _source_kind(doc.get("publisher")),
+                    kind='bank' if (doc.get('source_provenance') or {}).get('provided_by_organizer') else 'third_party'
+                    self.index.documents[doc["id"]] = {**doc, "source_kind": kind,
                                                        "age_days": _age_days(self.index.as_of, doc.get("publication_date"))}
                 result.append({"mechanism_id": m["id"], "title": m["title"], **(m.get("mechanism") or {}),
                                "conditions": (m.get("context") or {}).get("conditions"),
@@ -165,8 +178,11 @@ class Tools:
             return result or "Других механизмов не найдено."
         if tool == "indicator_history":
             from ..pipeline import indicators
-            days = min(int(args.get("days") or 30), 60)
-            return indicators.history(str(args.get("code")), days) or "Нет данных по показателю."
+            try:days = max(1,min(int(args.get("days") or 30), 60))
+            except (ValueError,TypeError):return 'Некорректное число дней.'
+            with indicators.using_database(self.extras.get('indicator_database')):
+                values=[r for r in indicators.history(str(args.get("code")), days) if r[0]<=self.index.as_of]
+            return values or "Нет данных по показателю."
         return f"Неизвестный инструмент {tool}"
 
 
@@ -202,8 +218,7 @@ def analyze_news(run: Run, data: dict, news: dict, tools: Tools) -> tuple[dict |
 
 # ---------- E–F: дубли, мягкие ориентиры объёма, доработка по частям ----------
 
-SOFT = {"summary_chars": 900, "headline_words": 30, "short_title_words": 14, "claims_per_section": 5, "claim_chars": 500,
-        "brief_chars": 350}
+SOFT = {"summary_chars":900,"headline_words":30,"short_title_words":14,"claims_per_section":5,"claim_chars":500,"brief_chars":350}
 PART = re.compile(r"^(items|independent_risks)\[(\d+)\]")
 
 
@@ -248,7 +263,7 @@ def soft_issues(report: dict) -> list[str]:
     for i, it in enumerate(report.get("items") or []):
         if len((it.get("headline") or "").split()) > SOFT["headline_words"]:
             issues.append(f"items[{i}]: [объём] заголовок длиннее {SOFT['headline_words']} слов — сделай его короче")
-        if not (it.get("short_title") or "").strip():
+        if not isinstance(it.get("short_title"),str) or not it["short_title"].strip():
             issues.append(f"items[{i}]: нет short_title — короткого заголовка события до 10–12 слов")
         elif len(it["short_title"].split()) > SOFT["short_title_words"]:
             issues.append(f"items[{i}].short_title: [объём] короткий заголовок длиннее {SOFT['short_title_words']} слов")
@@ -265,7 +280,7 @@ def soft_issues(report: dict) -> list[str]:
     return issues
 
 
-def revise_parts(run: Run, report: dict, issues: list[str], data: dict) -> list[str]:
+def revise_parts(run: Run, report: dict, issues: list[str], data: dict,index=None,full_texts=None) -> list[str]:
     """Доработка по частям: каждый раздел получает только свои замечания; разделы — параллельно."""
     groups: dict[tuple, list[str]] = {}
     for issue in issues:
@@ -276,22 +291,29 @@ def revise_parts(run: Run, report: dict, issues: list[str], data: dict) -> list[
     def revise(key: tuple, part_issues: list[str]):
         kind, idx = key
         if kind == "summary":
-            part = {"summary": report["summary"], "key_recommendations": report.get("key_recommendations") or [],
-                    "item_headlines": [it.get("headline") for it in report["items"]]}
-            what = ("сводку и ключевые рекомендации (верни {\"summary\": \"...\", \"key_recommendations\": "
-                    "[{\"text\": \"...\", \"source_id\": \"...\"}]} с теми же source_id)")
+            part = {"summary": report["summary"], "key_recommendations":report.get("key_recommendations") or [], "item_headlines": [it.get("headline") for it in report["items"]]}
+            what = "сводку и ключевые рекомендации (верни summary и key_recommendations с прежними source_id)"
         else:
             part = report[kind][idx]
             what = "раздел отчёта (верни {\"part\": {...}} в том же формате, включая impact.rubric)"
         news = next((n for n in data["accepted_news"] if n["id"] == part.get("news_id")), None) if kind == "items" else None
+        refs={r for key in ('what_happened','why_it_matters','risks','opportunities','bank_view')
+              for c in part.get(key,[]) if isinstance(c,dict) for r in c.get('refs',[])}
+        if part.get('mechanism_id'):refs.add(part['mechanism_id'])
+        mechanisms=[m for m in (index.mechanisms.values() if index else data['mechanisms']) if m['id'] in refs or set(m['source_fragment_ids'])&refs]
+        source_ids=refs | {s for m in mechanisms for s in m['source_fragment_ids']}
+        evidence=dict(mechanisms=mechanisms,source_fragments=[s for s in (index.sources.values() if index else data['analytics_source_fragments']) if s['id'] in source_ids])
+        if news and (full_texts or {}).get(news['id']):evidence['original_article_text']=full_texts[news['id']]
         user = (f"Это доработка: исправь {what}. Исправляй только указанное, не добавляй новых фактов; "
                 f"неподтверждённое утверждение можно удалить. Ориентиры объёма — как в инструкции.\n\n"
                 f"Раздел:\n{json.dumps(part, ensure_ascii=False)}\n\n"
                 + (f"Данные новости:\n{json.dumps(news, ensure_ascii=False)}\n\n" if news else "")
                 + "Описание компании:\n" + (data["company"].get("profile") or "")
-                + "\n\nФакты компании:\n" + json.dumps(data["company"]["facts"], ensure_ascii=False)
+                + "\nФакты компании:\n" + json.dumps(data["company"]["facts"], ensure_ascii=False)
+                + '\n\nИсходные материалы для проверки:\n'+json.dumps(evidence,ensure_ascii=False)
                 + "\n\nЗамечания:\n" + "\n".join(f"- {x}" for x in part_issues))
-        return key, run.call(run.main, [{"role": "system", "content": ANALYST}, {"role": "user", "content": user}],
+        system=ANALYST+'\nСейчас этап доработки: верни только запрошенный объект part или summary, без action и без вызовов инструментов.'
+        return key, run.call(run.main, [{"role": "system", "content": system}, {"role": "user", "content": user}],
                              f"revise_{kind}_{idx}", NO_REASONING)
 
     done = []
@@ -305,11 +327,9 @@ def revise_parts(run: Run, report: dict, issues: list[str], data: dict) -> list[
                 continue
             if kind == "summary" and answer.get("summary"):
                 report["summary"] = answer["summary"]
-                ids = {k.get("source_id") for k in report.get("key_recommendations") or [] if isinstance(k, dict)}
-                fixed = [k for k in answer.get("key_recommendations") or []
-                         if isinstance(k, dict) and k.get("text") and k.get("source_id") in ids]
-                if fixed:
-                    report["key_recommendations"] = fixed[:3]
+                ids={k.get("source_id") for k in report.get("key_recommendations") or [] if isinstance(k,dict)}
+                fixed=[k for k in answer.get("key_recommendations") or [] if isinstance(k,dict) and k.get("text") and k.get("source_id") in ids]
+                if fixed:report["key_recommendations"]=fixed[:3]
             elif kind != "summary" and isinstance(answer.get("part"), dict):
                 report[kind][idx] = answer["part"]
             else:
@@ -317,8 +337,6 @@ def revise_parts(run: Run, report: dict, issues: list[str], data: dict) -> list[
             done.append(f"{kind}[{idx}]" if kind != "summary" else "summary")
     return done
 
-
-# ---------- поля для интерфейса ----------
 
 TOPICS = {"Процентные ставки", "Валютный рынок", "Налоги", "Регулирование", "Лизинг", "Спрос и продажи",
           "Издержки и цены", "Внешняя торговля", "Экономика"}
@@ -333,7 +351,7 @@ def front_fields(report: dict, index) -> None:
     """Плоские поля, которые читает интерфейс: вывод, тема, дата и источник новости, рекомендации."""
     for part in report["items"] + report["independent_risks"]:
         brief = part.get("brief") if isinstance(part.get("brief"), dict) else {}
-        part["takeaway"] = (brief.get("takeaway") or "").strip() or None
+        part["takeaway"] = brief["takeaway"].strip() or None if isinstance(brief.get("takeaway"),str) else None
         if part.get("topic") not in TOPICS:
             part["topic"] = None  # интерфейс подберёт тему сам
         part.setdefault("key_figures", [])
@@ -344,7 +362,7 @@ def front_fields(report: dict, index) -> None:
             imp["direction"] = "opportunity" if len(part.get("opportunities") or []) > len(part.get("risks") or []) else "risk"
         # вкладка «Действия» показывает next_steps: главная рекомендация — первой
         steps = [x for x in part.get("next_steps") or [] if isinstance(x, str) and x.strip()]
-        rec = (brief.get("recommendation") or "").strip()
+        rec = brief["recommendation"].strip() if isinstance(brief.get("recommendation"),str) else ""
         if rec and not any(_similarity(rec, x) > 0.85 for x in steps):
             if steps and _similarity(rec, steps[0]) >= 0.5:
                 steps[0] = rec  # первый пункт — пересказ главной рекомендации
@@ -360,7 +378,10 @@ def front_fields(report: dict, index) -> None:
 
 # ---------- конвейер ----------
 
-def generate(package: dict, extras: dict, client: LLMClient | None = None, budget: float = BUDGET_RUB) -> tuple[dict, dict]:
+def generate(package: dict, extras: dict, client: LLMClient | None = None, budget: float = BUDGET_RUB,
+             critic: bool = True) -> tuple[dict, dict]:
+    if type(budget) not in (int,float) or not math.isfinite(budget) or budget<=0:
+        raise ValueError('Бюджет отчёта должен быть положительным конечным числом')
     client = client or LLMClient()
     run = Run(client, budget)
     started = time.monotonic()
@@ -386,10 +407,16 @@ def generate(package: dict, extras: dict, client: LLMClient | None = None, budge
             if item:
                 items.append(item)
     run.trace["steps"]["D"] = {"tool_calls": tool_logs}
+    expected={n['id'] for n in data['accepted_news']}
+    actual=[n.get('news_id') for n in items]
+    if len(actual)!=len(set(actual)) or set(actual)!=expected:
+        raise LLMError('Агенты не подготовили ровно один раздел для каждой принятой новости')
 
     labels = {a["news_id"]: a["label"] for a in assessment["news_assessments"]}
-    for item in items:
-        item["impact"], _ = impact.compute(item.get("impact"), labels.get(item.get("news_id"), "conditional"))
+    impact_issues = []
+    for item_index,item in enumerate(items):
+        item["impact"], issues = impact.compute(item.get("impact"), labels.get(item.get("news_id"), "conditional"))
+        impact_issues += [f"items[{item_index}].impact: {x}" for x in issues]
 
     # E: синтез, затем удаление дублей
     report = {"summary": "За период существенных событий с установленным или условным влиянием на компанию не найдено.",
@@ -407,25 +434,22 @@ def generate(package: dict, extras: dict, client: LLMClient | None = None, budge
         report["items"].sort(key=lambda it: order.get(it.get("news_id"), len(order)))
         report["independent_risks"] = synth.get("independent_risks") or []
     report["independent_risks"], dropped = dedupe_risks(report, data, index)
-    # ключевые рекомендации ссылаются только на оставшиеся разделы
-    alive = {it.get("news_id") for it in report["items"]} | {r.get("mechanism_id") for r in report["independent_risks"]}
-    report["key_recommendations"] = [k for k in report.get("key_recommendations") or []
-                                     if isinstance(k, dict) and k.get("text") and k.get("source_id") in alive][:3]
+    alive={it.get("news_id") for it in report["items"]}|{r.get("mechanism_id") for r in report["independent_risks"]}
+    report["key_recommendations"]=[k for k in report.get("key_recommendations") or [] if isinstance(k,dict) and k.get("text") and k.get("source_id") in alive][:3]
     run.trace["steps"]["E_dedupe"] = dropped
     for r in report["independent_risks"]:
         r["impact"], _ = impact.compute(r.get("impact"), "conditional")
 
     # F: проверка кодом, критик, доработка по частям
     full_texts = extras.get("full_texts") or {}
-    code_issues = verify.check_report(report, index, assessment, facts, profile, full_texts)
+    code_issues = verify.check_report(report, index, assessment, facts, profile, full_texts, require_front_fields=True)
     critic_issues = []
-    if report["items"] and run.affordable("critic"):
+    if critic and report["items"] and run.affordable("critic"):
         try:
-            context = {"company_profile": data["company"].get("profile"), "company_facts": facts,
-                       "assessments": assessment["news_assessments"],
+            context = {"company_profile":data["company"].get("profile"),"company_facts": facts, "assessments": assessment["news_assessments"],
                        "analytics_sources": [{"mechanism_id": m["id"], "source_kind": index.source_kind_of(m["id"])}
                                              for m in index.mechanisms.values()]}
-            critic_issues = run.call(run.second, [{"role": "system", "content": CRITIC}, {"role": "user", "content":
+            critic_issues = run.call(run.critic, [{"role": "system", "content": CRITIC}, {"role": "user", "content":
                                      f"Контекст:\n{json.dumps(context, ensure_ascii=False)}\n\nОтчёт:\n{json.dumps(report, ensure_ascii=False)}"}],
                                      "critic", REASONING).get("issues") or []
         except LLMError as error:
@@ -433,18 +457,23 @@ def generate(package: dict, extras: dict, client: LLMClient | None = None, budge
     critic_text = [f"{c.get('location')}: [{c.get('type')}] {c.get('problem')} — {c.get('suggestion')}"
                    for c in critic_issues if isinstance(c, dict)]
     soft = soft_issues(report)
-    # замечания рубрики — после сортировки, с путём к разделу, чтобы доработка получила их вместе с разделом
-    impact_issues = [f"{kind}[{i}].impact: {x}" for kind in ("items", "independent_risks")
-                     for i, part in enumerate(report[kind]) for x in impact.compute(part.get("impact"), "conditional")[1]]
     # сначала замечания критика (содержание), затем проверки кодом и рубрики, затем мягкие — объём
     all_issues = critic_text + code_issues + impact_issues + soft
-    revised_parts = revise_parts(run, report, all_issues, data) if all_issues else []
-    for item in report["items"]:
-        item["impact"], _ = impact.compute(item.get("impact"), labels.get(item.get("news_id"), "conditional"))
-    for r in report["independent_risks"]:
-        r["impact"], _ = impact.compute(r.get("impact"), "conditional")
-    remaining = verify.check_report(report, index, assessment, facts, profile, full_texts)
-    front_fields(report, index)
+    revised_parts = revise_parts(run, report, all_issues, data,index,full_texts) if all_issues else []
+    remaining_impact=[]
+    for i,item in enumerate(report["items"]):
+        item["impact"], problems=impact.compute(item.get("impact"), labels.get(item.get("news_id"), "conditional"))
+        remaining_impact.extend(f'items[{i}].impact: {p}' for p in problems)
+    for i,r in enumerate(report["independent_risks"]):
+        r["impact"], problems=impact.compute(r.get("impact"), "conditional")
+        remaining_impact.extend(f'independent_risks[{i}].impact: {p}' for p in problems)
+    front_fields(report,index)
+    remaining = verify.check_report(report, index, assessment, facts, profile, full_texts, require_front_fields=True)
+    remaining+=remaining_impact
+    if {n.get('news_id') for n in report['items']}!=expected:
+        remaining.append('После проверки потеряны разделы принятых новостей')
+    if remaining:
+        raise ReportValidationError(remaining)
     deviations = {it.get("news_id"): {k: (hint["score"], it["impact"]["rubric"][k]["score"])
                                       for k, hint in impact.suggested_scores(
                                           next((n for n in data["accepted_news"] if n["id"] == it.get("news_id")), {}),
@@ -458,8 +487,7 @@ def generate(package: dict, extras: dict, client: LLMClient | None = None, budge
     document = {
         "schema_version": "company-report-2.0",
         "request_id": package.get("request_id"), "company_id": index.company_id, "as_of": package.get("as_of"),
-        "summary": report["summary"], "key_recommendations": report.get("key_recommendations") or [],
-        "items": report["items"], "independent_risks": report["independent_risks"],
+        "summary": report["summary"], "key_recommendations":report.get("key_recommendations") or [], "items": report["items"], "independent_risks": report["independent_risks"],
         "dismissed": write.dismissed(view, assessment),
         "missing_information": assessment.get("missing_information") or [],
         "assessment": assessment, "market_indicators": package.get("market_indicators") or [],
@@ -468,7 +496,8 @@ def generate(package: dict, extras: dict, client: LLMClient | None = None, budge
                     "report_issues_found": len(all_issues), "report_issues_remaining": remaining,
                     "skipped_steps": run.trace["skipped"]},
         "models": {"main": run.main, "second_opinion_and_critic": run.second},
-        "usage": {"cost": round(run.spent, 4), "calls": len(run.trace["calls"]), "budget": budget},
+        "usage": {"cost": round(run.spent, 4), "calls": len(run.trace["calls"]), "budget": budget,
+                  "budget_is_soft_estimate":True},
         "seconds": round(time.monotonic() - started, 1),
     }
     return document, run.trace

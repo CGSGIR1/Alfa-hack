@@ -1,0 +1,56 @@
+{
+  "database": "runtime/news-analytics.db",
+  "model_path": "models/embeddinggemma-300m",
+  "reports": "runtime/reports",
+  "parser_directory": "runtime/parser",
+  "prepared_news": "runtime/news-prepared",
+  "company_profiles": {
+    "csv_directory": "private-data/csv"
+  },
+  "inputs": {
+    "companies": "private-data/companies",
+    "news": "private-data/news",
+    "analytics": "private-data/analytics"
+  },
+  "upload_folders": {
+    "companies": "runtime/uploads/companies",
+    "news": "runtime/uploads/news",
+    "analytics": "runtime/uploads/analytics"
+  },
+  "embedding": {
+    "batch_size": 4,
+    "threads": 4
+  },
+  "retrieval": {
+    "top_news": 1,
+    "news_fragments": 2,
+    "analytics_per_news": 10,
+    "max_chunks_per_analytics": 2,
+    "news_days": 7,
+    "max_analytics_age_days": 365,
+    "min_news_score": 0.4,
+    "min_analytics_score": 0.375,
+    "financial_topic_coverage": 0
+  },
+  "import": {
+    "skip_invalid_news": true
+  },
+  "pipeline": {
+    "news_retention_days": 10,
+    "cleanup_interval_seconds": 3600,
+    "report_mode": "deep",
+    "report_budget_rub": 20.0,
+    "interval_seconds": 60,
+    "parser_limit_per_source": 5,
+    "prepare_limit": 5,
+    "preparation_max_attempts": 3,
+    "preparation_retry_delay_seconds": 60,
+    "preparation_retry_max_delay_seconds": 600,
+    "critic": true,
+    "auto_generate": true
+  },
+  "admission": {
+    "min_weak_news_score": 0.45,
+    "interest_rate_interval_hours": 12
+  }
+}

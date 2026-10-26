@@ -42,7 +42,12 @@ import re
 import sqlite3
 import sys
 import time
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
+
+try:
+    from .retention import prune_parser, take_storage_lock
+except ImportError:  # Direct script launch from integration and standalone CLI.
+    from retention import prune_parser, take_storage_lock
 
 if os.name == "nt":  # Windows: блокировка файла через msvcrt
     import msvcrt
@@ -285,7 +290,7 @@ def rss_time_utc(entry):
     return datetime(*t[:6], tzinfo=timezone.utc).isoformat(timespec="seconds") if t else None
 
 
-def parse_source(conn, source, feed_url, limit=None):
+def parse_source(conn, source, feed_url, limit=None, min_date=None):
     """Обрабатывает один источник. Возвращает число новых новостей."""
     feed = feedparser.parse(feed_url, agent=HEADERS["User-Agent"])
     print(f"[{source}] в ленте: {len(feed.entries)}")
@@ -300,6 +305,9 @@ def parse_source(conn, source, feed_url, limit=None):
         title_raw = clean_html(e.get("title", ""))
         if not url:
             continue
+        published_utc=to_utc_iso(e.get('published','')) or rss_time_utc(e)
+        if min_date and published_utc and published_utc[:10]<min_date:
+            continue  # Expired RSS entries must not be downloaded again after cleanup.
         news_id = make_id(url)
         if already_saved(conn, news_id):
             skipped += 1
@@ -325,11 +333,14 @@ def parse_source(conn, source, feed_url, limit=None):
                 news_id, source, url, title, published, text,
                 datetime.now(timezone.utc).isoformat(timespec="seconds"),
                 summary, is_full, len(text), error,
-                to_utc_iso(published) or rss_time_utc(e), outlet, rubric,
+                published_utc, outlet, rubric,
                 url_section_from_url(url) or section,
                 title_raw, subtitle, int(detect_paywall(text) is not None),
             ),
         )
+        # Commit a cleaned, consumable article immediately. The integration
+        # worker can pick it up while the parser downloads the next source.
+        publish_article(conn, news_id)
         conn.commit()
         added += 1
         mark = "+" if is_full else "~"
@@ -384,6 +395,35 @@ def event_time(row):
             dt = datetime.fromisoformat(value)
             return dt if dt.tzinfo else dt.astimezone()  # без пояса — местное время
     return datetime.fromtimestamp(0, timezone.utc)
+
+
+def publish_article(conn, news_id):
+    """Make this article ready for preparation before the full RSS sweep ends.
+
+    Final corpus-wide boilerplate/event reconciliation still runs at sweep end.
+    The raw text is never overwritten or shortened for an embedding limit.
+    """
+    rows = fetch_dicts(conn, 'SELECT * FROM news WHERE id = ?', (news_id,))
+    if not rows:
+        return
+    row = rows[0]
+    body = clean_body(row['text'], row['title'], row['subtitle'], row['title_raw'], {})
+    lead = pick_lead(body)
+    embed = build_embed_text(row['title'], row['subtitle'], body)
+    # Existing event IDs remain useful across independent processing cycles.
+    neighbors = fetch_dicts(conn, '''SELECT id,title,subtitle,lead,event_id,published_utc,parsed_at
+        FROM news WHERE id != ? AND body_clean IS NOT NULL
+        AND abs(julianday(COALESCE(published_utc,parsed_at))-julianday(?)) <= 2''',
+        (news_id, row['published_utc'] or row['parsed_at']))
+    groups = cluster_events([(n['id'], event_time(n), event_text(n['title'], n['subtitle'], n['lead'])) for n in neighbors] +
+                            [(news_id, event_time(row), event_text(row['title'], row['subtitle'], lead))])
+    root = groups[news_id]
+    for neighbor in neighbors:
+        if groups[neighbor['id']] == root:
+            root = neighbor['event_id'] or root
+            break
+    conn.execute('''UPDATE news SET body_clean=?,lead=?,embed_text=?,content_hash=?,is_paywalled=?,event_id=? WHERE id=?''',
+        (body, lead, embed, content_hash(embed), int(detect_paywall(row['text']) is not None), root, news_id))
 
 
 def rebuild_derived(conn):
@@ -453,17 +493,7 @@ def take_lock():
     блокирует Frontend/tools/build_data.py. Блокировка снимается сама, даже если процесс
     упал. Возвращает открытый файл или None, если её уже держит другой запуск.
     """
-    lock = open(LOCK_PATH, "ab")  # "a", а не "w": не обрезать файл, который держит другой запуск
-    try:
-        if os.name == "nt":
-            lock.seek(0)
-            msvcrt.locking(lock.fileno(), msvcrt.LK_NBLCK, 1)
-        else:
-            fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
-    except OSError:  # блокировку держит другой запуск
-        lock.close()
-        return None
-    return lock
+    return take_storage_lock(LOCK_PATH)
 
 
 def utf8_output():
@@ -485,7 +515,20 @@ def main():
                     help="докачать полный текст для новостей, где есть только анонс")
     ap.add_argument("--log", action="store_true",
                     help="дописывать весь вывод в parser.log рядом с парсером (так его запускает autostart.py)")
+    ap.add_argument("--data-dir", help="отдельная папка для news.db, CSV, лога и блокировки")
+    ap.add_argument('--retention-days',type=int,help='удалять и не скачивать новости старше указанного числа дней')
     args = ap.parse_args()
+    if args.retention_days is not None and args.retention_days<=0:
+        ap.error('--retention-days must be positive')
+
+    if args.data_dir:
+        global DB_PATH, CSV_PATH, LOCK_PATH, LOG_PATH
+        directory = os.path.abspath(args.data_dir)
+        os.makedirs(directory, exist_ok=True)
+        DB_PATH = os.path.join(directory, "news.db")
+        CSV_PATH = os.path.join(directory, "news.csv")
+        LOCK_PATH = os.path.join(directory, "parser.lock")
+        LOG_PATH = os.path.join(directory, "parser.log")
 
     if args.log:
         # построчная запись: лог можно читать, пока парсер работает; ошибки тоже идут сюда
@@ -500,6 +543,11 @@ def main():
 
     conn = sqlite3.connect(DB_PATH)
     init_db(conn)
+    cutoff=None
+    if args.retention_days is not None:
+        cutoff=(datetime.now(timezone(timedelta(hours=3))).date()-timedelta(days=args.retention_days)).isoformat()
+        cleaned=prune_parser(conn,cutoff)
+        print(f"Очистка: удалено {cleaned['deleted']} новостей до {cutoff}; резервная копия: {cleaned['backup']}")
 
     if args.refetch:
         refetch_summaries(conn)
@@ -507,7 +555,7 @@ def main():
         total = 0
         for source, url in FEEDS.items():
             try:
-                total += parse_source(conn, source, url, args.limit)
+                total += parse_source(conn, source, url, args.limit,min_date=cutoff)
             except Exception as e:
                 # один упавший источник не должен ронять весь парсер
                 print(f"[{source}] ошибка: {e}")

@@ -1,0 +1,9 @@
+* text=auto eol=lf
+*.cmd -text
+*.pdf binary
+*.mp4 binary
+*.png binary
+*.webp binary
+*.ico binary
+*.npz binary
+private-data/csv/*.csv -text

@@ -1,0 +1,6 @@
+-c requirements.lock
+numpy
+pandas
+feedparser
+requests
+trafilatura

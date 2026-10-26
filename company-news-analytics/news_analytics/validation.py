@@ -79,6 +79,8 @@ def company(data):
 
 def news(data):
     d=copy.deepcopy(data);require(isinstance(d,dict),'News root must be an object')
+    # Event-identity experiment is disabled; old enriched copies must not reactivate it.
+    d.pop('event_identity',None)
     require(d.get('schema_version') in {'news-dual-embeddings-2.0',NEWS_VERSION},'Unsupported news schema')
     text(d.get('document_id'),'document_id');text(d.get('document_title'),'document_title')
     day(d.get('document_date'),'document_date')

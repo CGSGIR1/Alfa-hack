@@ -123,3 +123,9 @@ CREATE INDEX IF NOT EXISTS idx_article_chunks_news ON article_chunks(news_id,is_
 CREATE INDEX IF NOT EXISTS idx_analytics_chunks_doc ON analytics_chunks(analytics_id,is_active);
 CREATE INDEX IF NOT EXISTS idx_mechanisms_doc ON analytics_mechanisms(analytics_id,is_active);
 CREATE INDEX IF NOT EXISTS idx_queries_company ON company_queries(company_id,is_active);
+
+-- Retained support for the independent report-agent update.
+CREATE TABLE IF NOT EXISTS indicators(
+ code TEXT NOT NULL,date TEXT NOT NULL,value REAL NOT NULL,source TEXT NOT NULL,
+ fetched_at TEXT NOT NULL,PRIMARY KEY(code,date)
+);

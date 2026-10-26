@@ -13,6 +13,8 @@ CLAIM_TYPES = {"news_fact", "bank_view", "third_party_view", "ai_inference"}
 CLAIM_LISTS = ["what_happened", "why_it_matters", "risks", "opportunities", "bank_view"]
 TEXT_LISTS = ["not_established", "to_verify", "next_steps"]  # действия и вопросы — строки, не утверждения
 HEDGES = re.compile(r"(\bесли\b|\bможет\b|\bмогут\b|\bмог(ла|ли|ло)?\b|возможн|при условии|\bпри\b.{0,40}\b(подтвержд|наличии|выполнени)|"
+                    r"\bдопускает\s+(возможность|попадание|отнесение|статус)\b|"
+                    r"\bпри\s+(ухудшении|улучшении|сохранении|росте|снижении|изменении|отсутствии)\b|"
                     r"вероятн|не исключ|способн|потенциальн|в случае|только если|зависит|предположительн|условн|не установлен)", re.I)
 CATEGORICAL = re.compile(r"(приведёт к|приведет к|неизбежно|гарантированно|обязательно (вырастет|снизится|увеличится|сократится)|точно (вырастет|снизится))", re.I)
 NUMBER = re.compile(r"\d+(?:[.,]\d+)?")
@@ -79,10 +81,13 @@ def _ref_text(ref: str, index: PackageIndex, full_texts: dict | None = None) -> 
         f = index.fragments[ref]
         mech = f.get("mechanism") or {}
         news_id = index.fragment_news.get(ref)
-        return " ".join(str(x) for x in [f.get("thesis"), f.get("context"), mech.get("description"),
+        news=index.news.get(news_id,{})
+        block_ids=set(f.get('source_block_ids') or [])
+        original=[b['text'] for b in news.get('source_blocks',[]) if b.get('id') in block_ids]
+        return " ".join(str(x) for x in [*original,f.get("thesis"), f.get("context"), mech.get("description"),
                                          (mech.get("context") or {}).get("conditions"),
                                          (mech.get("context") or {}).get("event_period"),
-                                         full_texts.get(news_id)] if x)
+                                         ] if x)
     if ref in index.mechanisms:
         m = index.mechanisms[ref]
         texts = [m.get("cause"), m.get("channel"), m.get("effect"), m.get("conditions")]
@@ -99,7 +104,7 @@ def _ref_text(ref: str, index: PackageIndex, full_texts: dict | None = None) -> 
 
 
 def check_report(report: dict, index: PackageIndex, assessment: dict, facts: dict, profile: str,
-                 full_texts: dict | None = None) -> list[str]:
+                 full_texts: dict | None = None, *, require_front_fields: bool = False) -> list[str]:
     """Нарушения в отчёте; при этом исправляет то, что можно исправить без модели.
 
     full_texts — полные тексты новостей (если агент их читал), тоже законный источник чисел.
@@ -165,8 +170,6 @@ def check_report(report: dict, index: PackageIndex, assessment: dict, facts: dic
         # даты документов и as_of тоже законный источник чисел (годы, месяцы)
         dates = " ".join(f"{d.get('title') or ''} {d.get('publication_date') or ''}" for d in index.documents.values())
         pool_text = " ".join(_ref_text(r, index, full_texts) for r in refs) + f" {profile} {index.as_of} {dates}"
-        if news_id:
-            pool_text += " " + _ref_text(news_id, index, full_texts)
         pool = _numbers(_with_date_variants(pool_text + " " + json.dumps(facts, ensure_ascii=False)))
         missing = {n for n in _numbers(claim["text"]) if len(n.replace(".", "")) > 1 and not _supported(n, pool)}
         if missing:
@@ -182,7 +185,6 @@ def check_report(report: dict, index: PackageIndex, assessment: dict, facts: dic
         pool_text = " ".join(_ref_text(r, index, full_texts) for r in refs) + f" {profile} {index.as_of}"
         if news_id:
             pool_text += " " + _ref_text(news_id, index, full_texts)
-        pool_text += " " + " ".join(c.get("text", "") for k in CLAIM_LISTS for c in part.get(k) or [] if isinstance(c, dict))
         return _numbers(_with_date_variants(pool_text + " " + json.dumps(facts, ensure_ascii=False)))
 
     def check_figures(part: dict, where: str, news_id: str | None) -> None:
@@ -227,7 +229,7 @@ def check_report(report: dict, index: PackageIndex, assessment: dict, facts: dic
     def check_brief(part: dict, where: str, label: str, news_id: str | None) -> None:
         """Краткий блок: есть, не категоричен, числа подтверждены, «коротко» условно для conditional."""
         brief = part.get("brief") if isinstance(part.get("brief"), dict) else None
-        if not brief or not (brief.get("takeaway") or "").strip() or not (brief.get("recommendation") or "").strip():
+        if not brief or not all(isinstance(brief.get(k),str) and brief[k].strip() for k in ("takeaway","recommendation")):
             issues.append(f"{where}: нет краткого блока brief (takeaway и recommendation)")
             return
         pool = part_pool(part, news_id)
@@ -258,7 +260,8 @@ def check_report(report: dict, index: PackageIndex, assessment: dict, facts: dic
             item[key] = [x.strip() for x in item[key] if x.strip()]
         if not item["what_happened"]:
             issues.append(f"items[{i}]: нет описания события")
-        check_brief(item, f"items[{i}]", item["label"], nid)
+        if require_front_fields or "brief" in item:
+            check_brief(item, f"items[{i}]", item["label"], nid)
         check_figures(item, f"items[{i}]", nid)
         check_wording(item, f"items[{i}]")
         items.append(item)
@@ -273,7 +276,9 @@ def check_report(report: dict, index: PackageIndex, assessment: dict, facts: dic
                                            for j, c in enumerate(r.get("why_it_matters") or [])) if c]
         for key in TEXT_LISTS:
             r[key] = [x.strip() for x in r.get(key) or [] if isinstance(x, str) and x.strip()]
-        check_brief(r, f"independent_risks[{i}]", "conditional", None)
+        if require_front_fields or "brief" in r:
+            check_brief(r, f"independent_risks[{i}]", "conditional", None)
+        check_figures(r, f"independent_risks[{i}]", None)
         check_wording(r, f"independent_risks[{i}]")
         risks.append(r)
     report["independent_risks"] = risks

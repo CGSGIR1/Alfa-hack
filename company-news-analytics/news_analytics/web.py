@@ -21,6 +21,7 @@ from .retrieval import Settings,snapshot,retrieve
 from .reporting import save,report_name,html_reports
 from .llm_io import report_input
 from .workflow import process_company,complete_batch,history,batch_report
+from .retention import news_cutoff
 
 STATIC=Path(__file__).with_name('web_static')
 MAX_BODY=32*1024*1024
@@ -37,7 +38,7 @@ def detect(data):
     if version=='analytics-contextual-mechanisms-2.0':return 'analytics'
     raise ValueError('Неизвестная схема JSON. Нужен подготовленный JSON компании, новости или аналитики.')
 
-def install_uploads(db,folders,files,skip_invalid_news=False):
+def install_uploads(db,folders,files,skip_invalid_news=False,min_news_date=None):
     """Validate before replacing canonical files; optionally skip invalid news.
 
     Restore canonical files if the transactional importer rejects the batch. The
@@ -45,7 +46,7 @@ def install_uploads(db,folders,files,skip_invalid_news=False):
     Filenames supplied by a browser are never used as filesystem paths.
     """
     require(isinstance(files,list) and 0<len(files)<=100,'Выберите от 1 до 100 JSON-файлов.')
-    parsed=[];seen=set();rejected=[]
+    parsed=[];seen=set();rejected=[];expired=[]
     with tempfile.TemporaryDirectory(prefix='news-ui-') as temp:
         for index,f in enumerate(files):
             require(isinstance(f,dict) and isinstance(f.get('content'),str),'Файл должен содержать текст JSON.')
@@ -56,6 +57,9 @@ def install_uploads(db,folders,files,skip_invalid_news=False):
                 data=read_json(raw)
                 if isinstance(data,dict) and 'document_id' in data and ('source' in data or 'fragments' in data):kind='news'
                 kind=detect(data);data=VALIDATORS[kind](data)
+                if kind=='news' and min_news_date and data['document_date']<min_news_date:
+                    expired.append(dict(file=name,document_id=data['document_id'],date=data['document_date'],cutoff=min_news_date))
+                    continue
                 uid=data['subject_id'] if kind=='companies' else data['document_id'] if kind=='news' else data['document']['id']
                 require((kind,uid) not in seen,'В пакете повторяется идентификатор: '+uid);seen.add((kind,uid))
                 folder=Path(folders[kind]).resolve();folder.mkdir(parents=True,exist_ok=True)
@@ -85,7 +89,8 @@ def install_uploads(db,folders,files,skip_invalid_news=False):
             for kind,uid,p,data in parsed:
                 staged=Path(temp)/kind;staged.mkdir(exist_ok=True)
                 write_json(staged/(sha(uid)+'.json'),data);locations[kind]=staged
-            summary=import_all(db,locations,update_existing=True,skip_invalid_news=skip_invalid_news)
+            summary=import_all(db,locations,update_existing=True,skip_invalid_news=skip_invalid_news,min_news_date=min_news_date)
+            if expired:summary['expired_news']=expired
             summary['rejected_news'].extend(rejected);summary['rejected_count']=len(summary['rejected_news'])
             # Rejected documents must not become canonical input files.
             failed={Path(r['file']).stem for r in summary['rejected_news'] if Path(r['file']).parent==Path(temp)/'news'}
@@ -110,6 +115,7 @@ def install_uploads(db,folders,files,skip_invalid_news=False):
     return summary
 
 class Application:
+    operations = {'import', 'search', 'complete'}
     def __init__(self,config,db=None,model=None,output=None):
         self.config=read_json(config);self.db=initialize(resolve(db or self.config['database']))
         self.model_path=resolve(model or os.environ.get('EMBEDDING_MODEL_PATH') or self.config['model_path'])
@@ -119,15 +125,18 @@ class Application:
         # Import those without replacing existing versions; inference starts on demand.
         initial={k:p for k,p in self.folders.items() if p.is_dir() and any(p.rglob('*.json'))}
         self.skip_invalid_news=self.config.get('import',{}).get('skip_invalid_news',False)
-        self.startup_import=import_all(self.db,initial,skip_invalid_news=self.skip_invalid_news) if initial else None
+        self.startup_import=import_all(self.db,initial,skip_invalid_news=self.skip_invalid_news,min_news_date=self.news_min_date()) if initial else None
         # Source folders can be sealed datasets; uploads always go to managed folders.
         self.folders.update({k:resolve(v) for k,v in self.config.get('upload_folders',{}).items()})
         managed={k:p for k,p in self.folders.items() if p.is_dir() and p!=initial.get(k) and any(p.rglob('*.json'))}
-        if managed:import_all(self.db,managed,skip_invalid_news=self.skip_invalid_news)
+        if managed:import_all(self.db,managed,skip_invalid_news=self.skip_invalid_news,min_news_date=self.news_min_date())
         if self.startup_import and self.startup_import['rejected_count']:
             write_json(Path(self.db).parent/'import-logs/startup-latest.json',self.startup_import)
         self.settings=dict(self.config.get('retrieval',{}))
         self.pool=ThreadPoolExecutor(max_workers=1);self.lock=threading.Lock();self.jobs={};self.active=None
+
+    def news_min_date(self):
+        return news_cutoff(self.config.get('pipeline',{}).get('news_retention_days'))
 
     def state(self):
         with connect(self.db,True) as c:
@@ -146,7 +155,7 @@ class Application:
         with self.lock:return copy.deepcopy(self.jobs.get(jid))
 
     def start(self,kind,payload):
-        require(kind in {'import','search','complete'},'Неизвестная операция.')
+        require(kind in self.operations,'Неизвестная операция.')
         with self.lock:
             if self.active and self.jobs[self.active]['status']=='running':raise BlockingIOError('Дождитесь завершения текущей операции.')
             jid=uuid4().hex
@@ -169,7 +178,7 @@ class Application:
                 return
             if kind=='import':
                 self._update(jid,phase='Проверяем JSON и сохраняем материалы…')
-                stages['import']=install_uploads(self.db,self.folders,payload.get('files'),skip_invalid_news=self.skip_invalid_news)
+                stages['import']=install_uploads(self.db,self.folders,payload.get('files'),skip_invalid_news=self.skip_invalid_news,min_news_date=self.news_min_date())
                 self._update(jid,phase='Материалы сохранены. Подготавливаем их к поиску…',import_result=stages['import'])
             else:
                 require(isinstance(payload.get('company_id'),str),'Выберите компанию.')
@@ -196,6 +205,7 @@ class Application:
             self._update(jid,status='failed',phase='Не удалось завершить операцию.',error=str(exc))
 
 class Handler(BaseHTTPRequestHandler):
+    static_dir=STATIC
     server_version='NewsAnalyticsLocal/1.0'
     def send(self,status,body,content_type='application/json; charset=utf-8',attachment=None):
         if not isinstance(body,bytes):body=dumps(body).encode('utf-8')
@@ -211,7 +221,7 @@ class Handler(BaseHTTPRequestHandler):
             if path in ('/','/app.js','/style.css'):
                 name='index.html' if path=='/' else path[1:]
                 content_type={'index.html':'text/html','app.js':'text/javascript','style.css':'text/css'}[name]
-                return self.send(200,(STATIC/name).read_bytes(),content_type+'; charset=utf-8')
+                return self.send(200,(self.static_dir/name).read_bytes(),content_type+'; charset=utf-8')
             if path=='/api/state':return self.send(200,app.state())
             if path=='/api/history':
                 company=parse_qs(urlsplit(self.path).query).get('company',[None])[0]
@@ -246,7 +256,7 @@ class Handler(BaseHTTPRequestHandler):
             length=int(self.headers.get('Content-Length','0'));require(0<length<=MAX_BODY,'Максимальный размер запроса — 32 МБ.')
             payload=json.loads(self.rfile.read(length));require(isinstance(payload,dict),'Ожидается JSON-объект.')
             path=urlsplit(self.path).path
-            require(path in {'/api/import','/api/search','/api/complete'},'Неизвестная операция.')
+            require(path in {'/api/'+operation for operation in self.server.app.operations},'Неизвестная операция.')
             self.send(202,self.server.app.start(path.rsplit('/',1)[1],payload))
         except BlockingIOError as exc:self.send(409,{'error':str(exc)})
         except (ValueError,KeyError,TypeError) as exc:self.send(400,{'error':str(exc)})

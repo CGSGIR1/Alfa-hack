@@ -18,7 +18,7 @@ import re
 import time
 from pathlib import Path
 
-from ..llm import LLMClient, LLMError
+from ..llm import LLMClient, LLMError, LLMResponseError
 from .quotes import fix_quote, normalize, uncovered_sentences
 from .validate import Report, normalize_document
 
@@ -181,7 +181,7 @@ def prepare_news(request: dict, client: LLMClient | None = None, model: str | No
 
     raw = call(_messages(json.dumps(request, ensure_ascii=False)), "prepare_news")
     if "error" in raw and "fragments" not in raw:
-        raise LLMError(f"Модель отказалась обрабатывать вход: {raw['error']}")
+        raise LLMResponseError(f"Модель отказалась обрабатывать вход: {raw['error']}")
     doc = normalize_document(raw, request, report)
     first = {"fragments": len(doc["fragments"]), "quotes": dict(report.quotes)}
     uncovered = _uncovered(doc, blocks)

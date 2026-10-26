@@ -1,0 +1,940 @@
+{
+  "schema_version": "company-profile-2.0",
+  "subject_id": "U_212593",
+  "subject_type": "company",
+  "profile_text": "## Компания U_212593\n\nКомпания занимается деятельностью «Деятельность ресторанов и кафе с полным ресторанным обслуживанием, кафетериев, ресторанов быстрого питания и самообслуживания» (ОКВЭД 56.10.1). Зарегистрирована: г. Москва. Форма собственности — собственность иностранных граждан и лиц без гражданства. Возраст компании — 8–15 лет. Стадия развития бизнеса по оценке банка — «Бизнес в новой реальности». По данным ФНС, численность работников — более 251 человек.\n\n### Масштаб и положение в отрасли\n\nГодовая выручка — 26,9 млрд ₽. Это крупный бизнес по критерию кейса (выручка от 15 млрд ₽). По выручке компания на 1-м месте из 4882 компаний с ОКВЭД 56.10 в данных банка, на неё приходится 4% их суммарной выручки (это доля внутри выборки банка, а не рыночная доля).\n\n### Группа компаний\n\nВходит в группу компаний group_132690_sb: 3 компании в 1 регионе, суммарная выручка группы — 27,2 млрд ₽, доля компании — 99%. Основные направления группы по выручке: общепит (99%).\n\n### Отношения с банком\n\nСтатус — действующий клиент банка. Использует продукты банка: расчётно-кассовое обслуживание, лизинг. Не использует: кредиты, депозиты, зарплатный проект, банковские гарантии, факторинг. Чувствительность к ключевой ставке: рост ставки увеличивает стоимость заёмного финансирования, снижение — уменьшает.\n\n### Внешнеэкономическая деятельность\n\nСведений о внешнеэкономической деятельности нет.\n\n### Контрагенты (по платежам через банк)\n\nПоставщики (исходящие платежи): 32 контрагента, 792 млн ₽. Отрасли внешних контрагентов (по сумме платежей с известной отраслью): оптовая торговля (85%), операции с недвижимостью (6%), реклама и маркетинг (4%). Регионы внешних контрагентов: Москва (89%), Башкортостан (Республика) (6%), Республика Татарстан (3%). Крупнейшие внешние контрагенты с известной отраслью: U_46544 — деятельность агентов по оптовой торговле прочими видами машин и промышленным оборудованием, 39%; U_258279 — торговля оптовая неспециализированная, 12%; U_36901 — аренда и управление собственным или арендованным нежилым недвижимым имуществом, 3%.\n\nПокупатели (входящие платежи): 3 контрагента, 819 тыс. ₽. Отрасли внешних контрагентов (по сумме платежей с известной отраслью): оптовая торговля (100%). Регионы внешних контрагентов: Москва (100%). Крупнейшие внешние контрагенты с известной отраслью: U_46544 — деятельность агентов по оптовой торговле прочими видами машин и промышленным оборудованием, 90%.\n\n### Связи и отметки\n\nВ данных стоит признак ключевого собственника (NEGATIVEMARK=1).\n\n### Факторы влияния (выведены правилами из признаков выше, не факты)\n\n- продукты: ОКВЭД 56 (основной вид деятельности) [отрасль]\n- рынок_труда: ОКВЭД 56 (основной вид деятельности) [отрасль]\n- спрос: ОКВЭД 56 (основной вид деятельности) [отрасль]\n- ставка: CL_PRODUCT_LEA_MARK=1 (лизинг) [продукты банка]\n\n### Ограничения данных\n\n- Платежи отражают только операции, видимые банку, а не весь оборот компании.",
+  "facts": {
+    "annual_revenue": {
+      "currency": null,
+      "source_value": "26859562976.0",
+      "unit": null,
+      "year": null
+    },
+    "bank_client_status_source": "CLIENT",
+    "banking_product_flags": {
+      "settlement_services": true,
+      "loans": false,
+      "leasing": true,
+      "deposits": false,
+      "payroll_project": false,
+      "bank_guarantees": false,
+      "factoring": false
+    },
+    "business_stage_source": "Бизнес в новой реальности",
+    "company_age_years_band": "8-15",
+    "employees": {
+      "fns_band": "Более 251",
+      "spark_band": null
+    },
+    "foreign_trade": {
+      "countries": [],
+      "direction": null,
+      "fts_record_present": false,
+      "interpretation": "Флаг 0 означает отсутствие записи в этих данных, а не доказанное отсутствие ВЭД.",
+      "settlement_currencies": null
+    },
+    "group_id": "group_132690_sb",
+    "industry": {
+      "main_okved_code": "56.10.1",
+      "main_okved_name": "Деятельность ресторанов и кафе с полным ресторанным обслуживанием, кафетериев, ресторанов быстрого питания и самообслуживания"
+    },
+    "key_owner_marker": true,
+    "organization_type_source": "КОММ_ОРГ",
+    "ownership_form_source": "СОБСТВЕННОСТЬ ИНОСТРАННЫХ ГРАЖДАН И ЛИЦ БЕЗ ГРАЖДАНСТВА",
+    "registration": {
+      "city": "г. Москва",
+      "region": "Москва"
+    },
+    "counterparties": {
+      "suppliers_industry_mix": [
+        {
+          "role": "supplier",
+          "division": "46",
+          "name": "оптовая торговля",
+          "share": 0.8541564195870418
+        },
+        {
+          "role": "supplier",
+          "division": "68",
+          "name": "операции с недвижимостью",
+          "share": 0.06266212495688574
+        },
+        {
+          "role": "supplier",
+          "division": "73",
+          "name": "реклама и маркетинг",
+          "share": 0.03831608422436155
+        },
+        {
+          "role": "supplier",
+          "division": "42",
+          "name": "строительство инженерных сооружений",
+          "share": 0.028309492078199588
+        },
+        {
+          "role": "supplier",
+          "division": "38",
+          "name": "обращение с отходами",
+          "share": 0.014012902646450751
+        }
+      ],
+      "buyers_industry_mix": [
+        {
+          "role": "buyer",
+          "division": "46",
+          "name": "оптовая торговля",
+          "share": 1.0
+        }
+      ],
+      "suppliers_region_mix": [
+        {
+          "role": "supplier",
+          "region": "Москва",
+          "share": 0.8932317231216975
+        },
+        {
+          "role": "supplier",
+          "region": "Башкортостан (Республика)",
+          "share": 0.0564802021319368
+        },
+        {
+          "role": "supplier",
+          "region": "Республика Татарстан",
+          "share": 0.03449141490314851
+        }
+      ],
+      "buyers_region_mix": [
+        {
+          "role": "buyer",
+          "region": "Москва",
+          "share": 1.0
+        }
+      ],
+      "classified_share": {
+        "suppliers": 0.6188,
+        "buyers": 0.8962
+      },
+      "industry_mix_denominator": "Только контрагенты с известной отраслью вне своей группы; это не доля всех платежей.",
+      "observed_counts": {
+        "payers": 3,
+        "beneficiaries": 32
+      }
+    },
+    "group_summary": {
+      "members_count": 3,
+      "revenue_share": 0.9881678725899302,
+      "industries": [
+        {
+          "division": "56",
+          "name": "общепит",
+          "share": 0.9881678725899302
+        },
+        {
+          "division": "68",
+          "name": "операции с недвижимостью",
+          "share": 0.011832127410069794
+        }
+      ],
+      "region_count": 1
+    },
+    "linked_persons_summary": {
+      "known_links_count": 0,
+      "linked_companies_outside_group_count": 0,
+      "interpretation": "Связи по физлицам не устанавливают роли владельца или руководителя и контроль."
+    }
+  },
+  "limitations": [
+    "Компания обезличена; сопоставление её названия с внешними новостями не установлено.",
+    "Год, валюта и единица измерения выручки не определены в предоставленных данных.",
+    "Продуктовые флаги относятся к данным банка; нулевой флаг не доказывает отсутствие продукта в других банках.",
+    "ОКВЭД не устанавливает фактический ассортимент и конкретные операции компании.",
+    "Платежи отражают только операции, видимые банку; период и валюта платежей не установлены.",
+    "Платежи отражают только операции, видимые банку, а не весь оборот компании."
+  ],
+  "queries": [
+    {
+      "id": "U_212593_Q01",
+      "channel": "industry:56.10",
+      "category": "industry",
+      "text": "Общепит: спрос, обороты, цены меню, конкуренция сетей кафе и ресторанов, закрытия и банкротства",
+      "weight": 1.0,
+      "evidence_status": "grounded_topic",
+      "source_refs": [
+        "/facts/industry"
+      ],
+      "assumptions": [],
+      "limitations": [],
+      "provenance": {
+        "origin": "llm",
+        "original_sources": [
+          "MAINOKVED_CODE=56.10.1"
+        ],
+        "rationale": "Уточнено под профиль: рестораны и кафе с полным обслуживанием и фастфуд; регулирование вынесено в отдельный аспект, добавлены конкуренция и закрытия сетей."
+      }
+    },
+    {
+      "id": "U_212593_Q02",
+      "channel": "ставка",
+      "category": "finance",
+      "text": "Ключевая ставка ЦБ, стоимость лизинга и кредитов на обновление оборудования ресторанов",
+      "weight": 1.0,
+      "evidence_status": "grounded_topic",
+      "source_refs": [
+        "/facts/banking_product_flags"
+      ],
+      "assumptions": [],
+      "limitations": [],
+      "provenance": {
+        "origin": "llm",
+        "original_sources": [
+          "CL_PRODUCT_LEA_MARK=1 (лизинг)"
+        ],
+        "rationale": "Компания использует лизинг и не использует кредиты; аспект сужен до стоимости лизинга и заёмного финансирования под кухонное и торговое оборудование."
+      }
+    },
+    {
+      "id": "U_212593_Q03",
+      "channel": "продукты",
+      "category": "commodities",
+      "text": "Цены на мясо, птицу, рыбу, овощи, муку и молочные продукты для кухни ресторанов",
+      "weight": 0.8,
+      "evidence_status": "grounded_topic",
+      "source_refs": [
+        "/facts/industry"
+      ],
+      "assumptions": [],
+      "limitations": [],
+      "provenance": {
+        "origin": "llm",
+        "original_sources": [
+          "ОКВЭД 56 (основной вид деятельности)"
+        ],
+        "rationale": "Продовольственный рынок конкретизирован до ключевых закупочных категорий кухни общепита (ОКВЭД 56)."
+      }
+    },
+    {
+      "id": "U_212593_Q04",
+      "channel": "supplier:46",
+      "category": "supply_chain",
+      "text": "Оптовая торговля продуктами и оборудованием: цены, перебои поставок, финансовое положение поставщиков",
+      "weight": 0.5,
+      "evidence_status": "grounded_topic",
+      "source_refs": [
+        "/facts/counterparties"
+      ],
+      "assumptions": [],
+      "limitations": [],
+      "provenance": {
+        "origin": "llm",
+        "original_sources": [
+          "поставщики из сферы «оптовая торговля» — 85% платежей"
+        ],
+        "rationale": "85% исходящих платежей идут в оптовую торговлю; аспект сужен до продуктов и оборудования для ресторанов."
+      }
+    },
+    {
+      "id": "U_212593_Q05",
+      "channel": "рынок_труда",
+      "category": "labor",
+      "text": "Рынок труда общепита Москвы: зарплаты, дефицит поваров и официантов, миграция персонала",
+      "weight": 0.4,
+      "evidence_status": "grounded_topic",
+      "source_refs": [
+        "/facts/employees",
+        "/facts/banking_product_flags/payroll_project"
+      ],
+      "assumptions": [],
+      "limitations": [],
+      "provenance": {
+        "origin": "llm",
+        "original_sources": [
+          "ОКВЭД 56 (основной вид деятельности)"
+        ],
+        "rationale": "Численность более 251 человек, отрасль трудоёмкая; аспект сужен до профессий общепита и московского рынка труда."
+      }
+    },
+    {
+      "id": "U_212593_Q06",
+      "channel": "region:Москва",
+      "category": "region",
+      "text": "Москва: местная экономика, аренда помещений, городские ограничения и меры поддержки общепита",
+      "weight": 0.4,
+      "evidence_status": "grounded_topic",
+      "source_refs": [
+        "/facts/registration"
+      ],
+      "assumptions": [],
+      "limitations": [],
+      "provenance": {
+        "origin": "llm",
+        "original_sources": [
+          "REGION=Москва",
+          "CITY=г. Москва"
+        ],
+        "rationale": "Компания зарегистрирована и ведёт деятельность в Москве; добавлены аренда нежилых помещений и городские ограничения для точек общепита."
+      }
+    },
+    {
+      "id": "U_212593_Q07",
+      "channel": "llm:регулирование_общепита",
+      "category": "regulation",
+      "text": "Госрегулирование общепита: проверки Роспотребнадзора, маркировка, лицензии на алкоголь, налоги и сборы",
+      "weight": 0.5,
+      "evidence_status": "hypothesis",
+      "source_refs": [
+        "/facts/industry"
+      ],
+      "assumptions": [
+        "Отрасль общепита сильно зависит от санитарных требований, лицензирования алкоголя и налогового режима; влияет на издержки и режим работы точек."
+      ],
+      "limitations": [],
+      "provenance": {
+        "origin": "llm",
+        "original_sources": [
+          "MAINOKVED_CODE=56.10.1",
+          "MAINOKVED_NAME=Деятельность ресторанов и кафе с полным ресторанным обслуживанием, кафетериев, ресторанов быстрого питания и самообслуживания",
+          "ОКВЭД 56 (основной вид деятельности)"
+        ],
+        "rationale": "Отрасль общепита сильно зависит от санитарных требований, лицензирования алкоголя и налогового режима; влияет на издержки и режим работы точек."
+      }
+    },
+    {
+      "id": "U_212593_Q08",
+      "channel": "llm:потребительский_спрос",
+      "category": "sales",
+      "text": "Спрос на питание вне дома: доходы населения, туристический поток, доставка и агрегаторы заказов",
+      "weight": 0.5,
+      "evidence_status": "hypothesis",
+      "source_refs": [
+        "/facts/counterparties"
+      ],
+      "assumptions": [
+        "Конечные потребители — основной источник выручки ресторанов; спрос зависит от доходов, туризма и каналов доставки."
+      ],
+      "limitations": [],
+      "provenance": {
+        "origin": "llm",
+        "original_sources": [
+          "ОКВЭД 56 (основной вид деятельности)",
+          "REGION=Москва",
+          "CITY=г. Москва"
+        ],
+        "rationale": "Конечные потребители — основной источник выручки ресторанов; спрос зависит от доходов, туризма и каналов доставки."
+      }
+    },
+    {
+      "id": "U_212593_Q09",
+      "channel": "llm:энерготарифы",
+      "category": "commodities",
+      "text": "Тарифы на электроэнергию, газ, тепло и воду для предприятий общественного питания",
+      "weight": 0.5,
+      "evidence_status": "hypothesis",
+      "source_refs": [
+        "/facts/industry"
+      ],
+      "assumptions": [
+        "Коммунальные ресурсы — значимая статья операционных расходов ресторанов и кафе; рост тарифов давит на маржу."
+      ],
+      "limitations": [],
+      "provenance": {
+        "origin": "llm",
+        "original_sources": [
+          "ОКВЭД 56 (основной вид деятельности)",
+          "REGION=Москва"
+        ],
+        "rationale": "Коммунальные ресурсы — значимая статья операционных расходов ресторанов и кафе; рост тарифов давит на маржу."
+      }
+    },
+    {
+      "id": "U_212593_Q10",
+      "channel": "llm:импорт_и_пошлины",
+      "category": "foreign_trade",
+      "text": "Импорт продуктов, алкоголя и оборудования: пошлины, санкции, колебания курса рубля",
+      "weight": 0.5,
+      "evidence_status": "hypothesis",
+      "source_refs": [
+        "/facts/foreign_trade"
+      ],
+      "assumptions": [
+        "Собственность иностранных граждан и импортные позиции меню и оборудования делают компанию чувствительной к пошлинам, санкциям и курсу."
+      ],
+      "limitations": [],
+      "provenance": {
+        "origin": "llm",
+        "original_sources": [
+          "OKFS_NAME=СОБСТВЕННОСТЬ ИНОСТРАННЫХ ГРАЖДАН И ЛИЦ БЕЗ ГРАЖДАНСТВА",
+          "ОКВЭД 56 (основной вид деятельности)"
+        ],
+        "rationale": "Собственность иностранных граждан и импортные позиции меню и оборудования делают компанию чувствительной к пошлинам, санкциям и курсу."
+      }
+    },
+    {
+      "id": "U_212593_Q11",
+      "channel": "llm:группа_компаний",
+      "category": "related",
+      "text": "Группа компаний общепита: сделки, реорганизации, финансовое положение связанных компаний",
+      "weight": 0.5,
+      "evidence_status": "hypothesis",
+      "source_refs": [
+        "/facts/group_id"
+      ],
+      "assumptions": [
+        "Компания входит в группу из трёх компаний с общей выручкой 27,2 млрд ₽ и даёт 99% её выручки; события группы и общих собственников значимы."
+      ],
+      "limitations": [],
+      "provenance": {
+        "origin": "llm",
+        "original_sources": [
+          "GROUP_ID=group_132690_sb",
+          "NEGATIVEMARK=1"
+        ],
+        "rationale": "Компания входит в группу из трёх компаний с общей выручкой 27,2 млрд ₽ и даёт 99% её выручки; события группы и общих собственников значимы."
+      }
+    },
+    {
+      "id": "U_212593_Q12",
+      "channel": "llm:инфляция_и_курс",
+      "category": "macro",
+      "text": "Инфляция и курс рубля: давление на себестоимость продуктов и цены меню ресторанов",
+      "weight": 0.5,
+      "evidence_status": "hypothesis",
+      "source_refs": [
+        "/facts/foreign_trade",
+        "/facts/banking_product_flags"
+      ],
+      "assumptions": [
+        "Продовольственная инфляция и курс рубля определяют закупочные цены и возможность повышать цены меню без потери гостей."
+      ],
+      "limitations": [],
+      "provenance": {
+        "origin": "llm",
+        "original_sources": [
+          "ОКВЭД 56 (основной вид деятельности)",
+          "REVENUE_COMPANY=26859562976.0"
+        ],
+        "rationale": "Продовольственная инфляция и курс рубля определяют закупочные цены и возможность повышать цены меню без потери гостей."
+      }
+    },
+    {
+      "id": "U_212593_Q13",
+      "channel": "llm:технологии_и_форматы",
+      "category": "industry",
+      "text": "Технологии и форматы общепита: автоматизация, агрегаторы доставки, новые сети и франшизы",
+      "weight": 0.5,
+      "evidence_status": "hypothesis",
+      "source_refs": [
+        "/facts/industry"
+      ],
+      "assumptions": [
+        "Крупный игрок рынка общепита конкурирует форматами и каналами продаж; технологии и франшизные сети меняют расстановку сил в отрасли."
+      ],
+      "limitations": [],
+      "provenance": {
+        "origin": "llm",
+        "original_sources": [
+          "ОКВЭД 56 (основной вид деятельности)",
+          "ECO_MARK_LABEL=Бизнес в новой реальности"
+        ],
+        "rationale": "Крупный игрок рынка общепита конкурирует форматами и каналами продаж; технологии и франшизные сети меняют расстановку сил в отрасли."
+      }
+    }
+  ],
+  "relationships": {
+    "payments": {
+      "currency": null,
+      "amount_unit": null,
+      "period_start": null,
+      "period_end": null,
+      "direction_rules": {
+        "incoming": "BENEFICIARY == company_id",
+        "outgoing": "PAYER == company_id",
+        "self_transfers": "Excluded"
+      },
+      "amount_share_denominator": "All observed amounts in the direction and selected scope, including unknown industries",
+      "count_share_denominator": "All observed PAY_CNT in the direction and selected scope",
+      "counterparty_roles": "Плательщик не обязательно покупатель; получатель не обязательно поставщик.",
+      "same_group_rule": "Excludes counterparties with the same known GROUP_ID; unknown-group counterparties remain.",
+      "summaries": {
+        "all_observed": {
+          "incoming": {
+            "source_rows": 3,
+            "unique_counterparties": 3,
+            "pay_amt_total": "819000.0",
+            "pay_cnt_total": 8,
+            "aggregates": {
+              "okved_division": [
+                {
+                  "key": "46",
+                  "pay_amt": "734000.0",
+                  "pay_cnt": 3,
+                  "source_rows": 1,
+                  "share_amount_pct": 89.62148962148962,
+                  "share_count_pct": 37.5,
+                  "share_amount_among_known_pct": 100.0,
+                  "share_count_among_known_pct": 100.0
+                },
+                {
+                  "key": "(unknown)",
+                  "pay_amt": "85000.0",
+                  "pay_cnt": 5,
+                  "source_rows": 2,
+                  "share_amount_pct": 10.378510378510379,
+                  "share_count_pct": 62.5,
+                  "share_amount_among_known_pct": null,
+                  "share_count_among_known_pct": null
+                }
+              ]
+            },
+            "coverage": {
+              "okved_division": {
+                "matched_amount_pct": 89.62148962148962,
+                "unknown_amount_pct": 10.378510378510379,
+                "matched_count_pct": 37.5,
+                "unknown_count_pct": 62.5
+              }
+            }
+          },
+          "outgoing": {
+            "source_rows": 32,
+            "unique_counterparties": 32,
+            "pay_amt_total": "791809000.0",
+            "pay_cnt_total": 2003,
+            "aggregates": {
+              "okved_division": [
+                {
+                  "key": "46",
+                  "pay_amt": "418517000.0",
+                  "pay_cnt": 982,
+                  "source_rows": 5,
+                  "share_amount_pct": 52.8558023462729,
+                  "share_count_pct": 49.02646030953569,
+                  "share_amount_among_known_pct": 85.41564195870419,
+                  "share_count_among_known_pct": 73.72372372372372
+                },
+                {
+                  "key": "(unknown)",
+                  "pay_amt": "301832000.0",
+                  "pay_cnt": 671,
+                  "source_rows": 18,
+                  "share_amount_pct": 38.11929392062985,
+                  "share_count_pct": 33.49975037443834,
+                  "share_amount_among_known_pct": null,
+                  "share_count_among_known_pct": null
+                },
+                {
+                  "key": "68",
+                  "pay_amt": "30703000.0",
+                  "pay_cnt": 206,
+                  "source_rows": 2,
+                  "share_amount_pct": 3.877576536765811,
+                  "share_count_pct": 10.284573140289567,
+                  "share_amount_among_known_pct": 6.266212495688573,
+                  "share_count_among_known_pct": 15.465465465465467
+                },
+                {
+                  "key": "73",
+                  "pay_amt": "18774000.0",
+                  "pay_cnt": 19,
+                  "source_rows": 1,
+                  "share_amount_pct": 2.3710263460001086,
+                  "share_count_pct": 0.9485771342985523,
+                  "share_amount_among_known_pct": 3.831608422436155,
+                  "share_count_among_known_pct": 1.4264264264264264
+                },
+                {
+                  "key": "42",
+                  "pay_amt": "13871000.0",
+                  "pay_cnt": 19,
+                  "source_rows": 1,
+                  "share_amount_pct": 1.7518113585473265,
+                  "share_count_pct": 0.9485771342985523,
+                  "share_amount_among_known_pct": 2.830949207819959,
+                  "share_count_among_known_pct": 1.4264264264264264
+                },
+                {
+                  "key": "38",
+                  "pay_amt": "6866000.0",
+                  "pay_cnt": 82,
+                  "source_rows": 1,
+                  "share_amount_pct": 0.8671283099838472,
+                  "share_count_pct": 4.093859211183226,
+                  "share_amount_among_known_pct": 1.4012902646450751,
+                  "share_count_among_known_pct": 6.156156156156156
+                },
+                {
+                  "key": "31",
+                  "pay_amt": "874000.0",
+                  "pay_cnt": 7,
+                  "source_rows": 1,
+                  "share_amount_pct": 0.11038015481006151,
+                  "share_count_pct": 0.3494757863205192,
+                  "share_amount_among_known_pct": 0.17837571967663787,
+                  "share_count_among_known_pct": 0.5255255255255256
+                },
+                {
+                  "key": "49",
+                  "pay_amt": "346000.0",
+                  "pay_cnt": 9,
+                  "source_rows": 1,
+                  "share_amount_pct": 0.04369740682412046,
+                  "share_count_pct": 0.44932601098352476,
+                  "share_amount_among_known_pct": 0.07061555950585435,
+                  "share_count_among_known_pct": 0.6756756756756757
+                },
+                {
+                  "key": "69",
+                  "pay_amt": "22000.0",
+                  "pay_cnt": 5,
+                  "source_rows": 1,
+                  "share_amount_pct": 0.002778447832747544,
+                  "share_count_pct": 0.24962556165751376,
+                  "share_amount_among_known_pct": 0.004490006673782647,
+                  "share_count_among_known_pct": 0.37537537537537535
+                },
+                {
+                  "key": "63",
+                  "pay_amt": "4000.0",
+                  "pay_cnt": 3,
+                  "source_rows": 1,
+                  "share_amount_pct": 0.0005051723332268261,
+                  "share_count_pct": 0.14977533699450823,
+                  "share_amount_among_known_pct": 0.0008163648497786631,
+                  "share_count_among_known_pct": 0.22522522522522523
+                }
+              ]
+            },
+            "coverage": {
+              "okved_division": {
+                "matched_amount_pct": 61.88070607937015,
+                "unknown_amount_pct": 38.11929392062985,
+                "matched_count_pct": 66.50024962556166,
+                "unknown_count_pct": 33.49975037443834
+              }
+            }
+          }
+        },
+        "excluding_same_group": {
+          "incoming": {
+            "source_rows": 3,
+            "unique_counterparties": 3,
+            "pay_amt_total": "819000.0",
+            "pay_cnt_total": 8,
+            "aggregates": {
+              "okved_division": [
+                {
+                  "key": "46",
+                  "pay_amt": "734000.0",
+                  "pay_cnt": 3,
+                  "source_rows": 1,
+                  "share_amount_pct": 89.62148962148962,
+                  "share_count_pct": 37.5,
+                  "share_amount_among_known_pct": 100.0,
+                  "share_count_among_known_pct": 100.0
+                },
+                {
+                  "key": "(unknown)",
+                  "pay_amt": "85000.0",
+                  "pay_cnt": 5,
+                  "source_rows": 2,
+                  "share_amount_pct": 10.378510378510379,
+                  "share_count_pct": 62.5,
+                  "share_amount_among_known_pct": null,
+                  "share_count_among_known_pct": null
+                }
+              ]
+            },
+            "coverage": {
+              "okved_division": {
+                "matched_amount_pct": 89.62148962148962,
+                "unknown_amount_pct": 10.378510378510379,
+                "matched_count_pct": 37.5,
+                "unknown_count_pct": 62.5
+              }
+            }
+          },
+          "outgoing": {
+            "source_rows": 32,
+            "unique_counterparties": 32,
+            "pay_amt_total": "791809000.0",
+            "pay_cnt_total": 2003,
+            "aggregates": {
+              "okved_division": [
+                {
+                  "key": "46",
+                  "pay_amt": "418517000.0",
+                  "pay_cnt": 982,
+                  "source_rows": 5,
+                  "share_amount_pct": 52.8558023462729,
+                  "share_count_pct": 49.02646030953569,
+                  "share_amount_among_known_pct": 85.41564195870419,
+                  "share_count_among_known_pct": 73.72372372372372
+                },
+                {
+                  "key": "(unknown)",
+                  "pay_amt": "301832000.0",
+                  "pay_cnt": 671,
+                  "source_rows": 18,
+                  "share_amount_pct": 38.11929392062985,
+                  "share_count_pct": 33.49975037443834,
+                  "share_amount_among_known_pct": null,
+                  "share_count_among_known_pct": null
+                },
+                {
+                  "key": "68",
+                  "pay_amt": "30703000.0",
+                  "pay_cnt": 206,
+                  "source_rows": 2,
+                  "share_amount_pct": 3.877576536765811,
+                  "share_count_pct": 10.284573140289567,
+                  "share_amount_among_known_pct": 6.266212495688573,
+                  "share_count_among_known_pct": 15.465465465465467
+                },
+                {
+                  "key": "73",
+                  "pay_amt": "18774000.0",
+                  "pay_cnt": 19,
+                  "source_rows": 1,
+                  "share_amount_pct": 2.3710263460001086,
+                  "share_count_pct": 0.9485771342985523,
+                  "share_amount_among_known_pct": 3.831608422436155,
+                  "share_count_among_known_pct": 1.4264264264264264
+                },
+                {
+                  "key": "42",
+                  "pay_amt": "13871000.0",
+                  "pay_cnt": 19,
+                  "source_rows": 1,
+                  "share_amount_pct": 1.7518113585473265,
+                  "share_count_pct": 0.9485771342985523,
+                  "share_amount_among_known_pct": 2.830949207819959,
+                  "share_count_among_known_pct": 1.4264264264264264
+                },
+                {
+                  "key": "38",
+                  "pay_amt": "6866000.0",
+                  "pay_cnt": 82,
+                  "source_rows": 1,
+                  "share_amount_pct": 0.8671283099838472,
+                  "share_count_pct": 4.093859211183226,
+                  "share_amount_among_known_pct": 1.4012902646450751,
+                  "share_count_among_known_pct": 6.156156156156156
+                },
+                {
+                  "key": "31",
+                  "pay_amt": "874000.0",
+                  "pay_cnt": 7,
+                  "source_rows": 1,
+                  "share_amount_pct": 0.11038015481006151,
+                  "share_count_pct": 0.3494757863205192,
+                  "share_amount_among_known_pct": 0.17837571967663787,
+                  "share_count_among_known_pct": 0.5255255255255256
+                },
+                {
+                  "key": "49",
+                  "pay_amt": "346000.0",
+                  "pay_cnt": 9,
+                  "source_rows": 1,
+                  "share_amount_pct": 0.04369740682412046,
+                  "share_count_pct": 0.44932601098352476,
+                  "share_amount_among_known_pct": 0.07061555950585435,
+                  "share_count_among_known_pct": 0.6756756756756757
+                },
+                {
+                  "key": "69",
+                  "pay_amt": "22000.0",
+                  "pay_cnt": 5,
+                  "source_rows": 1,
+                  "share_amount_pct": 0.002778447832747544,
+                  "share_count_pct": 0.24962556165751376,
+                  "share_amount_among_known_pct": 0.004490006673782647,
+                  "share_count_among_known_pct": 0.37537537537537535
+                },
+                {
+                  "key": "63",
+                  "pay_amt": "4000.0",
+                  "pay_cnt": 3,
+                  "source_rows": 1,
+                  "share_amount_pct": 0.0005051723332268261,
+                  "share_count_pct": 0.14977533699450823,
+                  "share_amount_among_known_pct": 0.0008163648497786631,
+                  "share_count_among_known_pct": 0.22522522522522523
+                }
+              ]
+            },
+            "coverage": {
+              "okved_division": {
+                "matched_amount_pct": 61.88070607937015,
+                "unknown_amount_pct": 38.11929392062985,
+                "matched_count_pct": 66.50024962556166,
+                "unknown_count_pct": 33.49975037443834
+              }
+            }
+          }
+        }
+      },
+      "rows": [
+        {
+          "payer_id": "U_46544",
+          "beneficiary_id": "U_212593",
+          "amount_source_value": "734000.0",
+          "payment_count": 3
+        },
+        {
+          "payer_id": "U_258557",
+          "beneficiary_id": "U_212593",
+          "amount_source_value": "82000.0",
+          "payment_count": 4
+        },
+        {
+          "payer_id": "U_84713",
+          "beneficiary_id": "U_212593",
+          "amount_source_value": "3000.0",
+          "payment_count": 1
+        },
+        {
+          "payer_id": "U_212593",
+          "beneficiary_id": "U_46544",
+          "amount_source_value": "309782000.0",
+          "payment_count": 364
+        },
+        {
+          "payer_id": "U_212593",
+          "beneficiary_id": "U_10644",
+          "amount_source_value": "126858000.0",
+          "payment_count": 188
+        },
+        {
+          "payer_id": "U_212593",
+          "beneficiary_id": "U_258279",
+          "amount_source_value": "93587000.0",
+          "payment_count": 60
+        },
+        {
+          "payer_id": "U_212593",
+          "beneficiary_id": "U_46081",
+          "amount_source_value": "79477000.0",
+          "payment_count": 96
+        },
+        {
+          "payer_id": "U_212593",
+          "beneficiary_id": "U_20292",
+          "amount_source_value": "51955000.0",
+          "payment_count": 14
+        },
+        {
+          "payer_id": "U_212593",
+          "beneficiary_id": "U_36901",
+          "amount_source_value": "27674000.0",
+          "payment_count": 182
+        },
+        {
+          "payer_id": "U_212593",
+          "beneficiary_id": "U_40138",
+          "amount_source_value": "23032000.0",
+          "payment_count": 74
+        },
+        {
+          "payer_id": "U_212593",
+          "beneficiary_id": "U_56949",
+          "amount_source_value": "18774000.0",
+          "payment_count": 19
+        },
+        {
+          "payer_id": "U_212593",
+          "beneficiary_id": "U_38339",
+          "amount_source_value": "14659000.0",
+          "payment_count": 554
+        },
+        {
+          "payer_id": "U_212593",
+          "beneficiary_id": "U_35783",
+          "amount_source_value": "13871000.0",
+          "payment_count": 19
+        }
+      ],
+      "counterparty_directory": {
+        "U_46544": {
+          "main_okved_name": "Деятельность агентов по оптовой торговле прочими видами машин и промышленным оборудованием",
+          "main_okved_code": "46.14.9",
+          "group_id": "group_99961_sb",
+          "region": "Москва"
+        },
+        "U_258279": {
+          "main_okved_name": "Торговля оптовая неспециализированная",
+          "main_okved_code": "46.90",
+          "group_id": "group_96533_sb",
+          "region": "Москва"
+        },
+        "U_36901": {
+          "main_okved_name": "Аренда и управление собственным или арендованным нежилым недвижимым имуществом",
+          "main_okved_code": "68.20.2",
+          "group_id": "group_134584_sb",
+          "region": "Башкортостан (Республика)"
+        },
+        "U_56949": {
+          "main_okved_name": "Деятельность рекламных агентств прочая",
+          "main_okved_code": "73.11.9",
+          "group_id": "group_133163_sb",
+          "region": "Москва"
+        },
+        "U_38339": {
+          "main_okved_name": "Торговля оптовая машинами и оборудованием для производства пищевых продуктов, напитков и табачных изделий",
+          "main_okved_code": "46.69.4",
+          "group_id": "group_92404_sb",
+          "region": "Москва"
+        },
+        "U_35783": {
+          "main_okved_name": "Строительство автомобильных дорог и автомагистралей",
+          "main_okved_code": "42.11",
+          "group_id": "group_126635_sb",
+          "region": "Республика Татарстан"
+        }
+      },
+      "rows_scope": {
+        "aggregation": "Sum PAY_AMT and PAY_CNT per counterparty and direction",
+        "top_per_direction": 10,
+        "complete": false,
+        "self_transfers_excluded": true,
+        "complete_totals_path": "summaries"
+      }
+    }
+  },
+  "provenance": {
+    "company_source": {
+      "csv_file": "df_Uid_data_hack.csv",
+      "raw_fields": {
+        "SYNTHETIC_U": "U_212593",
+        "ORG_TYPE": "КОММ_ОРГ",
+        "OKFS_NAME": "СОБСТВЕННОСТЬ ИНОСТРАННЫХ ГРАЖДАН И ЛИЦ БЕЗ ГРАЖДАНСТВА",
+        "COMPANY_AGE_YEARS_GRADATION": "8-15",
+        "ECO_MARK_LABEL": "Бизнес в новой реальности",
+        "MAINOKVED_CODE": "56.10.1",
+        "MAINOKVED_NAME": "Деятельность ресторанов и кафе с полным ресторанным обслуживанием, кафетериев, ресторанов быстрого питания и самообслуживания",
+        "NEGATIVEMARK": 1,
+        "AMOUNT_WORKERS_FNS_GRADATION": "Более 251",
+        "AMOUNT_WORKERS_SPARK_GRADATION": null,
+        "CL_TYPE": "CLIENT",
+        "CL_PRODUCT_RKO_MARK": 1,
+        "CL_PRODUCT_GAR_MARK": 0,
+        "CL_PRODUCT_LOA_MARK": 0,
+        "CL_PRODUCT_LEA_MARK": 1,
+        "CL_PRODUCT_DEP_MARK": 0,
+        "CL_PRODUCT_ZPP_MARK": 0,
+        "FTS_FLAG": 0,
+        "FTS_COUNTRY_NAME": null,
+        "FACTORING_MARK": 0,
+        "REVENUE_COMPANY": 26859562976.0,
+        "GROUP_ID": "group_132690_sb",
+        "CITY": "г. Москва",
+        "REGION": "Москва"
+      }
+    },
+    "impact_queries": {
+      "source_file": "D:\\Hack\\Alfa-hack\\precomputed\\impact_queries\\U_212593.json",
+      "sha256": "a5ef7d38e668985a01e043102e45e31f13aa7efc29f42632c241c05790639d6c",
+      "prompt_version": "impact-queries-v2",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "generated_at": "2026-10-22T00:04:39"
+    }
+  }
+}

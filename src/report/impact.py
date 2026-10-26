@@ -74,11 +74,12 @@ def compute(raw: dict | None, label: str) -> tuple[dict, list[str]]:
         item = rubric_in.get(name)
         score = item.get("score") if isinstance(item, dict) else item
         note = item.get("note") if isinstance(item, dict) else None
-        if not isinstance(score, int) or not 0 <= score <= mx:
+        if type(score) is not int or not 0 <= score <= mx:
             issues.append(f"рубрика: фактор {name} без корректного балла 0–{mx}")
             score = 0
-        if not note:
+        if not isinstance(note,str) or not note.strip():
             issues.append(f"рубрика: фактор {name} без пояснения")
+            note=None
         rubric[name] = {"score": score, "note": note}
 
     total = sum(v["score"] for v in rubric.values())
@@ -106,7 +107,7 @@ def compute(raw: dict | None, label: str) -> tuple[dict, list[str]]:
         "horizon": raw.get("horizon") if raw.get("horizon") in HORIZONS else "unclear",
         "confidence": raw.get("confidence") if raw.get("confidence") in CONFIDENCE else "low",
         "rubric": rubric,
-        "explanation": (raw.get("explanation") or "").strip() or None,
+        "explanation": raw["explanation"].strip() if isinstance(raw.get("explanation"),str) and raw["explanation"].strip() else None,
         "caps_applied": caps,
     }
     if label == "conditional":

@@ -27,8 +27,36 @@ import urllib.request
 import xml.etree.ElementTree as ET
 from datetime import date, datetime, timedelta
 from html.parser import HTMLParser
+from contextlib import contextmanager
+from contextvars import ContextVar
+import sqlite3
+from pathlib import Path
 
 from . import store
+
+_DATABASE=ContextVar('indicator_database',default=None)
+
+
+@contextmanager
+def using_database(database):
+    """Route indicator access to the integrated DB without legacy table setup."""
+    token=_DATABASE.set(database)
+    try:yield
+    finally:_DATABASE.reset(token)
+
+
+@contextmanager
+def _connect():
+    database=_DATABASE.get()
+    if database is None:
+        with store.connect() as connection:yield connection
+        return
+    connection=sqlite3.connect(Path(database),timeout=30)
+    connection.row_factory=sqlite3.Row
+    try:
+        yield connection
+        connection.commit()
+    finally:connection.close()
 
 UA = {"User-Agent": "Mozilla/5.0 (alfa-hack prototype)"}
 CBR = "https://www.cbr.ru"
@@ -256,7 +284,7 @@ def fetch_ofz(dates: list[date]) -> list[tuple]:
 
 
 def _date_ranges() -> dict[str, tuple[str, str]]:
-    with store.connect() as con:
+    with _connect() as con:
         return {r["code"]: (r["a"], r["b"]) for r in con.execute(
             "select code, min(date) a, max(date) b from indicators group by code")}
 
@@ -302,7 +330,7 @@ def collect(days: int = HISTORY_DAYS, log=print) -> int:
         except Exception as error:  # недоступность одного источника не должна ломать остальные
             errors.append(f"{name}: {type(error).__name__}: {str(error)[:100]}")
     ts = store.now()
-    with store.connect() as con:
+    with _connect() as con:
         con.executemany(
             "insert into indicators (code, date, value, source, fetched_at) values (?,?,?,?,?)"
             " on conflict(code, date) do update set value=excluded.value, fetched_at=excluded.fetched_at",
@@ -315,7 +343,7 @@ def collect(days: int = HISTORY_DAYS, log=print) -> int:
 
 def _rows(code: str, days: int = HISTORY_DAYS) -> list[dict]:
     since = (date.today() - timedelta(days=days)).isoformat()
-    with store.connect() as con:
+    with _connect() as con:
         return [dict(r) for r in con.execute(
             "select date, value from indicators where code = ? and date >= ? order by date", (code, since))]
 
@@ -449,7 +477,7 @@ def _event_doc(code: str, s: dict) -> dict:
 
 def _recent_event(code: str, day: str) -> bool:
     since = (date.fromisoformat(day) - timedelta(days=REPEAT_GUARD_DAYS)).isoformat()
-    with store.connect() as con:
+    with _connect() as con:
         return con.execute("select 1 from news where kind = 'indicator' and id like ? and published_utc >= ?",
                            (f"indicator:{code}:%", since)).fetchone() is not None
 

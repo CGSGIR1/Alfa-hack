@@ -1,0 +1,21 @@
+# Public image: application + Gemma only. Organizer materials stay on the host.
+name: alfa-hack
+services:
+  app:
+    image: ${APP_IMAGE:-ghcr.io/rastok314/alfa-hack-public:1.1.0}
+    env_file: .env
+    environment:
+      EMBEDDING_MODEL_PATH: /models/embeddinggemma-300m
+      APP_PORT: '8765'
+      DATA_DIR: /app/private-data/csv
+    ports:
+      - '127.0.0.1:${APP_PORT:-8765}:8765'
+    volumes:
+      - ./runtime:/app/runtime
+      - type: bind
+        source: ./private-data
+        target: /app/private-data
+        read_only: true
+        bind:
+          create_host_path: false
+    restart: unless-stopped

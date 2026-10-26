@@ -13,7 +13,8 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from datetime import date
 
-SUPPORTED_SCHEMA = "report-generation-input-1.0"
+SUPPORTED_SCHEMA = "report-generation-input-1.1"
+SUPPORTED_SCHEMAS = {"report-generation-input-1.0", SUPPORTED_SCHEMA}
 BANK_PUBLISHERS = ("альфа-банк", "alfa-bank", "альфа банк")
 STALE_DAYS = 180
 
@@ -30,8 +31,8 @@ class PackageIndex:
     documents: dict[str, dict] = field(default_factory=dict)       # document_id -> документ
     links: dict[str, dict] = field(default_factory=dict)           # link_id -> связь
     aspects: dict[str, dict] = field(default_factory=dict)         # aspect_id -> аспект компании
+    indicators: dict[str,dict] = field(default_factory=dict)
     basis_paths: list[str] = field(default_factory=list)           # допустимые /facts/... указатели
-    indicators: dict[str, dict] = field(default_factory=dict)      # код показателя -> значение из market_indicators
 
     def all_ids(self) -> set[str]:
         return (set(self.news) | set(self.fragments) | set(self.mechanisms) | set(self.sources)
@@ -66,11 +67,11 @@ def resolve_pointer(facts: dict, pointer: str) -> bool:
 
 
 def normalize_pointer(facts: dict, pointer: str) -> str | None:
-    """Существующий путь к факту; модели иногда опускают префикс /facts — достраиваем его."""
-    if not isinstance(pointer, str):
+    """Accept an existing company fact path, including an omitted /facts prefix."""
+    if not isinstance(pointer,str):
         return None
-    candidates = [pointer] if pointer.startswith("/facts") else [pointer, "/facts" + (pointer if pointer.startswith("/") else "/" + pointer)]
-    return next((c for c in candidates if resolve_pointer(facts, c)), None)
+    candidates=[pointer] if pointer.startswith('/facts') else [pointer,'/facts'+(pointer if pointer.startswith('/') else '/'+pointer)]
+    return next((p for p in candidates if resolve_pointer(facts,p)),None)
 
 
 def _source_kind(publisher: str | None) -> str:
@@ -86,13 +87,13 @@ def _age_days(as_of: str, published: str | None) -> int | None:
 
 def build(package: dict) -> tuple[dict, PackageIndex]:
     """Возвращает (представление для модели, индекс ID)."""
-    if package.get("schema_version") != SUPPORTED_SCHEMA:
+    if package.get("schema_version") not in SUPPORTED_SCHEMAS:
         raise ValueError(f"Ожидается {SUPPORTED_SCHEMA}, получено {package.get('schema_version')}")
     as_of = package["as_of"]
     company = package["company"]
     index = PackageIndex(company_id=company["id"], as_of=as_of)
+    index.indicators = {i["code"]:i for i in package.get("market_indicators") or [] if i.get("code")}
     index.basis_paths = _pointer_paths(company.get("facts") or {}, "/facts")
-    index.indicators = {i["code"]: i for i in package.get("market_indicators") or [] if i.get("code")}
 
     for doc in package.get("analytical_documents") or []:
         index.documents[doc["id"]] = {
@@ -100,7 +101,9 @@ def build(package: dict) -> tuple[dict, PackageIndex]:
             "title": doc.get("title"),
             "publisher": doc.get("publisher"),
             "publication_date": doc.get("publication_date"),
-            "source_kind": _source_kind(doc.get("publisher")),
+            "source_kind": ("bank" if (doc.get("source_provenance") or {}).get("provided_by_organizer") else
+                            "third_party" if package.get("schema_version") == SUPPORTED_SCHEMA else _source_kind(doc.get("publisher"))),
+            "source_provenance": doc.get("source_provenance") or {},
             "age_days": _age_days(as_of, doc.get("publication_date")),
         }
         age = index.documents[doc["id"]]["age_days"]
@@ -114,6 +117,7 @@ def build(package: dict) -> tuple[dict, PackageIndex]:
             "pages": src.get("pages") or [],
             "text": src.get("text"),
             "ocr_note": src.get("review_status"),
+            "attribution": src.get("attribution"),
         }
 
     for m in package.get("analytical_mechanisms") or []:
@@ -131,6 +135,7 @@ def build(package: dict) -> tuple[dict, PackageIndex]:
             "statement_type": m.get("statement_type"),
             "source_fragment_ids": m.get("source_fragment_ids") or [],
             "limitations": m.get("limitations") or [],
+            "evidence_refs": m.get("evidence_refs") or [],
         }
 
     news_view = []
@@ -166,6 +171,8 @@ def build(package: dict) -> tuple[dict, PackageIndex]:
                 },
                 "attributions": [a.get("author") for a in f.get("attributions") or [] if a.get("author")],
                 "limitations": f.get("limitations") or [],
+                "source_quotes": f.get("source_quotes") or [],
+                "source_block_ids": f.get("source_block_ids") or [],
             })
         news_view.append({
             "id": n["id"],
@@ -175,7 +182,10 @@ def build(package: dict) -> tuple[dict, PackageIndex]:
             "limitations": n.get("limitations") or [],
             "matched_aspect_ids": matched,
             **({"indicator": n["indicator"]} if n.get("indicator") else {}),
+            **({"indicator": n["indicator"]} if n.get("indicator") else {}),
             "fragments": fragments,
+            "source_blocks": n.get("source_blocks") or [],
+            "source_traceability": n.get("source_traceability") or {},
         })
 
     for link in package.get("connections") or []:
