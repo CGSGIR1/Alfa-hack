@@ -71,7 +71,7 @@ class NewsLoadingTests(unittest.TestCase):
                 result=install_uploads(self.db,{'news':self.folder},[dict(name='bad.json',content=json.dumps(bad)),dict(name='good.json',content=json.dumps(good))],skip_invalid_news=True)
                 self.assertEqual(result['rejected_count'],1);self.assertEqual(result['changed_documents'],1)
     def test_single_financial_news_budget_includes_base_selection(self):
-        data=test_packet_context.PacketContextTests().data();rows,coverage=select_company_news(data,'C',Settings('2026-10-22',top_news=4),True)
+        data=test_packet_context.PacketContextTests().data();rows,coverage=select_company_news(data,'C',Settings('2026-10-22',top_news=4,financial_topic_coverage=1),True)
         self.assertEqual(len([r for r in rows if r['financial_topic_matches']]),1)
         self.assertTrue(any(t['status']=='omitted_financial_news_limit' for t in coverage['topics']))
 

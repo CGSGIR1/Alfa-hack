@@ -11,10 +11,12 @@ import json,os
 
 from .common import dumps,sha,now,require,write_json,read_json
 from .database import connect
-from .retrieval import snapshot,score_company_news,choose_company_news,retrieve
+from .retrieval import snapshot,score_company_news,choose_company_news,retrieve,supported_news
 from .reporting import save,report_name,markdown,html_reports
 from .llm_io import report_input
 from .analytics_sources import source_provenance
+
+MAX_REPORT_ATTEMPTS = 3
 
 
 @contextmanager
@@ -82,7 +84,7 @@ def _restore(batch):
                 workflow=dict(new_comparisons=0,reused_batch=batch['run_id'],awaiting_llm=True))
 
 
-def process_company(db,output,model,company_id,settings,stages=None):
+def process_company(db,output,model,company_id,settings,stages=None,candidate_filter=None,candidate_admission=None):
     """Prepare one outbox batch, resume it, or return idle; never auto-ack it."""
     settings.validate()
     with workflow_lock(db):
@@ -96,12 +98,23 @@ def process_company(db,output,model,company_id,settings,stages=None):
                 batch=_batch(c,prepared[0],company_id)
                 refs={r['news_id']:r['news_revision'] for r in c.execute(
                     'SELECT news_id,news_revision FROM company_news_checks WHERE assigned_run_id=? AND company_id=?',(prepared[0],company_id))}
-                if batch['company_revision']==crev and batch['scoring_revision']==srev and _current(c,company_id,crev,refs):
+                saved_report=json.loads(batch['report_json']);saved_news=saved_report['news']
+                within_limit=settings.max_total_news is None or len(saved_news)<=settings.max_total_news
+                within_admission=candidate_admission is None or len(candidate_admission(data,company_id,saved_news))==len(saved_news)
+                within_event_policy=candidate_filter is None or len(candidate_filter(data,company_id,
+                    [dict(news_id=n['news_id'],_score=n['company_score']) for n in saved_news]))==len(saved_news)
+                with_analytics={n['id'] for n in report_input(saved_report)['news']}=={n['news_id'] for n in saved_news}
+                exhausted=batch['failed_attempts']>=MAX_REPORT_ATTEMPTS
+                if not exhausted and within_limit and within_admission and within_event_policy and with_analytics and batch['company_revision']==crev and batch['scoring_revision']==srev and _current(c,company_id,crev,refs):
                     return _restore(batch)
                 # Updated input must not be delivered as if it were the current one.
                 with c:
-                    c.execute("UPDATE company_report_batches SET status='cancelled',last_error='Input revision changed' WHERE run_id=? AND company_id=?",(prepared[0],company_id))
-                    c.execute('UPDATE company_news_checks SET assigned_run_id=NULL WHERE assigned_run_id=? AND company_id=?',(prepared[0],company_id))
+                    reason=('Report retry limit reached: '+(batch['last_error'] or 'unknown error')) if exhausted else 'Event already processed under current policy' if not within_event_policy else 'No selected analytical support under current policy' if not with_analytics else 'Input revision changed'
+                    c.execute("UPDATE company_report_batches SET status='cancelled',last_error=? WHERE run_id=? AND company_id=?",(reason,prepared[0],company_id))
+                    # A failed report remains attached to its news revisions so
+                    # the next selection cannot immediately recreate it.
+                    if not exhausted:
+                        c.execute('UPDATE company_news_checks SET assigned_run_id=NULL WHERE assigned_run_id=? AND company_id=?',(prepared[0],company_id))
             previous=[dict(r) for r in c.execute('''SELECT * FROM company_news_checks
               WHERE company_id=? AND company_revision=? AND scoring_revision=?''',(company_id,crev,srev))]
         today=date.fromisoformat(settings.as_of)
@@ -125,13 +138,48 @@ def process_company(db,output,model,company_id,settings,stages=None):
                   AND company_revision=? AND scoring_revision=? AND disposition='queued' AND assigned_run_id IS NULL''',(company_id,crev,srev))]
         waiting=[r for r in waiting if r['news_id'] in eligible and eligible[r['news_id']]['input_hash']==r['news_revision']]
         candidates=[json.loads(r['candidate_json']) for r in waiting]
+        admission_skipped=0
+        if candidate_admission is not None:
+            admitted=candidate_admission(data,company_id,candidates)
+            admission_skipped=len(candidates)-len(admitted)
+            candidates=admitted
+        candidates,without_analytics=supported_news(data,candidates,settings)
+        duplicate_count=0
+        selection_stats={}
+        if candidate_filter is not None:
+            with connect(db,True) as c:
+                completed_rows=list(c.execute('''SELECT k.news_id,k.news_revision FROM company_news_checks k
+                  JOIN company_report_batches b ON b.run_id=k.assigned_run_id AND b.company_id=k.company_id
+                  WHERE k.company_id=? AND k.company_revision=? AND b.status='completed' ''',(company_id,crev)))
+            completed={r[0] for r in completed_rows}
+            revisions={(r[0],r[1]) for r in completed_rows}
+            filter_context={**data,'completed_event_news':completed,'completed_news_revisions':revisions}
+            filtered=candidate_filter(filter_context,company_id,candidates)
+            selection_stats=filter_context.get('selection_stats',{})
+            duplicate_count=len(candidates)-len(filtered)-selection_stats.get('interest_rate_quota_skipped',0)
+            candidates=filtered
         chosen,coverage=choose_company_news(data,company_id,settings,candidates,True)
         stats=dict(new_comparisons=len(unseen),not_relevant=sum(nid not in scored or not (scored[nid]['_score']>=settings.min_news_score or scored[nid]['financial_topic_matches']) for nid in unseen),
-                   queued_before_selection=len(waiting),selected_news=len(chosen),queued_after_selection=len(waiting)-len(chosen))
+                   queued_before_selection=len(waiting),selected_news=len(chosen),queued_after_selection=len(candidates)-len(chosen),
+                   duplicate_events_skipped=duplicate_count,relevance_gate_skipped=admission_skipped,
+                   without_analytics_skipped=len(without_analytics),**selection_stats)
         if not chosen:
             return dict(status='idle',company_id=company_id,report=None,saved=None,workflow=stats)
-        selected_ids={n['news_id'] for n in chosen}
         report=retrieve(data,company_id,settings,selection=(chosen,coverage))
+        # Packet-wide evidence limits can omit links even for supported news.
+        # Such news must remain unassigned, rather than being acknowledged unseen.
+        selected_ids={n['id'] for n in report_input(report)['news']}
+        report['news']=[n for n in report['news'] if n['news_id'] in selected_ids]
+        report['totals'].update(selected_news=len(report['news']),
+            intersection_links=sum(len(n['analytics']) for n in report['news']),
+            mechanism_candidates=sum(len(n['mechanism_candidates']) for n in report['news']))
+        for topic in report.get('financial_topic_coverage',{}).get('topics',[]):
+            previous_ids=topic.get('news_ids',[])
+            topic['news_ids']=[nid for nid in previous_ids if nid in selected_ids]
+            if previous_ids and not topic['news_ids']:topic['status']='omitted_no_selected_analytics'
+        stats.update(selected_news=len(selected_ids),queued_after_selection=len(candidates)-len(selected_ids))
+        if not selected_ids:
+            return dict(status='idle',company_id=company_id,report=None,saved=None,workflow=stats)
         report['workflow']={**stats,'status':'prepared','company_revision':crev,'scoring_revision':srev,
                             'completion_required':True}
         refs={nid:eligible[nid]['input_hash'] for nid in selected_ids}
@@ -206,20 +254,44 @@ def complete_batch(db,run_id,company_id,result):
         return dict(status='completed',run_id=run_id,company_id=company_id,result_path=str(target.resolve()),idempotent=False)
 
 
-def fail_batch(db,run_id,company_id,error):
+def fail_batch(db,run_id,company_id,error,permanent=False):
     require(isinstance(error,str) and error.strip(),'Provide a nonempty failure reason')
     with workflow_lock(db),connect(db) as c:
         with c:
             batch=_batch(c,run_id,company_id);require(batch['status']=='prepared','Only a prepared batch can be retried')
-            c.execute('''UPDATE company_report_batches SET last_error=?,failed_attempts=failed_attempts+1
-              WHERE run_id=? AND company_id=?''',(error,run_id,company_id))
-    return dict(status='prepared',run_id=run_id,company_id=company_id,retry_same_packet=True)
+            attempts=batch['failed_attempts']+1
+            terminal=permanent or attempts>=MAX_REPORT_ATTEMPTS
+            status='cancelled' if terminal else 'prepared'
+            reason=('Report validation failed: ' if permanent else 'Report retry limit reached: ' if terminal else '')+error
+            c.execute('''UPDATE company_report_batches SET status=?,last_error=?,failed_attempts=?
+              WHERE run_id=? AND company_id=?''',(status,reason,attempts,run_id,company_id))
+    return dict(status=status,run_id=run_id,company_id=company_id,failed_attempts=attempts,retry_same_packet=not terminal)
 
 
-def history(db,company_id=None):
+def retry_batch(db,run_id,company_id):
+    """Explicitly release a held report; never silently recycle it in polling."""
+    with workflow_lock(db),connect(db) as c:
+        with c:
+            c.execute('BEGIN IMMEDIATE')
+            batch=_batch(c,run_id,company_id)
+            require(batch['status']=='cancelled' and (batch['last_error'] or '').startswith(
+                ('Report validation failed: ','Report retry limit reached: ')), 'Only a held failed report can be retried')
+            require(not c.execute("SELECT 1 FROM company_report_batches WHERE company_id=? AND status='prepared'",(company_id,)).fetchone(),
+                    'Finish the current prepared report before retrying this one')
+            refs={r['news_id']:r['news_revision'] for r in c.execute(
+                'SELECT news_id,news_revision FROM company_news_checks WHERE assigned_run_id=? AND company_id=?',(run_id,company_id))}
+            require(refs and _current(c,company_id,batch['company_revision'],refs),'Inputs changed; run compare to prepare a current report')
+            c.execute("UPDATE company_report_batches SET status='prepared',failed_attempts=0,last_error=NULL WHERE run_id=? AND company_id=?",(run_id,company_id))
+    return dict(status='prepared',run_id=run_id,company_id=company_id)
+
+
+def history(db,company_id=None,include_archived=False):
     with connect(db,True) as c:
         rows=c.execute('''SELECT run_id,company_id,status,created_at,completed_at,result_json,last_error,failed_attempts,saved_json
           FROM company_report_batches WHERE (? IS NULL OR company_id=?) ORDER BY created_at DESC''',(company_id,company_id)).fetchall()
+        if not include_archived and c.execute("SELECT 1 FROM sqlite_master WHERE name='archived_report_batches'").fetchone():
+            archived={tuple(r) for r in c.execute('SELECT run_id,company_id FROM archived_report_batches')}
+            rows=[r for r in rows if (r['run_id'],r['company_id']) not in archived]
     return [dict(run_id=r['run_id'],company_id=r['company_id'],status=r['status'],created_at=r['created_at'],completed_at=r['completed_at'],
                  result=json.loads(r['result_json']) if r['result_json'] else None,last_error=r['last_error'],failed_attempts=r['failed_attempts'],
                  output=json.loads(r['saved_json'])['output']) for r in rows]

@@ -1,0 +1,1477 @@
+{
+  "schema_version": "company-profile-2.0",
+  "subject_id": "U_25835",
+  "subject_type": "company",
+  "profile_text": "## Компания U_25835\n\nКомпания занимается деятельностью «Торговля оптовая автомобильными деталями, узлами и принадлежностями, кроме деятельности агентов» (ОКВЭД 45.31.1). Зарегистрирована: г. Москва. Форма собственности — частная собственность. Возраст компании — 16–25 лет. Стадия развития бизнеса по оценке банка — «Оптимизация». По данным ФНС, численность работников — более 251 человек.\n\n### Масштаб и положение в отрасли\n\nГодовая выручка — 22,3 млрд ₽. Это крупный бизнес по критерию кейса (выручка от 15 млрд ₽). По выручке компания на 2-м месте из 812 компаний с ОКВЭД 45.31 в данных банка, на неё приходится 2% их суммарной выручки (это доля внутри выборки банка, а не рыночная доля).\n\n### Группа компаний\n\nСведений о группе компаний нет: в своей группе компания единственная.\n\n### Отношения с банком\n\nСтатус — действующий клиент банка. Использует продукты банка: расчётно-кассовое обслуживание, кредиты, лизинг, зарплатный проект. Не использует: депозиты, банковские гарантии, факторинг. Чувствительность к ключевой ставке: рост ставки увеличивает стоимость заёмного финансирования, снижение — уменьшает.\n\n### Внешнеэкономическая деятельность\n\nВедёт внешнеэкономическую деятельность (данные ФТС), страны: Оаэ, Китай, Италия.\n\n### Контрагенты (по платежам через банк)\n\nПоставщики (исходящие платежи): 268 контрагентов, 11,3 млрд ₽. Отрасли внешних контрагентов (по сумме платежей с известной отраслью): торговля и ремонт автомобилей (58%), оптовая торговля (41%). Регионы внешних контрагентов: Москва (90%), Смоленская область (6%). Крупнейшие внешние контрагенты с известной отраслью: U_191409 — торговля оптовая неспециализированная, 27%; U_65961 — торговля оптовая автомобильными деталями, узлами и принадлежностями, кроме деятельности агентов, 5%; U_64507 — торговля автомобильными деталями, узлами и принадлежностями, 5%.\n\nПокупатели (входящие платежи): 744 контрагента, 3,4 млрд ₽. Отрасли внешних контрагентов (по сумме платежей с известной отраслью): торговля и ремонт автомобилей (90%), оптовая торговля (4%). Регионы внешних контрагентов: Москва (35%), Воронежская область (25%), Новосибирская область (7%). Крупнейшие внешние контрагенты с известной отраслью: U_122970 — торговля оптовая автомобильными деталями, узлами и принадлежностями, кроме деятельности агентов, 4%; U_189456 — торговля оптовая автомобильными деталями, узлами и принадлежностями, кроме деятельности агентов, 3%; U_128194 — торговля оптовая автомобильными деталями, узлами и принадлежностями, кроме деятельности агентов, 3%.\n\nПереводы между собственными счетами: 755 млн ₽, в анализ контрагентов не включены.\n\n### Связи и отметки\n\nВ данных стоит признак ключевого собственника (NEGATIVEMARK=1).\n\n### Факторы влияния (выведены правилами из признаков выше, не факты)\n\n- валюта: ВЭД по данным ФТС: ОАЭ, КИТАЙ, ИТАЛИЯ [ВЭД]\n- импорт: ОКВЭД 45 (основной вид деятельности) [отрасль]; поставщики: торговля и ремонт автомобилей (58% платежей) [косвенно через контрагентов]; покупатели: торговля и ремонт автомобилей (90% платежей) [косвенно через контрагентов]\n- рынок_труда: CL_PRODUCT_ZPP_MARK=1 (зарплатный проект) [продукты банка]\n- санкции: ВЭД по данным ФТС: ОАЭ, КИТАЙ, ИТАЛИЯ [ВЭД]\n- спрос: ОКВЭД 45 (основной вид деятельности) [отрасль]\n- ставка: CL_PRODUCT_LOA_MARK=1 (кредиты) [продукты банка]; CL_PRODUCT_LEA_MARK=1 (лизинг) [продукты банка]; ОКВЭД 45 (основной вид деятельности) [отрасль]; поставщики: торговля и ремонт автомобилей (58% платежей) [косвенно через контрагентов]; покупатели: торговля и ремонт автомобилей (90% платежей) [косвенно через контрагентов]\n- юань: ВЭД по данным ФТС: ОАЭ, КИТАЙ, ИТАЛИЯ [ВЭД]\n\n### Ограничения данных\n\n- Платежи отражают только операции, видимые банку, а не весь оборот компании.",
+  "facts": {
+    "annual_revenue": {
+      "currency": null,
+      "source_value": "22349855436.0",
+      "unit": null,
+      "year": null
+    },
+    "bank_client_status_source": "CLIENT",
+    "banking_product_flags": {
+      "settlement_services": true,
+      "loans": true,
+      "leasing": true,
+      "deposits": false,
+      "payroll_project": true,
+      "bank_guarantees": false,
+      "factoring": false
+    },
+    "business_stage_source": "Оптимизация",
+    "company_age_years_band": "16-25",
+    "employees": {
+      "fns_band": "Более 251",
+      "spark_band": null
+    },
+    "foreign_trade": {
+      "countries": [
+        "ОАЭ",
+        "КИТАЙ",
+        "ИТАЛИЯ"
+      ],
+      "direction": null,
+      "fts_record_present": true,
+      "interpretation": "Флаг 0 означает отсутствие записи в этих данных, а не доказанное отсутствие ВЭД.",
+      "settlement_currencies": null
+    },
+    "group_id": "group_133440_sb",
+    "industry": {
+      "main_okved_code": "45.31.1",
+      "main_okved_name": "Торговля оптовая автомобильными деталями, узлами и принадлежностями, кроме деятельности агентов"
+    },
+    "key_owner_marker": true,
+    "organization_type_source": "КОММ_ОРГ",
+    "ownership_form_source": "ЧАСТНАЯ СОБСТВЕННОСТЬ",
+    "registration": {
+      "city": "г. Москва",
+      "region": "Москва"
+    },
+    "counterparties": {
+      "suppliers_industry_mix": [
+        {
+          "role": "supplier",
+          "division": "45",
+          "name": "торговля и ремонт автомобилей",
+          "share": 0.5775460373934226
+        },
+        {
+          "role": "supplier",
+          "division": "46",
+          "name": "оптовая торговля",
+          "share": 0.4087631173847304
+        },
+        {
+          "role": "supplier",
+          "division": "52",
+          "name": "складское хозяйство и транспортные услуги",
+          "share": 0.005284426023339947
+        },
+        {
+          "role": "supplier",
+          "division": "49",
+          "name": "сухопутный транспорт",
+          "share": 0.002567496890155324
+        },
+        {
+          "role": "supplier",
+          "division": "68",
+          "name": "операции с недвижимостью",
+          "share": 0.0023825887482083817
+        }
+      ],
+      "buyers_industry_mix": [
+        {
+          "role": "buyer",
+          "division": "45",
+          "name": "торговля и ремонт автомобилей",
+          "share": 0.9036183738716439
+        },
+        {
+          "role": "buyer",
+          "division": "46",
+          "name": "оптовая торговля",
+          "share": 0.03652033701470853
+        },
+        {
+          "role": "buyer",
+          "division": "49",
+          "name": "сухопутный транспорт",
+          "share": 0.01918610300139266
+        },
+        {
+          "role": "buyer",
+          "division": "68",
+          "name": "операции с недвижимостью",
+          "share": 0.01738744199173657
+        },
+        {
+          "role": "buyer",
+          "division": "47",
+          "name": "розничная торговля",
+          "share": 0.016119125723512838
+        }
+      ],
+      "suppliers_region_mix": [
+        {
+          "role": "supplier",
+          "region": "Москва",
+          "share": 0.896042954355294
+        },
+        {
+          "role": "supplier",
+          "region": "Смоленская область",
+          "share": 0.06066127760004973
+        },
+        {
+          "role": "supplier",
+          "region": "Нижегородская область",
+          "share": 0.01634172758502096
+        }
+      ],
+      "buyers_region_mix": [
+        {
+          "role": "buyer",
+          "region": "Москва",
+          "share": 0.3481160905553525
+        },
+        {
+          "role": "buyer",
+          "region": "Воронежская область",
+          "share": 0.24585498281150958
+        },
+        {
+          "role": "buyer",
+          "region": "Новосибирская область",
+          "share": 0.07196783924713024
+        }
+      ],
+      "classified_share": {
+        "suppliers": 0.777,
+        "buyers": 0.507
+      },
+      "industry_mix_denominator": "Только контрагенты с известной отраслью вне своей группы; это не доля всех платежей.",
+      "observed_counts": {
+        "payers": 744,
+        "beneficiaries": 268
+      }
+    },
+    "group_summary": {
+      "members_count": 1,
+      "revenue_share": 1.0,
+      "industries": [],
+      "region_count": 1
+    },
+    "linked_persons_summary": {
+      "known_links_count": 0,
+      "linked_companies_outside_group_count": 0,
+      "interpretation": "Связи по физлицам не устанавливают роли владельца или руководителя и контроль."
+    }
+  },
+  "limitations": [
+    "Компания обезличена; сопоставление её названия с внешними новостями не установлено.",
+    "Год, валюта и единица измерения выручки не определены в предоставленных данных.",
+    "Продуктовые флаги относятся к данным банка; нулевой флаг не доказывает отсутствие продукта в других банках.",
+    "ОКВЭД не устанавливает фактический ассортимент и конкретные операции компании.",
+    "Платежи отражают только операции, видимые банку; период и валюта платежей не установлены.",
+    "Платежи отражают только операции, видимые банку, а не весь оборот компании."
+  ],
+  "queries": [
+    {
+      "id": "U_25835_Q01",
+      "channel": "industry:45.31",
+      "category": "industry",
+      "text": "Рынок оптовой торговли автозапчастями в России: спрос, цены, конкуренция, товарные запасы",
+      "weight": 1.0,
+      "evidence_status": "grounded_topic",
+      "source_refs": [
+        "/facts/industry"
+      ],
+      "assumptions": [],
+      "limitations": [],
+      "provenance": {
+        "origin": "llm",
+        "original_sources": [
+          "MAINOKVED_CODE=45.31.1"
+        ],
+        "rationale": "Основной вид деятельности — торговля оптовая автомобильными деталями, узлами и принадлежностями (ОКВЭД 45.31.1), поэтому отраслевой канал должен быть привязан именно к оптовому звену автозапчастей."
+      }
+    },
+    {
+      "id": "U_25835_Q02",
+      "channel": "ставка",
+      "category": "finance",
+      "text": "Ключевая ставка ЦБ и стоимость кредитов и лизинга для оптовых торговых компаний",
+      "weight": 1.0,
+      "evidence_status": "grounded_topic",
+      "source_refs": [
+        "/facts/banking_product_flags"
+      ],
+      "assumptions": [],
+      "limitations": [],
+      "provenance": {
+        "origin": "llm",
+        "original_sources": [
+          "CL_PRODUCT_LOA_MARK=1 (кредиты)",
+          "CL_PRODUCT_LEA_MARK=1 (лизинг)",
+          "ОКВЭД 45 (основной вид деятельности)",
+          "поставщики: торговля и ремонт автомобилей (58% платежей)",
+          "покупатели: торговля и ремонт автомобилей (90% платежей)"
+        ],
+        "rationale": "У компании открыты кредиты (CL_PRODUCT_LOA_MARK=1) и лизинг (CL_PRODUCT_LEA_MARK=1), отрасль ОКВЭД 45 чувствительна к стоимости заёмного финансирования."
+      }
+    },
+    {
+      "id": "U_25835_Q03",
+      "channel": "валюта",
+      "category": "macro",
+      "text": "Курс рубля к доллару, евро и юаню: влияние на импортные закупки автозапчастей",
+      "weight": 0.9,
+      "evidence_status": "grounded_topic",
+      "source_refs": [
+        "/facts/foreign_trade",
+        "/facts/banking_product_flags"
+      ],
+      "assumptions": [],
+      "limitations": [],
+      "provenance": {
+        "origin": "llm",
+        "original_sources": [
+          "ВЭД по данным ФТС: ОАЭ, КИТАЙ, ИТАЛИЯ"
+        ],
+        "rationale": "ВЭД идёт с ОАЭ, Китаем и Италией, расчёты по импортным поставкам зависят от валютных курсов; аспект объединяет валютный канал в один запрос."
+      }
+    },
+    {
+      "id": "U_25835_Q04",
+      "channel": "импорт",
+      "category": "supply_chain",
+      "text": "Импорт автозапчастей: пошлины, таможенное оформление, параллельный импорт, сроки поставок",
+      "weight": 0.8,
+      "evidence_status": "grounded_topic",
+      "source_refs": [
+        "/facts/counterparties"
+      ],
+      "assumptions": [],
+      "limitations": [],
+      "provenance": {
+        "origin": "llm",
+        "original_sources": [
+          "ОКВЭД 45 (основной вид деятельности)",
+          "поставщики: торговля и ремонт автомобилей (58% платежей)",
+          "покупатели: торговля и ремонт автомобилей (90% платежей)"
+        ],
+        "rationale": "Компания ведёт ВЭД (FTS_FLAG=1, страны ОАЭ, Китай, Италия) и закупает товар через контрагентов сферы «торговля и ремонт автомобилей» (58% платежей)."
+      }
+    },
+    {
+      "id": "U_25835_Q05",
+      "channel": "country:КИТАЙ",
+      "category": "foreign_trade",
+      "text": "Импорт автокомпонентов из Китая: пошлины, ограничения, расчёты в юанях, логистика",
+      "weight": 0.8,
+      "evidence_status": "grounded_topic",
+      "source_refs": [
+        "/facts/foreign_trade"
+      ],
+      "assumptions": [],
+      "limitations": [],
+      "provenance": {
+        "origin": "llm",
+        "original_sources": [
+          "FTS_COUNTRY_NAME: КИТАЙ"
+        ],
+        "rationale": "Китай — страна ВЭД по данным ФТС (FTS_COUNTRY_NAME: КИТАЙ), ключевой источник импортных запчастей и компонентов."
+      }
+    },
+    {
+      "id": "U_25835_Q06",
+      "channel": "country:ИТАЛИЯ",
+      "category": "foreign_trade",
+      "text": "Поставки автозапчастей из Италии: санкции ЕС, пошлины, логистика, расчёты в евро",
+      "weight": 0.8,
+      "evidence_status": "grounded_topic",
+      "source_refs": [
+        "/facts/foreign_trade"
+      ],
+      "assumptions": [],
+      "limitations": [],
+      "provenance": {
+        "origin": "llm",
+        "original_sources": [
+          "FTS_COUNTRY_NAME: ИТАЛИЯ"
+        ],
+        "rationale": "Италия — страна ВЭД по данным ФТС (FTS_COUNTRY_NAME: ИТАЛИЯ), поставки из ЕС зависят от санкционного режима и европейской логистики."
+      }
+    },
+    {
+      "id": "U_25835_Q07",
+      "channel": "рынок_труда",
+      "category": "labor",
+      "text": "Рынок труда Москвы: зарплаты, дефицит торгового и складского персонала",
+      "weight": 0.5,
+      "evidence_status": "grounded_topic",
+      "source_refs": [
+        "/facts/employees",
+        "/facts/banking_product_flags/payroll_project"
+      ],
+      "assumptions": [],
+      "limitations": [],
+      "provenance": {
+        "origin": "llm",
+        "original_sources": [
+          "CL_PRODUCT_ZPP_MARK=1 (зарплатный проект)"
+        ],
+        "rationale": "Зарплатный проект (CL_PRODUCT_ZPP_MARK=1) и численность более 251 работника (AMOUNT_WORKERS_FNS_GRADATION=Более 251) делают фонд оплаты труда значимым для компании."
+      }
+    },
+    {
+      "id": "U_25835_Q08",
+      "channel": "buyer:45",
+      "category": "sales",
+      "text": "Покупатели автозапчастей — автодилеры и автосервисы: спрос, закупки, платёжеспособность",
+      "weight": 0.5,
+      "evidence_status": "grounded_topic",
+      "source_refs": [
+        "/facts/counterparties"
+      ],
+      "assumptions": [],
+      "limitations": [],
+      "provenance": {
+        "origin": "llm",
+        "original_sources": [
+          "покупатели из сферы «торговля и ремонт автомобилей» — 90% платежей"
+        ],
+        "rationale": "90% входящих платежей идут от сферы «торговля и ремонт автомобилей» — это основной канал сбыта компании."
+      }
+    },
+    {
+      "id": "U_25835_Q09",
+      "channel": "supplier:45",
+      "category": "supply_chain",
+      "text": "Поставщики автозапчастей и оптовые посредники: цены, наличие товара, финансовое положение",
+      "weight": 0.489,
+      "evidence_status": "grounded_topic",
+      "source_refs": [
+        "/facts/counterparties"
+      ],
+      "assumptions": [],
+      "limitations": [],
+      "provenance": {
+        "origin": "llm",
+        "original_sources": [
+          "поставщики из сферы «торговля и ремонт автомобилей» — 58% платежей"
+        ],
+        "rationale": "58% платежей поставщикам — сфера «торговля и ремонт автомобилей», ещё 41% — оптовая торговля; это объединённый канал закупок."
+      }
+    },
+    {
+      "id": "U_25835_Q10",
+      "channel": "region:Москва",
+      "category": "region",
+      "text": "Москва: местная экономика, инфраструктура, поддержка бизнеса, решения региональных властей",
+      "weight": 0.4,
+      "evidence_status": "grounded_topic",
+      "source_refs": [
+        "/facts/registration"
+      ],
+      "assumptions": [],
+      "limitations": [],
+      "provenance": {
+        "origin": "llm",
+        "original_sources": [
+          "REGION=Москва",
+          "CITY=г. Москва"
+        ],
+        "rationale": "Компания зарегистрирована в Москве (REGION=Москва, CITY=г. Москва), здесь же сосредоточены 90% платежей поставщикам."
+      }
+    },
+    {
+      "id": "U_25835_Q11",
+      "channel": "llm:закупочные_цены_на_компоненты",
+      "category": "commodities",
+      "text": "Цены на автокомпоненты, шины и сырьё для запчастей: сталь, алюминий, каучук",
+      "weight": 0.5,
+      "evidence_status": "hypothesis",
+      "source_refs": [
+        "/facts/industry"
+      ],
+      "assumptions": [
+        "Закупочные цены на автозапчасти и материалы для их производства определяют себестоимость и маржу оптовой торговли по ОКВЭД 45.31.1."
+      ],
+      "limitations": [],
+      "provenance": {
+        "origin": "llm",
+        "original_sources": [
+          "MAINOKVED_CODE=45.31.1",
+          "ОКВЭД 45 (основной вид деятельности)"
+        ],
+        "rationale": "Закупочные цены на автозапчасти и материалы для их производства определяют себестоимость и маржу оптовой торговли по ОКВЭД 45.31.1."
+      }
+    },
+    {
+      "id": "U_25835_Q12",
+      "channel": "llm:пошлины_и_сертификация",
+      "category": "regulation",
+      "text": "Пошлины, сертификация и технические регламенты для импортных автозапчастей и компонентов",
+      "weight": 0.5,
+      "evidence_status": "hypothesis",
+      "source_refs": [
+        "/facts/industry"
+      ],
+      "assumptions": [
+        "Ввозимые запчасти по ОКВЭД 45.31.1 подпадают под таможенные тарифы и обязательную сертификацию, изменения правил влияют на сроки и цену закупки."
+      ],
+      "limitations": [],
+      "provenance": {
+        "origin": "llm",
+        "original_sources": [
+          "MAINOKVED_CODE=45.31.1",
+          "FTS_FLAG=1",
+          "FTS_COUNTRY_NAME=ОАЭ, КИТАЙ, ИТАЛИЯ"
+        ],
+        "rationale": "Ввозимые запчасти по ОКВЭД 45.31.1 подпадают под таможенные тарифы и обязательную сертификацию, изменения правил влияют на сроки и цену закупки."
+      }
+    },
+    {
+      "id": "U_25835_Q13",
+      "channel": "llm:налоги_оптовой_торговли",
+      "category": "regulation",
+      "text": "Налоги и обязательные требования для крупной оптовой торговли: НДС, налог на прибыль, маркировка",
+      "weight": 0.5,
+      "evidence_status": "hypothesis",
+      "source_refs": [
+        "/facts/industry"
+      ],
+      "assumptions": [
+        "Коммерческая организация с выручкой 22,3 млрд ₽ работает на общей системе налогообложения, изменения налоговых правил напрямую меняют её нагрузку."
+      ],
+      "limitations": [],
+      "provenance": {
+        "origin": "llm",
+        "original_sources": [
+          "ORG_TYPE=КОММ_ОРГ",
+          "REVENUE_COMPANY=22349855436.0",
+          "MAINOKVED_CODE=45.31.1"
+        ],
+        "rationale": "Коммерческая организация с выручкой 22,3 млрд ₽ работает на общей системе налогообложения, изменения налоговых правил напрямую меняют её нагрузку."
+      }
+    },
+    {
+      "id": "U_25835_Q14",
+      "channel": "llm:регионы_контрагентов",
+      "category": "region",
+      "text": "Деловая активность в Воронежской, Новосибирской и Смоленской областях: авторынок, сервисы, склады",
+      "weight": 0.5,
+      "evidence_status": "hypothesis",
+      "source_refs": [
+        "/facts/registration"
+      ],
+      "assumptions": [
+        "Покупатели компании сосредоточены в Воронежской и Новосибирской областях, поставщики — в Смоленской области, поэтому местная экономика этих регионов влияет на спрос и отгрузки."
+      ],
+      "limitations": [],
+      "provenance": {
+        "origin": "llm",
+        "original_sources": [
+          "покупатели из сферы «торговля и ремонт автомобилей» — 90% платежей",
+          "поставщики из сферы «оптовая торговля» — 41% платежей"
+        ],
+        "rationale": "Покупатели компании сосредоточены в Воронежской и Новосибирской областях, поставщики — в Смоленской области, поэтому местная экономика этих регионов влияет на спрос и отгрузки."
+      }
+    },
+    {
+      "id": "U_25835_Q15",
+      "channel": "llm:собственник_и_группа",
+      "category": "related",
+      "text": "Ключевой собственник и компании группы: смена владельца, залоги, сделки, судебные споры",
+      "weight": 0.5,
+      "evidence_status": "hypothesis",
+      "source_refs": [
+        "/facts/group_id"
+      ],
+      "assumptions": [
+        "В данных есть признак ключевого собственника (NEGATIVEMARK=1) и группа group_133440_sb, поэтому изменения статуса владельца и связанных структур — отдельный канал риска."
+      ],
+      "limitations": [],
+      "provenance": {
+        "origin": "llm",
+        "original_sources": [
+          "NEGATIVEMARK=1",
+          "GROUP_ID=group_133440_sb"
+        ],
+        "rationale": "В данных есть признак ключевого собственника (NEGATIVEMARK=1) и группа group_133440_sb, поэтому изменения статуса владельца и связанных структур — отдельный канал риска."
+      }
+    }
+  ],
+  "relationships": {
+    "payments": {
+      "currency": null,
+      "amount_unit": null,
+      "period_start": null,
+      "period_end": null,
+      "direction_rules": {
+        "incoming": "BENEFICIARY == company_id",
+        "outgoing": "PAYER == company_id",
+        "self_transfers": "Excluded"
+      },
+      "amount_share_denominator": "All observed amounts in the direction and selected scope, including unknown industries",
+      "count_share_denominator": "All observed PAY_CNT in the direction and selected scope",
+      "counterparty_roles": "Плательщик не обязательно покупатель; получатель не обязательно поставщик.",
+      "same_group_rule": "Excludes counterparties with the same known GROUP_ID; unknown-group counterparties remain.",
+      "summaries": {
+        "all_observed": {
+          "incoming": {
+            "source_rows": 744,
+            "unique_counterparties": 744,
+            "pay_amt_total": "3410576000.0",
+            "pay_cnt_total": 65629,
+            "aggregates": {
+              "okved_division": [
+                {
+                  "key": "(unknown)",
+                  "pay_amt": "1681512000.0",
+                  "pay_cnt": 36280,
+                  "source_rows": 454,
+                  "share_amount_pct": 49.302874353188436,
+                  "share_count_pct": 55.280440049368416,
+                  "share_amount_among_known_pct": null,
+                  "share_count_among_known_pct": null
+                },
+                {
+                  "key": "45",
+                  "pay_amt": "1562414000.0",
+                  "pay_cnt": 22211,
+                  "source_rows": 221,
+                  "share_amount_pct": 45.810854236938276,
+                  "share_count_pct": 33.84327050541681,
+                  "share_amount_among_known_pct": 90.36183738716439,
+                  "share_count_among_known_pct": 75.67889876997512
+                },
+                {
+                  "key": "46",
+                  "pay_amt": "63146000.0",
+                  "pay_cnt": 3276,
+                  "source_rows": 30,
+                  "share_amount_pct": 1.8514761142985818,
+                  "share_count_pct": 4.991695744259397,
+                  "share_amount_among_known_pct": 3.6520337014708537,
+                  "share_count_among_known_pct": 11.162220177859552
+                },
+                {
+                  "key": "49",
+                  "pay_amt": "33174000.0",
+                  "pay_cnt": 1749,
+                  "source_rows": 11,
+                  "share_amount_pct": 0.9726802745342722,
+                  "share_count_pct": 2.6649804202410516,
+                  "share_amount_among_known_pct": 1.918610300139266,
+                  "share_count_among_known_pct": 5.959317182868241
+                },
+                {
+                  "key": "68",
+                  "pay_amt": "30064000.0",
+                  "pay_cnt": 436,
+                  "source_rows": 2,
+                  "share_amount_pct": 0.8814933313317164,
+                  "share_count_pct": 0.6643404592481982,
+                  "share_amount_among_known_pct": 1.738744199173657,
+                  "share_count_among_known_pct": 1.4855702068213568
+                },
+                {
+                  "key": "47",
+                  "pay_amt": "27871000.0",
+                  "pay_cnt": 1077,
+                  "source_rows": 5,
+                  "share_amount_pct": 0.8171933421216827,
+                  "share_count_pct": 1.6410428316750219,
+                  "share_amount_among_known_pct": 1.6119125723512837,
+                  "share_count_among_known_pct": 3.6696309925380763
+                },
+                {
+                  "key": "52",
+                  "pay_amt": "4775000.0",
+                  "pay_cnt": 49,
+                  "source_rows": 3,
+                  "share_amount_pct": 0.14000567646051576,
+                  "share_count_pct": 0.0746621158329397,
+                  "share_amount_among_known_pct": 0.2761609749552359,
+                  "share_count_among_known_pct": 0.1669562847115745
+                },
+                {
+                  "key": "33",
+                  "pay_amt": "3469000.0",
+                  "pay_cnt": 262,
+                  "source_rows": 8,
+                  "share_amount_pct": 0.10171302442754537,
+                  "share_count_pct": 0.3992137622087797,
+                  "share_amount_among_known_pct": 0.20062877950151065,
+                  "share_count_among_known_pct": 0.8927050325394391
+                },
+                {
+                  "key": "70",
+                  "pay_amt": "1953000.0",
+                  "pay_cnt": 118,
+                  "source_rows": 1,
+                  "share_amount_pct": 0.05726305468636383,
+                  "share_count_pct": 0.17979856465891603,
+                  "share_amount_among_known_pct": 0.1129512846256703,
+                  "share_count_among_known_pct": 0.4020579917544039
+                },
+                {
+                  "key": "43",
+                  "pay_amt": "1078000.0",
+                  "pay_cnt": 103,
+                  "source_rows": 2,
+                  "share_amount_pct": 0.03160756423548398,
+                  "share_count_pct": 0.15694281491413858,
+                  "share_amount_among_known_pct": 0.062345870366857445,
+                  "share_count_among_known_pct": 0.35094892500596275
+                },
+                {
+                  "key": "53",
+                  "pay_amt": "676000.0",
+                  "pay_cnt": 23,
+                  "source_rows": 1,
+                  "share_amount_pct": 0.01982069890833689,
+                  "share_count_pct": 0.035045482941992105,
+                  "share_amount_among_known_pct": 0.039096297187379996,
+                  "share_count_among_known_pct": 0.07836723568094313
+                },
+                {
+                  "key": "20",
+                  "pay_amt": "157000.0",
+                  "pay_cnt": 11,
+                  "source_rows": 1,
+                  "share_amount_pct": 0.004603328000900728,
+                  "share_count_pct": 0.01676088314617014,
+                  "share_amount_among_known_pct": 0.009080057187009851,
+                  "share_count_among_known_pct": 0.0374799822821902
+                },
+                {
+                  "key": "23",
+                  "pay_amt": "154000.0",
+                  "pay_cnt": 13,
+                  "source_rows": 1,
+                  "share_amount_pct": 0.004515366319354854,
+                  "share_count_pct": 0.0198083164454738,
+                  "share_amount_among_known_pct": 0.008906552909551063,
+                  "share_count_among_known_pct": 0.04429452451531568
+                },
+                {
+                  "key": "41",
+                  "pay_amt": "47000.0",
+                  "pay_cnt": 18,
+                  "source_rows": 2,
+                  "share_amount_pct": 0.0013780663442186892,
+                  "share_count_pct": 0.027426899693732954,
+                  "share_amount_among_known_pct": 0.0027182336801876623,
+                  "share_count_among_known_pct": 0.06133088009812941
+                },
+                {
+                  "key": "27",
+                  "pay_amt": "44000.0",
+                  "pay_cnt": 2,
+                  "source_rows": 1,
+                  "share_amount_pct": 0.0012901046626728153,
+                  "share_count_pct": 0.0030474332993036613,
+                  "share_amount_among_known_pct": 0.0025447294027288753,
+                  "share_count_among_known_pct": 0.006814542233125489
+                },
+                {
+                  "key": "42",
+                  "pay_amt": "42000.0",
+                  "pay_cnt": 1,
+                  "source_rows": 1,
+                  "share_amount_pct": 0.001231463541642233,
+                  "share_count_pct": 0.0015237166496518306,
+                  "share_amount_among_known_pct": 0.0024290598844230174,
+                  "share_count_among_known_pct": 0.0034072711165627446
+                }
+              ]
+            },
+            "coverage": {
+              "okved_division": {
+                "matched_amount_pct": 50.697125646811564,
+                "unknown_amount_pct": 49.302874353188436,
+                "matched_count_pct": 44.719559950631584,
+                "unknown_count_pct": 55.280440049368416
+              }
+            }
+          },
+          "outgoing": {
+            "source_rows": 268,
+            "unique_counterparties": 268,
+            "pay_amt_total": "11282862000.0",
+            "pay_cnt_total": 18703,
+            "aggregates": {
+              "okved_division": [
+                {
+                  "key": "45",
+                  "pay_amt": "5063066000.0",
+                  "pay_cnt": 10616,
+                  "source_rows": 94,
+                  "share_amount_pct": 44.873951307744434,
+                  "share_count_pct": 56.76094744158691,
+                  "share_amount_among_known_pct": 57.75460373934226,
+                  "share_count_among_known_pct": 85.84829370855572
+                },
+                {
+                  "key": "46",
+                  "pay_amt": "3583428000.0",
+                  "pay_cnt": 978,
+                  "source_rows": 26,
+                  "share_amount_pct": 31.759920488259095,
+                  "share_count_pct": 5.229107629792011,
+                  "share_amount_among_known_pct": 40.87631173847304,
+                  "share_count_among_known_pct": 7.908782144590004
+                },
+                {
+                  "key": "(unknown)",
+                  "pay_amt": "2516347000.0",
+                  "pay_cnt": 6337,
+                  "source_rows": 119,
+                  "share_amount_pct": 22.302382143821312,
+                  "share_count_pct": 33.882264877292414,
+                  "share_amount_among_known_pct": null,
+                  "share_count_among_known_pct": null
+                },
+                {
+                  "key": "52",
+                  "pay_amt": "46326000.0",
+                  "pay_cnt": 117,
+                  "source_rows": 9,
+                  "share_amount_pct": 0.4105873137507132,
+                  "share_count_pct": 0.6255680906806395,
+                  "share_amount_among_known_pct": 0.5284426023339948,
+                  "share_count_among_known_pct": 0.9461426491994178
+                },
+                {
+                  "key": "49",
+                  "pay_amt": "22508000.0",
+                  "pay_cnt": 70,
+                  "source_rows": 4,
+                  "share_amount_pct": 0.19948839221821554,
+                  "share_count_pct": 0.37427150724482705,
+                  "share_amount_among_known_pct": 0.2567496890155324,
+                  "share_count_among_known_pct": 0.5660682516577713
+                },
+                {
+                  "key": "68",
+                  "pay_amt": "20887000.0",
+                  "pay_cnt": 481,
+                  "source_rows": 3,
+                  "share_amount_pct": 0.18512147006672597,
+                  "share_count_pct": 2.57177992835374,
+                  "share_amount_among_known_pct": 0.23825887482083816,
+                  "share_count_among_known_pct": 3.889697557819829
+                },
+                {
+                  "key": "72",
+                  "pay_amt": "17169000.0",
+                  "pay_cnt": 48,
+                  "source_rows": 1,
+                  "share_amount_pct": 0.15216883801290843,
+                  "share_count_pct": 0.2566433192535957,
+                  "share_amount_among_known_pct": 0.19584749470000337,
+                  "share_count_among_known_pct": 0.38816108685104317
+                },
+                {
+                  "key": "62",
+                  "pay_amt": "9863000.0",
+                  "pay_cnt": 5,
+                  "source_rows": 3,
+                  "share_amount_pct": 0.08741576383722499,
+                  "share_count_pct": 0.026733679088916218,
+                  "share_amount_among_known_pct": 0.11250764984717417,
+                  "share_count_among_known_pct": 0.040433446546983665
+                },
+                {
+                  "key": "63",
+                  "pay_amt": "1972000.0",
+                  "pay_cnt": 1,
+                  "source_rows": 1,
+                  "share_amount_pct": 0.01747783496775907,
+                  "share_count_pct": 0.005346735817783243,
+                  "share_amount_among_known_pct": 0.022494685744563262,
+                  "share_count_among_known_pct": 0.008086689309396733
+                },
+                {
+                  "key": "20",
+                  "pay_amt": "942000.0",
+                  "pay_cnt": 9,
+                  "source_rows": 1,
+                  "share_amount_pct": 0.008348945506911279,
+                  "share_count_pct": 0.04812062236004919,
+                  "share_amount_among_known_pct": 0.010745433048366426,
+                  "share_count_among_known_pct": 0.0727802037845706
+                },
+                {
+                  "key": "43",
+                  "pay_amt": "140000.0",
+                  "pay_cnt": 3,
+                  "source_rows": 1,
+                  "share_amount_pct": 0.0012408199267171752,
+                  "share_count_pct": 0.01604020745334973,
+                  "share_amount_among_known_pct": 0.0015969858033665601,
+                  "share_count_among_known_pct": 0.024260067928190198
+                },
+                {
+                  "key": "80",
+                  "pay_amt": "94000.0",
+                  "pay_cnt": 35,
+                  "source_rows": 3,
+                  "share_amount_pct": 0.0008331219507958175,
+                  "share_count_pct": 0.18713575362241353,
+                  "share_amount_among_known_pct": 0.001072261896546119,
+                  "share_count_among_known_pct": 0.28303412582888565
+                },
+                {
+                  "key": "56",
+                  "pay_amt": "70000.0",
+                  "pay_cnt": 1,
+                  "source_rows": 1,
+                  "share_amount_pct": 0.0006204099633585876,
+                  "share_count_pct": 0.005346735817783243,
+                  "share_amount_among_known_pct": 0.0007984929016832801,
+                  "share_count_among_known_pct": 0.008086689309396733
+                },
+                {
+                  "key": "47",
+                  "pay_amt": "33000.0",
+                  "pay_cnt": 1,
+                  "source_rows": 1,
+                  "share_amount_pct": 0.00029247898272619126,
+                  "share_count_pct": 0.005346735817783243,
+                  "share_amount_among_known_pct": 0.00037643236793640346,
+                  "share_count_among_known_pct": 0.008086689309396733
+                },
+                {
+                  "key": "38",
+                  "pay_amt": "17000.0",
+                  "pay_cnt": 1,
+                  "source_rows": 1,
+                  "share_amount_pct": 0.00015067099110137127,
+                  "share_count_pct": 0.005346735817783243,
+                  "share_amount_among_known_pct": 0.00019391970469451089,
+                  "share_count_among_known_pct": 0.008086689309396733
+                }
+              ]
+            },
+            "coverage": {
+              "okved_division": {
+                "matched_amount_pct": 77.6976178561787,
+                "unknown_amount_pct": 22.302382143821312,
+                "matched_count_pct": 66.11773512270759,
+                "unknown_count_pct": 33.882264877292414
+              }
+            }
+          }
+        },
+        "excluding_same_group": {
+          "incoming": {
+            "source_rows": 744,
+            "unique_counterparties": 744,
+            "pay_amt_total": "3410576000.0",
+            "pay_cnt_total": 65629,
+            "aggregates": {
+              "okved_division": [
+                {
+                  "key": "(unknown)",
+                  "pay_amt": "1681512000.0",
+                  "pay_cnt": 36280,
+                  "source_rows": 454,
+                  "share_amount_pct": 49.302874353188436,
+                  "share_count_pct": 55.280440049368416,
+                  "share_amount_among_known_pct": null,
+                  "share_count_among_known_pct": null
+                },
+                {
+                  "key": "45",
+                  "pay_amt": "1562414000.0",
+                  "pay_cnt": 22211,
+                  "source_rows": 221,
+                  "share_amount_pct": 45.810854236938276,
+                  "share_count_pct": 33.84327050541681,
+                  "share_amount_among_known_pct": 90.36183738716439,
+                  "share_count_among_known_pct": 75.67889876997512
+                },
+                {
+                  "key": "46",
+                  "pay_amt": "63146000.0",
+                  "pay_cnt": 3276,
+                  "source_rows": 30,
+                  "share_amount_pct": 1.8514761142985818,
+                  "share_count_pct": 4.991695744259397,
+                  "share_amount_among_known_pct": 3.6520337014708537,
+                  "share_count_among_known_pct": 11.162220177859552
+                },
+                {
+                  "key": "49",
+                  "pay_amt": "33174000.0",
+                  "pay_cnt": 1749,
+                  "source_rows": 11,
+                  "share_amount_pct": 0.9726802745342722,
+                  "share_count_pct": 2.6649804202410516,
+                  "share_amount_among_known_pct": 1.918610300139266,
+                  "share_count_among_known_pct": 5.959317182868241
+                },
+                {
+                  "key": "68",
+                  "pay_amt": "30064000.0",
+                  "pay_cnt": 436,
+                  "source_rows": 2,
+                  "share_amount_pct": 0.8814933313317164,
+                  "share_count_pct": 0.6643404592481982,
+                  "share_amount_among_known_pct": 1.738744199173657,
+                  "share_count_among_known_pct": 1.4855702068213568
+                },
+                {
+                  "key": "47",
+                  "pay_amt": "27871000.0",
+                  "pay_cnt": 1077,
+                  "source_rows": 5,
+                  "share_amount_pct": 0.8171933421216827,
+                  "share_count_pct": 1.6410428316750219,
+                  "share_amount_among_known_pct": 1.6119125723512837,
+                  "share_count_among_known_pct": 3.6696309925380763
+                },
+                {
+                  "key": "52",
+                  "pay_amt": "4775000.0",
+                  "pay_cnt": 49,
+                  "source_rows": 3,
+                  "share_amount_pct": 0.14000567646051576,
+                  "share_count_pct": 0.0746621158329397,
+                  "share_amount_among_known_pct": 0.2761609749552359,
+                  "share_count_among_known_pct": 0.1669562847115745
+                },
+                {
+                  "key": "33",
+                  "pay_amt": "3469000.0",
+                  "pay_cnt": 262,
+                  "source_rows": 8,
+                  "share_amount_pct": 0.10171302442754537,
+                  "share_count_pct": 0.3992137622087797,
+                  "share_amount_among_known_pct": 0.20062877950151065,
+                  "share_count_among_known_pct": 0.8927050325394391
+                },
+                {
+                  "key": "70",
+                  "pay_amt": "1953000.0",
+                  "pay_cnt": 118,
+                  "source_rows": 1,
+                  "share_amount_pct": 0.05726305468636383,
+                  "share_count_pct": 0.17979856465891603,
+                  "share_amount_among_known_pct": 0.1129512846256703,
+                  "share_count_among_known_pct": 0.4020579917544039
+                },
+                {
+                  "key": "43",
+                  "pay_amt": "1078000.0",
+                  "pay_cnt": 103,
+                  "source_rows": 2,
+                  "share_amount_pct": 0.03160756423548398,
+                  "share_count_pct": 0.15694281491413858,
+                  "share_amount_among_known_pct": 0.062345870366857445,
+                  "share_count_among_known_pct": 0.35094892500596275
+                },
+                {
+                  "key": "53",
+                  "pay_amt": "676000.0",
+                  "pay_cnt": 23,
+                  "source_rows": 1,
+                  "share_amount_pct": 0.01982069890833689,
+                  "share_count_pct": 0.035045482941992105,
+                  "share_amount_among_known_pct": 0.039096297187379996,
+                  "share_count_among_known_pct": 0.07836723568094313
+                },
+                {
+                  "key": "20",
+                  "pay_amt": "157000.0",
+                  "pay_cnt": 11,
+                  "source_rows": 1,
+                  "share_amount_pct": 0.004603328000900728,
+                  "share_count_pct": 0.01676088314617014,
+                  "share_amount_among_known_pct": 0.009080057187009851,
+                  "share_count_among_known_pct": 0.0374799822821902
+                },
+                {
+                  "key": "23",
+                  "pay_amt": "154000.0",
+                  "pay_cnt": 13,
+                  "source_rows": 1,
+                  "share_amount_pct": 0.004515366319354854,
+                  "share_count_pct": 0.0198083164454738,
+                  "share_amount_among_known_pct": 0.008906552909551063,
+                  "share_count_among_known_pct": 0.04429452451531568
+                },
+                {
+                  "key": "41",
+                  "pay_amt": "47000.0",
+                  "pay_cnt": 18,
+                  "source_rows": 2,
+                  "share_amount_pct": 0.0013780663442186892,
+                  "share_count_pct": 0.027426899693732954,
+                  "share_amount_among_known_pct": 0.0027182336801876623,
+                  "share_count_among_known_pct": 0.06133088009812941
+                },
+                {
+                  "key": "27",
+                  "pay_amt": "44000.0",
+                  "pay_cnt": 2,
+                  "source_rows": 1,
+                  "share_amount_pct": 0.0012901046626728153,
+                  "share_count_pct": 0.0030474332993036613,
+                  "share_amount_among_known_pct": 0.0025447294027288753,
+                  "share_count_among_known_pct": 0.006814542233125489
+                },
+                {
+                  "key": "42",
+                  "pay_amt": "42000.0",
+                  "pay_cnt": 1,
+                  "source_rows": 1,
+                  "share_amount_pct": 0.001231463541642233,
+                  "share_count_pct": 0.0015237166496518306,
+                  "share_amount_among_known_pct": 0.0024290598844230174,
+                  "share_count_among_known_pct": 0.0034072711165627446
+                }
+              ]
+            },
+            "coverage": {
+              "okved_division": {
+                "matched_amount_pct": 50.697125646811564,
+                "unknown_amount_pct": 49.302874353188436,
+                "matched_count_pct": 44.719559950631584,
+                "unknown_count_pct": 55.280440049368416
+              }
+            }
+          },
+          "outgoing": {
+            "source_rows": 268,
+            "unique_counterparties": 268,
+            "pay_amt_total": "11282862000.0",
+            "pay_cnt_total": 18703,
+            "aggregates": {
+              "okved_division": [
+                {
+                  "key": "45",
+                  "pay_amt": "5063066000.0",
+                  "pay_cnt": 10616,
+                  "source_rows": 94,
+                  "share_amount_pct": 44.873951307744434,
+                  "share_count_pct": 56.76094744158691,
+                  "share_amount_among_known_pct": 57.75460373934226,
+                  "share_count_among_known_pct": 85.84829370855572
+                },
+                {
+                  "key": "46",
+                  "pay_amt": "3583428000.0",
+                  "pay_cnt": 978,
+                  "source_rows": 26,
+                  "share_amount_pct": 31.759920488259095,
+                  "share_count_pct": 5.229107629792011,
+                  "share_amount_among_known_pct": 40.87631173847304,
+                  "share_count_among_known_pct": 7.908782144590004
+                },
+                {
+                  "key": "(unknown)",
+                  "pay_amt": "2516347000.0",
+                  "pay_cnt": 6337,
+                  "source_rows": 119,
+                  "share_amount_pct": 22.302382143821312,
+                  "share_count_pct": 33.882264877292414,
+                  "share_amount_among_known_pct": null,
+                  "share_count_among_known_pct": null
+                },
+                {
+                  "key": "52",
+                  "pay_amt": "46326000.0",
+                  "pay_cnt": 117,
+                  "source_rows": 9,
+                  "share_amount_pct": 0.4105873137507132,
+                  "share_count_pct": 0.6255680906806395,
+                  "share_amount_among_known_pct": 0.5284426023339948,
+                  "share_count_among_known_pct": 0.9461426491994178
+                },
+                {
+                  "key": "49",
+                  "pay_amt": "22508000.0",
+                  "pay_cnt": 70,
+                  "source_rows": 4,
+                  "share_amount_pct": 0.19948839221821554,
+                  "share_count_pct": 0.37427150724482705,
+                  "share_amount_among_known_pct": 0.2567496890155324,
+                  "share_count_among_known_pct": 0.5660682516577713
+                },
+                {
+                  "key": "68",
+                  "pay_amt": "20887000.0",
+                  "pay_cnt": 481,
+                  "source_rows": 3,
+                  "share_amount_pct": 0.18512147006672597,
+                  "share_count_pct": 2.57177992835374,
+                  "share_amount_among_known_pct": 0.23825887482083816,
+                  "share_count_among_known_pct": 3.889697557819829
+                },
+                {
+                  "key": "72",
+                  "pay_amt": "17169000.0",
+                  "pay_cnt": 48,
+                  "source_rows": 1,
+                  "share_amount_pct": 0.15216883801290843,
+                  "share_count_pct": 0.2566433192535957,
+                  "share_amount_among_known_pct": 0.19584749470000337,
+                  "share_count_among_known_pct": 0.38816108685104317
+                },
+                {
+                  "key": "62",
+                  "pay_amt": "9863000.0",
+                  "pay_cnt": 5,
+                  "source_rows": 3,
+                  "share_amount_pct": 0.08741576383722499,
+                  "share_count_pct": 0.026733679088916218,
+                  "share_amount_among_known_pct": 0.11250764984717417,
+                  "share_count_among_known_pct": 0.040433446546983665
+                },
+                {
+                  "key": "63",
+                  "pay_amt": "1972000.0",
+                  "pay_cnt": 1,
+                  "source_rows": 1,
+                  "share_amount_pct": 0.01747783496775907,
+                  "share_count_pct": 0.005346735817783243,
+                  "share_amount_among_known_pct": 0.022494685744563262,
+                  "share_count_among_known_pct": 0.008086689309396733
+                },
+                {
+                  "key": "20",
+                  "pay_amt": "942000.0",
+                  "pay_cnt": 9,
+                  "source_rows": 1,
+                  "share_amount_pct": 0.008348945506911279,
+                  "share_count_pct": 0.04812062236004919,
+                  "share_amount_among_known_pct": 0.010745433048366426,
+                  "share_count_among_known_pct": 0.0727802037845706
+                },
+                {
+                  "key": "43",
+                  "pay_amt": "140000.0",
+                  "pay_cnt": 3,
+                  "source_rows": 1,
+                  "share_amount_pct": 0.0012408199267171752,
+                  "share_count_pct": 0.01604020745334973,
+                  "share_amount_among_known_pct": 0.0015969858033665601,
+                  "share_count_among_known_pct": 0.024260067928190198
+                },
+                {
+                  "key": "80",
+                  "pay_amt": "94000.0",
+                  "pay_cnt": 35,
+                  "source_rows": 3,
+                  "share_amount_pct": 0.0008331219507958175,
+                  "share_count_pct": 0.18713575362241353,
+                  "share_amount_among_known_pct": 0.001072261896546119,
+                  "share_count_among_known_pct": 0.28303412582888565
+                },
+                {
+                  "key": "56",
+                  "pay_amt": "70000.0",
+                  "pay_cnt": 1,
+                  "source_rows": 1,
+                  "share_amount_pct": 0.0006204099633585876,
+                  "share_count_pct": 0.005346735817783243,
+                  "share_amount_among_known_pct": 0.0007984929016832801,
+                  "share_count_among_known_pct": 0.008086689309396733
+                },
+                {
+                  "key": "47",
+                  "pay_amt": "33000.0",
+                  "pay_cnt": 1,
+                  "source_rows": 1,
+                  "share_amount_pct": 0.00029247898272619126,
+                  "share_count_pct": 0.005346735817783243,
+                  "share_amount_among_known_pct": 0.00037643236793640346,
+                  "share_count_among_known_pct": 0.008086689309396733
+                },
+                {
+                  "key": "38",
+                  "pay_amt": "17000.0",
+                  "pay_cnt": 1,
+                  "source_rows": 1,
+                  "share_amount_pct": 0.00015067099110137127,
+                  "share_count_pct": 0.005346735817783243,
+                  "share_amount_among_known_pct": 0.00019391970469451089,
+                  "share_count_among_known_pct": 0.008086689309396733
+                }
+              ]
+            },
+            "coverage": {
+              "okved_division": {
+                "matched_amount_pct": 77.6976178561787,
+                "unknown_amount_pct": 22.302382143821312,
+                "matched_count_pct": 66.11773512270759,
+                "unknown_count_pct": 33.882264877292414
+              }
+            }
+          }
+        }
+      },
+      "rows": [
+        {
+          "payer_id": "U_16260",
+          "beneficiary_id": "U_25835",
+          "amount_source_value": "217794000.0",
+          "payment_count": 170
+        },
+        {
+          "payer_id": "U_122970",
+          "beneficiary_id": "U_25835",
+          "amount_source_value": "133659000.0",
+          "payment_count": 400
+        },
+        {
+          "payer_id": "U_34993",
+          "beneficiary_id": "U_25835",
+          "amount_source_value": "133305000.0",
+          "payment_count": 4924
+        },
+        {
+          "payer_id": "U_189456",
+          "beneficiary_id": "U_25835",
+          "amount_source_value": "114760000.0",
+          "payment_count": 252
+        },
+        {
+          "payer_id": "U_128194",
+          "beneficiary_id": "U_25835",
+          "amount_source_value": "98067000.0",
+          "payment_count": 345
+        },
+        {
+          "payer_id": "U_95190",
+          "beneficiary_id": "U_25835",
+          "amount_source_value": "83554000.0",
+          "payment_count": 739
+        },
+        {
+          "payer_id": "U_68831",
+          "beneficiary_id": "U_25835",
+          "amount_source_value": "79312000.0",
+          "payment_count": 260
+        },
+        {
+          "payer_id": "U_51867",
+          "beneficiary_id": "U_25835",
+          "amount_source_value": "78749000.0",
+          "payment_count": 42
+        },
+        {
+          "payer_id": "U_199606",
+          "beneficiary_id": "U_25835",
+          "amount_source_value": "63064000.0",
+          "payment_count": 263
+        },
+        {
+          "payer_id": "U_39483",
+          "beneficiary_id": "U_25835",
+          "amount_source_value": "62230000.0",
+          "payment_count": 438
+        },
+        {
+          "payer_id": "U_25835",
+          "beneficiary_id": "U_191409",
+          "amount_source_value": "3091293000.0",
+          "payment_count": 483
+        },
+        {
+          "payer_id": "U_25835",
+          "beneficiary_id": "U_65961",
+          "amount_source_value": "613885000.0",
+          "payment_count": 635
+        },
+        {
+          "payer_id": "U_25835",
+          "beneficiary_id": "U_64507",
+          "amount_source_value": "525130000.0",
+          "payment_count": 77
+        },
+        {
+          "payer_id": "U_25835",
+          "beneficiary_id": "U_17673",
+          "amount_source_value": "436060000.0",
+          "payment_count": 226
+        },
+        {
+          "payer_id": "U_25835",
+          "beneficiary_id": "U_116696",
+          "amount_source_value": "322956000.0",
+          "payment_count": 50
+        },
+        {
+          "payer_id": "U_25835",
+          "beneficiary_id": "U_40163",
+          "amount_source_value": "322016000.0",
+          "payment_count": 70
+        },
+        {
+          "payer_id": "U_25835",
+          "beneficiary_id": "U_45263",
+          "amount_source_value": "305599000.0",
+          "payment_count": 96
+        },
+        {
+          "payer_id": "U_25835",
+          "beneficiary_id": "U_8318",
+          "amount_source_value": "302937000.0",
+          "payment_count": 1245
+        },
+        {
+          "payer_id": "U_25835",
+          "beneficiary_id": "U_117828",
+          "amount_source_value": "281982000.0",
+          "payment_count": 104
+        },
+        {
+          "payer_id": "U_25835",
+          "beneficiary_id": "U_139540",
+          "amount_source_value": "247977000.0",
+          "payment_count": 202
+        }
+      ],
+      "counterparty_directory": {
+        "U_122970": {
+          "main_okved_name": "Торговля оптовая автомобильными деталями, узлами и принадлежностями, кроме деятельности агентов",
+          "main_okved_code": "45.31.1",
+          "group_id": "group_132767_sb",
+          "region": "Воронежская область"
+        },
+        "U_189456": {
+          "main_okved_name": "Торговля оптовая автомобильными деталями, узлами и принадлежностями, кроме деятельности агентов",
+          "main_okved_code": "45.31.1",
+          "group_id": "group_89978_sb",
+          "region": "Новосибирская область"
+        },
+        "U_128194": {
+          "main_okved_name": "Торговля оптовая автомобильными деталями, узлами и принадлежностями, кроме деятельности агентов",
+          "main_okved_code": "45.31.1",
+          "group_id": "group_132767_sb",
+          "region": "Воронежская область"
+        },
+        "U_68831": {
+          "main_okved_name": "Торговля оптовая автомобильными деталями, узлами и принадлежностями, кроме деятельности агентов",
+          "main_okved_code": "45.31.1",
+          "group_id": "group_88605_sb",
+          "region": "Москва"
+        },
+        "U_199606": {
+          "main_okved_name": "Торговля оптовая автомобильными деталями, узлами и принадлежностями, кроме деятельности агентов",
+          "main_okved_code": "45.31.1",
+          "group_id": "group_132767_sb",
+          "region": "Воронежская область"
+        },
+        "U_191409": {
+          "main_okved_name": "Торговля оптовая неспециализированная",
+          "main_okved_code": "46.90",
+          "group_id": "group_132584_sb",
+          "region": "Москва"
+        },
+        "U_65961": {
+          "main_okved_name": "Торговля оптовая автомобильными деталями, узлами и принадлежностями, кроме деятельности агентов",
+          "main_okved_code": "45.31.1",
+          "group_id": "group_90315_sb",
+          "region": "Москва"
+        },
+        "U_64507": {
+          "main_okved_name": "Торговля автомобильными деталями, узлами и принадлежностями",
+          "main_okved_code": "45.30",
+          "group_id": "group_87587_sb",
+          "region": "Москва"
+        },
+        "U_17673": {
+          "main_okved_name": "Торговля оптовая автомобильными деталями, узлами и принадлежностями, кроме деятельности агентов",
+          "main_okved_code": "45.31.1",
+          "group_id": "group_102890_sb",
+          "region": "Москва"
+        },
+        "U_116696": {
+          "main_okved_name": "Торговля оптовая автомобильными деталями, узлами и принадлежностями, кроме деятельности агентов",
+          "main_okved_code": "45.31.1",
+          "group_id": "group_133516_sb",
+          "region": "Москва"
+        },
+        "U_40163": {
+          "main_okved_name": "Торговля оптовая автомобильными деталями, узлами и принадлежностями, кроме деятельности агентов",
+          "main_okved_code": "45.31.1",
+          "group_id": "group_134962_sb",
+          "region": "Москва"
+        },
+        "U_45263": {
+          "main_okved_name": "Торговля оптовая автомобильными деталями, узлами и принадлежностями, кроме деятельности агентов",
+          "main_okved_code": "45.31.1",
+          "group_id": "group_134585_sb",
+          "region": "Москва"
+        },
+        "U_8318": {
+          "main_okved_name": "Торговля оптовая автомобильными деталями, узлами и принадлежностями, кроме деятельности агентов",
+          "main_okved_code": "45.31.1",
+          "group_id": "group_133141_sb",
+          "region": "Москва"
+        },
+        "U_139540": {
+          "main_okved_name": "Торговля оптовая автомобильными деталями, узлами и принадлежностями, кроме деятельности агентов",
+          "main_okved_code": "45.31.1",
+          "group_id": "group_92469_sb",
+          "region": "Смоленская область"
+        }
+      },
+      "rows_scope": {
+        "aggregation": "Sum PAY_AMT and PAY_CNT per counterparty and direction",
+        "top_per_direction": 10,
+        "complete": false,
+        "self_transfers_excluded": true,
+        "complete_totals_path": "summaries"
+      }
+    }
+  },
+  "provenance": {
+    "company_source": {
+      "csv_file": "df_Uid_data_hack.csv",
+      "raw_fields": {
+        "SYNTHETIC_U": "U_25835",
+        "ORG_TYPE": "КОММ_ОРГ",
+        "OKFS_NAME": "ЧАСТНАЯ СОБСТВЕННОСТЬ",
+        "COMPANY_AGE_YEARS_GRADATION": "16-25",
+        "ECO_MARK_LABEL": "Оптимизация",
+        "MAINOKVED_CODE": "45.31.1",
+        "MAINOKVED_NAME": "Торговля оптовая автомобильными деталями, узлами и принадлежностями, кроме деятельности агентов",
+        "NEGATIVEMARK": 1,
+        "AMOUNT_WORKERS_FNS_GRADATION": "Более 251",
+        "AMOUNT_WORKERS_SPARK_GRADATION": null,
+        "CL_TYPE": "CLIENT",
+        "CL_PRODUCT_RKO_MARK": 1,
+        "CL_PRODUCT_GAR_MARK": 0,
+        "CL_PRODUCT_LOA_MARK": 1,
+        "CL_PRODUCT_LEA_MARK": 1,
+        "CL_PRODUCT_DEP_MARK": 0,
+        "CL_PRODUCT_ZPP_MARK": 1,
+        "FTS_FLAG": 1,
+        "FTS_COUNTRY_NAME": "ОАЭ, КИТАЙ, ИТАЛИЯ",
+        "FACTORING_MARK": 0,
+        "REVENUE_COMPANY": 22349855436.0,
+        "GROUP_ID": "group_133440_sb",
+        "CITY": "г. Москва",
+        "REGION": "Москва"
+      }
+    },
+    "impact_queries": {
+      "source_file": "D:\\Hack\\Alfa-hack\\precomputed\\impact_queries\\U_25835.json",
+      "sha256": "d3619da5b9f9c1f159755e3ba3a4f03aeeae1e10c4dbfe83a0699a9b4c4e34c5",
+      "prompt_version": "impact-queries-v2",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "generated_at": "2026-10-22T00:07:04"
+    }
+  }
+}

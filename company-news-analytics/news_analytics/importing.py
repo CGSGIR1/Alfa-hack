@@ -74,7 +74,7 @@ def analytics(c,path,d):
             c.execute('INSERT INTO analytics_mechanism_sources VALUES(?,?,?,?)',(m['id'],uid,ref,dumps([e for e in m['evidence_refs'] if e['fragment_id']==ref])))
 
 IMPORTERS={'companies':company,'news':news,'analytics':analytics}
-def import_all(db,locations,update_existing=False,skip_invalid_news=False):
+def import_all(db,locations,update_existing=False,skip_invalid_news=False,min_news_date=None):
     # Validate every document of every selected kind before starting any data writes.
     issues=[];aliases=[]
     batches={kind:load_inputs(path,kind,skip_invalid=skip_invalid_news and kind=='news',issues=issues) for kind,path in locations.items() if path is not None}
@@ -85,6 +85,10 @@ def import_all(db,locations,update_existing=False,skip_invalid_news=False):
         for kind,batch in batches.items():
             table='companies' if kind=='companies' else kind
             for path,d in batch:
+                if kind=='news' and min_news_date and d['document_date']<min_news_date:
+                    summary[kind]['expired_skipped']=summary[kind].get('expired_skipped',0)+1
+                    summary[kind]['skipped']+=1
+                    continue
                 if kind=='news':
                     key=news_url_key(d['source']['url']);existing_id=known_urls.get(key)
                     if existing_id and existing_id!=d['document_id']:

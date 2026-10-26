@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="ru">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Управление новостной аналитикой</title><link rel="icon" href="/favicon.ico" type="image/x-icon"><link rel="stylesheet" href="/manage/style.css"><link rel="stylesheet" href="/manage/report-view.css"><script src="/manage/report-view.js" defer></script><script src="/manage/app.js" defer></script></head>
+<body>
+<header class="topbar"><div class="brand"><span class="mark">н</span><div>Управление аналитикой<small>Служебный интерфейс</small></div></div><span class="local"><i></i>Локальный проект</span></header>
+<main>
+  <div class="intro"><div><p class="eyebrow">КОМПАНИЯ → НОВОСТИ → АНАЛИТИКА</p><h1>Найдите то, что важно<br>для вашей компании</h1><p class="muted">Выберите профиль и посмотрите связанные новости и аналитические материалы.</p></div><div class="stats" id="stats" aria-label="Материалы базы"></div></div>
+  <div id="error" class="notice error" role="alert" hidden></div>
+  <div id="progress" class="notice progress" aria-live="polite" hidden><span class="spinner"></span><div><strong id="phase"></strong><small>Можно оставить эту страницу открытой. Результат появится автоматически.</small></div></div>
+  <div id="message" class="notice success" role="status" hidden></div>
+  <div class="workspace">
+    <aside>
+      <section class="panel"><h2>Автоматическая обработка</h2><p id="auto-state" class="muted compact"></p><p id="worker-state" class="hint"></p><button id="auto-toggle" type="button" class="button secondary full">Загрузка состояния…</button></section>
+      <section class="panel"><div class="section-title"><span class="step">01</span><h2>Компания</h2></div>
+        <form id="search-form"><label for="company">Профиль компании или группы</label><select id="company" name="company" required><option value="">Загрузка профилей…</option></select>
+          <div id="profile" class="profile"><p class="muted">Выберите компанию из базы или загрузите её JSON ниже.</p></div>
+          <div class="date-heading"><label for="as-of">Дата поиска</label><button id="dataset-date" type="button" class="text-button">Дата материалов</button></div><input id="as-of" type="date" required>
+          <p class="hint" id="window-hint">Поиск новостей за последние 7 дней до выбранной даты.</p>
+          <label for="top-news">Сколько новостей включить в новую партию</label><input id="top-news" type="number" min="1" max="50" value="3" required>
+          <div class="setting-note"><strong id="candidate-limit">До 10 кандидатов в каждой ветви</strong><span>Для каждой новости ищем аналитику по механизмам и исходным фрагментам. Сначала показываем пересечение.</span></div>
+          <label class="hint"><input id="generate-report" type="checkbox" checked> Сформировать итоговый отчёт с помощью ИИ</label>
+          <p id="connection-state" class="hint"></p>
+          <button id="search-button" class="button primary full" type="submit">Получить новые материалы <span>→</span></button>
+          <p class="hint">Уже проверенные новости повторно не сравниваются. Если партия ожидает ответа LLM, откроется тот же пакет.</p>
+        </form>
+      </section>
+      <section class="panel"><h2>Обновление новостей</h2><p class="muted compact">Собрать и подготовить свежие публикации для общей базы. Отчёт создаётся отдельно для выбранной выше компании.</p><button id="poll-button" type="button" class="button secondary full">Обновить новости</button><p class="hint">В автоматическом режиме отчёт обновляется только для выбранной компании. Операция использует API организаторов.</p></section>
+      <section class="panel"><div class="section-title"><span class="step">03</span><h2>Готовый отчёт</h2></div>
+        <p class="muted compact">Сохраните JSON ответа итоговой LLM. Он появится в истории компании и завершит обработку партии.</p>
+        <label for="llm-result">Ответ LLM в формате JSON</label><input id="llm-result" type="file" accept=".json,application/json">
+        <button id="complete-button" type="button" class="button secondary full" disabled>Сохранить отчёт</button>
+      </section>
+      <section class="panel uploads"><div class="section-title"><span class="step">02</span><h2>Добавить материалы</h2></div><p class="muted compact">JSON аналитики, новостей или компаний. Тип определится автоматически.</p>
+        <label class="dropzone" id="dropzone" for="files"><span class="upload-symbol">＋</span><strong>Выберите JSON-файлы</strong><span>или перетащите их сюда</span><input id="files" type="file" accept=".json,application/json" multiple></label>
+        <ul id="file-list" class="file-list" aria-live="polite"></ul>
+        <button type="button" id="upload-button" class="button secondary full" disabled>Загрузить материалы</button>
+        <p class="hint">Можно выбрать несколько файлов разных типов. Материалы с тем же ID обновляются; перед изменениями сохраняется копия базы.</p>
+      </section>
+    </aside>
+    <section class="results" aria-label="Результаты поиска">
+      <div class="results-header"><div><p class="eyebrow">РЕЗУЛЬТАТЫ ПОИСКА</p><h2 id="results-title">Новости и связанная аналитика</h2></div><div id="downloads" class="downloads" hidden></div></div>
+      <div id="result-summary"></div>
+      <div id="results"><div class="empty"><div class="empty-icon">↗</div><h3>Начните с выбора компании</h3><p>Здесь появятся подходящие новости,<br>объясняющие механизмы и исходные фрагменты аналитики.</p><div class="flow"><span>Компания</span><b>→</b><span>Новости</span><b>→</b><span>Аналитика</span></div></div></div>
+      <p class="footnote">Сходство — оценка близости текстов, а не вероятность влияния на бизнес. В итоговом отчёте ИИ проверяет применимость связей. Материалы Альфа-Банка имеют отдельную пометку.</p>
+      <section class="panel"><h2>История компании</h2><div id="company-history" aria-live="polite"><p class="muted">Выберите компанию.</p></div></section>
+    </section>
+  </div>
+  <footer>Локальная EmbeddingGemma · Данные сохраняются в базе проекта</footer>
+</main>
+</body></html>

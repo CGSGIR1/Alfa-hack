@@ -96,7 +96,11 @@ def report_input(report,include_candidates=False,per_news=2,total=5):
     require(report.get('schema_version')=='comparison-report-1.0','Expected a saved company search report')
     company_id=report['company_id'];docs={};sources={};mechanisms={};connections=[];items=[]
     selected,selection=select_analytics(report,include_candidates,per_news,total)
+    omitted_without_analytics=[]
     for n in report['news']:
+        if not selected[n['news_id']]:
+            omitted_without_analytics.append(n['news_id'])
+            continue
         selected_ids={f['id'] for f in n['selected_fragments']}
         fragments=[]
         for f in n['selected_fragments']:
@@ -163,12 +167,19 @@ def report_input(report,include_candidates=False,per_news=2,total=5):
             if span not in spans:spans.append(span)
         require(evidenced==refs,'Every analytical source requires evidence')
         m['evidence_refs']=spans
+    financial_coverage=copy.deepcopy(report.get('financial_topic_coverage',dict(enabled=False,reason='Not available in this saved snapshot')))
+    visible_ids={n['id'] for n in items}
+    for topic in financial_coverage.get('topics',[]):
+        previous_ids=topic.get('news_ids',[])
+        topic['news_ids']=[nid for nid in previous_ids if nid in visible_ids]
+        if previous_ids and not topic['news_ids']:topic['status']='omitted_no_selected_analytics'
     return dict(schema_version='report-generation-input-1.1',request_id=str(report.get('run_id','unsaved'))+'::'+company_id,
       as_of=report['as_of'],language='ru',generation_instructions=REPORT_INSTRUCTIONS,
       company=dict(id=company_id,subject_type=report.get('subject_type','company'),profile=report['company_profile'],
                    facts=copy.deepcopy(report['company_facts']),limitations=report.get('company_limitations',[]),
                    limitations_available='company_limitations' in report),
-      retrieval=dict(settings=report['settings'],packet_selection=selection,
+      retrieval=dict(settings=report['settings'],packet_selection={**selection,
+        'news_without_selected_analytics_omitted':omitted_without_analytics},
         candidate_policy='intersection_plus_unconfirmed_mechanism_candidates' if include_candidates else 'intersection_only',
         score_interpretation='Cosine similarity, not probability; applicability has not been assessed',
         company_news_selection_count=len(items),intersection_links=sum(a['selection_status']=='intersection' for a in connections)),
@@ -177,7 +188,7 @@ def report_input(report,include_candidates=False,per_news=2,total=5):
       coverage=dict(full_news_articles_included=False,full_analytical_documents_included=False,
         only_selected_news_fragments=True,single_branch_candidates_included=include_candidates,
         news_with_incomplete_evidence=[n['id'] for n in items if n['source_traceability']['status']!='complete'],
-        financial_topics=report.get('financial_topic_coverage',dict(enabled=False,reason='Not available in this saved snapshot')),
+        financial_topics=financial_coverage,
         corpus_wide_recall_measured=False))
 
 def main(argv=None):

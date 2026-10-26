@@ -44,10 +44,11 @@ def vector(row,model):
     if not np.isfinite(v).all() or abs(norm-1)>1e-4:return None,'invalid_vector_norm'
     return v/norm,None
 
-def embed(db,model_path,model=None,batch_size=4,threads=4):
+def embed(db,model_path,model=None,batch_size=4,threads=4,runtime=None,company_id=None):
     require(type(batch_size) is int and batch_size>0 and type(threads) is int and threads>0,'batch_size and threads must be positive integers')
     model=model or identity(model_path)
-    with connect(db,True) as c:rows=[dict(r) for r in c.execute('SELECT * FROM active_embedding_inputs ORDER BY encoding_method,id')]
+    where=' WHERE id IN (SELECT input_id FROM company_queries WHERE company_id=? AND is_active=1)' if company_id else ''
+    with connect(db,True) as c:rows=[dict(r) for r in c.execute('SELECT * FROM active_embedding_inputs'+where+' ORDER BY encoding_method,id', (company_id,) if company_id else ())]
     pending=[r for r in rows if vector(r,model)[1]]
     stats=dict(total=len(rows),reused=len(rows)-len(pending),computed=0,roles={})
     for role in sorted({r['role'] for r in rows}):stats['roles'][role]=dict(total=sum(r['role']==role for r in rows),pending=sum(r['role']==role for r in pending))
@@ -57,12 +58,23 @@ def embed(db,model_path,model=None,batch_size=4,threads=4):
     from transformers import AutoTokenizer
     from sentence_transformers import SentenceTransformer
     torch.set_num_threads(threads)
-    tokenizer=AutoTokenizer.from_pretrained(str(model_path),local_files_only=True)
+    runtime=runtime if runtime is not None else {}
+    signature=(str(Path(model_path).resolve()),model['model_revision'],threads)
+    if runtime.get('signature')!=signature:
+        runtime.clear()
+        runtime['signature']=signature
+    tokenizer=runtime.get('tokenizer')
+    if tokenizer is None:
+        tokenizer=AutoTokenizer.from_pretrained(str(model_path),local_files_only=True)
+        runtime['tokenizer']=tokenizer
     for row in pending:
         prompt=model['prompts']['query' if row['encoding_method']=='encode_query' else 'document']
         row['actual_tokens']=len(tokenizer.encode(prompt+row['text'],add_special_tokens=True,truncation=False))
         require(0<row['actual_tokens']<=LIMIT,f"Input {row['id']} ({row['role']}) has {row['actual_tokens']} tokens; split the fragment, truncation refused")
-    encoder=SentenceTransformer(str(model_path),device='cpu',local_files_only=True,model_kwargs={'dtype':torch.float32})
+    encoder=runtime.get('encoder')
+    if encoder is None:
+        encoder=SentenceTransformer(str(model_path),device='cpu',local_files_only=True,model_kwargs={'dtype':torch.float32})
+        runtime['encoder']=encoder
     require(encoder.get_embedding_dimension()==DIMENSIONS,'Model dimension differs from 768')
     require(all(encoder.prompts.get(k)==v for k,v in model['prompts'].items() if k in {'document','query'}),'Model prompts changed')
     require(max(r['actual_tokens'] for r in pending)<=encoder.max_seq_length,'Model input limit too small; truncation refused')
@@ -95,8 +107,14 @@ def reuse_legacy(db,legacy_path,model):
     candidates={};rejected=0
     with connect(legacy_path,True) as c:
         tables={r[0] for r in c.execute("SELECT name FROM sqlite_master WHERE type='table'")}
+        if 'embedding_inputs' in tables:
+            for row in c.execute('SELECT * FROM embedding_inputs WHERE embedding IS NOT NULL'):
+                converted=dict(row)
+                if vector(converted,model)[1]:rejected+=1;continue
+                candidates[(converted['role'],converted['text_hash'])]=converted
         for table,column,role in sources:
             if table not in tables:continue
+            if 'embedding' not in {r[1] for r in c.execute('PRAGMA table_info('+table+')')}:continue
             for row in c.execute(f'SELECT * FROM {table} WHERE embedding IS NOT NULL'):
                 r=dict(row);method='encode_query' if role in {'company_query','news_mechanism'} else 'encode_document'
                 prompt=model['prompts']['query' if method=='encode_query' else 'document']

@@ -13,12 +13,15 @@ import json
 import sys
 from pathlib import Path
 
+sys.path.insert(0,str(Path(__file__).resolve().parents[2]/'company-news-analytics'))
+
 from ..llm import LLMError
 from .pipeline import generate
 from .render import to_markdown
 
 
 def main() -> None:
+    if hasattr(sys.stdout,'reconfigure'):sys.stdout.reconfigure(encoding='utf-8')
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = parser.add_subparsers(dest="command", required=True)
     g = sub.add_parser("generate", help="сгенерировать отчёт")
@@ -27,11 +30,31 @@ def main() -> None:
     g.add_argument("--md", type=Path, help="отчёт в Markdown")
     g.add_argument("--trace", type=Path, help="трейс шагов")
     g.add_argument("--no-critic", action="store_true")
+    d = sub.add_parser("deep", help="углублённый отчёт (логика v2)")
+    d.add_argument("package", type=Path)
+    d.add_argument("--extras", type=Path, help="полные тексты и кандидаты аналитики (из адаптера)")
+    d.add_argument("--budget", type=float, default=20.0)
+    d.add_argument("-o", "--output", type=Path)
+    d.add_argument("--md", type=Path)
+    d.add_argument("--trace", type=Path)
+    d.add_argument('--no-critic',action='store_true')
     args = parser.parse_args()
 
     package = json.loads(args.package.read_text(encoding="utf-8"))
     try:
-        document, trace = generate(package, critic=not args.no_critic)
+        inferred_extras={'full_texts':{},'candidates':{}}
+        if package.get('schema_version')=='comparison-report-1.0':
+            from .adapters import comparison_to_package
+            package,inferred_extras=comparison_to_package(package)
+        if args.command == "deep":
+            from .deep import generate as deep_generate
+            extras = json.loads(args.extras.read_text(encoding="utf-8")) if args.extras else inferred_extras
+            document, trace = deep_generate(package, extras, budget=args.budget,critic=not args.no_critic)
+            if extras.get('catalog'):
+                from src.integration.report_context import used_catalog
+                document['evidence_catalog']=used_catalog(document,extras)
+        else:
+            document, trace = generate(package, critic=not args.no_critic)
     except (ValueError, LLMError) as error:
         sys.exit(f"Ошибка: {error}")
     text = json.dumps(document, ensure_ascii=False, indent=2)
