@@ -673,8 +673,8 @@
     },
     {
       "path": "docs/GIT_HANDOFF.md",
-      "bytes": 3807,
-      "sha256": "a743c3a2ca635685690372bd4f280b6db2b62c877d597bafd19954274f8694f0"
+      "bytes": 4914,
+      "sha256": "1dc7fccb7b64210f6a65bfdf71799a6e7e3d15e4c975c14b1bf4c5cd26dcd9f6"
     },
     {
       "path": "docs/INTEGRATION.md",
@@ -708,8 +708,8 @@
     },
     {
       "path": "docs/RELEASE_CHECKS.md",
-      "bytes": 11494,
-      "sha256": "03ddf175c29bbcac4efbb7d9903ff55859ba2d491620922ab6fa2b2e37f96b15"
+      "bytes": 12117,
+      "sha256": "13e053c2535a811a1ce9525f8c72c0d08611636a7dda2a4384fa07eb55accd11"
     },
     {
       "path": "docs/REPORT_PRESENTATION.md",
@@ -4578,8 +4578,8 @@
     },
     {
       "path": "tests/test_company_onboarding.py",
-      "bytes": 10004,
-      "sha256": "10f09f909db69cc63994628eaa082d62c6aabd44964942c5644c9fb3f8650d81"
+      "bytes": 10020,
+      "sha256": "9328d0d7615233183ec80c122df2a60e89656e1e678951bf139e5a64381b06ba"
     },
     {
       "path": "tests/test_company_onboarding_client.cjs",
@@ -4727,6 +4727,6 @@
       "sha256": "201a54980829de993b10a2a18b1580cae14f73d380821c394b72e5aac20e6d06"
     }
   ],
-  "updated_at": "2026-10-26T00:44:19.543210+00:00",
-  "documentation_revision": "Published image; public visibility is managed by the owner"
+  "updated_at": "2026-10-26T00:52:52.930254+00:00",
+  "documentation_revision": "Main replacement candidate; Windows test reads UTF-8 explicitly"
 }

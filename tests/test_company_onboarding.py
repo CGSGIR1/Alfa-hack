@@ -62,7 +62,7 @@ class OnboardingTests(unittest.TestCase):
         with connect(self.service.db, True) as c:
             self.assertEqual(c.execute('SELECT count(*) FROM companies').fetchone()[0], 1)
             row = c.execute('SELECT input_file,source_json FROM companies').fetchone()
-            self.assertEqual(json.loads(Path(row['input_file']).read_text())['subject_id'], 'U_123')
+            self.assertEqual(json.loads(Path(row['input_file']).read_text(encoding='utf-8'))['subject_id'], 'U_123')
             self.assertEqual(json.loads(row['source_json'])['facts']['industry']['main_okved_code'], '46')
 
     def test_prepared_json_without_csv_or_llm(self):
